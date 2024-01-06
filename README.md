@@ -2,7 +2,7 @@
 
 ## Exercise 3.1: StudentDB
 
-![StudentDB_UML]()
+![StudentDB_UML](https://github.com/GirishTabaraddi/StudentDB/blob/feature/add-basic-info-to-studentDB/StudentDB_UML.png)
 
 Define constructors and getters as required. Try to keep the classes immutable, i.e. define setter functions only if required for the use cases described below. 
 
@@ -13,15 +13,22 @@ Matrikel numbers for new students are generated automatically. Each time a new s
 The class SimpleUI provides a simple user interface for the database. It is created with the student database as argument. The run method continuously lists the available commands  waits for the user to choose one by entering the number and executes the command. Command execution may involve further data input from the user, of course.
 
 The commands to be implemented are:
+
 	1. Add new Course: Queries the user for the required data and creates the new course in the database.
 	2. List courses: Prints all courses in the database with their data.
-	3. Add new student: Queries the user for the required data (member data of Student and Address) and creates a new student in the database. 
-	4. Add enrollment: Queries the user for a matrikel number, a course id and a semester and adds the enrollment. If the enrollment already exists, a warning messages is printed.
-	5. Print student: Queries the user for a matrikel number and prints the student including the enrolled courses and their results.
-	6. Search student: Queries the user for a string and prints the matrikel number, last name and first name of all students that have the provided string as substring in their 	first or last name. 
-	7. Update student: Queries the user for a matrikel number. If the corresponding student is found in the data base, the properties (except for the matrikel number) are presented in a numbered list. Entering the item number allows the user to modify the property, entering "0" terminates the update.
-	
-	The list of properties also includes the enrollments. When an enrollment is chosen for update, the user can remove the enrollment or enter a mark for the enrollment.
+	3. Add new student: Queries the user for the required data (member data of Student and Address) and 
+ 		creates a new student in the database. 
+	4. Add enrollment: Queries the user for a matrikel number, a course id and a semester and adds the enrollment. 
+ 		If the enrollment already exists, a warning messages is printed.
+	5. Print student: Queries the user for a matrikel number and prints the student including the enrolled courses 
+ 		and their results.
+	6. Search student: Queries the user for a string and prints the matrikel number, last name and first name of all students 
+ 		that have the provided string as substring in their 	first or last name. 
+	7. Update student: Queries the user for a matrikel number. If the corresponding student is found in the data base, 
+ 		the properties (except for the matrikel number) are presented in a numbered list.     
+		Entering the item number allows the user to modify the property, entering "0" terminates the update. 
+  		The list of properties also includes the enrollments. When an enrollment is chosen for update, 
+		the user can remove the enrollment or enter a mark for the enrollment.
 
 Remember that Address is immutable, as discussed in the lecture. If any property of the address is changed, a new object must be created.
 
@@ -37,7 +44,7 @@ In order to store all data in one file, we first write a line with the number of
 
 Here’s a short example:
 
-![CSV_Format]()
+![CSV_Format](https://github.com/GirishTabaraddi/StudentDB/blob/feature/add-basic-info-to-studentDB/CSV_Format.png)
 
 Implement writing by adding methods virtual void write(std::ostream& out) to Course and Student. Objects write a single line with their data to the ostream. The classes BlockCourse and WeeklyCourse write a character indicating the actual type followed by the data members of the base class and the derived class. Implement this by implementing Course::write in such a way that it writes the base class’s data without a line terminator (e.g. “5387;APT;Automation;5”) and call this method from the derived classes after writing the leading type indicator and before writing the data members of the derived class.
 
@@ -72,7 +79,7 @@ The generated data is provided in the JSON format (https://en.wikipedia.org/wiki
 
 Here’s a formatted sample output (picture data omitted):
 
-![JSON_Format_Output]()
+![JSON_Format_Output](https://github.com/GirishTabaraddi/StudentDB/blob/feature/add-basic-info-to-studentDB/JSON_Format_Output.png)
 
 The Poco library provides classes for parsing this data.
 
