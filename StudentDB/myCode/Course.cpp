@@ -11,8 +11,13 @@
 
 using namespace std;
 
-Course::Course(std::string major) :
-m_courseKey(0), m_title(major), m_creditPoints(0.0)
+Course::Course() :
+m_courseKey(0), m_title(""), m_major(0), m_creditPoints(0.0)
+{
+}
+
+Course::Course(unsigned int courseKey, std::string major, float creditPoints) :
+		m_courseKey(courseKey), m_title(major), m_creditPoints(creditPoints)
 {
 	setMajor(major);
 	setmajorById();
@@ -64,6 +69,12 @@ void Course::print() const
 {
 	for(const auto& x : this->m_majorById)
 	{
-		cout << x.first << endl << x.second << endl;
+		unsigned char majorID = x.first;
+
+		cout << "Course Title: " << gettitle() << endl
+			 << "Course Key: " << getcourseKey() << endl
+			 << "Course Major: " << getmajor() << endl
+			 << "Course creditPoints: " << getcreditPoints() << endl
+			 << "Course Major ID: " << majorID << endl;
 	}
 }

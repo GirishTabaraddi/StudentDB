@@ -55,12 +55,18 @@ private:
 	void setMajor(std::string major);
 
 public:
+
+	Course();
+
 	/*!
 	 * A parameterized constructor that takes string major as input,
 	 * it calls setMajor and setmajorById methods and the respective value is set.
+	 * Also takes course key and it's credit points and sets the respective values.
+	 * @param courseKey
 	 * @param major
+	 * @param creditPoints
 	 */
-	Course(std::string major);
+	Course(unsigned int courseKey, std::string major, float creditPoints);
 
 	/*!
 	 * A Destructor of class Course.

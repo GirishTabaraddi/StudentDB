@@ -5,7 +5,7 @@
 using namespace std;
 
 //! Add your project's header files here
-#include "Course.h"
+#include "Student.h"
 
 
 //! Main program
@@ -13,9 +13,17 @@ int main ()
 {
 	cout << "StudentDB started." << endl << endl;
 
-	Course c("Embedded");
+	Course c(1234, "Embedded", 5);
 
 	c.print();
+
+	Enrollment e(c, 1.2, "third");
+
+	e.print();
+
+	Poco::Data::Date dateOfBirth(1997,3,31);
+
+	Student s(1119236, "Girish", "Tabaraddi", dateOfBirth);
 
 	return 0;
 }
@@ -49,16 +57,13 @@ int main ()
  * 		- m_lastName: std::string
  * 		- m_dataOfBirth: Poco::Data::Date
  * 		- m_enrollments: std::vector<Enrollment>
- * }
  *
- * Class Enrollment
- * {
- * 		- m_grade: float
- * 		- m_semester: std::string
- * 		- course: Course*
+ * 		+ Student()
+ * 		+ ~Student()
+ * 		+ const getmatrikelNumber(): unsigned int const
+ * 		+ const getFullName(): std::string const
+ * 		+ const getDoB(): Poco::Data::Date const
  * }
- *
- * Student *--> Enrollment : Composition
  *
  * class Course
  * {
@@ -80,10 +85,24 @@ int main ()
  * 		+ const getcreditPoints(): float const
  * }
  *
- * Enrollment o--> Course : Aggregation
- *
  * StudentDb *--> Student : Composition
  * StudentDb *--> Course : Composition
+ *
+ * Class Enrollment
+ * {
+ * 		- m_grade: float
+ * 		- m_semester: std::string
+ * 		- m_course: Course*
+ *
+ * 		+ Enrollment(courseObj: const Course*)
+ * 		+ ~Enrollment()
+ * 		+ const getgrade(): float const
+ * 		+ const getsemester(): std::string const
+ * }
+ *
+ * Student *--> Enrollment : Composition
+ *
+ * Enrollment o--> Course : Aggregation
  *
  * class Address
  * {
