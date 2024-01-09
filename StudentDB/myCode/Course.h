@@ -20,7 +20,7 @@ private:
 	/*!
 	 * @var m_majorByID -
 	 */
-	std::map<unsigned char, std::string> m_majorByID;
+	std::map<unsigned char, std::string> m_majorById;
 
 	/*!
 	 * @var m_courseKey - A variable that stores the course key.
@@ -42,8 +42,29 @@ private:
 	 */
 	float m_creditPoints;
 
+private:
+	/*!
+	 * The method setmajorById sets the title's first char using setMajor method
+	 */
+	void setmajorById();
+
+	/*!
+	 * The method setMajor takes the major passed through the constructor,
+	 * checks if the major is not empty and then assigns the first char to m_major.
+	 */
+	void setMajor(std::string major);
+
 public:
-	Course();
+	/*!
+	 * A parameterized constructor that takes string major as input,
+	 * it calls setMajor and setmajorById methods and the respective value is set.
+	 * @param major
+	 */
+	Course(std::string major);
+
+	/*!
+	 * A Destructor of class Course.
+	 */
 	virtual ~Course();
 
 	/*!
@@ -75,6 +96,8 @@ public:
 	 * @return float type.
 	 */
 	const float getcreditPoints() const;
+
+	void print() const;
 };
 
 #endif /* COURSE_H_ */

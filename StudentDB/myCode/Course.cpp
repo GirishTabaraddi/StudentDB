@@ -9,17 +9,31 @@
 
 #include "Course.h"
 
-Course::Course()
+using namespace std;
+
+Course::Course(std::string major) :
+m_courseKey(0), m_title(major), m_creditPoints(0.0)
 {
+	setMajor(major);
+	setmajorById();
 }
 
-Course::~Course()
+void Course::setmajorById()
 {
+	this->m_majorById[getmajor()] = gettitle();
+}
+
+void Course::setMajor(std::string major)
+{
+	if(!major.empty())
+	{
+		this->m_major = major[0];
+	}
 }
 
 const std::map<unsigned char, std::string> Course::getmajorById() const
 {
-	return this->m_majorByID;
+	return this->m_majorById;
 }
 
 const unsigned int Course::getcourseKey() const
@@ -40,4 +54,16 @@ const unsigned char Course::getmajor() const
 const float Course::getcreditPoints() const
 {
 	return this->m_creditPoints;
+}
+
+Course::~Course()
+{
+}
+
+void Course::print() const
+{
+	for(const auto& x : this->m_majorById)
+	{
+		cout << x.first << endl << x.second << endl;
+	}
 }

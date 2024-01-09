@@ -5,12 +5,17 @@
 using namespace std;
 
 //! Add your project's header files here
+#include "Course.h"
 
 
 //! Main program
 int main ()
 {
 	cout << "StudentDB started." << endl << endl;
+
+	Course c("Embedded");
+
+	c.print();
 
 	return 0;
 }
@@ -62,6 +67,17 @@ int main ()
  * 		- m_title: std::string
  * 		- m_major: unsigned char
  * 		- m_creditPoints: float
+ *
+ * 		- setMajor(): void
+ * 		- setmajorById(): void
+ *
+ * 		+ Course(major: std::string)
+ * 		+ ~Course()
+ * 		+ const getmajorById(): std::map<unsigned char, std::string> const
+ * 		+ const getcourseKey(): unsigned int const
+ * 		+ const gettitle(): std::string const
+ * 		+ const getmajor(): unsigned char
+ * 		+ const getcreditPoints(): float const
  * }
  *
  * Enrollment o--> Course : Aggregation
