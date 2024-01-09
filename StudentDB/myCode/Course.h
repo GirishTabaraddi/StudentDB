@@ -66,7 +66,7 @@ public:
 	 * @param major
 	 * @param creditPoints
 	 */
-	Course(unsigned int courseKey, std::string major, float creditPoints);
+	Course(unsigned int courseKey, std::string title, float creditPoints);
 
 	/*!
 	 * A Destructor of class Course.

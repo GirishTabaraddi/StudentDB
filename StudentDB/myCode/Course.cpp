@@ -16,10 +16,10 @@ m_courseKey(0), m_title(""), m_major(0), m_creditPoints(0.0)
 {
 }
 
-Course::Course(unsigned int courseKey, std::string major, float creditPoints) :
-		m_courseKey(courseKey), m_title(major), m_creditPoints(creditPoints)
+Course::Course(unsigned int courseKey, std::string title, float creditPoints) :
+		m_courseKey(courseKey), m_title(title), m_creditPoints(creditPoints)
 {
-	setMajor(major);
+	setMajor(title);
 	setmajorById();
 }
 
