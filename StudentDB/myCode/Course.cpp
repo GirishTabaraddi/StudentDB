@@ -11,21 +11,21 @@
 
 using namespace std;
 
-Course::Course() :
-m_courseKey(0), m_title(""), m_major(0), m_creditPoints(0.0)
+//map<unsigned char, std::string> Course::m_majorById = {{'E', "EMBEDDED"}, {'A', "AUTOMATION"},
+//													   {'C', "COMMUNICATION"}, {'P', "POWER"}};
+
+using namespace std;
+
+Course::Course(unsigned int courseKey, std::string title, std::string major,
+		float creditPoints) : m_courseKey(courseKey), m_title(title), m_creditPoints(creditPoints)
 {
+	setMajor(major);
+	setmajorById(major);
 }
 
-Course::Course(unsigned int courseKey, std::string title, float creditPoints) :
-		m_courseKey(courseKey), m_title(title), m_creditPoints(creditPoints)
+void Course::setmajorById(std::string major)
 {
-	setMajor(title);
-	setmajorById();
-}
-
-void Course::setmajorById()
-{
-	this->m_majorById[getmajor()] = gettitle();
+	this->m_majorById[getmajor()] = major;
 }
 
 void Course::setMajor(std::string major)
@@ -69,12 +69,12 @@ void Course::print() const
 {
 	for(const auto& x : this->m_majorById)
 	{
-		unsigned char majorID = x.first;
+		string major = x.second;
 
 		cout << "Course Title: " << gettitle() << endl
 			 << "Course Key: " << getcourseKey() << endl
-			 << "Course Major: " << getmajor() << endl
+			 << "Course Major ID: " << getmajor() << endl
 			 << "Course creditPoints: " << getcreditPoints() << endl
-			 << "Course Major ID: " << majorID << endl;
+			 << "Course Major: " << major << endl;
 	}
 }

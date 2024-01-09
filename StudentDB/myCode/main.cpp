@@ -13,17 +13,17 @@ int main ()
 {
 	cout << "StudentDB started." << endl << endl;
 
-	Course c(1234, "Embedded", 5);
+	Course c(1234, "APT", "Automation", 5);
 
-	c.print();
+//	c.print();
 
-	Enrollment e(c, 1.2, "third");
+	Enrollment e(1.2, "third", &c);
 
 	e.print();
-
-	Poco::Data::Date dateOfBirth(1997,3,31);
-
-	Student s(1119236, "Girish", "Tabaraddi", dateOfBirth);
+//
+//	Poco::Data::Date dateOfBirth(1997,3,31);
+//
+//	Student s(1119236, "Girish", "Tabaraddi", dateOfBirth);
 
 	return 0;
 }

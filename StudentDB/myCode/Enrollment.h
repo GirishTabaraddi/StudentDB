@@ -28,18 +28,19 @@ private:
 	/*!
 	 * @var m_course - stores the value of enrolled course as a pointer object of class Course.
 	 */
-	Course* m_course;
+	const Course* m_course;
 
 public:
-	Enrollment();
-
 	/*!
 	 * A parameterized constructor which initializes the enrolled course through
 	 * m_course which is a pointer object of the class Course.
 	 * @param courseObj
 	 */
-	Enrollment(const Course& courseObj, float grade, std::string semester);
+	Enrollment(float grade, std::string semester, const Course* courseObj);
 
+	/*!
+	 * A default destructor for class Enrollment.
+	 */
 	virtual ~Enrollment();
 
 	/*!
@@ -52,7 +53,13 @@ public:
 	 * A getter method to obtain the enrolled semester value.
 	 * @return std::string type.
 	 */
-	const std::string getsemester() const;
+	const std::string& getsemester() const;
+
+	/*!
+	 * A getter method to obtain the course object.
+	 * @return class Course type.
+	 */
+	const Course* getcourse() const;
 
 	void print() const;
 };
