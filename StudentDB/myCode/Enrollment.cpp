@@ -11,8 +11,8 @@
 
 using namespace std;
 
-Enrollment::Enrollment(float grade, std::string semester, const Course* courseObj) :
-		m_grade(grade), m_semester(semester), m_course(courseObj)
+Enrollment::Enrollment(std::string semester, const Course* courseObj) :
+		m_grade(0.0), m_semester(semester), m_course(courseObj)
 {
 }
 
@@ -35,13 +35,13 @@ const Course* Enrollment::getcourse() const
 	return this->m_course;
 }
 
-void Enrollment::print() const
+void Enrollment::setgrade(float grade)
 {
-	cout << "Enrollment Grade: " << this->m_grade << endl
-			<< "Enrollment Semester: " << this->m_semester << endl
-			<< "Enrollment Major: " << this->m_course->getmajorById().at(this->m_course->getmajor()) << endl;
+	this->m_grade = grade;
+}
 
-	cout << endl;
-
-	this->m_course->print();
+void Enrollment::printEnrollment() const
+{
+	cout << to_string(this->m_course->getcourseKey()) << ";" <<
+			this->m_semester << ";" << to_string(this->m_grade) << endl;
 }

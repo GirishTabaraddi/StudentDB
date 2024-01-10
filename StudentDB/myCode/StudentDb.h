@@ -11,7 +11,6 @@
 #define STUDENTDB_H_
 
 #include "Student.h"
-#include <memory>
 
 class StudentDb
 {
@@ -29,12 +28,29 @@ private:
 	std::map<int, std::unique_ptr<const Course>> m_courses;
 
 public:
+
+	/*!
+	 * A default constructor for StudenDb class.
+	 */
 	StudentDb();
 
+	/*!
+	 * A getter method to fetch the m_students.
+	 * @return map type.
+	 */
 	const std::map<int, Student> getstudents() const;
 
+	/*!
+	 * A getter method to fetch the m_courses.
+	 * @return map type.
+	 */
 	const std::map<int, std::unique_ptr<const Course>>& getcourses() const;
 
+	void addNewCourse();
+
+	void addNewStudent();
+
+	void printDb() const;
 };
 
 #endif /* STUDENTDB_H_ */

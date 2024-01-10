@@ -36,7 +36,7 @@ public:
 	 * m_course which is a pointer object of the class Course.
 	 * @param courseObj
 	 */
-	Enrollment(float grade, std::string semester, const Course* courseObj);
+	Enrollment(std::string semester, const Course* courseObj);
 
 	/*!
 	 * A default destructor for class Enrollment.
@@ -61,7 +61,9 @@ public:
 	 */
 	const Course* getcourse() const;
 
-	void print() const;
+	void setgrade(float grade);
+
+	void printEnrollment() const;
 };
 
 #endif /* ENROLLMENT_H_ */

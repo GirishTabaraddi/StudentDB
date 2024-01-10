@@ -101,7 +101,7 @@ public:
 	 */
 	const float getcreditPoints() const;
 
-	void print() const;
+	std::string printCourse() const;
 };
 
 #endif /* COURSE_H_ */

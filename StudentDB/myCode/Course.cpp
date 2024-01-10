@@ -65,16 +65,21 @@ Course::~Course()
 {
 }
 
-void Course::print() const
+string Course::printCourse() const
 {
-	for(const auto& x : this->m_majorById)
-	{
-		string major = x.second;
+    string out = this->m_title + ";" + this->m_majorById.at(this->m_major)
+    				+ ";" + to_string(this->m_creditPoints);
 
-		cout << "Course Title: " << gettitle() << endl
-			 << "Course Key: " << getcourseKey() << endl
-			 << "Course Major ID: " << getmajor() << endl
-			 << "Course creditPoints: " << getcreditPoints() << endl
-			 << "Course Major: " << major << endl;
-	}
+    return out;
+
+//	for(const auto& x : this->m_majorById)
+//	{
+//		string major = x.second;
+//
+//		cout << "Course Title: " << gettitle() << endl
+//			 << "Course Key: " << getcourseKey() << endl
+//			 << "Course Major ID: " << getmajor() << endl
+//			 << "Course creditPoints: " << getcreditPoints() << endl
+//			 << "Course Major: " << major << endl;
+//	}
 }

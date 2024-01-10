@@ -6,6 +6,7 @@ using namespace std;
 
 //! Add your project's header files here
 #include "Student.h"
+#include "StudentDb.h"
 
 
 //! Main program
@@ -13,17 +14,38 @@ int main ()
 {
 	cout << "StudentDB started." << endl << endl;
 
-	Course c(1234, "APT", "Automation", 5);
+//	Course c(1234, "APT", "Automation", 5);
 
-//	c.print();
+//	c.printCourse();
 
-	Enrollment e(1.2, "third", &c);
+//	Enrollment e("WS2023", &c);
 
-	e.print();
+//	e.printEnrollment();
+//
+//	shared_ptr<Address> address = make_shared<Address>("Am Karlshof", 64287, "Darmstadt", "xyz Info");
 //
 //	Poco::Data::Date dateOfBirth(1997,3,31);
 //
-//	Student s(1119236, "Girish", "Tabaraddi", dateOfBirth);
+//	Student s("Girish", "Tabaraddi", dateOfBirth, address);
+//
+//	s.addEnrollment("WS2023", &c);
+//	s.printStudent();
+//
+//	Course c1(1235, "ASDT", "Embedded", 5);
+//
+//	s.addEnrollment("WS2023", &c1);
+//	s.printStudent();
+//
+//	s.addEnrollment("WS2024", &c);
+//	s.printStudent();
+
+	StudentDb Database;
+
+	Database.addNewCourse();
+
+	Database.addNewStudent();
+
+	Database.printDb();
 
 	return 0;
 }
