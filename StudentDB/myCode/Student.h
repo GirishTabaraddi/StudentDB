@@ -67,13 +67,19 @@ public:
 	 * A getter method that returns a string of full name(firstname + lastname).
 	 * @return std::string type.
 	 */
-	const std::string getFullName() const;
+	const std::string& getFullName() const;
+
+	const std::string& getfirstName() const;
+
+	const std::string& getlastName() const;
 
 	/*!
 	 * A getter method to obtain the date of birth of a student.
 	 * @return Poco::Data::Date format.
 	 */
 	const Poco::Data::Date getDoB() const;
+
+	const std::vector<Enrollment>& getenrollments() const;
 
 };
 

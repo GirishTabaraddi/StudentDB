@@ -33,7 +33,7 @@ const unsigned int Student::getmatrikelNumber() const
 	return this->m_matrikelNumber;
 }
 
-const std::string Student::getFullName() const
+const std::string& Student::getFullName() const
 {
 	return (this->m_firstName + " " + this->m_lastName);
 }
@@ -41,4 +41,19 @@ const std::string Student::getFullName() const
 const Poco::Data::Date Student::getDoB() const
 {
 	return this->m_dateOfBirth;
+}
+
+const std::string& Student::getfirstName() const
+{
+	return this->m_firstName;
+}
+
+const std::string& Student::getlastName() const
+{
+	return this->m_lastName;
+}
+
+const std::vector<Enrollment>& Student::getenrollments() const
+{
+	return this->m_enrollments;
 }
