@@ -77,7 +77,7 @@ public:
 	 */
 	const std::string& getadditionalInfo() const;
 
-	void printAddress() const;
+	std::string printAddress() const;
 };
 
 #endif /* ADDRESS_H_ */

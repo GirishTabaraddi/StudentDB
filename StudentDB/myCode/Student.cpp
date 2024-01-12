@@ -60,16 +60,17 @@ const std::shared_ptr<Address> Student::getaddress() const
 	return this->m_address;
 }
 
-string Student::printStudent() const
+std::string Student::printStudent() const
 {
 //	string out = to_string(getmatrikelNumber()) + ";" + this->m_firstName + ";" +
 //			this->m_lastName + ";" << this->m_dateOfBirth.day() << "." <<
 //			this->m_dateOfBirth.month() << "." << this->m_dateOfBirth.year();
 //
 //	return out;
-	string out = this->m_firstName + ";" +  this->m_lastName + ";" +
-			to_string(this->m_dateOfBirth.day()) + "." + to_string(this->m_dateOfBirth.month())
-			+ "." + to_string(this->m_dateOfBirth.year());
+	string out = (to_string(this->m_matrikelNumber) + ";" + this->m_firstName + ";" +
+					this->m_lastName + ";" + pocoDateToStringFromatter(this->m_dateOfBirth) + ";");
+
+	out += getaddress()->printAddress();
 
 	return out;
 
@@ -93,4 +94,23 @@ void Student::addEnrollment(const std::string& semester, Course *newCourseId)
 	}
 
 	this->m_enrollments.push_back(Enrollment(semester, newCourseId));
+}
+
+void Student::updateStudent(std::string firstName, std::string lastName,
+		Poco::Data::Date dateOfBirth)
+{
+	Poco::Data::Date NADate(1900,1,1);
+
+	if(firstName != "NA")
+	{
+		this->m_firstName = firstName;
+	}
+	if(lastName != "NA")
+	{
+		this->m_lastName = lastName;
+	}
+	if(dateOfBirth != NADate)
+	{
+		this->m_dateOfBirth = dateOfBirth;
+	}
 }

@@ -8,6 +8,7 @@ using namespace std;
 #include "Student.h"
 #include "StudentDb.h"
 
+#include "formatterfile.h"
 
 //! Main program
 int main ()
@@ -45,14 +46,36 @@ int main ()
 
 	Database.addNewStudent();
 
-	Database.printDb();
+//	Database.addEnrollment();
+
+//	Database.printDb();
+//	Database.listCourses();
+
+//	Database.printStudent();
+//	Database.searchStudent();
+
+	Database.updateStudent();
+	Database.printStudent();
+
+//	string date = "31.3.1997";
+//
+//	Poco::Data::Date x = stringToPocoDateFormatter(date);
+//
+//	cout << x.day() << "." << x.month() << "." << x.year() << endl;
 
 	return 0;
 }
 
 
 
-
+//cout << "Enter the index number to update the details: " << endl;
+//cout << "0 -> To Exit" << endl;
+//cout << "1 -> Update First Name: " << matrikelNumberItr->second.getfirstName() << endl;
+//cout << "2 -> Update Last Name: " << matrikelNumberItr->second.getlastName() << endl;
+//cout << "3 -> Update Date of Birth: " << dateFromatter(matrikelNumberItr->second.getDoB()) << endl;
+//cout << "4 -> Update Address: " << matrikelNumberItr->second.getaddress()->printAddress() << endl;
+//cout << "5 -> Update Grade: " << endl;
+//cout << "6 -> Delete Enrollment: " << endl;
 /*
  *
  * @startuml

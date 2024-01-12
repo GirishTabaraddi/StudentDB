@@ -61,9 +61,13 @@ public:
 	 */
 	const Course* getcourse() const;
 
+	/*!
+	 * A setter function to set the grade value passed.
+	 * @param grade
+	 */
 	void setgrade(float grade);
 
-	void printEnrollment() const;
+	std::string printEnrollment() const;
 };
 
 #endif /* ENROLLMENT_H_ */

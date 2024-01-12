@@ -12,6 +12,7 @@
 
 #include "Enrollment.h"
 #include "Address.h"
+#include "formatterfile.h"
 
 #include <Poco/Data/Date.h>
 
@@ -107,14 +108,14 @@ public:
 	const Poco::Data::Date getDoB() const;
 
 	/*!
-	 *
-	 * @return
+	 * A getter to list all the enrollments done.
+	 * @return vector of class Enrollment type.
 	 */
 	const std::vector<Enrollment>& getenrollments() const;
 
 	/*!
 	 * A getter method to obtain the address class.
-	 * @return a shared pointer.
+	 * @return a shared pointer of class Address type.
 	 */
 	const std::shared_ptr<Address> getaddress() const;
 
@@ -127,6 +128,8 @@ public:
 	 * @param courseId
 	 */
 	void addEnrollment(const std::string& semester, Course* courseId);
+
+	void updateStudent(std::string firstName, std::string lastName,  Poco::Data::Date dateOfBirth);
 
 	void updateEnrollment();
 

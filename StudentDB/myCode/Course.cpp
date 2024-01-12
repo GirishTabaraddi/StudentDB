@@ -9,6 +9,9 @@
 
 #include "Course.h"
 
+#include <sstream>
+#include <iomanip>
+
 using namespace std;
 
 //map<unsigned char, std::string> Course::m_majorById = {{'E', "EMBEDDED"}, {'A', "AUTOMATION"},
@@ -65,10 +68,16 @@ Course::~Course()
 {
 }
 
-string Course::printCourse() const
+std::string Course::printCourse() const
 {
-    string out = this->m_title + ";" + this->m_majorById.at(this->m_major)
-    				+ ";" + to_string(this->m_creditPoints);
+	stringstream ss;
+
+	ss << fixed << setprecision(1) << this->m_creditPoints;
+
+	string creditpoints = ss.str();
+
+    string out = to_string(this->m_courseKey) + ";" + this->m_title + ";" + this->m_majorById.at(this->m_major)
+    				+ ";" + creditpoints;
 
     return out;
 

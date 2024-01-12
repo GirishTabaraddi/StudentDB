@@ -11,6 +11,7 @@
 #define STUDENTDB_H_
 
 #include "Student.h"
+#include "formatterfile.h"
 
 class StudentDb
 {
@@ -46,9 +47,50 @@ public:
 	 */
 	const std::map<int, std::unique_ptr<const Course>>& getcourses() const;
 
+	/*!
+	 * Add new Course: Queries the user for the required data and #
+	 * creates the new course in the database.
+	 */
 	void addNewCourse();
 
+	/*!
+	 * List courses: Prints all courses in the database with their data.
+	 */
+	void listCourses();
+
+	/*!
+	 * Add new student: Queries the user for the required data (member data of Student and Address)
+	 * and creates a new student in the database.
+	 */
 	void addNewStudent();
+
+	/*!
+	 * Add enrollment: Queries the user for a matrikel number, a course id,
+	 * a semester and adds the enrollment.
+	 * If the enrollment already exists, a warning messages is printed.
+	 */
+	void addEnrollment();
+
+	/*!
+	 * Print student: Queries the user for a matrikel number and prints
+	 * the student including the enrolled courses and their results.
+	 */
+	void printStudent();
+
+	/*!
+	 * Search student: Queries the user for a string and prints the matrikel number,
+	 * last name and first name of all students that have the provided string
+	 * as substring in their first or last name.
+	 */
+	void searchStudent();
+
+	/*!
+	 * Update student: Queries the user for a matrikel number. If the corresponding student
+	 * is found in the data base, the properties (except for the matrikel number)
+	 * are presented in a numbered list. Entering the item number allows the user
+	 * to modify the property, entering "0" terminates the update.
+	 */
+	void updateStudent();
 
 	void printDb() const;
 };
