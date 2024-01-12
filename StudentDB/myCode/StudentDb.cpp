@@ -73,24 +73,24 @@ void StudentDb::addEnrollment()
 
 	if(matrikelNumberItr != this->m_students.end())
 	{
-		auto findCourseId = this->m_courses.find(stoi(courseKey));
+		auto findCourseIdItr = this->m_courses.find(stoi(courseKey));
 
-		if(findCourseId != this->m_courses.end())
+		if(findCourseIdItr != this->m_courses.end())
 		{
-			Course* course = const_cast<Course*>(findCourseId->second.get());
+			Course* course = const_cast<Course*>(findCourseIdItr->second.get());
 
 			matrikelNumberItr->second.addEnrollment(semester, course);
 		}
 	}
 
-	for(auto& pairItr : this->m_students)
-	{
-		auto enrollments = pairItr.second.getenrollments();
-		for(auto& enrollmentItr : enrollments)
-		{
-			cout << enrollmentItr.printEnrollment() << endl;
-		}
-	}
+//	for(auto& pairItr : this->m_students)
+//	{
+//		auto enrollments = pairItr.second.getenrollments();
+//		for(auto& enrollmentItr : enrollments)
+//		{
+//			cout << enrollmentItr.printEnrollment() << endl;
+//		}
+//	}
 }
 
 void StudentDb::printStudent()
@@ -137,7 +137,8 @@ void StudentDb::updateStudent()
 {
 	// take matrikel number as input and list all the properties
 
-//	bool updateFlag = false;
+//	bool updateFlag1 = false;
+//	bool updateFlag2 = false;
 
 	string matrikelNumber = "1009001";
 
@@ -156,9 +157,9 @@ void StudentDb::updateStudent()
 
 		cout << "Choose Options [0-6]: ";
 
-		unsigned int option = 3;
+		unsigned int option = 5;
 
-//		while(updateFlag == false)
+//		while(updateFlag1 == false)
 //		{
 			switch(option)
 			{
@@ -190,23 +191,79 @@ void StudentDb::updateStudent()
 			{
 				cout << "3 -> Update Date of Birth" << endl;
 
-				studentItr->second.updateStudent("NA", "NA", stringToPocoDateFormatter("01.01.1990"));
+				string DoBstring = "01.01.1990";
+				Poco::Data::Date pocoDoB = stringToPocoDateFormatter(DoBstring);
+
+				studentItr->second.updateStudent("NA", "NA", pocoDoB);
 
 				break;
 			}
 			case 4:
 			{
 				cout << "4 -> Update Address" << endl;
+
+				string street = "Berliner Alle";
+				unsigned short postalCode = 64295;
+				string cityName = "Darmstadt";
+				string additionalInfo = "abc";
+
+				shared_ptr<Address> address = make_shared<Address>(street, postalCode, cityName, additionalInfo);
+				studentItr->second.updateAddress(address);
+
 				break;
 			}
 			case 5:
 			{
-				cout << "5 -> Update Grade" << endl;
-				break;
-			}
-			case 6:
-			{
-				cout << "6 -> Delete Enrollment" << endl;
+				cout << "5 -> Update Enrollment" << endl;
+
+				string courseKey = "1234";
+
+				auto courseKeyItr = this->m_courses.find(stoi(courseKey));
+
+				if(courseKeyItr != this->m_courses.end())
+				{
+					cout << "Enter the index number to delete enrollment / enter mark: " << endl;
+					cout << "0 -> To Exit" << endl;
+					cout << "1 -> Delete Enrollment" << endl;
+					cout << "2 -> Update Grade" << endl;
+
+					cout << "Choose Options [0-2]: ";
+
+					unsigned int choice = 2;
+
+//					while(updateFlag2 == false)
+//					{
+						switch(choice)
+						{
+						case 0:
+						{
+							cout << "0 -> To Exit" << endl;
+			//				updateFlag2 = true;
+							break;
+						}
+						case 1:
+						{
+							cout << "1 -> Delete Enrollment" << endl;
+
+							string matrikelNumber = "1009001";
+
+							studentItr->second.deleteEnrollment(stoi(courseKey));
+
+							break;
+						}
+						case 2:
+						{
+							cout << "2 -> Upgrade Grade" << endl;
+
+							float grade = 1.3;
+
+							studentItr->second.updateGrade(grade, stoi(courseKey));
+
+							break;
+						}
+						}
+//					}
+				}
 				break;
 			}
 			default:

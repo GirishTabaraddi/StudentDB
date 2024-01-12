@@ -114,3 +114,34 @@ void Student::updateStudent(std::string firstName, std::string lastName,
 		this->m_dateOfBirth = dateOfBirth;
 	}
 }
+
+void Student::updateAddress(std::shared_ptr<Address> address)
+{
+	this->m_address = address;
+}
+
+void Student::deleteEnrollment(unsigned int courseKey)
+{
+	auto newEnd = remove_if(this->m_enrollments.begin(), this->m_enrollments.end(),
+			[courseKey](const Enrollment& enrollments)
+			{
+				return enrollments.getcourse()->getcourseKey() == courseKey;
+			});
+
+		if(newEnd != this->m_enrollments.end())
+		{
+			cout << "Entered Enrollment Deleted!!" << endl;
+			this->m_enrollments.erase(newEnd, this->m_enrollments.end());
+		}
+}
+
+void Student::updateGrade(float grade, unsigned int courseKey)
+{
+	for(Enrollment& enrollment : this->m_enrollments)
+	{
+		if(enrollment.getcourse()->getcourseKey() == courseKey)
+		{
+			enrollment.setgrade(grade);
+		}
+	}
+}

@@ -8,6 +8,7 @@
  */
 
 #include "formatterfile.h"
+#include <regex>
 
 using namespace std;
 
@@ -21,7 +22,15 @@ std::string pocoDateToStringFromatter(const Poco::Data::Date &date)
 
 Poco::Data::Date stringToPocoDateFormatter(const std::string& stringDate)
 {
+	regex datePattern(R"(\d{2}\.\d{2}\.\d{4})");
+
 	Poco::DateTime datetime;
+
+	if(!regex_match(stringDate, datePattern))
+	{
+		cout << "ERROR: Please enter a valid date format - dd.mm.YYY : " << endl;
+
+	}
 
 	int i = 0;
 

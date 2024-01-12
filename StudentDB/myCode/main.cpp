@@ -46,13 +46,15 @@ int main ()
 
 	Database.addNewStudent();
 
-//	Database.addEnrollment();
+	Database.addEnrollment();
 
 //	Database.printDb();
 //	Database.listCourses();
 
-//	Database.printStudent();
+	Database.printStudent();
 //	Database.searchStudent();
+
+	cout << endl;
 
 	Database.updateStudent();
 	Database.printStudent();

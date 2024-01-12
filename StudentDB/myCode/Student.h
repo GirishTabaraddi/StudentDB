@@ -119,6 +119,10 @@ public:
 	 */
 	const std::shared_ptr<Address> getaddress() const;
 
+	/*!
+	 *
+	 * @return string value.
+	 */
 	std::string printStudent() const;
 
 	/*!
@@ -126,15 +130,35 @@ public:
 	 * adds the enrollment. If the enrollment already exists, a warning messages is printed.
 	 * @param semester
 	 * @param courseId
+	 *
+	 * @return void
 	 */
 	void addEnrollment(const std::string& semester, Course* courseId);
 
+	/*!
+	 * This method updates the details of the students which will be passed as an argument.
+	 * @param firstName
+	 * @param lastName
+	 * @param dateOfBirth
+	 *
+	 * @return void
+	 */
 	void updateStudent(std::string firstName, std::string lastName,  Poco::Data::Date dateOfBirth);
 
-	void updateEnrollment();
+	/*!
+	 * This method takes Address class object and updates the address passed as argument.
+	 * @param address
+	 */
+	void updateAddress(std::shared_ptr<Address> address);
 
-	void updateAddress();
+	/*!
+	 * This method takes courseKey as an argument and finds the key in
+	 * Enrollments, if there is one, then that enrollment is deleted.
+	 * @param courseKey
+	 */
+	void deleteEnrollment(unsigned int courseKey);
 
+	void updateGrade(float grade, unsigned int courseKey);
 };
 
 #endif /* STUDENT_H_ */
