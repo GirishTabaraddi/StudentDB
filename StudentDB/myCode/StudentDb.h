@@ -28,6 +28,40 @@ private:
 	 */
 	std::map<int, std::unique_ptr<const Course>> m_courses;
 
+private:
+	/*!
+	 * This method is added to simplify readability of the code.
+	 * takes Student class object as argument to perform the operations listed.
+	 * @param student
+	 */
+	void performStudentUpdate(Student& student);
+
+	/*!
+	 * This private method updates the first name of the student.
+	 * @param student
+	 */
+	void updateFirstName(Student& student);
+
+	/*!
+	 * This private method updates the last name of the student.
+	 * @param student
+	 */
+	void updateLastName(Student& student);
+
+	/*!
+	 * This private method updates the date of birth of the student.
+	 * @param student
+	 */
+	void updateDateofBirth(Student& student);
+
+	/*!
+	 * This private method updates the address of the student.
+	 * @param student
+	 */
+	void updateAddress(Student& student);
+
+	void performEnrollmentUpdate(Student& student, std::string& courseKey);
+
 public:
 
 	/*!

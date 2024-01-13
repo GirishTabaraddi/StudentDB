@@ -83,14 +83,14 @@ void StudentDb::addEnrollment()
 		}
 	}
 
-//	for(auto& pairItr : this->m_students)
-//	{
-//		auto enrollments = pairItr.second.getenrollments();
-//		for(auto& enrollmentItr : enrollments)
-//		{
-//			cout << enrollmentItr.printEnrollment() << endl;
-//		}
-//	}
+	//	for(auto& pairItr : this->m_students)
+	//	{
+	//		auto enrollments = pairItr.second.getenrollments();
+	//		for(auto& enrollmentItr : enrollments)
+	//		{
+	//			cout << enrollmentItr.printEnrollment() << endl;
+	//		}
+	//	}
 }
 
 void StudentDb::printStudent()
@@ -137,141 +137,236 @@ void StudentDb::updateStudent()
 {
 	// take matrikel number as input and list all the properties
 
-//	bool updateFlag1 = false;
-//	bool updateFlag2 = false;
-
 	string matrikelNumber = "1009001";
 
 	auto studentItr = this->m_students.find(stoi(matrikelNumber));
 
 	if(studentItr != this->m_students.end())
 	{
-		cout << "Enter the index number to update the details: " << endl;
-		cout << "0 -> To Exit" << endl;
-		cout << "1 -> Update First Name" << endl;
-		cout << "2 -> Update Last Name" << endl;
-		cout << "3 -> Update Date of Birth" << endl;
-		cout << "4 -> Update Address" << endl;
-		cout << "5 -> Update Grade" << endl;
-		cout << "6 -> Delete Enrollment" << endl;
+		cout << endl << "\t \t UPDATE STUDENT MENU: "
+				"Below are the index number to update the details" << endl << endl;
 
-		cout << "Choose Options [0-6]: ";
+		cout << "\t \t \t 0 -> To Exit Update Student Menu" << endl;
+		cout << "\t \t \t 1 -> Update First Name" << endl;
+		cout << "\t \t \t 2 -> Update Last Name" << endl;
+		cout << "\t \t \t 3 -> Update Date of Birth" << endl;
+		cout << "\t \t \t 4 -> Update Address" << endl;
+		cout << "\t \t \t 5 -> Update Enrollment" << endl;
 
-		unsigned int option = 5;
+		performStudentUpdate(studentItr->second); //! Method to handle the above options.
+	}
+	else
+	{
+		cout << endl << "\t \t \t ERROR: Entered Matrikel Number "
+				"doesn't exist in the database!!!" << endl;
+	}
+}
 
-//		while(updateFlag1 == false)
-//		{
-			switch(option)
+void StudentDb::performStudentUpdate(Student &student)
+{
+	bool exitFlag = false;
+
+	while(exitFlag == false)
+	{
+		string choice;
+
+		cout << endl << "\t \t \t Enter your choice to perform "
+				"the respective operation between 0 and 5: ";
+		getline(cin, choice);
+
+		try
+		{
+			int numericChoice = stoi(choice);
+
+			if(numericChoice >= 0 && numericChoice <= 5)
 			{
-			case 0:
-			{
-				cout << "0 -> To Exit" << endl;
-//				updateFlag = true;
-				break;
-			}
-			case 1:
-			{
-				cout << "1 -> Updating First Name" << endl;
-
-				Poco::Data::Date NADate(1900,1,1);
-				studentItr->second.updateStudent("Pavan", "NA", NADate);
-
-				break;
-			}
-			case 2:
-			{
-				cout << "2 -> Update Last Name" << endl;
-
-				Poco::Data::Date NADate(1900,1,1);
-				studentItr->second.updateStudent("NA", "Joshi", NADate);
-
-				break;
-			}
-			case 3:
-			{
-				cout << "3 -> Update Date of Birth" << endl;
-
-				string DoBstring = "01.01.1990";
-				Poco::Data::Date pocoDoB = stringToPocoDateFormatter(DoBstring);
-
-				studentItr->second.updateStudent("NA", "NA", pocoDoB);
-
-				break;
-			}
-			case 4:
-			{
-				cout << "4 -> Update Address" << endl;
-
-				string street = "Berliner Alle";
-				unsigned short postalCode = 64295;
-				string cityName = "Darmstadt";
-				string additionalInfo = "abc";
-
-				shared_ptr<Address> address = make_shared<Address>(street, postalCode, cityName, additionalInfo);
-				studentItr->second.updateAddress(address);
-
-				break;
-			}
-			case 5:
-			{
-				cout << "5 -> Update Enrollment" << endl;
-
-				string courseKey = "1234";
-
-				auto courseKeyItr = this->m_courses.find(stoi(courseKey));
-
-				if(courseKeyItr != this->m_courses.end())
+				switch(numericChoice)
 				{
-					cout << "Enter the index number to delete enrollment / enter mark: " << endl;
-					cout << "0 -> To Exit" << endl;
-					cout << "1 -> Delete Enrollment" << endl;
-					cout << "2 -> Update Grade" << endl;
-
-					cout << "Choose Options [0-2]: ";
-
-					unsigned int choice = 2;
-
-//					while(updateFlag2 == false)
-//					{
-						switch(choice)
-						{
-						case 0:
-						{
-							cout << "0 -> To Exit" << endl;
-			//				updateFlag2 = true;
-							break;
-						}
-						case 1:
-						{
-							cout << "1 -> Delete Enrollment" << endl;
-
-							string matrikelNumber = "1009001";
-
-							studentItr->second.deleteEnrollment(stoi(courseKey));
-
-							break;
-						}
-						case 2:
-						{
-							cout << "2 -> Upgrade Grade" << endl;
-
-							float grade = 1.3;
-
-							studentItr->second.updateGrade(grade, stoi(courseKey));
-
-							break;
-						}
-						}
-//					}
+				case 0:
+				{
+					cout << endl << "\t \t Exited Student Update Menu : "
+							<< numericChoice <<endl;
+					exitFlag = true;
 				}
 				break;
+				case 1:
+				{
+					cout << endl << "\t \t \t You chose option : " << numericChoice
+							<< " to update First Name." <<endl;
+
+					this->updateFirstName(student);
+				}
+				break;
+				case 2:
+				{
+					cout << endl << "\t \t \t You chose option : " << numericChoice
+							<< " to update Last Name." <<endl;
+
+					this->updateLastName(student);
+
+				}
+				break;
+				case 3:
+				{
+					cout << endl << "\t \t \t You chose option : " << numericChoice
+							<< " to update Date of Birth." <<endl;
+
+					this->updateDateofBirth(student);
+
+				}
+				break;
+				case 4:
+				{
+					cout << endl << "\t \t \t You chose option : " << numericChoice
+							<< " to update Address." <<endl;
+
+					this->updateAddress(student);
+
+				}
+				break;
+				case 5:
+				{
+					cout << endl << "\t \t \t You chose option : " << numericChoice
+							<< " to update Enrollment." <<endl << endl;
+
+					string courseKey = "1234";
+
+					auto courseKeyItr = this->m_courses.find(stoi(courseKey));
+
+					if(courseKeyItr != this->m_courses.end())
+					{
+						cout << "\t \t \t \t 0 -> To Exit Update Enrollment Menu" << endl;
+						cout << "\t \t \t \t 1 -> Delete Enrollment" << endl;
+						cout << "\t \t \t \t 2 -> Update Grade" << endl;
+
+						this->performEnrollmentUpdate(student, courseKey);
+					}
+					else
+					{
+						cout << endl << "\t \t \t ERROR: Entered Matrikel Number "
+								"doesn't exist in the database!!!" << endl;
+					}
+				}
+				break;
+				default:
+				{
+					cout << endl << "\t \t \t ERROR: Invalid Input, "
+							"Please enter a numeric value between - [0-5]" << endl;
+				}
+				break;
+				}
 			}
-			default:
+			else
 			{
-				cout << "You chose an Invalid Option!!!" << endl;
+				cout << endl << "\t \t \t ERROR: Invalid Input, "
+						"Please enter a numeric value between - [0-5]" << endl;
+				//			updateFlag1 = true;
 			}
+		}
+		catch(const invalid_argument& e)
+		{
+			cout << endl << "\t \t \t ERROR: Invalid Input, "
+					"Please enter a numeric value between - [0-5]" << endl;
+		}
+	}
+}
+
+void StudentDb::updateFirstName(Student &student)
+{
+	Poco::Data::Date NADate(1900,1,1);
+	student.updateStudent("Pavan", "NA", NADate);
+}
+
+void StudentDb::updateLastName(Student &student)
+{
+	Poco::Data::Date NADate(1900,1,1);
+	student.updateStudent("NA", "Joshi", NADate);
+}
+
+void StudentDb::updateDateofBirth(Student &student)
+{
+	string DoBstring = "01.01.1990";
+	Poco::Data::Date pocoDoB = stringToPocoDateFormatter(DoBstring);
+
+	student.updateStudent("NA", "NA", pocoDoB);
+}
+
+void StudentDb::updateAddress(Student &student)
+{
+	string street = "Berliner Alle";
+	unsigned short postalCode = 64295;
+	string cityName = "Darmstadt";
+	string additionalInfo = "abc";
+
+	shared_ptr<Address> address =
+			make_shared<Address>(street, postalCode, cityName, additionalInfo);
+	student.updateAddress(address);
+}
+
+void StudentDb::performEnrollmentUpdate(Student &student,
+		std::string &courseKey)
+{
+	bool exitFlag2 = false;
+
+	while(exitFlag2 == false)
+	{
+		string choice;
+
+		cout << endl << "\t \t \t \t Enter the index number "
+				"to delete enrollment / enter mark: ";
+		getline(cin, choice);
+
+		try
+		{
+			int numericChoice = stoi(choice);
+
+			if(numericChoice >= 0 && numericChoice <= 2)
+			{
+				switch(numericChoice)
+				{
+				case 0:
+				{
+					cout << endl << "\t \t \t You chose option : " << numericChoice
+							<< " to exit Update Enrollment." <<endl;
+					exitFlag2 = true;
+				}
+				break;
+				case 1:
+				{
+					cout << endl << "\t \t \t \t You chose option : " << numericChoice
+							<< " to Delete Enrollment." <<endl;
+
+					string matrikelNumber = "1009001";
+
+					student.deleteEnrollment(stoi(courseKey));
+
+				}
+				break;
+				case 2:
+				{
+					cout << endl << "\t \t \t \t You chose option : " << numericChoice
+							<< " to update Grade." <<endl;
+
+					float grade = 1.3;
+
+					student.updateGrade(grade, stoi(courseKey));
+
+				}
+				break;
+				}
 			}
-//		}
+			else
+			{
+				cout << endl << "\t \t \t ERROR: Invalid Input, "
+						"Please enter a numeric value between - [0-2]" << endl;
+				//updateFlag2 = true;
+			}
+		}
+		catch(const invalid_argument& e)
+		{
+			cout << endl << "\t \t \t ERROR: Invalid Input, "
+					"Please enter a numeric value between - [0-2]" << endl;
+		}
 	}
 }
 
@@ -287,7 +382,7 @@ void StudentDb::printDb() const
 
 	for(const auto& coursesPair: this->m_courses)
 	{
-//		const unsigned int coursekey = coursesPair.first;
+		//		const unsigned int coursekey = coursesPair.first;
 		const Course* course = coursesPair.second.get();
 
 		cout << course->printCourse() << endl;

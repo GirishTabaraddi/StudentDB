@@ -5,6 +5,7 @@
 using namespace std;
 
 //! Add your project's header files here
+#include "SimpleUI.h"
 #include "Student.h"
 #include "StudentDb.h"
 
@@ -14,6 +15,12 @@ using namespace std;
 int main ()
 {
 	cout << "StudentDB started." << endl << endl;
+
+	StudentDb Database;
+
+	SimpleUI UI(Database);
+
+	UI.run();
 
 //	Course c(1234, "APT", "Automation", 5);
 
@@ -39,25 +46,25 @@ int main ()
 //
 //	s.addEnrollment("WS2024", &c);
 //	s.printStudent();
-
-	StudentDb Database;
-
-	Database.addNewCourse();
-
-	Database.addNewStudent();
-
-	Database.addEnrollment();
+//
+//	StudentDb Database;
+//
+//	Database.addNewCourse();
+//
+//	Database.addNewStudent();
+//
+//	Database.addEnrollment();
 
 //	Database.printDb();
 //	Database.listCourses();
-
-	Database.printStudent();
+//
+//	Database.printStudent();
 //	Database.searchStudent();
 
-	cout << endl;
-
-	Database.updateStudent();
-	Database.printStudent();
+//	cout << endl;
+//
+//	Database.updateStudent();
+//	Database.printStudent();
 
 //	string date = "31.3.1997";
 //
