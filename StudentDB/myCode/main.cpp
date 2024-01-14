@@ -175,7 +175,7 @@ int main ()
 
  * SimpleUI 	-d->  	StudentDb 	: Association
  * StudentDb 	*-d-> 	Student 	: Composition
- * StudentDb 	*--> 	Course 		: Composition
+ * StudentDb 	*-d-> 	Course 		: Composition
  * Student 		*-r-> 	Enrollment	: Composition
  * Enrollment 	o-r-> 	Course 		: Aggregation
  * Student 		*-d-> 	Address 	: Composition
