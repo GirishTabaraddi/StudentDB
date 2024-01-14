@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['_7eaddress_0',['~Address',['../class_address.html#ade295f9c6de3d2b4ed487c0b971b7d63',1,'Address']]],
-  ['_7ecourse_1',['~Course',['../class_course.html#aa9038f2e129526920037dda9e76d69d0',1,'Course']]],
-  ['_7eenrollment_2',['~Enrollment',['../class_enrollment.html#a02fa17a25d83281407240566a787e0d0',1,'Enrollment']]],
-  ['_7esimpleui_3',['~SimpleUI',['../class_simple_u_i.html#a95cfaa895ce80b4ddbdfc2bd57f8f83b',1,'SimpleUI']]],
-  ['_7estudent_4',['~Student',['../class_student.html#a54a8ea060d6cd04222c3a2f89829f105',1,'Student']]]
+  ['updateaddress_0',['updateAddress',['../class_student.html#a65f6472c27b847cd410d9b93bf7e06ab',1,'Student']]],
+  ['updatestudent_1',['updatestudent',['../class_student.html#a3751021673cd88384974641cb6ab0ebe',1,'Student::updateStudent()'],['../class_student_db.html#ab3a1aaad757e0f919e2ff64b7c5f8da9',1,'StudentDb::updateStudent()']]]
 ];

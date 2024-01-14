@@ -11,7 +11,11 @@
 #define STUDENTDB_H_
 
 #include "Student.h"
+#include "BlockCourse.h"
+#include "WeeklyCourse.h"
 #include "formatterfile.h"
+
+#include <boost/algorithm/string.hpp>
 
 class StudentDb
 {

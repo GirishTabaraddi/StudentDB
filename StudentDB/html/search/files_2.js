@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['enrollment_2ecpp_0',['Enrollment.cpp',['../_enrollment_8cpp.html',1,'']]],
-  ['enrollment_2eh_1',['Enrollment.h',['../_enrollment_8h.html',1,'']]]
+  ['course_2ecpp_0',['Course.cpp',['../_course_8cpp.html',1,'']]],
+  ['course_2eh_1',['Course.h',['../_course_8h.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['enrollment_0',['Enrollment',['../class_enrollment.html#aabc9a39ff3d803d0fcf4edbb32027a8c',1,'Enrollment']]]
+  ['deleteenrollment_0',['deleteEnrollment',['../class_student.html#a6b8abeab2f8cf800cfdaa210c7eda7a5',1,'Student']]]
 ];

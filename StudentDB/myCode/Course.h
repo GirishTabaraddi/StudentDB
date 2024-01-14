@@ -14,6 +14,8 @@
 #include <string>
 #include <map>
 
+#include "formatterfile.h"
+
 class Course
 {
 private:
@@ -102,6 +104,8 @@ public:
 	const float getcreditPoints() const;
 
 	std::string printCourse() const;
+
+	virtual void print() const = 0;
 };
 
 #endif /* COURSE_H_ */

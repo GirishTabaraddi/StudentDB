@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['course_0',['Course',['../class_course.html#a275539ab3ab7c035b0b80f111ff7b039',1,'Course']]]
+  ['blockcourse_0',['BlockCourse',['../class_block_course.html#a02a549d460ed3416dbfa6a728e5dbb31',1,'BlockCourse']]]
 ];

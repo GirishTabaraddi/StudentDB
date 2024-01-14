@@ -1,4 +1,29 @@
 var searchData=
 [
-  ['listcourses_0',['listCourses',['../class_student_db.html#aa19418d775fc7860608d1390861675da',1,'StudentDb']]]
+  ['getadditionalinfo_0',['getadditionalInfo',['../class_address.html#a2e5f370c3caf5bc8686de435dfe53562',1,'Address']]],
+  ['getaddress_1',['getaddress',['../class_student.html#a2db8ada3d7fb89770c5d7b82de3a0a7b',1,'Student']]],
+  ['getcityname_2',['getcityName',['../class_address.html#a7c96e1faeaa077c34e46e4568cd9d3b7',1,'Address']]],
+  ['getcourse_3',['getcourse',['../class_enrollment.html#ac595cc09bf66b1f40ef8a7bb1877a907',1,'Enrollment']]],
+  ['getcoursekey_4',['getcourseKey',['../class_course.html#a31489de2e51a1f0a0f7c444e7722a9bb',1,'Course']]],
+  ['getcourses_5',['getcourses',['../class_student_db.html#a12fa84f710f6cca77678bdb4b2adefd5',1,'StudentDb']]],
+  ['getcreditpoints_6',['getcreditPoints',['../class_course.html#aaf9e0e94a3e63ae1822831e1515133f1',1,'Course']]],
+  ['getdaysofweek_7',['getDaysOfWeek',['../class_weekly_course.html#aacf3de35f63aa56c439a3db95ff47b7c',1,'WeeklyCourse']]],
+  ['getdob_8',['getDoB',['../class_student.html#ad05b8b20d42aa80bfdf81b304a51f6bc',1,'Student']]],
+  ['getenddate_9',['getEndDate',['../class_block_course.html#a79cc06ea3eb8eb2c070860dbd22bccc1',1,'BlockCourse']]],
+  ['getendtime_10',['getendtime',['../class_block_course.html#a9468b21a3f416d30b06075c1e5202f97',1,'BlockCourse::getEndTime()'],['../class_weekly_course.html#a6e495ae87bcdc927b1332f65393e155f',1,'WeeklyCourse::getEndTime()']]],
+  ['getenrollments_11',['getenrollments',['../class_student.html#a7a4816b3a7bc4b5cac71bfb7d617a348',1,'Student']]],
+  ['getfirstname_12',['getfirstName',['../class_student.html#ae1915cb6631325d897ba2afc28d9ad23',1,'Student']]],
+  ['getfullname_13',['getFullName',['../class_student.html#a9e6efb33dd5f335d5717faddc6b8e1d0',1,'Student']]],
+  ['getgrade_14',['getgrade',['../class_enrollment.html#adf61241b81f46d2a627c23a061f44d03',1,'Enrollment']]],
+  ['getlastname_15',['getlastName',['../class_student.html#af98a457a78c030dd98c056e9f194e034',1,'Student']]],
+  ['getmajor_16',['getmajor',['../class_course.html#a86da5abc4e4fe0191be453488ee9c5f6',1,'Course']]],
+  ['getmajorbyid_17',['getmajorById',['../class_course.html#a5dc659384d48722761803efdcf8d499b',1,'Course']]],
+  ['getmatrikelnumber_18',['getmatrikelNumber',['../class_student.html#a966545702e6a52d3d777c6655119fe95',1,'Student']]],
+  ['getpostalcode_19',['getpostalCode',['../class_address.html#afdba49c1858b9730b8c3161d3e2400eb',1,'Address']]],
+  ['getsemester_20',['getsemester',['../class_enrollment.html#a3e0bdbeb89629dedfd89ce6f9be6e7d0',1,'Enrollment']]],
+  ['getstartdate_21',['getStartDate',['../class_block_course.html#a6b99a73417827b66342c0f4b5aeb7df6',1,'BlockCourse']]],
+  ['getstarttime_22',['getstarttime',['../class_block_course.html#a58bf0695c2ce7306c506fac501500e32',1,'BlockCourse::getStartTime()'],['../class_weekly_course.html#a3ec70c8b6f7aad18a000f65392d249b7',1,'WeeklyCourse::getStartTime()']]],
+  ['getstreet_23',['getstreet',['../class_address.html#ae3b13da85de59b0768533dc287c078e7',1,'Address']]],
+  ['getstudents_24',['getstudents',['../class_student_db.html#ab2f44277494298db385149a2c77590f7',1,'StudentDb']]],
+  ['gettitle_25',['gettitle',['../class_course.html#a11cb3b3abed4bbfd86a694023d05720e',1,'Course']]]
 ];

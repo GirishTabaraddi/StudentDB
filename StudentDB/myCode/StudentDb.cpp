@@ -38,20 +38,61 @@ void StudentDb::addNewCourse()
 	string major = "NA";
 	string credits = "0.0";
 
-	cout << endl << "Enter CourseKey: ";
+	string startTime = "0";
+	string endTime = "0";
+	string startDate = "0";
+	string endDate = "0";
+	string dayOfWeek = "0";
+	string courseType = "NA";
+
+	cout << endl << "\t \t Enter CourseKey: ";
 	getline(cin, courseKey);
 
-	cout << endl << "Enter Title of the Course: ";
+	cout << endl << "\t \t Enter Title of the Course: ";
 	getline(cin, title);
 
-	cout << endl << "Enter the Major in which the Course belongs to: ";
+	cout << endl << "\t \t Enter the Major in which the Course belongs to: ";
 	getline(cin, major);
 
-	cout << endl << "Enter the  credit points of the Course: ";
+	cout << endl << "\t \t Enter the  credit points of the Course: ";
 	getline(cin, credits);
 
-	unique_ptr<const Course> course = make_unique<Course>(stoi(courseKey), title, major, stof(credits));
-	this->m_courses.insert(make_pair(course->getcourseKey(), move(course)));
+	cout << endl << "\t \t Enter the Course Type - Weekly(W)/Block(B): ";
+	getline(cin, courseType);
+
+	cout << endl << "\t \t Enter the Course Start Time - HH:MM : ";
+	getline(cin, startTime);
+
+	cout << endl << "\t \t Enter the Course End Time - HH:MM : ";
+	getline(cin, endTime);
+
+	if(courseType == "B" || courseType == "b")
+	{
+		cout << endl << "\t \t Enter the Course Start Date - dd.mm.YYYY : ";
+		getline(cin, startDate);
+
+		cout << endl << "\t \t Enter the Course End Date - dd.mm.YYYY : ";
+		getline(cin, endDate);
+
+		unique_ptr<BlockCourse> blockCourse = make_unique<BlockCourse>(stoi(courseKey), title, major, stof(credits),
+				stringToPocoDateFormatter(startDate), stringToPocoDateFormatter(endDate),
+				stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
+
+		this->m_courses.insert(make_pair(blockCourse->getcourseKey(), move(blockCourse)));
+	}
+	if(courseType == "W" || courseType == "w")
+	{
+		cout << endl << "\t \t Enter the Course Week - Monday-Sunday : ";
+		getline(cin, dayOfWeek);
+
+		Poco::DateTime::DaysOfWeek dayOfWeekinPoco = getDayOfWeekFromString(dayOfWeek);
+
+		unique_ptr<WeeklyCourse> weeklyCourse = make_unique<WeeklyCourse>(stoi(courseKey),
+				title, major, stof(credits), dayOfWeekinPoco,
+				stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
+
+		this->m_courses.insert(make_pair(weeklyCourse->getcourseKey(), move(weeklyCourse)));
+	}
 }
 
 void StudentDb::listCourses()
@@ -60,7 +101,7 @@ void StudentDb::listCourses()
 
 	for(const auto& courses: this->m_courses)
 	{
-		cout << courses.second.get()->printCourse() << endl;
+		courses.second.get()->print();
 	}
 }
 
@@ -82,25 +123,25 @@ void StudentDb::addNewStudent()
 	string cityName = "NA";
 	string additionalInfo = "NA";
 
-	cout << endl << "Enter First Name of the Student: ";
+	cout << endl << "\t \t Enter First Name of the Student - a-z/A-Z: ";
 	getline(cin, firstName);
 
-	cout << endl << "Enter Last Name of the Student: ";
+	cout << endl << "\t \t Enter Last Name of the Student - a-z/A-Z: ";
 	getline(cin, lastName);
 
-	cout << endl << "Enter Date of Birth of the Student - dd..mm..YYY : ";
+	cout << endl << "\t \t Enter Date of Birth of the Student - dd..mm..YYY : ";
 	getline(cin, DoBstring);
 
-	cout << endl << "Enter Street Name of the Student's Address: ";
+	cout << endl << "\t \t Enter Street Name of the Student's Address - a-z/A-Z: ";
 	getline(cin, streetName);
 
-	cout << endl << "Enter Postal Code of the Student's Address: ";
+	cout << endl << "\t \t Enter Postal Code of the Student's Address - 0-9: ";
 	getline(cin, postalCode);
 
-	cout << endl << "Enter City Name of the Student's Address: ";
+	cout << endl << "\t \t Enter City Name of the Student's Address - a-z/A-Z: ";
 	getline(cin, cityName);
 
-	cout << endl << "Enter Additional Info related Student's Address: ";
+	cout << endl << "\t \t Enter Additional Info related Student's Address - 0-9/a-z/A-Z: ";
 	getline(cin, additionalInfo);
 
 	shared_ptr<Address> address =
@@ -117,16 +158,16 @@ void StudentDb::addEnrollment()
 	string semester = "0";
 	string courseKey = "0";
 
-	cout << endl << "Enter the Matrikel Number of the Student, "
-			"to add his/her Enrollment: ";
+	cout << endl << "\t \t Enter the Matrikel Number of the Student, "
+			"to add his/her Enrollment - 0-9: ";
 	getline(cin, matrikelNumber);
 
-	cout << endl << "Enter the Semester of the Student "
-			"studying currently: ";
+	cout << endl << "\t \t Enter the Semester of the Student "
+			"studying currently - a-z/A-Z/0-9: ";
 	getline(cin, semester);
 
-	cout << endl << "Enter the Course Key, "
-			"to which he/she wants to enroll: ";
+	cout << endl << "\t \t Enter the Course Key, "
+			"to which he/she wants to enroll - 0-9: ";
 	getline(cin, courseKey);
 
 	auto matrikelNumberItr = this->m_students.find(stoi(matrikelNumber));
@@ -169,20 +210,25 @@ void StudentDb::printStudent()
 {
 	string matrikelNumber = "0";
 
-	cout << endl << "Enter the Matrikel Number of the Student, "
-			"to print his/her details: ";
+	cout << endl << "\t \t Enter the Matrikel Number of the Student, "
+			"to print his/her details - 0-9: ";
 	getline(cin, matrikelNumber);
 
 	auto matrikelNumberItr = this->m_students.find(stoi(matrikelNumber));
 
 	if(matrikelNumberItr != this->m_students.end())
 	{
-		cout << matrikelNumberItr->second.printStudent() << endl;
+		cout << "\n\t \t \t " << matrikelNumberItr->second.printStudent() << endl;
 
 		for(auto& itr : matrikelNumberItr->second.getenrollments())
 		{
-			cout << itr.printEnrollment() << endl;
+			cout << "\n\t \t \t " << itr.printEnrollment() << endl;
 		}
+	}
+	else
+	{
+		cout << "\t \t Entered Matrikel Number does not match "
+				"any student in the database." << endl;
 	}
 }
 
@@ -190,7 +236,7 @@ void StudentDb::searchStudent()
 {
 	string searchString = "Gir";
 
-	cout << endl << "Enter Student Name to search in the Database: ";
+	cout << endl << "\t \t Enter Student Name to search in the Database - a-z/A-Z: ";
 	getline(cin, searchString);
 
 	bool matchFound = false;
@@ -202,16 +248,16 @@ void StudentDb::searchStudent()
 		string firstName = findStudent.getfirstName();
 		string lastName = findStudent.getlastName();
 
-		if (firstName.find(searchString) != string::npos ||
-				lastName.find(searchString) != string::npos)
+		if (boost::algorithm::icontains(firstName, searchString) ||
+				boost::algorithm::icontains(lastName, searchString))
 		{
 			matchFound = true;
-			cout << findStudent.printStudent() << endl;
+			cout << "\n\t \t \t " << findStudent.printStudent() << endl;
 		}
 	}
 	if(matchFound == false)
 	{
-		cout << "Entered string doesn't match the Student Name "
+		cout << "\t \t Entered string doesn't match the Student Name "
 				"or the Student does not exist in the Database" << endl;
 	}
 }
@@ -220,8 +266,8 @@ void StudentDb::updateStudent()
 {
 	string matrikelNumber = "0";
 
-	cout << endl << "Enter the Matrikel Number of the Student, "
-			"to update his/her details: ";
+	cout << endl << "\t \t Enter the Matrikel Number of the Student, "
+			"to update his/her details - 0-9: ";
 	getline(cin, matrikelNumber);
 
 	auto studentItr = this->m_students.find(stoi(matrikelNumber));
@@ -313,7 +359,7 @@ void StudentDb::performStudentUpdate(Student &student)
 
 					string courseKey = "0";
 
-					cout << endl << "Enter CourseKey: ";
+					cout << endl << "\t \t \t \t Enter CourseKey - 0-9: ";
 					getline(cin, courseKey);
 
 					auto courseKeyItr = this->m_courses.find(stoi(courseKey));
@@ -359,7 +405,7 @@ void StudentDb::updateFirstName(Student &student)
 {
 	string firstName = "NA";
 
-	cout << endl << "Enter First Name of the Student to Update: ";
+	cout << endl << "\t \t \t \t Enter First Name of the Student to Update - a-z/A-Z: ";
 	getline(cin, firstName);
 }
 
@@ -367,7 +413,7 @@ void StudentDb::updateLastName(Student &student)
 {
 	string lastName = "NA";
 
-	cout << endl << "Enter Last Name of the Student to Update: ";
+	cout << endl << "\t \t \t \t Enter Last Name of the Student to Update - a-z/A-Z: ";
 	getline(cin, lastName);
 }
 
@@ -375,7 +421,7 @@ void StudentDb::updateDateofBirth(Student &student)
 {
 	string DoBstring = "31.12.9999";
 
-	cout << endl << "Enter Date of Birth of the Student "
+	cout << endl << "\t \t \t \t Enter Date of Birth of the Student "
 			"to Update - dd..mm..YYY : ";
 	getline(cin, DoBstring);
 
@@ -391,16 +437,20 @@ void StudentDb::updateAddress(Student &student)
 	string cityName = "NA";
 	string additionalInfo = "NA";
 
-	cout << endl << "Enter Street Name of the Student's Address to Update: ";
+	cout << endl << "\t \t \t \t Enter Street Name of the "
+			"Student's Address to Update - a-z/A-Z: ";
 	getline(cin, streetName);
 
-	cout << endl << "Enter Postal Code of the Student's Address to Update: ";
+	cout << endl << "\t \t \t \t Enter Postal Code of the "
+			"Student's Address to Update - 0-9: ";
 	getline(cin, postalCode);
 
-	cout << endl << "Enter City Name of the Student's Address to Update: ";
+	cout << endl << "\t \t \t \t Enter City Name of the "
+			"Student's Address to Update - a-z/A-Z: ";
 	getline(cin, cityName);
 
-	cout << endl << "Enter Additional Info related Student's Address to Update: ";
+	cout << endl << "\t \t \t \t Enter Additional Info related "
+			"to Student's Address to Update - a-z/A-Z: ";
 	getline(cin, additionalInfo);
 
 	shared_ptr<Address> address =
@@ -452,7 +502,7 @@ void StudentDb::performEnrollmentUpdate(Student &student,
 
 					string grade = "0";
 
-					cout << endl << "Enter Grade to Update: ";
+					cout << endl << "\t \t \t \t \t Enter Grade to Update - 0-9: ";
 					getline(cin, grade);
 
 					student.updateGrade(stof(grade), stoi(courseKey));

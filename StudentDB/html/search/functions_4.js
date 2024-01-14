@@ -1,24 +1,4 @@
 var searchData=
 [
-  ['getadditionalinfo_0',['getadditionalInfo',['../class_address.html#a2e5f370c3caf5bc8686de435dfe53562',1,'Address']]],
-  ['getaddress_1',['getaddress',['../class_student.html#a2db8ada3d7fb89770c5d7b82de3a0a7b',1,'Student']]],
-  ['getcityname_2',['getcityName',['../class_address.html#a7c96e1faeaa077c34e46e4568cd9d3b7',1,'Address']]],
-  ['getcourse_3',['getcourse',['../class_enrollment.html#ac595cc09bf66b1f40ef8a7bb1877a907',1,'Enrollment']]],
-  ['getcoursekey_4',['getcourseKey',['../class_course.html#a31489de2e51a1f0a0f7c444e7722a9bb',1,'Course']]],
-  ['getcourses_5',['getcourses',['../class_student_db.html#a12fa84f710f6cca77678bdb4b2adefd5',1,'StudentDb']]],
-  ['getcreditpoints_6',['getcreditPoints',['../class_course.html#aaf9e0e94a3e63ae1822831e1515133f1',1,'Course']]],
-  ['getdob_7',['getDoB',['../class_student.html#ad05b8b20d42aa80bfdf81b304a51f6bc',1,'Student']]],
-  ['getenrollments_8',['getenrollments',['../class_student.html#a7a4816b3a7bc4b5cac71bfb7d617a348',1,'Student']]],
-  ['getfirstname_9',['getfirstName',['../class_student.html#ae1915cb6631325d897ba2afc28d9ad23',1,'Student']]],
-  ['getfullname_10',['getFullName',['../class_student.html#a9e6efb33dd5f335d5717faddc6b8e1d0',1,'Student']]],
-  ['getgrade_11',['getgrade',['../class_enrollment.html#adf61241b81f46d2a627c23a061f44d03',1,'Enrollment']]],
-  ['getlastname_12',['getlastName',['../class_student.html#af98a457a78c030dd98c056e9f194e034',1,'Student']]],
-  ['getmajor_13',['getmajor',['../class_course.html#a86da5abc4e4fe0191be453488ee9c5f6',1,'Course']]],
-  ['getmajorbyid_14',['getmajorById',['../class_course.html#a5dc659384d48722761803efdcf8d499b',1,'Course']]],
-  ['getmatrikelnumber_15',['getmatrikelNumber',['../class_student.html#a966545702e6a52d3d777c6655119fe95',1,'Student']]],
-  ['getpostalcode_16',['getpostalCode',['../class_address.html#afdba49c1858b9730b8c3161d3e2400eb',1,'Address']]],
-  ['getsemester_17',['getsemester',['../class_enrollment.html#a3e0bdbeb89629dedfd89ce6f9be6e7d0',1,'Enrollment']]],
-  ['getstreet_18',['getstreet',['../class_address.html#ae3b13da85de59b0768533dc287c078e7',1,'Address']]],
-  ['getstudents_19',['getstudents',['../class_student_db.html#ab2f44277494298db385149a2c77590f7',1,'StudentDb']]],
-  ['gettitle_20',['gettitle',['../class_course.html#a11cb3b3abed4bbfd86a694023d05720e',1,'Course']]]
+  ['enrollment_0',['Enrollment',['../class_enrollment.html#aabc9a39ff3d803d0fcf4edbb32027a8c',1,'Enrollment']]]
 ];

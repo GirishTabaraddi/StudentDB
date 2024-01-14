@@ -96,11 +96,14 @@ $(document).ready(function(){initNavTree('formatterfile_8h.html',''); initResiza
 <div class="contents">
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
+<code>#include &lt;regex&gt;</code><br />
 <code>#include &lt;Poco/DateTimeFormatter.h&gt;</code><br />
 <code>#include &lt;Poco/Data/Date.h&gt;</code><br />
 <code>#include &lt;Poco/LocalDateTime.h&gt;</code><br />
 <code>#include &lt;Poco/DateTimeParser.h&gt;</code><br />
 <code>#include &lt;Poco/Timestamp.h&gt;</code><br />
+<code>#include &lt;Poco/Data/Time.h&gt;</code><br />
+<code>#include &lt;Poco/DateTime.h&gt;</code><br />
 </div>
 <p><a href="formatterfile_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -112,11 +115,20 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>pocoDateToStri
 <tr class="memitem:afc42acaf9fcb78aeca0de2aa7afff258" id="r_afc42acaf9fcb78aeca0de2aa7afff258"><td class="memItemLeft" align="right" valign="top"><a id="afc42acaf9fcb78aeca0de2aa7afff258" name="afc42acaf9fcb78aeca0de2aa7afff258"></a>
 Poco::Data::Date&#160;</td><td class="memItemRight" valign="bottom"><b>stringToPocoDateFormatter</b> (const std::string &amp;stringDate)</td></tr>
 <tr class="separator:afc42acaf9fcb78aeca0de2aa7afff258"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadf3efa2ad15edac861d28167d04ce41" id="r_aadf3efa2ad15edac861d28167d04ce41"><td class="memItemLeft" align="right" valign="top"><a id="aadf3efa2ad15edac861d28167d04ce41" name="aadf3efa2ad15edac861d28167d04ce41"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>pocoTimeToStringFromatter</b> (const Poco::Data::Time &amp;time)</td></tr>
+<tr class="separator:aadf3efa2ad15edac861d28167d04ce41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe4ddb20dbcf1a3cbfafbef0099b0c94" id="r_abe4ddb20dbcf1a3cbfafbef0099b0c94"><td class="memItemLeft" align="right" valign="top"><a id="abe4ddb20dbcf1a3cbfafbef0099b0c94" name="abe4ddb20dbcf1a3cbfafbef0099b0c94"></a>
+Poco::Data::Time&#160;</td><td class="memItemRight" valign="bottom"><b>stringToPocoTimeFormatter</b> (const std::string &amp;stringTime)</td></tr>
+<tr class="separator:abe4ddb20dbcf1a3cbfafbef0099b0c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3240f3b5f4e025b204c0e3da1288752c" id="r_a3240f3b5f4e025b204c0e3da1288752c"><td class="memItemLeft" align="right" valign="top"><a id="a3240f3b5f4e025b204c0e3da1288752c" name="a3240f3b5f4e025b204c0e3da1288752c"></a>
+Poco::DateTime::DaysOfWeek&#160;</td><td class="memItemRight" valign="bottom"><b>getDayOfWeekFromString</b> (const std::string &amp;dayString)</td></tr>
+<tr class="separator:a3240f3b5f4e025b204c0e3da1288752c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><br  />
  Created on: 11-Jan-2024 </p><dl class="section author"><dt>Author</dt><dd>Girish Tabaraddi</dd></dl>
-<p>Built on: Sunday 14-01-2024 01:33:55 </p>
+<p>Built on: Sunday 14-01-2024 18:19:12 </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
