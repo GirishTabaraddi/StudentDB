@@ -6,8 +6,6 @@ using namespace std;
 
 //! Add your project's header files here
 #include "SimpleUI.h"
-#include "Student.h"
-#include "StudentDb.h"
 
 #include "formatterfile.h"
 
@@ -22,69 +20,10 @@ int main ()
 
 	UI.run();
 
-//	Course c(1234, "APT", "Automation", 5);
-
-//	c.printCourse();
-
-//	Enrollment e("WS2023", &c);
-
-//	e.printEnrollment();
-//
-//	shared_ptr<Address> address = make_shared<Address>("Am Karlshof", 64287, "Darmstadt", "xyz Info");
-//
-//	Poco::Data::Date dateOfBirth(1997,3,31);
-//
-//	Student s("Girish", "Tabaraddi", dateOfBirth, address);
-//
-//	s.addEnrollment("WS2023", &c);
-//	s.printStudent();
-//
-//	Course c1(1235, "ASDT", "Embedded", 5);
-//
-//	s.addEnrollment("WS2023", &c1);
-//	s.printStudent();
-//
-//	s.addEnrollment("WS2024", &c);
-//	s.printStudent();
-//
-//	StudentDb Database;
-//
-//	Database.addNewCourse();
-//
-//	Database.addNewStudent();
-//
-//	Database.addEnrollment();
-
-//	Database.printDb();
-//	Database.listCourses();
-//
-//	Database.printStudent();
-//	Database.searchStudent();
-
-//	cout << endl;
-//
-//	Database.updateStudent();
-//	Database.printStudent();
-
-//	string date = "31.3.1997";
-//
-//	Poco::Data::Date x = stringToPocoDateFormatter(date);
-//
-//	cout << x.day() << "." << x.month() << "." << x.year() << endl;
-
 	return 0;
 }
 
 
-
-//cout << "Enter the index number to update the details: " << endl;
-//cout << "0 -> To Exit" << endl;
-//cout << "1 -> Update First Name: " << matrikelNumberItr->second.getfirstName() << endl;
-//cout << "2 -> Update Last Name: " << matrikelNumberItr->second.getlastName() << endl;
-//cout << "3 -> Update Date of Birth: " << dateFromatter(matrikelNumberItr->second.getDoB()) << endl;
-//cout << "4 -> Update Address: " << matrikelNumberItr->second.getaddress()->printAddress() << endl;
-//cout << "5 -> Update Grade: " << endl;
-//cout << "6 -> Delete Enrollment: " << endl;
 /*
  *
  * @startuml

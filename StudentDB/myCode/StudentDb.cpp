@@ -27,11 +27,31 @@ const std::map<int, std::unique_ptr<const Course> >& StudentDb::getcourses() con
 
 void StudentDb::addNewCourse()
 {
-	unique_ptr<const Course> course = make_unique<Course>(1234, "APT", "Automation", 5);
-	unique_ptr<const Course> course1 = make_unique<Course>(1235, "EOS", "Embedded", 5);
+//	unique_ptr<const Course> course = make_unique<Course>(1234, "APT", "Automation", 5);
+//	unique_ptr<const Course> course1 = make_unique<Course>(1235, "EOS", "Embedded", 5);
+//
+//	this->m_courses.insert(make_pair(course->getcourseKey(), move(course)));
+//	this->m_courses.insert(make_pair(course1->getcourseKey(), move(course1)));
 
+	string courseKey = "0";
+	string title = "NA";
+	string major = "NA";
+	string credits = "0.0";
+
+	cout << endl << "Enter CourseKey: ";
+	getline(cin, courseKey);
+
+	cout << endl << "Enter Title of the Course: ";
+	getline(cin, title);
+
+	cout << endl << "Enter the Major in which the Course belongs to: ";
+	getline(cin, major);
+
+	cout << endl << "Enter the  credit points of the Course: ";
+	getline(cin, credits);
+
+	unique_ptr<const Course> course = make_unique<Course>(stoi(courseKey), title, major, stof(credits));
 	this->m_courses.insert(make_pair(course->getcourseKey(), move(course)));
-	this->m_courses.insert(make_pair(course1->getcourseKey(), move(course1)));
 }
 
 void StudentDb::listCourses()
@@ -46,28 +66,68 @@ void StudentDb::listCourses()
 
 void StudentDb::addNewStudent()
 {
-	// I need to take inputs from the user for address and student details,
-	// for now they are hard coded.
-	shared_ptr<Address> address = make_shared<Address>("Am Karlshof", 64287, "Darmstadt", "xyz Info");
+//	shared_ptr<Address> address = make_shared<Address>("Am Karlshof", 64287, "Darmstadt", "xyz Info");
+//
+//	Poco::Data::Date dateOfBirth(1997,3,31);
+//
+//	Student student = Student("Girish", "Tabaraddi", dateOfBirth, address);
+//
+//	this->m_students.insert(make_pair(student.getmatrikelNumber(), student));
 
-	Poco::Data::Date dateOfBirth(1997,3,31);
+	string firstName = "NA";
+	string lastName = "NA";
+	string DoBstring = "01.01.1990";
+	string streetName = "NA";
+	string postalCode = "NA";
+	string cityName = "NA";
+	string additionalInfo = "NA";
 
-	Student student = Student("Girish", "Tabaraddi", dateOfBirth, address);
+	cout << endl << "Enter First Name of the Student: ";
+	getline(cin, firstName);
+
+	cout << endl << "Enter Last Name of the Student: ";
+	getline(cin, lastName);
+
+	cout << endl << "Enter Date of Birth of the Student - dd..mm..YYY : ";
+	getline(cin, DoBstring);
+
+	cout << endl << "Enter Street Name of the Student's Address: ";
+	getline(cin, streetName);
+
+	cout << endl << "Enter Postal Code of the Student's Address: ";
+	getline(cin, postalCode);
+
+	cout << endl << "Enter City Name of the Student's Address: ";
+	getline(cin, cityName);
+
+	cout << endl << "Enter Additional Info related Student's Address: ";
+	getline(cin, additionalInfo);
+
+	shared_ptr<Address> address =
+			make_shared<Address>(streetName, stoi(postalCode), cityName, additionalInfo);
+
+	Student student = Student(firstName, lastName, stringToPocoDateFormatter(DoBstring), address);
 
 	this->m_students.insert(make_pair(student.getmatrikelNumber(), student));
-
 }
 
 void StudentDb::addEnrollment()
 {
-	// Need to take inputs - semester, courseID(goes to courseKey) and matrikel number
-	// to enrol to a course.
+	string matrikelNumber = "0";
+	string semester = "0";
+	string courseKey = "0";
 
-	string matrikelNumber = "1009001";
+	cout << endl << "Enter the Matrikel Number of the Student, "
+			"to add his/her Enrollment: ";
+	getline(cin, matrikelNumber);
 
-	string semester = "SS2023";
+	cout << endl << "Enter the Semester of the Student "
+			"studying currently: ";
+	getline(cin, semester);
 
-	string courseKey = "1234";
+	cout << endl << "Enter the Course Key, "
+			"to which he/she wants to enroll: ";
+	getline(cin, courseKey);
 
 	auto matrikelNumberItr = this->m_students.find(stoi(matrikelNumber));
 
@@ -80,7 +140,19 @@ void StudentDb::addEnrollment()
 			Course* course = const_cast<Course*>(findCourseIdItr->second.get());
 
 			matrikelNumberItr->second.addEnrollment(semester, course);
+
+			cout << "Enrollment Added" << endl;
 		}
+		else
+		{
+			cout << endl << "\t \t \t ERROR: Entered Course Key "
+					"doesn't exist in the database!!!" << endl;
+		}
+	}
+	else
+	{
+		cout << endl << "\t \t \t ERROR: Entered Matrikel Number "
+				"doesn't exist in the database!!!" << endl;
 	}
 
 	//	for(auto& pairItr : this->m_students)
@@ -95,10 +167,11 @@ void StudentDb::addEnrollment()
 
 void StudentDb::printStudent()
 {
-	// get the matrikel number and print all the details of the student
-	// including the enrolled courses.
+	string matrikelNumber = "0";
 
-	string matrikelNumber = "1009001";
+	cout << endl << "Enter the Matrikel Number of the Student, "
+			"to print his/her details: ";
+	getline(cin, matrikelNumber);
 
 	auto matrikelNumberItr = this->m_students.find(stoi(matrikelNumber));
 
@@ -109,14 +182,18 @@ void StudentDb::printStudent()
 		for(auto& itr : matrikelNumberItr->second.getenrollments())
 		{
 			cout << itr.printEnrollment() << endl;
-
 		}
 	}
 }
 
 void StudentDb::searchStudent()
 {
-	string searchString = "Girish Tabaraddi";
+	string searchString = "Gir";
+
+	cout << endl << "Enter Student Name to search in the Database: ";
+	getline(cin, searchString);
+
+	bool matchFound = false;
 
 	for(const auto& pairItr : this->m_students)
 	{
@@ -125,19 +202,27 @@ void StudentDb::searchStudent()
 		string firstName = findStudent.getfirstName();
 		string lastName = findStudent.getlastName();
 
-		if(searchString.find(firstName) != string::npos ||
-				searchString.find(lastName) != string::npos)
+		if (firstName.find(searchString) != string::npos ||
+				lastName.find(searchString) != string::npos)
 		{
+			matchFound = true;
 			cout << findStudent.printStudent() << endl;
 		}
+	}
+	if(matchFound == false)
+	{
+		cout << "Entered string doesn't match the Student Name "
+				"or the Student does not exist in the Database" << endl;
 	}
 }
 
 void StudentDb::updateStudent()
 {
-	// take matrikel number as input and list all the properties
+	string matrikelNumber = "0";
 
-	string matrikelNumber = "1009001";
+	cout << endl << "Enter the Matrikel Number of the Student, "
+			"to update his/her details: ";
+	getline(cin, matrikelNumber);
 
 	auto studentItr = this->m_students.find(stoi(matrikelNumber));
 
@@ -203,7 +288,6 @@ void StudentDb::performStudentUpdate(Student &student)
 							<< " to update Last Name." <<endl;
 
 					this->updateLastName(student);
-
 				}
 				break;
 				case 3:
@@ -212,7 +296,6 @@ void StudentDb::performStudentUpdate(Student &student)
 							<< " to update Date of Birth." <<endl;
 
 					this->updateDateofBirth(student);
-
 				}
 				break;
 				case 4:
@@ -221,7 +304,6 @@ void StudentDb::performStudentUpdate(Student &student)
 							<< " to update Address." <<endl;
 
 					this->updateAddress(student);
-
 				}
 				break;
 				case 5:
@@ -229,7 +311,10 @@ void StudentDb::performStudentUpdate(Student &student)
 					cout << endl << "\t \t \t You chose option : " << numericChoice
 							<< " to update Enrollment." <<endl << endl;
 
-					string courseKey = "1234";
+					string courseKey = "0";
+
+					cout << endl << "Enter CourseKey: ";
+					getline(cin, courseKey);
 
 					auto courseKeyItr = this->m_courses.find(stoi(courseKey));
 
@@ -243,7 +328,7 @@ void StudentDb::performStudentUpdate(Student &student)
 					}
 					else
 					{
-						cout << endl << "\t \t \t ERROR: Entered Matrikel Number "
+						cout << endl << "\t \t \t ERROR: Entered Course Key "
 								"doesn't exist in the database!!!" << endl;
 					}
 				}
@@ -260,7 +345,6 @@ void StudentDb::performStudentUpdate(Student &student)
 			{
 				cout << endl << "\t \t \t ERROR: Invalid Input, "
 						"Please enter a numeric value between - [0-5]" << endl;
-				//			updateFlag1 = true;
 			}
 		}
 		catch(const invalid_argument& e)
@@ -273,19 +357,28 @@ void StudentDb::performStudentUpdate(Student &student)
 
 void StudentDb::updateFirstName(Student &student)
 {
-	Poco::Data::Date NADate(1900,1,1);
-	student.updateStudent("Pavan", "NA", NADate);
+	string firstName = "NA";
+
+	cout << endl << "Enter First Name of the Student to Update: ";
+	getline(cin, firstName);
 }
 
 void StudentDb::updateLastName(Student &student)
 {
-	Poco::Data::Date NADate(1900,1,1);
-	student.updateStudent("NA", "Joshi", NADate);
+	string lastName = "NA";
+
+	cout << endl << "Enter Last Name of the Student to Update: ";
+	getline(cin, lastName);
 }
 
 void StudentDb::updateDateofBirth(Student &student)
 {
-	string DoBstring = "01.01.1990";
+	string DoBstring = "31.12.9999";
+
+	cout << endl << "Enter Date of Birth of the Student "
+			"to Update - dd..mm..YYY : ";
+	getline(cin, DoBstring);
+
 	Poco::Data::Date pocoDoB = stringToPocoDateFormatter(DoBstring);
 
 	student.updateStudent("NA", "NA", pocoDoB);
@@ -293,13 +386,26 @@ void StudentDb::updateDateofBirth(Student &student)
 
 void StudentDb::updateAddress(Student &student)
 {
-	string street = "Berliner Alle";
-	unsigned short postalCode = 64295;
-	string cityName = "Darmstadt";
-	string additionalInfo = "abc";
+	string streetName = "NA";
+	string postalCode = "NA";
+	string cityName = "NA";
+	string additionalInfo = "NA";
+
+	cout << endl << "Enter Street Name of the Student's Address to Update: ";
+	getline(cin, streetName);
+
+	cout << endl << "Enter Postal Code of the Student's Address to Update: ";
+	getline(cin, postalCode);
+
+	cout << endl << "Enter City Name of the Student's Address to Update: ";
+	getline(cin, cityName);
+
+	cout << endl << "Enter Additional Info related Student's Address to Update: ";
+	getline(cin, additionalInfo);
 
 	shared_ptr<Address> address =
-			make_shared<Address>(street, postalCode, cityName, additionalInfo);
+			make_shared<Address>(streetName, stoi(postalCode), cityName, additionalInfo);
+
 	student.updateAddress(address);
 }
 
@@ -336,10 +442,7 @@ void StudentDb::performEnrollmentUpdate(Student &student,
 					cout << endl << "\t \t \t \t You chose option : " << numericChoice
 							<< " to Delete Enrollment." <<endl;
 
-					string matrikelNumber = "1009001";
-
 					student.deleteEnrollment(stoi(courseKey));
-
 				}
 				break;
 				case 2:
@@ -347,10 +450,12 @@ void StudentDb::performEnrollmentUpdate(Student &student,
 					cout << endl << "\t \t \t \t You chose option : " << numericChoice
 							<< " to update Grade." <<endl;
 
-					float grade = 1.3;
+					string grade = "0";
 
-					student.updateGrade(grade, stoi(courseKey));
+					cout << endl << "Enter Grade to Update: ";
+					getline(cin, grade);
 
+					student.updateGrade(stof(grade), stoi(courseKey));
 				}
 				break;
 				}
@@ -359,7 +464,6 @@ void StudentDb::performEnrollmentUpdate(Student &student,
 			{
 				cout << endl << "\t \t \t ERROR: Invalid Input, "
 						"Please enter a numeric value between - [0-2]" << endl;
-				//updateFlag2 = true;
 			}
 		}
 		catch(const invalid_argument& e)
