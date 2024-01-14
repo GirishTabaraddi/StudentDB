@@ -43,8 +43,11 @@ std::string WeeklyCourse::printWeeklyCourse() const
 {
 	string out;
 
-	out = "W;" + Course::printCourse() + ";" + to_string(this->m_daysOfWeek) + ";" +
-			pocoTimeToStringFromatter(this->m_startTime) + ";" + pocoTimeToStringFromatter(this->m_endTime);
+	out = "W;"
+			+ Course::printCourse()
+			+ ";" + to_string(this->m_daysOfWeek)
+			+ ";" + pocoTimeToStringFromatter(this->m_startTime)
+			+ ";" + pocoTimeToStringFromatter(this->m_endTime);
 
 	return out;
 }

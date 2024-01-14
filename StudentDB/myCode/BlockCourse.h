@@ -12,6 +12,10 @@
 
 #include "Course.h"
 
+/*!
+ * @class BlockCourse
+ * @brief Represents a block course with specific scheduling details.
+ */
 class BlockCourse: public Course
 {
 private:
@@ -35,51 +39,72 @@ private:
 	Poco::Data::Time m_endTime;
 
 public:
-	/*!
-	 *
-	 * @param courseKey
-	 * @param title
-	 * @param major
-	 * @param creditPoints
-	 * @param startDate
-	 * @param endDate
-	 * @param startTime
-	 * @param endTime
-	 */
-	BlockCourse(unsigned int courseKey, std::string title, std::string major, float creditPoints,
-			Poco::Data::Date startDate, Poco::Data::Date endDate, Poco::Data::Time startTime, Poco::Data::Time endTime);
+    /*!
+     * @brief Parameterized constructor for BlockCourse.
+     *
+     * Initializes all members of the abstract class and derived class.
+     *
+     * @param courseKey 	Unique identifier for the course.
+     * @param title 		Title of the course.
+     * @param major 		Major associated with the course.
+     * @param creditPoints	Number of credit points for the course.
+     * @param startDate 	Start date of the course.
+     * @param endDate 		End date of the course.
+     * @param startTime		Start time of the course.
+     * @param endTime 		End time of the course.
+     */
+	BlockCourse(unsigned int courseKey, std::string title, std::string major,
+			float creditPoints, Poco::Data::Date startDate, Poco::Data::Date endDate,
+			Poco::Data::Time startTime, Poco::Data::Time endTime);
 
 	/*!
-	 * A Default destructor for BlockCourse class.
+	 * @brief Default destructor for BlockCourse class.
 	 */
 	virtual ~BlockCourse();
 
-	/*!
-	 * A getter method that returns the start date of the course.
-	 * @return Poco::Data::Date
-	 */
+    /*!
+     * @brief Getter method for the start date of the course.
+     *
+     * @return Poco::Data::Date representing the start date.
+     */
 	Poco::Data::Date getStartDate() const;
 
-	/*!
-	 * A getter method that returns the end date of the course.
-	 * @return Poco::Data::Date
-	 */
+    /*!
+     * @brief Getter method for the end date of the course.
+     *
+     * @return Poco::Data::Date representing the end date.
+     */
 	Poco::Data::Date getEndDate() const;
 
-	/*!
-	 * A getter method that returns the start time of the course.
-	 * @return Poco::Data::Time
-	 */
+    /*!
+     * @brief Getter method for the start time of the course.
+     *
+     * @return Poco::Data::Time representing the start time.
+     */
 	Poco::Data::Time getStartTime() const;
 
-	/*!
-	 * A getter method that returns the end time of the course.
-	 * @return Poco::Data::Time
-	 */
+    /*!
+     * @brief Getter method for the end time of the course.
+     *
+     * @return Poco::Data::Time representing the end time.
+     */
 	Poco::Data::Time getEndTime() const;
 
+    /*!
+     * @brief Print method that outputs the data of the block course.
+     *
+     * @return String representation of the course data.
+     */
 	std::string printBlockCourse() const;
 
+	/**
+	 * @brief Prints specific information about the BlockCourse.
+	 *
+	 * This function prints additional details specific to the BlockCourse,
+	 * such as start and end dates, start and end times.
+	 *
+	 * @note This function overrides the virtual function in the base Course class.
+	 */
 	void print() const override;
 };
 

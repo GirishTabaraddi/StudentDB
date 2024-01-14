@@ -15,23 +15,23 @@ StudentDb::StudentDb()
 {
 }
 
-const std::map<int, Student> StudentDb::getstudents() const
+const std::map<int, Student>& StudentDb::getStudents() const
 {
 	return this->m_students;
 }
 
-const std::map<int, std::unique_ptr<const Course> >& StudentDb::getcourses() const
+const std::map<int, std::unique_ptr<const Course> >& StudentDb::getCourses() const
 {
 	return this->m_courses;
 }
 
 void StudentDb::addNewCourse()
 {
-//	unique_ptr<const Course> course = make_unique<Course>(1234, "APT", "Automation", 5);
-//	unique_ptr<const Course> course1 = make_unique<Course>(1235, "EOS", "Embedded", 5);
-//
-//	this->m_courses.insert(make_pair(course->getcourseKey(), move(course)));
-//	this->m_courses.insert(make_pair(course1->getcourseKey(), move(course1)));
+	//	unique_ptr<const Course> course = make_unique<Course>(1234, "APT", "Automation", 5);
+	//	unique_ptr<const Course> course1 = make_unique<Course>(1235, "EOS", "Embedded", 5);
+	//
+	//	this->m_courses.insert(make_pair(course->getcourseKey(), move(course)));
+	//	this->m_courses.insert(make_pair(course1->getcourseKey(), move(course1)));
 
 	string courseKey = "0";
 	string title = "NA";
@@ -74,9 +74,10 @@ void StudentDb::addNewCourse()
 		cout << endl << "\t \t Enter the Course End Date - dd.mm.YYYY : ";
 		getline(cin, endDate);
 
-		unique_ptr<BlockCourse> blockCourse = make_unique<BlockCourse>(stoi(courseKey), title, major, stof(credits),
-				stringToPocoDateFormatter(startDate), stringToPocoDateFormatter(endDate),
-				stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
+		unique_ptr<BlockCourse> blockCourse =
+				make_unique<BlockCourse>(stoi(courseKey), title, major, stof(credits),
+						stringToPocoDateFormatter(startDate), stringToPocoDateFormatter(endDate),
+						stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
 
 		this->m_courses.insert(make_pair(blockCourse->getcourseKey(), move(blockCourse)));
 	}
@@ -107,13 +108,13 @@ void StudentDb::listCourses()
 
 void StudentDb::addNewStudent()
 {
-//	shared_ptr<Address> address = make_shared<Address>("Am Karlshof", 64287, "Darmstadt", "xyz Info");
-//
-//	Poco::Data::Date dateOfBirth(1997,3,31);
-//
-//	Student student = Student("Girish", "Tabaraddi", dateOfBirth, address);
-//
-//	this->m_students.insert(make_pair(student.getmatrikelNumber(), student));
+	//	shared_ptr<Address> address = make_shared<Address>("Am Karlshof", 64287, "Darmstadt", "xyz Info");
+	//
+	//	Poco::Data::Date dateOfBirth(1997,3,31);
+	//
+	//	Student student = Student("Girish", "Tabaraddi", dateOfBirth, address);
+	//
+	//	this->m_students.insert(make_pair(student.getmatrikelNumber(), student));
 
 	string firstName = "NA";
 	string lastName = "NA";
@@ -149,7 +150,7 @@ void StudentDb::addNewStudent()
 
 	Student student = Student(firstName, lastName, stringToPocoDateFormatter(DoBstring), address);
 
-	this->m_students.insert(make_pair(student.getmatrikelNumber(), student));
+	this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
 }
 
 void StudentDb::addEnrollment()
@@ -220,7 +221,7 @@ void StudentDb::printStudent()
 	{
 		cout << "\n\t \t \t " << matrikelNumberItr->second.printStudent() << endl;
 
-		for(auto& itr : matrikelNumberItr->second.getenrollments())
+		for(auto& itr : matrikelNumberItr->second.getEnrollments())
 		{
 			cout << "\n\t \t \t " << itr.printEnrollment() << endl;
 		}
@@ -245,8 +246,8 @@ void StudentDb::searchStudent()
 	{
 		const auto& findStudent = pairItr.second;
 
-		string firstName = findStudent.getfirstName();
-		string lastName = findStudent.getlastName();
+		string firstName = findStudent.getFirstName();
+		string lastName = findStudent.getLastName();
 
 		if (boost::algorithm::icontains(firstName, searchString) ||
 				boost::algorithm::icontains(lastName, searchString))
@@ -341,7 +342,7 @@ void StudentDb::performStudentUpdate(Student &student)
 					cout << endl << "\t \t \t You chose option : " << numericChoice
 							<< " to update Date of Birth." <<endl;
 
-					this->updateDateofBirth(student);
+					this->updateDateOfBirth(student);
 				}
 				break;
 				case 4:
@@ -417,7 +418,7 @@ void StudentDb::updateLastName(Student &student)
 	getline(cin, lastName);
 }
 
-void StudentDb::updateDateofBirth(Student &student)
+void StudentDb::updateDateOfBirth(Student &student)
 {
 	string DoBstring = "31.12.9999";
 
@@ -454,13 +455,13 @@ void StudentDb::updateAddress(Student &student)
 	getline(cin, additionalInfo);
 
 	shared_ptr<Address> address =
-			make_shared<Address>(streetName, stoi(postalCode), cityName, additionalInfo);
+			make_shared<Address>(streetName, stoi(postalCode),
+					cityName, additionalInfo);
 
 	student.updateAddress(address);
 }
 
-void StudentDb::performEnrollmentUpdate(Student &student,
-		std::string &courseKey)
+void StudentDb::performEnrollmentUpdate(Student& student, const std::string& courseKey)
 {
 	bool exitFlag2 = false;
 

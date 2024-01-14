@@ -14,11 +14,6 @@
 
 using namespace std;
 
-//map<unsigned char, std::string> Course::m_majorById = {{'E', "EMBEDDED"}, {'A', "AUTOMATION"},
-//													   {'C', "COMMUNICATION"}, {'P', "POWER"}};
-
-using namespace std;
-
 Course::Course(unsigned int courseKey, std::string title, std::string major,
 		float creditPoints) : m_courseKey(courseKey), m_title(title), m_creditPoints(creditPoints)
 {

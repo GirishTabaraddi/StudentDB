@@ -14,151 +14,167 @@
 #include "Address.h"
 #include "formatterfile.h"
 
-#include <Poco/Data/Date.h>
-
 #include <vector>
 #include <memory>
 
-class Student
-{
+/*!
+ * @class Student
+ * @brief Represents a student with associated details and enrollment information.
+ */
+class Student {
 private:
-	/*!
-	 * @var m_nextMatrikelNumber - Next Matrikel Number incremented
-	 * 								after assigning to a student.
-	 */
-	static unsigned int m_nextMatrikelNumber;
+    /*!
+     * @var m_nextMatrikelNumber - Next Matrikel Number incremented after assigning to a student.
+     */
+    static unsigned int m_nextMatrikelNumber;
 
-	/*!
-	 * @var m_matrikelNumber - A Students Matrikel Number.
-	 */
-	unsigned int m_matrikelNumber;
+    /*!
+     * @var m_matrikelNumber - A student's Matrikel Number.
+     */
+    unsigned int m_matrikelNumber;
 
-	/*!
-	 * @var m_firstName - Student's first name.
-	 */
-	std::string m_firstName;
+    /*!
+     * @var m_firstName - Student's first name.
+     */
+    std::string m_firstName;
 
-	/*!
-	 * @var m_lastName - Student's last name.
-	 */
-	std::string m_lastName;
+    /*!
+     * @var m_lastName - Student's last name.
+     */
+    std::string m_lastName;
 
-	/*!
-	 * @var m_dateOfBirth - Student's date of birth.
-	 */
-	Poco::Data::Date m_dateOfBirth;
+    /*!
+     * @var m_dateOfBirth - Student's date of birth.
+     */
+    Poco::Data::Date m_dateOfBirth;
 
-	/*!
-	 * @var m_enrollments - a vector of enrollments for a student.
-	 */
-	std::vector<Enrollment> m_enrollments;
+    /*!
+     * @var m_enrollments - A vector of enrollments for a student.
+     */
+    std::vector<Enrollment> m_enrollments;
 
-	/*!
-	 * @var m_address - a shared pointer that holds the details to class Address.
-	 */
-	std::shared_ptr<Address> m_address;
+    /*!
+     * @var m_address - A shared pointer that holds the details of the Address class.
+     */
+    std::shared_ptr<Address> m_address;
 
 public:
+    /*!
+     * @brief Parameterized constructor for the Student class.
+     *
+     * Initializes the private members of the Student class, including a shared pointer to the address.
+     *
+     * @param firstName Student's first name.
+     * @param lastName Student's last name.
+     * @param dateOfBirth Student's date of birth.
+     * @param address Shared pointer to the Address class.
+     */
+    Student(std::string firstName, std::string lastName,
+            Poco::Data::Date dateOfBirth, std::shared_ptr<Address> address);
 
-	/*!
-	 * A parameterized constructor that initializes the private members of Student class,
-	 * also it takes the shared_pointer to address as argument and init's it's members.
-	 * @param matrikelNumber
-	 * @param firstName
-	 * @param lastName
-	 * @param dateOfBirth
-	 * @param address
-	 */
-	Student(std::string firstName, std::string lastName,
-			Poco::Data::Date dateOfBirth, std::shared_ptr<Address> address);
+    /*!
+     * @brief Default destructor for the Student class.
+     */
+    virtual ~Student();
 
-	/*!
-	 * A default constructor for Student class.
-	 */
-	virtual ~Student();
+    /*!
+     * @brief Getter method that returns the Matrikel number of a student.
+     *
+     * @return unsigned integer representing the Matrikel number.
+     */
+    const unsigned int getMatrikelNumber() const;
 
-	/*!
-	 * A getter method that returns the matrikel number of a student.
-	 * @return unsigned integer type.
-	 */
-	const unsigned int getmatrikelNumber() const;
+    /*!
+     * @brief Getter method that returns a string of the full name (first name + last name).
+     *
+     * @return std::string representing the full name.
+     */
+    const std::string getFullName() const;
 
-	/*!
-	 * A getter method that returns a string of full name(firstname + lastname).
-	 * @return std::string type.
-	 */
-	const std::string getFullName() const;
+    /*!
+     * @brief Getter method that returns a string of the first name.
+     *
+     * @return std::string representing the first name.
+     */
+    const std::string& getFirstName() const;
 
-	/*!
-	 * A getter method that returns a string of first name.
-	 * @return std::string type.
-	 */
-	const std::string& getfirstName() const;
+    /*!
+     * @brief Getter method that returns a string of the last name.
+     *
+     * @return std::string representing the last name.
+     */
+    const std::string& getLastName() const;
 
-	/*!
-	 * A getter method that returns a string of last name.
-	 * @return std::string type.
-	 */
-	const std::string& getlastName() const;
+    /*!
+     * @brief Getter method to obtain the date of birth of a student.
+     *
+     * @return Poco::Data::Date representing the date of birth.
+     */
+    const Poco::Data::Date getDateOfBirth() const;
 
-	/*!
-	 * A getter method to obtain the date of birth of a student.
-	 * @return Poco::Data::Date format.
-	 */
-	const Poco::Data::Date getDoB() const;
+    /*!
+     * @brief Getter method to list all the enrollments done.
+     *
+     * @return Vector of class Enrollment representing the enrollments.
+     */
+    const std::vector<Enrollment>& getEnrollments() const;
 
-	/*!
-	 * A getter to list all the enrollments done.
-	 * @return vector of class Enrollment type.
-	 */
-	const std::vector<Enrollment>& getenrollments() const;
+    /*!
+     * @brief Getter method to obtain the Address class.
+     *
+     * @return Shared pointer of class Address representing the address.
+     */
+    const std::shared_ptr<Address> getAddress() const;
 
-	/*!
-	 * A getter method to obtain the address class.
-	 * @return a shared pointer of class Address type.
-	 */
-	const std::shared_ptr<Address> getaddress() const;
+    /*!
+     * @brief Method to print the student details.
+     *
+     * @return std::string representing the formatted student information.
+     */
+    std::string printStudent() const;
 
-	/*!
-	 *
-	 * @return string value.
-	 */
-	std::string printStudent() const;
+    /*!
+     * @brief Add enrollment for the student.
+     *
+     * Queries the user for a matrikel number, a course id, and a semester, and adds the enrollment.
+     * If the enrollment already exists, a warning message is printed.
+     *
+     * @param semester Semester for the enrollment.
+     * @param courseId Pointer to the Course object.
+     */
+    void addEnrollment(const std::string& semester, Course* courseId);
 
-	/*!
-	 * Add enrollment: Queries the user for a matrikel number, a course id and a semester and
-	 * adds the enrollment. If the enrollment already exists, a warning messages is printed.
-	 * @param semester
-	 * @param courseId
-	 *
-	 * @return void
-	 */
-	void addEnrollment(const std::string& semester, Course* courseId);
+    /*!
+     * @brief Update the student details.
+     *
+     * @param firstName New first name.
+     * @param lastName New last name.
+     * @param dateOfBirth New date of birth.
+     */
+    void updateStudent(std::string firstName, std::string lastName, Poco::Data::Date dateOfBirth);
 
-	/*!
-	 * This method updates the details of the students which will be passed as an argument.
-	 * @param firstName
-	 * @param lastName
-	 * @param dateOfBirth
-	 *
-	 * @return void
-	 */
-	void updateStudent(std::string firstName, std::string lastName,  Poco::Data::Date dateOfBirth);
+    /*!
+     * @brief Update the address of the student.
+     *
+     * @param address Shared pointer to the Address class representing the new address.
+     */
+    void updateAddress(std::shared_ptr<Address> address);
 
-	/*!
-	 * This method takes Address class object and updates the address passed as argument.
-	 * @param address
-	 */
-	void updateAddress(std::shared_ptr<Address> address);
+    /*!
+     * @brief Delete enrollment based on the course key.
+     *
+     * @param courseKey Course key for the enrollment to be deleted.
+     */
+    void deleteEnrollment(unsigned int courseKey);
 
-	/*!
-	 * This method takes courseKey as an argument and finds the key in
-	 * Enrollments, if there is one, then that enrollment is deleted.
-	 * @param courseKey
-	 */
-	void deleteEnrollment(unsigned int courseKey);
-
-	void updateGrade(float grade, unsigned int courseKey);
+    /*!
+     * @brief Update the grade for a specific enrollment.
+     *
+     * @param grade New grade value.
+     * @param courseKey Course key for the enrollment to be updated.
+     */
+    void updateGrade(float grade, unsigned int courseKey);
 };
+
 
 #endif /* STUDENT_H_ */

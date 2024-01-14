@@ -42,8 +42,9 @@ void Enrollment::setgrade(float grade)
 
 std::string Enrollment::printEnrollment() const
 {
-	string out = to_string(this->m_course->getcourseKey()) + ";" +
-			this->m_semester + ";" + to_string(this->m_grade);
+	string out = to_string(this->m_course->getcourseKey())
+			+ ";" + this->m_semester
+			+ ";" + to_string(this->m_grade);
 
 	return out;
 }

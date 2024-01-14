@@ -25,7 +25,7 @@ Student::~Student()
 {
 }
 
-const unsigned int Student::getmatrikelNumber() const
+const unsigned int Student::getMatrikelNumber() const
 {
 	return this->m_matrikelNumber;
 }
@@ -35,27 +35,27 @@ const std::string Student::getFullName() const
 	return (this->m_firstName + " " + this->m_lastName);
 }
 
-const Poco::Data::Date Student::getDoB() const
+const Poco::Data::Date Student::getDateOfBirth() const
 {
 	return this->m_dateOfBirth;
 }
 
-const std::string& Student::getfirstName() const
+const std::string& Student::getFirstName() const
 {
 	return this->m_firstName;
 }
 
-const std::string& Student::getlastName() const
+const std::string& Student::getLastName() const
 {
 	return this->m_lastName;
 }
 
-const std::vector<Enrollment>& Student::getenrollments() const
+const std::vector<Enrollment>& Student::getEnrollments() const
 {
 	return this->m_enrollments;
 }
 
-const std::shared_ptr<Address> Student::getaddress() const
+const std::shared_ptr<Address> Student::getAddress() const
 {
 	return this->m_address;
 }
@@ -67,10 +67,12 @@ std::string Student::printStudent() const
 //			this->m_dateOfBirth.month() << "." << this->m_dateOfBirth.year();
 //
 //	return out;
-	string out = (to_string(this->m_matrikelNumber) + ";" + this->m_firstName + ";" +
-					this->m_lastName + ";" + pocoDateToStringFromatter(this->m_dateOfBirth) + ";");
+	string out = (to_string(this->m_matrikelNumber)
+			+ ";" + this->m_firstName
+			+ ";" + this->m_lastName
+			+ ";" + pocoDateToStringFromatter(this->m_dateOfBirth) + ";");
 
-	out += getaddress()->printAddress();
+	out += getAddress()->printAddress();
 
 	return out;
 

@@ -48,8 +48,11 @@ std::string BlockCourse::printBlockCourse() const
 {
 	string out;
 
-	out = "B;" + Course::printCourse() + ";" + pocoDateToStringFromatter(this->m_startDate)
-			+ ";" + pocoDateToStringFromatter(this->m_endDate) + ";" + pocoTimeToStringFromatter(this->m_startTime)
+	out = "B;"
+			+ Course::printCourse()
+			+ ";" + pocoDateToStringFromatter(this->m_startDate)
+			+ ";" + pocoDateToStringFromatter(this->m_endDate)
+			+ ";" + pocoTimeToStringFromatter(this->m_startTime)
 			+ ";" + pocoTimeToStringFromatter(this->m_endTime);
 	return out;
 }

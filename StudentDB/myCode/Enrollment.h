@@ -12,6 +12,10 @@
 
 #include "Course.h"
 
+/*!
+ * @class Enrollment
+ * @brief Represents the enrollment of a student in a course for a specific semester.
+ */
 class Enrollment
 {
 private:
@@ -31,42 +35,55 @@ private:
 	const Course* m_course;
 
 public:
-	/*!
-	 * A parameterized constructor which initializes the enrolled course through
-	 * m_course which is a pointer object of the class Course.
-	 * @param courseObj
-	 */
+    /*!
+     * @brief Parameterized constructor for Enrollment.
+     *
+     * Initializes the enrolled course through m_course,
+     * which is a pointer object of the Course class.
+     *
+     * @param semester  The semester in which the course is enrolled.
+     * @param courseObj Pointer to the Course object.
+     */
 	Enrollment(std::string semester, const Course* courseObj);
 
-	/*!
-	 * A default destructor for class Enrollment.
-	 */
+    /*!
+     * @brief Default destructor for the Enrollment class.
+     */
 	virtual ~Enrollment();
 
-	/*!
-	 * A getter method to obtain the value of m_grade of enrolled course.
-	 * @return float type.
-	 */
+    /*!
+     * @brief Getter method to obtain the grade of the enrolled course.
+     *
+     * @return float representing the grade.
+     */
 	const float getgrade() const;
 
-	/*!
-	 * A getter method to obtain the enrolled semester value.
-	 * @return std::string type.
-	 */
+    /*!
+     * @brief Getter method to obtain the enrolled semester value.
+     *
+     * @return const std::string& representing the semester.
+     */
 	const std::string& getsemester() const;
 
-	/*!
-	 * A getter method to obtain the course object.
-	 * @return class Course type.
-	 */
+    /*!
+     * @brief Getter method to obtain the Course object.
+     *
+     * @return const Course* representing the enrolled course.
+     */
 	const Course* getcourse() const;
 
-	/*!
-	 * A setter function to set the grade value passed.
-	 * @param grade
-	 */
+    /*!
+     * @brief Setter function to set the grade value.
+     *
+     * @param grade The grade to be set.
+     */
 	void setgrade(float grade);
 
+    /*!
+     * @brief Method to print the enrollment details.
+     *
+     * @return std::string representing the formatted enrollment information.
+     */
 	std::string printEnrollment() const;
 };
 

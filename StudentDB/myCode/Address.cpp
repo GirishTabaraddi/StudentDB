@@ -44,8 +44,10 @@ const std::string& Address::getadditionalInfo() const
 
 std::string Address::printAddress() const
 {
-	string out = this->m_street + ";" + to_string(this->m_postalCode) + ";" +
-			this->m_cityName + ";" + this->m_additionalInfo;
+	string out = this->m_street
+			+ ";" + to_string(this->m_postalCode)
+			+ ";" + this->m_cityName
+			+ ";" + this->m_additionalInfo;
 
 	return out;
 }

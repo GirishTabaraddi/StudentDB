@@ -13,31 +13,39 @@
 #include "StudentDb.h"
 #include <string>
 
+/*!
+ * @class SimpleUI
+ * @brief Represents a simple user interface for interacting with a Student Database.
+ */
 class SimpleUI
 {
 private:
-	/*!
-	 * @var m_db - a reference to StudentDb class.
-	 */
-	StudentDb& m_db;
+    /*!
+     * @var m_db - A reference to the StudentDb class.
+     */
+    StudentDb& m_db;
 
 public:
-	/*!
-	 * A parameterized constructor that initializes the StudentDb class.
-	 * @param m_db
-	 */
-	SimpleUI(StudentDb& db);
+    /*!
+     * @brief Parameterized constructor for SimpleUI.
+     *
+     * Initializes the SimpleUI class with a reference to a StudentDb object.
+     *
+     * @param db A reference to the StudentDb class.
+     */
+    SimpleUI(StudentDb& db);
 
-	/*!
-	 * A Default destructor of SimpleUI class.
-	 */
-	virtual ~SimpleUI();
+    /*!
+     * @brief Default destructor for the SimpleUI class.
+     */
+    virtual ~SimpleUI();
 
-	/*!
-	 * This method lists all the properties available in the database,
-	 * requests input from user and executes the respective operation.
-	 */
-	void run();
+    /*!
+     * @brief Lists all the properties available in the database, requests input from the user,
+     *        and executes the respective operation.
+     */
+    void run();
 };
+
 
 #endif /* SIMPLEUI_H_ */

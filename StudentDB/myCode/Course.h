@@ -20,7 +20,7 @@ class Course
 {
 private:
 	/*!
-	 * @var m_majorByID -
+	 * @var m_majorByID - A map storing major IDs mapped to their corresponding strings.
 	 */
 	std::map<unsigned char, std::string> m_majorById;
 
@@ -46,65 +46,109 @@ private:
 
 private:
 	/*!
-	 * The method setmajorById sets the title's first char using setMajor method
+	 * @brief Sets the major ID based on the first character of the given major string.
+	 *
+	 * This method takes a major string as input and sets the major ID based on its
+	 * first character using the setMajor method.
+	 *
+	 * @param major A string representing the major.
 	 */
 	void setmajorById(std::string major);
 
 	/*!
-	 * The method setMajor takes the major passed through the constructor,
-	 * checks if the major is not empty and then assigns the first char to m_major.
+	 * @brief Sets the major based on the first character of the given major string.
+	 *
+	 * This method is responsible for setting the major attribute based on the first
+	 * character of the given major string. It ensures that the major string is not empty
+	 * before assigning the first character to m_major.
+	 *
+	 * @param major A string representing the major.
 	 */
 	void setMajor(std::string major);
 
 public:
 	/*!
-	 * A parameterized constructor that takes string major as input,
-	 * it calls setMajor and setmajorById methods and the respective value is set.
-	 * Also takes course key and it's credit points and sets the respective values.
-	 * @param courseKey
-	 * @param title
-	 * @param major
-	 * @param creditPoints
+	 * @brief Parameterized constructor for initializing a Course object.
+	 *
+	 * This constructor takes the necessary parameters to initialize a Course object.
+	 * It sets the course key, title, major, and credit points using the provided values.
+	 * Additionally, it calls setMajor and setCreditPoints methods to set the major and
+	 * credit points based on the provided major string and course key.
+	 *
+	 * @param courseKey 	-	The unique identifier for the course.
+	 * @param title 		-	The title of the course.
+	 * @param major 		-	The major associated with the course.
+	 * @param creditPoints 	-	The credit points assigned to the course.
 	 */
 	Course(unsigned int courseKey, std::string title, std::string major, float creditPoints);
 
 	/*!
-	 * A Destructor of class Course.
+	 * @brief Destructor of class Course.
 	 */
 	virtual ~Course();
 
 	/*!
-	 * A getter method to obtain the m_majorById member value.
-	 * @return std::map<unsigned char, std::string> type.
+	 * @brief Getter method to obtain the map of major IDs.
+	 *
+	 * This method returns the value of the m_majorById member.
+	 *
+	 * @return A map containing major IDs and their corresponding strings.
 	 */
 	const std::map<unsigned char, std::string> getmajorById() const;
 
 	/*!
-	 * A getter method to obtain the course key.
-	 * @return unsigned int type.
+	 * @brief Getter method to obtain the course key.
+	 *
+	 * This method returns the course key.
+	 *
+	 * @return An unsigned integer representing the course key.
 	 */
 	const unsigned int getcourseKey() const;
 
 	/*!
-	 * A getter method to obtain the title of the course.
-	 * @return std::string type.
+	 * @brief Getter method to obtain the title of the course.
+	 *
+	 * This method returns the title of the course.
+	 *
+	 * @return A string representing the title of the course.
 	 */
 	const std::string gettitle() const;
 
 	/*!
-	 * A getter method to obtain the major of the course.
-	 * @return unsigned char type.
+	 * @brief Getter method to obtain the major of the course.
+	 *
+	 * This method returns the major of the course as an unsigned char.
+	 *
+	 * @return An unsigned char representing the major of the course.
 	 */
 	const unsigned char getmajor() const;
 
 	/*!
-	 * A getter method to obtain the credit points of the course.
-	 * @return float type.
+	 * @brief Getter method to obtain the credit points of the course.
+	 *
+	 * This method returns the credit points assigned to the course.
+	 *
+	 * @return A float representing the credit points of the course.
 	 */
 	const float getcreditPoints() const;
 
+	/*!
+	 * @brief Generates a string representation of the Course.
+	 *
+	 * This method creates and returns a string representation of the Course,
+	 * including its course key, title, major, and credit points.
+	 *
+	 * @return A string containing information about the Course.
+	 */
 	std::string printCourse() const;
 
+	/*!
+	 * @brief Prints information about the Course.
+	 *
+	 * This function prints general information about the Course,
+	 * such as course key, title, major, and credit points.
+	 *
+	 */
 	virtual void print() const = 0;
 };
 

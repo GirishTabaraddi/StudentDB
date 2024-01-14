@@ -74,22 +74,37 @@ Poco::Data::Time stringToPocoTimeFormatter(const std::string &stringTime)
 
 Poco::DateTime::DaysOfWeek getDayOfWeekFromString(const std::string& dayString)
 {
-    if (dayString == "Monday" || dayString == "monday") {
+    if (dayString == "Monday" || dayString == "monday")
+    {
         return Poco::DateTime::MONDAY;
-    } else if (dayString == "Tuesday" || dayString == "tuesday") {
+    }
+    else if (dayString == "Tuesday" || dayString == "tuesday")
+    {
         return Poco::DateTime::TUESDAY;
-    } else if (dayString == "Wednesday" || dayString == "wednesday") {
+    }
+    else if (dayString == "Wednesday" || dayString == "wednesday")
+    {
         return Poco::DateTime::WEDNESDAY;
-    } else if (dayString == "Thursday" || dayString == "thursday") {
+    }
+    else if (dayString == "Thursday" || dayString == "thursday")
+    {
         return Poco::DateTime::THURSDAY;
-    } else if (dayString == "Friday" || dayString == "friday") {
+    }
+    else if (dayString == "Friday" || dayString == "friday")
+    {
         return Poco::DateTime::FRIDAY;
-    } else if (dayString == "Saturday" || dayString == "saturday") {
+    }
+    else if (dayString == "Saturday" || dayString == "saturday")
+    {
         return Poco::DateTime::SATURDAY;
-    } else if (dayString == "Sunday" || dayString == "sunday") {
+    }
+    else if (dayString == "Sunday" || dayString == "sunday")
+    {
         return Poco::DateTime::SUNDAY;
-    } else {
-        // Handle invalid input or return a default value
-        return Poco::DateTime::MONDAY; // Defaulting to Monday in case of invalid input
+    }
+    else
+    {
+        //! Handle invalid input or return a default value
+        return Poco::DateTime::MONDAY; //! Defaulting to Monday in case of invalid input
     }
 }
