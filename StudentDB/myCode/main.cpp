@@ -71,8 +71,7 @@ int main ()
 		-m_enrollments : std::vector<Enrollment>
 		-m_matrikelNumber : unsigned int
 
-		+Student(std::string firstName, std::string lastName,
-			Poco::Data::Date dateOfBirth, std::shared_ptr<Address> address)
+		+Student(std::string firstName, std::string lastName,\n Poco::Data::Date dateOfBirth, std::shared_ptr<Address> address)
 		+~Student()
 		+getDoB() : Poco::Data::Date {query}
 		+getaddress() : std::shared_ptr<Address> {query}
@@ -86,8 +85,7 @@ int main ()
 		+deleteEnrollment(unsigned int courseKey) : void
 		+updateAddress(std::shared_ptr<Address> address) : void
 		+updateGrade(float grade, unsigned int courseKey) : void
-		+updateStudent(std::string firstName, std::string lastName,
-			Poco::Data::Date dateOfBirth) : void
+		+updateStudent(std::string firstName, std::string lastName,\n Poco::Data::Date dateOfBirth) : void
 	}
 
 	class Address
@@ -97,8 +95,7 @@ int main ()
 		-m_street : std::string
 		-m_postalCode : unsigned short
 
-		+Address(std::string street, unsigned short postalCode,
-			std::string cityName, std::string additionalInfo)
+		+Address(std::string street, unsigned short postalCode,\n std::string cityName, std::string additionalInfo)
 		+~Address()
 		+printAddress() : std::string {query}
 		+getadditionalInfo() : std::string& {query}
@@ -133,7 +130,7 @@ int main ()
 		-setMajor(std::string major) : void
 		-setmajorById(std::string major) : void
 
-		+Course(unsigned int courseKey, std::string title, std::string major, float creditPoints)
+		+Course(unsigned int courseKey, std::string title,\n std::string major, float creditPoints)
 		+~Course()
 		+getcreditPoints() : float {query}
 		+getmajorById() : std::map<unsigned char , std::string> {query}
@@ -151,9 +148,7 @@ int main ()
 		-m_endTime : Poco::Data::Time
 		-m_startTime : Poco::Data::Time
 
-		+BlockCourse(unsigned int courseKey, std::string title,
-			std::string major, float creditPoints, Poco::Data::Date startDate,
-			Poco::Data::Date endDate, Poco::Data::Time startTime, Poco::Data::Time endTime)
+		+BlockCourse( unsigned int courseKey, std::string title, std::string major, \n float creditPoints, Poco::Data::Date startDate, Poco::Data::Date endDate, \n Poco::Data::Time startTime, Poco::Data::Time endTime)
 		+~BlockCourse()
 		+getEndDate() : Poco::Data::Date {query}
 		+getStartDate() : Poco::Data::Date {query}
@@ -169,9 +164,7 @@ int main ()
 		-m_startTime : Poco::Data::Time
 		-m_daysOfWeek : Poco::DateTime::DaysOfWeek
 
-		+WeeklyCourse(unsigned int courseKey, std::string title,
-			std::string major, float creditPoints, Poco::DateTime::DaysOfWeek daysOfWeek,
-			Poco::Data::Time startTime, Poco::Data::Time endTime)
+		+WeeklyCourse(unsigned int courseKey, std::string title,\n std::string major, float creditPoints, Poco::DateTime::DaysOfWeek daysOfWeek, \n Poco::Data::Time startTime, Poco::Data::Time endTime)
 		+~WeeklyCourse()
 		+getDaysOfWeek() : Poco::DateTime::DaysOfWeek {query}
 		+getEndTime() : Poco::Data::Time {query}
@@ -180,14 +173,14 @@ int main ()
 		+print() : void {query}
 	}
 
- * SimpleUI --> StudentDb : Association
- * StudentDb *--> Student : Composition
- * StudentDb *--> Course : Composition
- * Student *--> Enrollment : Composition
- * Enrollment o--> Course : Aggregation
- * Student *--> Address : Composition
- * BlockCourse --|> Course : Inheritance
- * WeeklyCourse --|> Course : Inheritance
+ * SimpleUI 	-d->  	StudentDb 	: Association
+ * StudentDb 	*-d-> 	Student 	: Composition
+ * StudentDb 	*--> 	Course 		: Composition
+ * Student 		*-r-> 	Enrollment	: Composition
+ * Enrollment 	o-r-> 	Course 		: Aggregation
+ * Student 		*-d-> 	Address 	: Composition
+ * BlockCourse 	-u-|> 	Course 		: Inheritance
+ * WeeklyCourse	-u-|> 	Course 		: Inheritance
 
  * @enduml
  */
