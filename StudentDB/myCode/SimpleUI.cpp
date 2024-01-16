@@ -33,6 +33,7 @@ void SimpleUI::run()
 	cout << "\t 5 -> Print Student Details" << endl;
 	cout << "\t 6 -> Search Student in Database" << endl;
 	cout << "\t 7 -> Update Student Details" << endl;
+	cout << "\t 8 -> Write Student Database to a text file" << endl;
 
 	while(exitFlag == false)
 	{
@@ -102,6 +103,20 @@ void SimpleUI::run()
 					cout << endl << "\t You chose option : "
 							<< numericChoice << " to update the student details." <<endl;
 					this->m_db.updateStudent();
+				}
+				break;
+				case 8:
+				{
+					ofstream myfile("StudentDb.txt", ios::trunc);
+					if(myfile.is_open())
+					{
+						this->m_db.write(myfile);
+						myfile.close();
+					}
+					else
+					{
+						cout << "Unable to open file" << endl;
+					}
 				}
 				break;
 				default:

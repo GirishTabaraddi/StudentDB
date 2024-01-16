@@ -95,6 +95,19 @@ public:
 	 * @note This function overrides the virtual function in the base Course class.
 	 */
 	void print() const override;
+
+	/**
+	 * @brief Write the object's data to the provided output stream.
+	 *
+	 * This method is overridden from the base class. It writes the specific
+	 * data of the derived class to the output stream. Objects use this method
+	 * to represent themselves in a standardized format when output is needed,
+	 * such as writing to a file or printing to the console.
+	 *
+	 * @param out The output stream where the object's data will be written.
+	 */
+	void write(std::ostream& out) const override;
+
 };
 
 #endif /* WEEKLYCOURSE_H_ */

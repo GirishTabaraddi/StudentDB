@@ -49,16 +49,19 @@ int main ()
 		-performStudentUpdate(Student& student) : void
 
 		+StudentDb()
-		+getstudents() : std::map<int , Student> {query}
-		+getcourses() : std::map<int , std::unique_ptr<const Course>>& {query}
-		+addEnrollment() : void
+		+getStudents() : std::map<int , Student> {query}
+		+getCourses() : std::map<int , std::unique_ptr<const Course>>& {query}
 		+addNewCourse() : void
-		+addNewStudent() : void
 		+listCourses() : void
-		+printDb() : void {query}
+		+addNewStudent() : void
+		+addEnrollment() : void
 		+printStudent() : void
 		+searchStudent() : void
 		+updateStudent() : void
+		+printAllCoursesDb(std::ostream& out) : void {query}
+        +printAllStudentsDb(std::ostream& out) : void {query}
+        +printAllEnrollments(std::ostream& out) : void {query}
+        +write(std::ostream& out) : void {query}
 	}
 
 	class Student
@@ -73,19 +76,19 @@ int main ()
 
 		+Student(std::string firstName, std::string lastName,\n Poco::Data::Date dateOfBirth, std::shared_ptr<Address> address)
 		+~Student()
-		+getDoB() : Poco::Data::Date {query}
-		+getaddress() : std::shared_ptr<Address> {query}
+		+getMatrikelNumber() : unsigned int {query}
 		+getFullName() : std::string {query}
-		+printStudent() : std::string {query}
-		+getfirstName() : std::string& {query}
-		+getlastName() : std::string& {query}
-		+getenrollments() : std::vector<Enrollment>& {query}
-		+getmatrikelNumber() : unsigned int {query}
+		+getFirstName() : std::string& {query}
+        +getLastName() : std::string& {query}
+		+getDateOfBirth() : Poco::Data::Date {query}
+		+getEnrollments() : std::vector<Enrollment>& {query}
+		+getAddress() : std::shared_ptr<Address> {query}
 		+addEnrollment(const std::string& semester, Course* courseId) : void
-		+deleteEnrollment(unsigned int courseKey) : void
-		+updateAddress(std::shared_ptr<Address> address) : void
-		+updateGrade(float grade, unsigned int courseKey) : void
 		+updateStudent(std::string firstName, std::string lastName,\n Poco::Data::Date dateOfBirth) : void
+		+updateAddress(std::shared_ptr<Address> address) : void
+		+deleteEnrollment(unsigned int courseKey) : void
+		+updateGrade(float grade, unsigned int courseKey) : void
+		+write(std::ostream& out) : void {query}
 	}
 
 	class Address
@@ -97,11 +100,11 @@ int main ()
 
 		+Address(std::string street, unsigned short postalCode,\n std::string cityName, std::string additionalInfo)
 		+~Address()
-		+printAddress() : std::string {query}
 		+getadditionalInfo() : std::string& {query}
 		+getcityName() : std::string& {query}
 		+getstreet() : std::string& {query}
 		+getpostalCode() : unsigned short {query}
+		+printAddress() : std::string {query}
 	}
 
 	class Enrollment
@@ -114,9 +117,9 @@ int main ()
 		+~Enrollment()
 		+getcourse() : Course* {query}
 		+getgrade() : float {query}
-		+printEnrollment() : std::string {query}
 		+getsemester() : std::string& {query}
 		+setgrade(float grade) : void
+		+printEnrollment() : std::string {query}
 	}
 
 	abstract class Course
@@ -139,6 +142,7 @@ int main ()
 		+getmajor() : unsigned char {query}
 		+getcourseKey() : unsigned int {query}
 		+{abstract} print() : void {query}
+		+write(std::ostream& out) : void {query}
 	}
 
 	class BlockCourse
@@ -156,6 +160,7 @@ int main ()
 		+getStartTime() : Poco::Data::Time {query}
 		+printBlockCourse() : std::string {query}
 		+print() : void {query}
+		+write(std::ostream& out) : void {query}
 	}
 
 	class WeeklyCourse
@@ -171,6 +176,7 @@ int main ()
 		+getStartTime() : Poco::Data::Time {query}
 		+printWeeklyCourse() : std::string {query}
 		+print() : void {query}
+		+write(std::ostream& out) : void {query}
 	}
 
  * SimpleUI 	-d->  	StudentDb 	: Association

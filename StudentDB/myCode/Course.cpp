@@ -87,3 +87,8 @@ std::string Course::printCourse() const
 //			 << "Course Major: " << major << endl;
 //	}
 }
+
+void Course::write(std::ostream &out) const
+{
+	out << printCourse();
+}

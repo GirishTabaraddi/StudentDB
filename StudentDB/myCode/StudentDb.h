@@ -147,10 +147,49 @@ public:
      */
     void updateStudent();
 
-    /*!
-     * @brief Print the entire database.
+    /**
+     * @brief Print all Students in the entire database.
+     *
+     * This method prints the details of all students in the database
+     * to the specified output stream.
+     *
+     * @param out The output stream where student data will be printed.
      */
-    void printDb() const;
+    void printAllStudentsDb(std::ostream &out) const;
+
+
+    /**
+     * @brief Print all Courses in the entire database.
+     *
+     * This method prints the details of all courses in the database
+     * to the specified output stream.
+     *
+     * @param out The output stream where course data will be printed.
+     */
+    void printAllCoursesDb(std::ostream &out) const;
+
+    /**
+     * @brief Print all Enrollments of the Student.
+     *
+     * This method prints the details of all enrollments for each student
+     * in the database to the specified output stream.
+     *
+     * @param out The output stream where enrollment data will be printed.
+     */
+    void printAllEnrollments(std::ostream &out) const;
+
+    /**
+     * @brief Write all student and course data to the provided output stream.
+     *
+     * This method writes the data of all students and courses in the database to
+     * the specified output stream. It calls the write method of each student and
+     * course to represent themselves in a standardized format when output is needed,
+     * such as writing to a file or printing to the console.
+     *
+     * @param out The output stream where the student and course data will be written.
+     */
+    void write(std::ostream& out) const;
+
 };
 
 

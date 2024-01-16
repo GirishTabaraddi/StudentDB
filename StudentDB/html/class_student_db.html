@@ -135,10 +135,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>listCourses</b> ()</t
 <tr class="memitem:ab3a1aaad757e0f919e2ff64b7c5f8da9" id="r_ab3a1aaad757e0f919e2ff64b7c5f8da9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#ab3a1aaad757e0f919e2ff64b7c5f8da9">updateStudent</a> ()</td></tr>
 <tr class="memdesc:ab3a1aaad757e0f919e2ff64b7c5f8da9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update student details.  <br /></td></tr>
 <tr class="separator:ab3a1aaad757e0f919e2ff64b7c5f8da9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23c14a963171e36b499ae2a2d2261137" id="r_a23c14a963171e36b499ae2a2d2261137"><td class="memItemLeft" align="right" valign="top"><a id="a23c14a963171e36b499ae2a2d2261137" name="a23c14a963171e36b499ae2a2d2261137"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printDb</b> () const</td></tr>
-<tr class="memdesc:a23c14a963171e36b499ae2a2d2261137"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the entire database. <br /></td></tr>
-<tr class="separator:a23c14a963171e36b499ae2a2d2261137"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bfe87f6403641099ba21e0adafd576a" id="r_a4bfe87f6403641099ba21e0adafd576a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a4bfe87f6403641099ba21e0adafd576a">printAllStudentsDb</a> (std::ostream &amp;out) const</td></tr>
+<tr class="memdesc:a4bfe87f6403641099ba21e0adafd576a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print all Students in the entire database.  <br /></td></tr>
+<tr class="separator:a4bfe87f6403641099ba21e0adafd576a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7366d32be275c78364ea142df2aba49b" id="r_a7366d32be275c78364ea142df2aba49b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a7366d32be275c78364ea142df2aba49b">printAllCoursesDb</a> (std::ostream &amp;out) const</td></tr>
+<tr class="memdesc:a7366d32be275c78364ea142df2aba49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print all Courses in the entire database.  <br /></td></tr>
+<tr class="separator:a7366d32be275c78364ea142df2aba49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc17a09737db5367017c72cd66f015d" id="r_a1dc17a09737db5367017c72cd66f015d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a1dc17a09737db5367017c72cd66f015d">printAllEnrollments</a> (std::ostream &amp;out) const</td></tr>
+<tr class="memdesc:a1dc17a09737db5367017c72cd66f015d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print all Enrollments of the <a class="el" href="class_student.html" title="Represents a student with associated details and enrollment information.">Student</a>.  <br /></td></tr>
+<tr class="separator:a1dc17a09737db5367017c72cd66f015d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a392a82331cda387b8a8c657934f76e4f" id="r_a392a82331cda387b8a8c657934f76e4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a392a82331cda387b8a8c657934f76e4f">write</a> (std::ostream &amp;out) const</td></tr>
+<tr class="memdesc:a392a82331cda387b8a8c657934f76e4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all student and course data to the provided output stream.  <br /></td></tr>
+<tr class="separator:a392a82331cda387b8a8c657934f76e4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a database of students and courses with various operations. </p>
@@ -243,6 +251,87 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>printDb</b> () const<
 
 </div>
 </div>
+<a id="a7366d32be275c78364ea142df2aba49b" name="a7366d32be275c78364ea142df2aba49b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7366d32be275c78364ea142df2aba49b">&#9670;&#160;</a></span>printAllCoursesDb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StudentDb::printAllCoursesDb </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print all Courses in the entire database. </p>
+<p>This method prints the details of all courses in the database to the specified output stream.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>The output stream where course data will be printed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1dc17a09737db5367017c72cd66f015d" name="a1dc17a09737db5367017c72cd66f015d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dc17a09737db5367017c72cd66f015d">&#9670;&#160;</a></span>printAllEnrollments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StudentDb::printAllEnrollments </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print all Enrollments of the <a class="el" href="class_student.html" title="Represents a student with associated details and enrollment information.">Student</a>. </p>
+<p>This method prints the details of all enrollments for each student in the database to the specified output stream.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>The output stream where enrollment data will be printed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4bfe87f6403641099ba21e0adafd576a" name="a4bfe87f6403641099ba21e0adafd576a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bfe87f6403641099ba21e0adafd576a">&#9670;&#160;</a></span>printAllStudentsDb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StudentDb::printAllStudentsDb </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print all Students in the entire database. </p>
+<p>This method prints the details of all students in the database to the specified output stream.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>The output stream where student data will be printed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a31de5f464568d14a7d771ea071c97153" name="a31de5f464568d14a7d771ea071c97153"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a31de5f464568d14a7d771ea071c97153">&#9670;&#160;</a></span>printStudent()</h2>
 
@@ -301,6 +390,33 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>printDb</b> () const<
 <p>Update student details. </p>
 <p>Queries the user for a matrikel number. If the corresponding student is found in the database, the properties (except for the matrikel number) are presented in a numbered list. Entering the item number allows the user to modify the property; entering "0" terminates the update. </p>
 <p>Method to handle the above options.</p>
+
+</div>
+</div>
+<a id="a392a82331cda387b8a8c657934f76e4f" name="a392a82331cda387b8a8c657934f76e4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a392a82331cda387b8a8c657934f76e4f">&#9670;&#160;</a></span>write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StudentDb::write </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write all student and course data to the provided output stream. </p>
+<p>This method writes the data of all students and courses in the database to the specified output stream. It calls the write method of each student and course to represent themselves in a standardized format when output is needed, such as writing to a file or printing to the console.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>The output stream where the student and course data will be written. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

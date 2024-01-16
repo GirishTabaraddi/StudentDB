@@ -1,0 +1,8 @@
+2
+W;1234;APT;Automation;5.0;1;10:15;11:45
+B;1235;Safety;Embedded;2.5;01.01.2024;01.03.2024;05:45;07:15
+2
+1009001;Girish ;Tabaraddi;31.03.1997;am;111;darmstadt;10b
+1009002;Drashti;Shah;01.03.1998;RNS;222;darmstadt;410
+1
+1009001;1234;SS2024;0.000000

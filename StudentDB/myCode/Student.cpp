@@ -147,3 +147,8 @@ void Student::updateGrade(float grade, unsigned int courseKey)
 		}
 	}
 }
+
+void Student::write(std::ostream &out) const
+{
+	out << printStudent() << endl;
+}

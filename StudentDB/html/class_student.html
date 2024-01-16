@@ -149,6 +149,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Student</b> ()</t
 <tr class="memitem:a6d90ac4f9f4cfa0488d64bddff2f4182" id="r_a6d90ac4f9f4cfa0488d64bddff2f4182"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#a6d90ac4f9f4cfa0488d64bddff2f4182">updateGrade</a> (float grade, unsigned int courseKey)</td></tr>
 <tr class="memdesc:a6d90ac4f9f4cfa0488d64bddff2f4182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the grade for a specific enrollment.  <br /></td></tr>
 <tr class="separator:a6d90ac4f9f4cfa0488d64bddff2f4182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7c2406d3c7d58aee3ab8cc6ab9f1e33" id="r_ac7c2406d3c7d58aee3ab8cc6ab9f1e33"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#ac7c2406d3c7d58aee3ab8cc6ab9f1e33">write</a> (std::ostream &amp;out) const</td></tr>
+<tr class="memdesc:ac7c2406d3c7d58aee3ab8cc6ab9f1e33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the student's data to the provided output stream.  <br /></td></tr>
+<tr class="separator:ac7c2406d3c7d58aee3ab8cc6ab9f1e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a student with associated details and enrollment information. </p>
@@ -532,6 +535,41 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Student</b> ()</t
     <tr><td class="paramname">firstName</td><td>New first name. </td></tr>
     <tr><td class="paramname">lastName</td><td>New last name. </td></tr>
     <tr><td class="paramname">dateOfBirth</td><td>New date of birth. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac7c2406d3c7d58aee3ab8cc6ab9f1e33" name="ac7c2406d3c7d58aee3ab8cc6ab9f1e33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7c2406d3c7d58aee3ab8cc6ab9f1e33">&#9670;&#160;</a></span>write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Student::write </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write the student's data to the provided output stream. </p>
+<p>This virtual method is intended to be overridden by derived classes to write the specific data of the student to the output stream. It allows objects to represent themselves in a standardized format when output is needed, such as writing to a file or printing to the console.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>The output stream where the student's data will be written. </td></tr>
   </table>
   </dd>
 </dl>

@@ -174,6 +174,19 @@ public:
      * @param courseKey Course key for the enrollment to be updated.
      */
     void updateGrade(float grade, unsigned int courseKey);
+
+    /**
+     * @brief Write the student's data to the provided output stream.
+     *
+     * This virtual method is intended to be overridden by derived classes
+     * to write the specific data of the student to the output stream. It
+     * allows objects to represent themselves in a standardized format when
+     * output is needed, such as writing to a file or printing to the console.
+     *
+     * @param out The output stream where the student's data will be written.
+     */
+    virtual void write(std::ostream& out) const;
+
 };
 
 

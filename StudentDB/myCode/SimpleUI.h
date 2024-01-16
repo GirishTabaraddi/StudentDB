@@ -12,7 +12,7 @@
 
 #include "StudentDb.h"
 #include <string>
-
+#include <fstream>
 /*!
  * @class SimpleUI
  * @brief Represents a simple user interface for interacting with a Student Database.

@@ -102,7 +102,9 @@ void StudentDb::listCourses()
 
 	for(const auto& courses: this->m_courses)
 	{
-		courses.second.get()->print();
+//		courses.second.get()->print();
+		ostream& out = cout;
+		courses.second.get()->write(out);
 	}
 }
 
@@ -525,21 +527,66 @@ void StudentDb::performEnrollmentUpdate(Student& student, const std::string& cou
 	}
 }
 
-void StudentDb::printDb() const
+void StudentDb::printAllStudentsDb(std::ostream &out) const
 {
+	out << this->m_students.size() << endl;
+
 	for(const auto& studentsPair: this->m_students)
 	{
-		const unsigned int matrikelNumber = studentsPair.first;
+//		const unsigned int matrikelNumber = studentsPair.first;
 		const Student& student = studentsPair.second;
 
-		cout << matrikelNumber << ";" << student.printStudent() << endl;
+		out << student.printStudent() << endl;
 	}
+}
+
+void StudentDb::printAllCoursesDb(std::ostream &out) const
+{
+	out << this->m_courses.size() << endl;
 
 	for(const auto& coursesPair: this->m_courses)
 	{
 		//		const unsigned int coursekey = coursesPair.first;
 		const Course* course = coursesPair.second.get();
 
-		cout << course->printCourse() << endl;
+		course->write(out);
+//		out << endl;
 	}
 }
+
+void StudentDb::printAllEnrollments(std::ostream &out) const
+{
+	map<unsigned int, vector<Enrollment>> StudentEnrollments;
+
+	for(auto& eachStudent: this->m_students)
+	{
+		auto matrikelNumber = eachStudent.second.getMatrikelNumber();
+
+		for(auto& enrollment : eachStudent.second.getEnrollments())
+		{
+			StudentEnrollments[matrikelNumber].push_back(enrollment);
+		}
+	}
+
+	for(auto& itr: StudentEnrollments)
+	{
+		auto& count = itr.second;
+
+		out << count.size() << endl;
+
+		for(auto& enrItr: itr.second)
+		{
+			out << itr.first << ";";
+			out << enrItr.printEnrollment();
+		}
+	}
+}
+
+void StudentDb::write(std::ostream &out) const
+{
+	printAllCoursesDb(out);
+	printAllStudentsDb(out);
+	printAllEnrollments(out);
+}
+
+

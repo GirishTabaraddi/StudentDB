@@ -156,11 +156,14 @@ $(document).ready(function(){initNavTree('_student_8h_source.html',''); initResi
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student.html#a6b8abeab2f8cf800cfdaa210c7eda7a5">deleteEnrollment</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> courseKey);</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student.html#a6d90ac4f9f4cfa0488d64bddff2f4182">updateGrade</a>(<span class="keywordtype">float</span> grade, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> courseKey);</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>};</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_student.html#ac7c2406d3c7d58aee3ab8cc6ab9f1e33">write</a>(std::ostream&amp; out) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>};</div>
 </div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">#endif </span><span class="comment">/* STUDENT_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">#endif </span><span class="comment">/* STUDENT_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="a_address_8h_html"><div class="ttname"><a href="_address_8h.html">Address.h</a></div></div>
 <div class="ttc" id="a_enrollment_8h_html"><div class="ttname"><a href="_enrollment_8h.html">Enrollment.h</a></div></div>
 <div class="ttc" id="aclass_course_html"><div class="ttname"><a href="class_course.html">Course</a></div><div class="ttdef"><b>Definition</b> Course.h:20</div></div>
@@ -178,6 +181,7 @@ $(document).ready(function(){initNavTree('_student_8h_source.html',''); initResi
 <div class="ttc" id="aclass_student_html_aabc22298e32cdd47976bd3d3c5033df6"><div class="ttname"><a href="class_student.html#aabc22298e32cdd47976bd3d3c5033df6">Student::getFirstName</a></div><div class="ttdeci">const std::string &amp; getFirstName() const</div><div class="ttdoc">Getter method that returns a string of the first name.</div><div class="ttdef"><b>Definition</b> Student.cpp:43</div></div>
 <div class="ttc" id="aclass_student_html_ab0ff21ff068dd1bf6f3ebd762f97853c"><div class="ttname"><a href="class_student.html#ab0ff21ff068dd1bf6f3ebd762f97853c">Student::printStudent</a></div><div class="ttdeci">std::string printStudent() const</div><div class="ttdoc">Method to print the student details.</div><div class="ttdef"><b>Definition</b> Student.cpp:63</div></div>
 <div class="ttc" id="aclass_student_html_ab1c62e289a4b1f29e5e47d70859969bf"><div class="ttname"><a href="class_student.html#ab1c62e289a4b1f29e5e47d70859969bf">Student::addEnrollment</a></div><div class="ttdeci">void addEnrollment(const std::string &amp;semester, Course *courseId)</div><div class="ttdoc">Add enrollment for the student.</div><div class="ttdef"><b>Definition</b> Student.cpp:87</div></div>
+<div class="ttc" id="aclass_student_html_ac7c2406d3c7d58aee3ab8cc6ab9f1e33"><div class="ttname"><a href="class_student.html#ac7c2406d3c7d58aee3ab8cc6ab9f1e33">Student::write</a></div><div class="ttdeci">virtual void write(std::ostream &amp;out) const</div><div class="ttdoc">Write the student's data to the provided output stream.</div><div class="ttdef"><b>Definition</b> Student.cpp:151</div></div>
 <div class="ttc" id="aclass_student_html_ad9b5383ee40e2b8f3c3225a1a1a28694"><div class="ttname"><a href="class_student.html#ad9b5383ee40e2b8f3c3225a1a1a28694">Student::getMatrikelNumber</a></div><div class="ttdeci">const unsigned int getMatrikelNumber() const</div><div class="ttdoc">Getter method that returns the Matrikel number of a student.</div><div class="ttdef"><b>Definition</b> Student.cpp:28</div></div>
 <div class="ttc" id="aformatterfile_8h_html"><div class="ttname"><a href="formatterfile_8h.html">formatterfile.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
