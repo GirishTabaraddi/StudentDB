@@ -25,15 +25,17 @@ void SimpleUI::run()
 
 	cout << "Main Menu: Below are the properties of Student Database : " << endl << endl;
 
-	cout << "\t 0 -> To Exit Main Menu" << endl;
-	cout << "\t 1 -> Add New Course" << endl;
-	cout << "\t 2 -> List the Courses" << endl;
-	cout << "\t 3 -> Add new Student" << endl;
-	cout << "\t 4 -> Add Enrollment" << endl;
-	cout << "\t 5 -> Print Student Details" << endl;
-	cout << "\t 6 -> Search Student in Database" << endl;
-	cout << "\t 7 -> Update Student Details" << endl;
-	cout << "\t 8 -> Write Student Database to a text file" << endl;
+	cout << "\t 0	-> To Exit Main Menu" << endl;
+	cout << "\t 1 	-> Add New Course" << endl;
+	cout << "\t 2 	-> List the Courses" << endl;
+	cout << "\t 3 	-> Add new Student" << endl;
+	cout << "\t 4 	-> Add Enrollment" << endl;
+	cout << "\t 5 	-> Print Student Details" << endl;
+	cout << "\t 6 	-> Search Student in Database" << endl;
+	cout << "\t 7 	-> Update Student Details" << endl;
+	cout << "\t 8 	-> Write Student Database to a text file" << endl;
+	cout << "\t 9 	-> Read Student" << endl;
+	cout << "\t 10 	-> Read from server" << endl;
 
 	while(exitFlag == false)
 	{
@@ -107,7 +109,7 @@ void SimpleUI::run()
 				break;
 				case 8:
 				{
-					ofstream myfile("StudentDb.txt", ios::trunc);
+					ofstream myfile("write_StudentDb.txt", ios::trunc);
 					if(myfile.is_open())
 					{
 						this->m_db.write(myfile);
@@ -119,6 +121,26 @@ void SimpleUI::run()
 					}
 				}
 				break;
+				case 9:
+				{
+					cout << "read student data" << endl;
+					ifstream inputFile("read_StudentDb.txt");
+					if(inputFile.is_open())
+					{
+						this->m_db.read(inputFile);
+						inputFile.close();
+					}
+					else
+					{
+						cout << "Unable to open file" << endl;
+					}
+				}
+				break;
+				case 10:
+				{
+					cout << "read from server" << endl;
+				}
+				break;
 				default:
 				{
 					cout << endl << "ERROR: Invalid Input, Please enter a numeric value between - [0-10]" << endl;
@@ -128,7 +150,6 @@ void SimpleUI::run()
 			else
 			{
 				cout << endl << "ERROR: Invalid Input, Please enter a numeric value between - [0-10]" << endl;
-				//			exitFlag = true;
 			}
 		}
 		catch(const invalid_argument& e)

@@ -62,6 +62,7 @@ int main ()
         +printAllStudentsDb(std::ostream& out) : void {query}
         +printAllEnrollments(std::ostream& out) : void {query}
         +write(std::ostream& out) : void {query}
+        +read(std::istream& in) : void
 	}
 
 	class Student

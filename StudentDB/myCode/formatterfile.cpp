@@ -82,7 +82,7 @@ Poco::DateTime::DaysOfWeek getDayOfWeekFromString(const std::string& dayString)
     {
         return Poco::DateTime::TUESDAY;
     }
-    else if (dayString == "Wednesday" || dayString == "wednesday")
+    else if (dayString == "Wednesday" || dayString == "wednesday" || dayString == "3")
     {
         return Poco::DateTime::WEDNESDAY;
     }

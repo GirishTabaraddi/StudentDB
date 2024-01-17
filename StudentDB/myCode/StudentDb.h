@@ -13,6 +13,7 @@
 #include "Student.h"
 #include "BlockCourse.h"
 #include "WeeklyCourse.h"
+#include <sstream>
 
 /*!
  * @class StudentDb
@@ -147,7 +148,7 @@ public:
      */
     void updateStudent();
 
-    /**
+    /*!
      * @brief Print all Students in the entire database.
      *
      * This method prints the details of all students in the database
@@ -158,7 +159,7 @@ public:
     void printAllStudentsDb(std::ostream &out) const;
 
 
-    /**
+    /*!
      * @brief Print all Courses in the entire database.
      *
      * This method prints the details of all courses in the database
@@ -168,7 +169,7 @@ public:
      */
     void printAllCoursesDb(std::ostream &out) const;
 
-    /**
+    /*!
      * @brief Print all Enrollments of the Student.
      *
      * This method prints the details of all enrollments for each student
@@ -178,7 +179,7 @@ public:
      */
     void printAllEnrollments(std::ostream &out) const;
 
-    /**
+    /*!
      * @brief Write all student and course data to the provided output stream.
      *
      * This method writes the data of all students and courses in the database to
@@ -190,6 +191,46 @@ public:
      */
     void write(std::ostream& out) const;
 
+    /*!
+     * @brief Reads data from the input stream.
+     *
+     * This function reads data from the provided input stream and processes
+     * it accordingly. The exact behavior depends on the specific implementation
+     * of the derived class.
+     *
+     * @param in The input stream to read data from.
+     */
+    void read(std::istream& in);
+
+    /*!
+     * @brief Processes courses data from the input stream.
+     *
+     * This function processes courses data read from the input stream. It parses
+     * the input and updates the internal data structures accordingly.
+     *
+     * @param in The input stream containing courses data.
+     */
+    void processCoursesData(std::istream &in);
+
+    /*!
+     * @brief Processes students data from the input stream.
+     *
+     * This function processes students data read from the input stream. It parses
+     * the input and updates the internal data structures accordingly.
+     *
+     * @param in The input stream containing students data.
+     */
+    void processStudentsData(std::istream &in);
+
+    /*!
+     * @brief Processes enrollment data from the input stream.
+     *
+     * This function processes enrollment data read from the input stream. It parses
+     * the input and updates the internal data structures accordingly.
+     *
+     * @param in The input stream containing enrollment data.
+     */
+    void processEnrollmentData(std::istream &in);
 };
 
 

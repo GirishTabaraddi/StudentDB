@@ -11,7 +11,7 @@
 
 using namespace std;
 
-unsigned int Student::m_nextMatrikelNumber = 1009000;
+unsigned int Student::m_nextMatrikelNumber = 100000;
 
 Student::Student(std::string firstName, std::string lastName,
 		Poco::Data::Date dateOfBirth, std::shared_ptr<Address> address) :
