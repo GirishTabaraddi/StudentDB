@@ -136,6 +136,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
 <tr class="memitem:ad4c864145d3392698d9295215bbec536" id="r_ad4c864145d3392698d9295215bbec536"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#ad4c864145d3392698d9295215bbec536">print</a> () const =0</td></tr>
 <tr class="memdesc:ad4c864145d3392698d9295215bbec536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints information about the <a class="el" href="class_course.html">Course</a>.  <br /></td></tr>
 <tr class="separator:ad4c864145d3392698d9295215bbec536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3512f59485143eb2bfac02a26bb7f61" id="r_ae3512f59485143eb2bfac02a26bb7f61"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#ae3512f59485143eb2bfac02a26bb7f61">write</a> (std::ostream &amp;out) const</td></tr>
+<tr class="memdesc:ae3512f59485143eb2bfac02a26bb7f61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the object's data to the provided output stream.  <br /></td></tr>
+<tr class="separator:ae3512f59485143eb2bfac02a26bb7f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a275539ab3ab7c035b0b80f111ff7b039" name="a275539ab3ab7c035b0b80f111ff7b039"></a>
@@ -344,6 +347,43 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
 <p>Generates a string representation of the <a class="el" href="class_course.html">Course</a>. </p>
 <p>This method creates and returns a string representation of the <a class="el" href="class_course.html">Course</a>, including its course key, title, major, and credit points.</p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing information about the <a class="el" href="class_course.html">Course</a>. </dd></dl>
+
+</div>
+</div>
+<a id="ae3512f59485143eb2bfac02a26bb7f61" name="ae3512f59485143eb2bfac02a26bb7f61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3512f59485143eb2bfac02a26bb7f61">&#9670;&#160;</a></span>write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Course::write </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write the object's data to the provided output stream. </p>
+<p>This method is virtual and intended to be overridden by derived classes to write their specific data to the output stream. It allows objects to represent themselves in a standardized format when output is needed, such as writing to a file or printing to the console.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>The output stream where the object's data will be written. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="class_block_course.html#a111d118c5d4fa960e002e95632196243">BlockCourse</a>, and <a class="el" href="class_weekly_course.html#a80b0fa6cceed9162fb244345d3c85839">WeeklyCourse</a>.</p>
 
 </div>
 </div>

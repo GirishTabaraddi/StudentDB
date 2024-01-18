@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('class_student.html',''); initResizable
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_student-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Student Class Reference</div></div>
 </div><!--header-->
@@ -113,9 +114,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Student</b> ()</t
 <tr class="memitem:ad9b5383ee40e2b8f3c3225a1a1a28694" id="r_ad9b5383ee40e2b8f3c3225a1a1a28694"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#ad9b5383ee40e2b8f3c3225a1a1a28694">getMatrikelNumber</a> () const</td></tr>
 <tr class="memdesc:ad9b5383ee40e2b8f3c3225a1a1a28694"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method that returns the Matrikel number of a student.  <br /></td></tr>
 <tr class="separator:ad9b5383ee40e2b8f3c3225a1a1a28694"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e6efb33dd5f335d5717faddc6b8e1d0" id="r_a9e6efb33dd5f335d5717faddc6b8e1d0"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#a9e6efb33dd5f335d5717faddc6b8e1d0">getFullName</a> () const</td></tr>
-<tr class="memdesc:a9e6efb33dd5f335d5717faddc6b8e1d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method that returns a string of the full name (first name + last name).  <br /></td></tr>
-<tr class="separator:a9e6efb33dd5f335d5717faddc6b8e1d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabc22298e32cdd47976bd3d3c5033df6" id="r_aabc22298e32cdd47976bd3d3c5033df6"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#aabc22298e32cdd47976bd3d3c5033df6">getFirstName</a> () const</td></tr>
 <tr class="memdesc:aabc22298e32cdd47976bd3d3c5033df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method that returns a string of the first name.  <br /></td></tr>
 <tr class="separator:aabc22298e32cdd47976bd3d3c5033df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,6 +147,18 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Student</b> ()</t
 <tr class="memitem:a6d90ac4f9f4cfa0488d64bddff2f4182" id="r_a6d90ac4f9f4cfa0488d64bddff2f4182"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#a6d90ac4f9f4cfa0488d64bddff2f4182">updateGrade</a> (float grade, unsigned int courseKey)</td></tr>
 <tr class="memdesc:a6d90ac4f9f4cfa0488d64bddff2f4182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the grade for a specific enrollment.  <br /></td></tr>
 <tr class="separator:a6d90ac4f9f4cfa0488d64bddff2f4182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7c2406d3c7d58aee3ab8cc6ab9f1e33" id="r_ac7c2406d3c7d58aee3ab8cc6ab9f1e33"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#ac7c2406d3c7d58aee3ab8cc6ab9f1e33">write</a> (std::ostream &amp;out) const</td></tr>
+<tr class="memdesc:ac7c2406d3c7d58aee3ab8cc6ab9f1e33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the student's data to the provided output stream.  <br /></td></tr>
+<tr class="separator:ac7c2406d3c7d58aee3ab8cc6ab9f1e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a6baf59332d3fd23a6a3a7e5f3b2072cd" id="r_a6baf59332d3fd23a6a3a7e5f3b2072cd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#a6baf59332d3fd23a6a3a7e5f3b2072cd">setNextMatrikelNumber</a> (unsigned int newMatrikelNumber)</td></tr>
+<tr class="memdesc:a6baf59332d3fd23a6a3a7e5f3b2072cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter method that sets the next Matrikel number for new students.  <br /></td></tr>
+<tr class="separator:a6baf59332d3fd23a6a3a7e5f3b2072cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d7062b98562c680529fdf1bc8b0dcfe" id="r_a1d7062b98562c680529fdf1bc8b0dcfe"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#a1d7062b98562c680529fdf1bc8b0dcfe">getNextMatrikelNumber</a> ()</td></tr>
+<tr class="memdesc:a1d7062b98562c680529fdf1bc8b0dcfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method that returns the next Matrikel number for new students.  <br /></td></tr>
+<tr class="separator:a1d7062b98562c680529fdf1bc8b0dcfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a student with associated details and enrollment information. </p>
@@ -241,7 +251,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Student</b> ()</t
   </table>
   </dd>
 </dl>
-<p>Exit early if duplicate found.</p>
 
 </div>
 </div>
@@ -351,26 +360,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Student</b> ()</t
 
 </div>
 </div>
-<a id="a9e6efb33dd5f335d5717faddc6b8e1d0" name="a9e6efb33dd5f335d5717faddc6b8e1d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e6efb33dd5f335d5717faddc6b8e1d0">&#9670;&#160;</a></span>getFullName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const std::string Student::getFullName </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Getter method that returns a string of the full name (first name + last name). </p>
-<dl class="section return"><dt>Returns</dt><dd>std::string representing the full name. </dd></dl>
-
-</div>
-</div>
 <a id="a1e555d9d92cbf5ee319b55771c9891b9" name="a1e555d9d92cbf5ee319b55771c9891b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1e555d9d92cbf5ee319b55771c9891b9">&#9670;&#160;</a></span>getLastName()</h2>
 
@@ -407,7 +396,35 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Student</b> ()</t
 </div><div class="memdoc">
 
 <p>Getter method that returns the Matrikel number of a student. </p>
-<dl class="section return"><dt>Returns</dt><dd>unsigned integer representing the Matrikel number. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The Matrikel number as an unsigned integer. </dd></dl>
+
+</div>
+</div>
+<a id="a1d7062b98562c680529fdf1bc8b0dcfe" name="a1d7062b98562c680529fdf1bc8b0dcfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d7062b98562c680529fdf1bc8b0dcfe">&#9670;&#160;</a></span>getNextMatrikelNumber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Student::getNextMatrikelNumber </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Getter method that returns the next Matrikel number for new students. </p>
+<dl class="section return"><dt>Returns</dt><dd>The next Matrikel number as an unsigned integer. </dd></dl>
 
 </div>
 </div>
@@ -428,6 +445,40 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Student</b> ()</t
 
 <p>Method to print the student details. </p>
 <dl class="section return"><dt>Returns</dt><dd>std::string representing the formatted student information. </dd></dl>
+
+</div>
+</div>
+<a id="a6baf59332d3fd23a6a3a7e5f3b2072cd" name="a6baf59332d3fd23a6a3a7e5f3b2072cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6baf59332d3fd23a6a3a7e5f3b2072cd">&#9670;&#160;</a></span>setNextMatrikelNumber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Student::setNextMatrikelNumber </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>newMatrikelNumber</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setter method that sets the next Matrikel number for new students. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newMatrikelNumber</td><td>The new Matrikel number to set. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -532,6 +583,41 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Student</b> ()</t
     <tr><td class="paramname">firstName</td><td>New first name. </td></tr>
     <tr><td class="paramname">lastName</td><td>New last name. </td></tr>
     <tr><td class="paramname">dateOfBirth</td><td>New date of birth. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac7c2406d3c7d58aee3ab8cc6ab9f1e33" name="ac7c2406d3c7d58aee3ab8cc6ab9f1e33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7c2406d3c7d58aee3ab8cc6ab9f1e33">&#9670;&#160;</a></span>write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Student::write </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write the student's data to the provided output stream. </p>
+<p>This virtual method is intended to be overridden by derived classes to write the specific data of the student to the output stream. It allows objects to represent themselves in a standardized format when output is needed, such as writing to a file or printing to the console.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>The output stream where the student's data will be written. </td></tr>
   </table>
   </dd>
 </dl>

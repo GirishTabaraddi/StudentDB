@@ -21,24 +21,32 @@ std::string pocoDateToStringFromatter(const Poco::Data::Date &date)
 
 Poco::Data::Date stringToPocoDateFormatter(const std::string& stringDate)
 {
-	regex datePattern(R"(\d{2}\.\d{2}\.\d{4})");
+	//!	regex datePattern(R"(\d{2}\.\d{2}\.\d{4})");
+	//! The above regex is old one for date like 20.01.2024
+	//! and the below one is for 1.1.2024
+	regex datePattern(R"((\d{1,2})\.(\d{1,2})\.(\d{4}))");
+
+	smatch match; //!< match_results for string objects
 
 	Poco::DateTime datetime;
 
 	int i = 0;
 
-	if(!regex_match(stringDate, datePattern))
+	if (!regex_match(stringDate, match, datePattern))
 	{
-		cout << "ERROR: Please enter a valid date format - dd.mm.YYY : " << endl;
-
-		datetime = Poco::DateTimeParser::parse("%d.%m.%Y", "00.00.0000", i);
+	    cout << "ERROR: Please enter a valid date format - dd.mm.YYYY : " << endl;
+	    datetime = Poco::DateTimeParser::parse("%d.%m.%Y", "00.00.0000", i);
 	}
 	else
 	{
-		datetime = Poco::DateTimeParser::parse("%d.%m.%Y", stringDate, i);
+	    int day = stoi(match[1].str());
+	    int month = stoi(match[2].str());
+	    int year = stoi(match[3].str());
+
+	    datetime.assign(year, month, day);
 	}
 
-	return datetime;
+	return Poco::Data::Date(datetime.year(), datetime.month(), datetime.day());
 }
 
 std::string pocoTimeToStringFromatter(const Poco::Data::Time &time)
@@ -52,7 +60,7 @@ std::string pocoTimeToStringFromatter(const Poco::Data::Time &time)
 
 Poco::Data::Time stringToPocoTimeFormatter(const std::string &stringTime)
 {
-	regex timePattern(R"(\d{2}\:\d{2})");
+	regex timePattern(R"(\d{1,2}\:\d{1,2})");
 
 	Poco::DateTime datetime;
 
@@ -69,42 +77,57 @@ Poco::Data::Time stringToPocoTimeFormatter(const std::string &stringTime)
 		datetime = Poco::DateTimeParser::parse("%H:%M", stringTime, i);
 	}
 
-	return datetime;
+    //! Extract the time components
+    int hours = datetime.hour();
+    int minutes = datetime.minute();
+    int seconds = datetime.second();
+
+    //! Construct a Poco::Data::Time instance
+    Poco::Data::Time pocoTime(hours, minutes, seconds);
+
+    return pocoTime;
 }
 
 Poco::DateTime::DaysOfWeek getDayOfWeekFromString(const std::string& dayString)
 {
-    if (dayString == "Monday" || dayString == "monday")
+    static const unordered_map<string, Poco::DateTime::DaysOfWeek> dayMap =
     {
-        return Poco::DateTime::MONDAY;
-    }
-    else if (dayString == "Tuesday" || dayString == "tuesday")
+        {"monday", Poco::DateTime::MONDAY},
+        {"tuesday", Poco::DateTime::TUESDAY},
+        {"wednesday", Poco::DateTime::WEDNESDAY},
+        {"thursday", Poco::DateTime::THURSDAY},
+        {"friday", Poco::DateTime::FRIDAY},
+        {"saturday", Poco::DateTime::SATURDAY},
+        {"sunday", Poco::DateTime::SUNDAY}
+    };
+
+    string lowerDayString;
+
+    for (char c : dayString)
     {
-        return Poco::DateTime::TUESDAY;
+        lowerDayString += tolower(c);
     }
-    else if (dayString == "Wednesday" || dayString == "wednesday")
+
+    for(auto& entry : dayMap)
     {
-        return Poco::DateTime::WEDNESDAY;
+        if(boost::algorithm::icontains(entry.first, lowerDayString))
+        {
+        	return entry.second;
+        }
     }
-    else if (dayString == "Thursday" || dayString == "thursday")
+
+    istringstream iss(dayString);
+
+    int numericDay;
+
+    if (iss >> numericDay && numericDay >= 1 && numericDay <= 7)
     {
-        return Poco::DateTime::THURSDAY;
+        return static_cast<Poco::DateTime::DaysOfWeek>(numericDay);
     }
-    else if (dayString == "Friday" || dayString == "friday")
-    {
-        return Poco::DateTime::FRIDAY;
-    }
-    else if (dayString == "Saturday" || dayString == "saturday")
-    {
-        return Poco::DateTime::SATURDAY;
-    }
-    else if (dayString == "Sunday" || dayString == "sunday")
-    {
-        return Poco::DateTime::SUNDAY;
-    }
-    else
-    {
-        //! Handle invalid input or return a default value
-        return Poco::DateTime::MONDAY; //! Defaulting to Monday in case of invalid input
-    }
+
+    //! Handle invalid input or return a default value
+    cerr << "Invalid day input: " << dayString
+    		<< ". Defaulting to Monday." << endl;
+
+    return Poco::DateTime::MONDAY;
 }

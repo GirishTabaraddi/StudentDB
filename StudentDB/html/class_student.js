@@ -8,11 +8,11 @@ var class_student =
     [ "getDateOfBirth", "class_student.html#a21f2dd9ab9faed9d58710735669f4301", null ],
     [ "getEnrollments", "class_student.html#a004d2a46e58b5faa24a726ac021082af", null ],
     [ "getFirstName", "class_student.html#aabc22298e32cdd47976bd3d3c5033df6", null ],
-    [ "getFullName", "class_student.html#a9e6efb33dd5f335d5717faddc6b8e1d0", null ],
     [ "getLastName", "class_student.html#a1e555d9d92cbf5ee319b55771c9891b9", null ],
     [ "getMatrikelNumber", "class_student.html#ad9b5383ee40e2b8f3c3225a1a1a28694", null ],
     [ "printStudent", "class_student.html#ab0ff21ff068dd1bf6f3ebd762f97853c", null ],
     [ "updateAddress", "class_student.html#a65f6472c27b847cd410d9b93bf7e06ab", null ],
     [ "updateGrade", "class_student.html#a6d90ac4f9f4cfa0488d64bddff2f4182", null ],
-    [ "updateStudent", "class_student.html#a3751021673cd88384974641cb6ab0ebe", null ]
+    [ "updateStudent", "class_student.html#a3751021673cd88384974641cb6ab0ebe", null ],
+    [ "write", "class_student.html#ac7c2406d3c7d58aee3ab8cc6ab9f1e33", null ]
 ];

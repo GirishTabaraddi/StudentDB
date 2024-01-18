@@ -10,7 +10,6 @@
 #include "Course.h"
 
 #include <sstream>
-#include <iomanip>
 
 using namespace std;
 
@@ -86,4 +85,9 @@ std::string Course::printCourse() const
 //			 << "Course creditPoints: " << getcreditPoints() << endl
 //			 << "Course Major: " << major << endl;
 //	}
+}
+
+void Course::write(std::ostream &out) const
+{
+	out << printCourse();
 }

@@ -11,14 +11,14 @@
 
 using namespace std;
 
-unsigned int Student::m_nextMatrikelNumber = 1009000;
+unsigned int Student::m_nextMatrikelNumber = 100000;
 
 Student::Student(std::string firstName, std::string lastName,
 		Poco::Data::Date dateOfBirth, std::shared_ptr<Address> address) :
 								m_firstName(firstName), m_lastName(lastName),
 								m_dateOfBirth(dateOfBirth), m_address(address)
 {
-	this->m_matrikelNumber = ++(Student::m_nextMatrikelNumber);
+	this->m_matrikelNumber = (Student::m_nextMatrikelNumber)++;
 }
 
 Student::~Student()
@@ -30,9 +30,14 @@ const unsigned int Student::getMatrikelNumber() const
 	return this->m_matrikelNumber;
 }
 
-const std::string Student::getFullName() const
+void Student::setNextMatrikelNumber(unsigned int newMatrikelnumber)
 {
-	return (this->m_firstName + " " + this->m_lastName);
+	m_nextMatrikelNumber = newMatrikelnumber;
+}
+
+unsigned int Student::getNextMatrikelNumber()
+{
+	return m_nextMatrikelNumber;
 }
 
 const Poco::Data::Date Student::getDateOfBirth() const
@@ -86,16 +91,35 @@ std::string Student::printStudent() const
 
 void Student::addEnrollment(const std::string& semester, Course *newCourseId)
 {
-	for(Enrollment& enrollments: this->m_enrollments)
-	{
-		if(enrollments.getcourse()->getcourseKey() == newCourseId->getcourseKey())
-		{
-			cout << "WARNING: Enrollment already exists!!!" << endl;
-			return; //! Exit early if duplicate found.
-		}
-	}
+	//	for(Enrollment& enrollments: this->m_enrollments)
+	//	{
+	//		if(enrollments.getcourse()->getcourseKey() == newCourseId->getcourseKey())
+	//		{
+	//			cout << "WARNING: Enrollment already exists!!!" << endl;
+	//			return; //! Exit early if duplicate found.
+	//		}
+	//	}
 
-	this->m_enrollments.push_back(Enrollment(semester, newCourseId));
+	unsigned int courseKey = newCourseId->getcourseKey();
+
+	auto isEnrolled = [courseKey](const Enrollment& enrollment){
+		return (enrollment.getcourse()->getcourseKey() == courseKey);
+	};
+
+	auto addEnrollmentItr = find_if(this->m_enrollments.begin(),
+			this->m_enrollments.end(), isEnrolled);
+
+	if(addEnrollmentItr != this->m_enrollments.end())
+	{
+		cout << "\n\t \t WARNING: Enrollment already exists!!!" << endl;
+		return;
+	}
+	else
+	{
+		this->m_enrollments.push_back(Enrollment(semester, newCourseId));
+
+//		cout << "\n\t \t Enrollment Added" << endl;
+	}
 }
 
 void Student::updateStudent(std::string firstName, std::string lastName,
@@ -124,26 +148,36 @@ void Student::updateAddress(std::shared_ptr<Address> address)
 
 void Student::deleteEnrollment(unsigned int courseKey)
 {
-	auto newEnd = remove_if(this->m_enrollments.begin(), this->m_enrollments.end(),
-			[courseKey](const Enrollment& enrollments)
-			{
-				return enrollments.getcourse()->getcourseKey() == courseKey;
-			});
+	auto isEnrolled = [courseKey](const Enrollment& enrollment){
+		return enrollment.getcourse()->getcourseKey() == courseKey;
+	};
 
-		if(newEnd != this->m_enrollments.end())
-		{
-			cout << "Entered Enrollment Deleted!!" << endl;
-			this->m_enrollments.erase(newEnd, this->m_enrollments.end());
-		}
+	auto delEnrollmentItr = remove_if(this->m_enrollments.begin(),
+			this->m_enrollments.end(), isEnrolled);
+
+	if(delEnrollmentItr != this->m_enrollments.end())
+	{
+		cout << "Entered Enrollment Deleted!!" << endl;
+		this->m_enrollments.erase(delEnrollmentItr, this->m_enrollments.end());
+	}
 }
 
 void Student::updateGrade(float grade, unsigned int courseKey)
 {
-	for(Enrollment& enrollment : this->m_enrollments)
+	auto isEnrolled = [courseKey](const Enrollment& enrollment){
+		return enrollment.getcourse()->getcourseKey() == courseKey;
+	};
+
+	auto enrollmentItr = find_if(this->m_enrollments.begin(),
+			this->m_enrollments.end(), isEnrolled);
+
+	if(enrollmentItr != this->m_enrollments.end())
 	{
-		if(enrollment.getcourse()->getcourseKey() == courseKey)
-		{
-			enrollment.setgrade(grade);
-		}
+		enrollmentItr->setgrade(grade);
 	}
+}
+
+void Student::write(std::ostream &out) const
+{
+	out << printStudent() << endl;
 }

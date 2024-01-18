@@ -46,18 +46,30 @@ Poco::Data::Time BlockCourse::getEndTime() const
 
 std::string BlockCourse::printBlockCourse() const
 {
-	string out;
+	string outStr = ";" + pocoDateToStringFromatter(this->m_startDate) +
+			";" + pocoDateToStringFromatter(this->m_endDate) +
+			";" + pocoTimeToStringFromatter(this->m_startTime) +
+			";" + pocoTimeToStringFromatter(this->m_endTime);
 
-	out = "B;"
-			+ Course::printCourse()
-			+ ";" + pocoDateToStringFromatter(this->m_startDate)
-			+ ";" + pocoDateToStringFromatter(this->m_endDate)
-			+ ";" + pocoTimeToStringFromatter(this->m_startTime)
-			+ ";" + pocoTimeToStringFromatter(this->m_endTime);
-	return out;
+	return outStr;
 }
 
 void BlockCourse::print() const
 {
-	cout << BlockCourse::printBlockCourse() << endl;
+    cout << "B;"
+        << Course::printCourse()
+        << ";" << pocoDateToStringFromatter(this->m_startDate)
+        << ";" << pocoDateToStringFromatter(this->m_endDate)
+        << ";" << pocoTimeToStringFromatter(this->m_startTime)
+        << ";" << pocoTimeToStringFromatter(this->m_endTime);
+}
+
+
+void BlockCourse::write(std::ostream &out) const
+{
+	out << "B;";
+
+	Course::write(out);
+
+	out << printBlockCourse() << endl;
 }

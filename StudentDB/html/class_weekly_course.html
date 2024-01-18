@@ -134,6 +134,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~WeeklyCourse</b> 
 <tr class="memitem:abfeeb25c0329b76bf86dcb31062ed6a1" id="r_abfeeb25c0329b76bf86dcb31062ed6a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_weekly_course.html#abfeeb25c0329b76bf86dcb31062ed6a1">print</a> () const override</td></tr>
 <tr class="memdesc:abfeeb25c0329b76bf86dcb31062ed6a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints specific information about the <a class="el" href="class_weekly_course.html" title="Represents a weekly course with specific scheduling details.">WeeklyCourse</a>.  <br /></td></tr>
 <tr class="separator:abfeeb25c0329b76bf86dcb31062ed6a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80b0fa6cceed9162fb244345d3c85839" id="r_a80b0fa6cceed9162fb244345d3c85839"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_weekly_course.html#a80b0fa6cceed9162fb244345d3c85839">write</a> (std::ostream &amp;out) const override</td></tr>
+<tr class="memdesc:a80b0fa6cceed9162fb244345d3c85839"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the object's data to the provided output stream.  <br /></td></tr>
+<tr class="separator:a80b0fa6cceed9162fb244345d3c85839"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_course"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_course')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_course.html">Course</a></td></tr>
 <tr class="memitem:a275539ab3ab7c035b0b80f111ff7b039 inherit pub_methods_class_course" id="r_a275539ab3ab7c035b0b80f111ff7b039"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#a275539ab3ab7c035b0b80f111ff7b039">Course</a> (unsigned int courseKey, std::string title, std::string major, float creditPoints)</td></tr>
 <tr class="memdesc:a275539ab3ab7c035b0b80f111ff7b039 inherit pub_methods_class_course"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameterized constructor for initializing a <a class="el" href="class_course.html">Course</a> object.  <br /></td></tr>
@@ -346,6 +349,43 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
 
 <p>Print method that outputs the data of the weekly course. </p>
 <dl class="section return"><dt>Returns</dt><dd>String representation of the course data. </dd></dl>
+
+</div>
+</div>
+<a id="a80b0fa6cceed9162fb244345d3c85839" name="a80b0fa6cceed9162fb244345d3c85839"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80b0fa6cceed9162fb244345d3c85839">&#9670;&#160;</a></span>write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WeeklyCourse::write </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write the object's data to the provided output stream. </p>
+<p>This method is overridden from the base class. It writes the specific data of the derived class to the output stream. Objects use this method to represent themselves in a standardized format when output is needed, such as writing to a file or printing to the console.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>The output stream where the object's data will be written. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="class_course.html#ae3512f59485143eb2bfac02a26bb7f61">Course</a>.</p>
 
 </div>
 </div>
