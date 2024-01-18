@@ -47,6 +47,9 @@ int main ()
 		-updateLastName(Student& student) : void
 		-performEnrollmentUpdate(Student& student, std::string& courseKey) : void
 		-performStudentUpdate(Student& student) : void
+        -processCoursesData(std::istream& in) : void
+        -processEnrollmentData(std::istream& in) : void
+        -processStudentsData(std::istream& in) : void
 
 		+StudentDb()
 		+getStudents() : std::map<int , Student> {query}

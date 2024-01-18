@@ -76,6 +76,36 @@ private:
      */
     void performEnrollmentUpdate(Student& student, const std::string& courseKey);
 
+    /*!
+     * @brief Processes courses data from the input stream.
+     *
+     * This function processes courses data read from the input stream. It parses
+     * the input and updates the internal data structures accordingly.
+     *
+     * @param in The input stream containing courses data.
+     */
+    void processCoursesData(std::istream &in);
+
+    /*!
+     * @brief Processes students data from the input stream.
+     *
+     * This function processes students data read from the input stream. It parses
+     * the input and updates the internal data structures accordingly.
+     *
+     * @param in The input stream containing students data.
+     */
+    void processStudentsData(std::istream &in);
+
+    /*!
+     * @brief Processes enrollment data from the input stream.
+     *
+     * This function processes enrollment data read from the input stream. It parses
+     * the input and updates the internal data structures accordingly.
+     *
+     * @param in The input stream containing enrollment data.
+     */
+    void processEnrollmentData(std::istream &in);
+
 public:
     /*!
      * @brief Default constructor for StudentDb class.
@@ -201,36 +231,6 @@ public:
      * @param in The input stream to read data from.
      */
     void read(std::istream& in);
-
-    /*!
-     * @brief Processes courses data from the input stream.
-     *
-     * This function processes courses data read from the input stream. It parses
-     * the input and updates the internal data structures accordingly.
-     *
-     * @param in The input stream containing courses data.
-     */
-    void processCoursesData(std::istream &in);
-
-    /*!
-     * @brief Processes students data from the input stream.
-     *
-     * This function processes students data read from the input stream. It parses
-     * the input and updates the internal data structures accordingly.
-     *
-     * @param in The input stream containing students data.
-     */
-    void processStudentsData(std::istream &in);
-
-    /*!
-     * @brief Processes enrollment data from the input stream.
-     *
-     * This function processes enrollment data read from the input stream. It parses
-     * the input and updates the internal data structures accordingly.
-     *
-     * @param in The input stream containing enrollment data.
-     */
-    void processEnrollmentData(std::istream &in);
 };
 
 

@@ -1,10 +1,8 @@
-3
-W;1555;a;s;6.0;5;10:15;11:45
+2
 B;2371;C Programming;Automation;5.0;16.09.2019;20.09.2019;14:15;19:15
-W;5387;APT;Automation;5.0;3;17:45;19:15
-3
-100001;Olsen;Peter;23.11.1998;7158 Spurvevej;21361;Juelsminde;l
-100002;Stein;Josephine;05.03.1997;2575 Tannenweg;49733;Delitzsch;Apartement 6b
-100003;Girish;Tabaraddi;31.03.1997;Am Karlshof;64287;Darmstadt;10B
+W;5387;APT;Automation;5.0;3;07:45;09:15
+2
+100000;Olsen;Peter;23.11.1998;7158 Spurvevej;21361;Juelsminde;l
+100001;Girish;Josephine;05.03.1997;2575 Tannenweg;49733;Delitzsch;Apartement 6b
 1
-100001;5387;WS2018;2.300000
+100000;5387;WS2018;2.3

@@ -114,6 +114,8 @@ void SimpleUI::run()
 					{
 						this->m_db.write(myfile);
 						myfile.close();
+
+						cout << "\n\t Student Database is written to the file" << endl;
 					}
 					else
 					{
@@ -123,12 +125,13 @@ void SimpleUI::run()
 				break;
 				case 9:
 				{
-					cout << "read student data" << endl;
 					ifstream inputFile("read_StudentDb.txt");
 					if(inputFile.is_open())
 					{
 						this->m_db.read(inputFile);
 						inputFile.close();
+
+						cout << "\n\t Read the Student Database from the file" << endl;
 					}
 					else
 					{
@@ -154,7 +157,7 @@ void SimpleUI::run()
 		}
 		catch(const invalid_argument& e)
 		{
-			cout << endl << "ERROR: Invalid Input, Please enter a numeric value between - [0-10]" << endl;
+			cout << endl << "ERROR: Invalid argument" << endl;
 		}
 //		catch(const out_of_range& e)
 //		{

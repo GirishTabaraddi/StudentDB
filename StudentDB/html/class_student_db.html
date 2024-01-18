@@ -150,15 +150,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>listCourses</b> ()</t
 <tr class="memitem:a6f1b2a7ce4be5f0d1c01d896d79b6dcb" id="r_a6f1b2a7ce4be5f0d1c01d896d79b6dcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a6f1b2a7ce4be5f0d1c01d896d79b6dcb">read</a> (std::istream &amp;in)</td></tr>
 <tr class="memdesc:a6f1b2a7ce4be5f0d1c01d896d79b6dcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data from the input stream.  <br /></td></tr>
 <tr class="separator:a6f1b2a7ce4be5f0d1c01d896d79b6dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a619a2c56e90ec3a1492b7e26f1b456a0" id="r_a619a2c56e90ec3a1492b7e26f1b456a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a619a2c56e90ec3a1492b7e26f1b456a0">processCoursesData</a> (std::istream &amp;in)</td></tr>
-<tr class="memdesc:a619a2c56e90ec3a1492b7e26f1b456a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes courses data from the input stream.  <br /></td></tr>
-<tr class="separator:a619a2c56e90ec3a1492b7e26f1b456a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65722055a7449da100f14febc916a377" id="r_a65722055a7449da100f14febc916a377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a65722055a7449da100f14febc916a377">processStudentsData</a> (std::istream &amp;in)</td></tr>
-<tr class="memdesc:a65722055a7449da100f14febc916a377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes students data from the input stream.  <br /></td></tr>
-<tr class="separator:a65722055a7449da100f14febc916a377"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4512cc1e62e6b6df8c9ab0b67412b7c4" id="r_a4512cc1e62e6b6df8c9ab0b67412b7c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a4512cc1e62e6b6df8c9ab0b67412b7c4">processEnrollmentData</a> (std::istream &amp;in)</td></tr>
-<tr class="memdesc:a4512cc1e62e6b6df8c9ab0b67412b7c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes enrollment data from the input stream.  <br /></td></tr>
-<tr class="separator:a4512cc1e62e6b6df8c9ab0b67412b7c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a database of students and courses with various operations. </p>
@@ -361,87 +352,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>listCourses</b> ()</t
 
 <p>Print student details. </p>
 <p>Queries the user for a matrikel number and prints the student, including the enrolled courses and their results. </p>
-
-</div>
-</div>
-<a id="a619a2c56e90ec3a1492b7e26f1b456a0" name="a619a2c56e90ec3a1492b7e26f1b456a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a619a2c56e90ec3a1492b7e26f1b456a0">&#9670;&#160;</a></span>processCoursesData()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void StudentDb::processCoursesData </td>
-          <td>(</td>
-          <td class="paramtype">std::istream &amp;&#160;</td>
-          <td class="paramname"><em>in</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Processes courses data from the input stream. </p>
-<p>This function processes courses data read from the input stream. It parses the input and updates the internal data structures accordingly.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">in</td><td>The input stream containing courses data. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a4512cc1e62e6b6df8c9ab0b67412b7c4" name="a4512cc1e62e6b6df8c9ab0b67412b7c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4512cc1e62e6b6df8c9ab0b67412b7c4">&#9670;&#160;</a></span>processEnrollmentData()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void StudentDb::processEnrollmentData </td>
-          <td>(</td>
-          <td class="paramtype">std::istream &amp;&#160;</td>
-          <td class="paramname"><em>in</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Processes enrollment data from the input stream. </p>
-<p>This function processes enrollment data read from the input stream. It parses the input and updates the internal data structures accordingly.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">in</td><td>The input stream containing enrollment data. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a65722055a7449da100f14febc916a377" name="a65722055a7449da100f14febc916a377"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a65722055a7449da100f14febc916a377">&#9670;&#160;</a></span>processStudentsData()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void StudentDb::processStudentsData </td>
-          <td>(</td>
-          <td class="paramtype">std::istream &amp;&#160;</td>
-          <td class="paramname"><em>in</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Processes students data from the input stream. </p>
-<p>This function processes students data read from the input stream. It parses the input and updates the internal data structures accordingly.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">in</td><td>The input stream containing students data. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

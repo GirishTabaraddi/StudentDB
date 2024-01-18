@@ -13,6 +13,8 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <sstream>
+#include <unordered_map>
 
 #include <Poco/DateTimeFormatter.h>
 #include <Poco/Data/Date.h>

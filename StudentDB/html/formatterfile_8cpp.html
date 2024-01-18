@@ -117,7 +117,7 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><br  />
  Created on: 11-Jan-2024 </p><dl class="section author"><dt>Author</dt><dd>Girish Tabaraddi</dd></dl>
-<p>Built on: Wednesday 17-01-2024 12:39:16 </p>
+<p>Built on: Thursday 18-01-2024 01:01:59 </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a3240f3b5f4e025b204c0e3da1288752c" name="a3240f3b5f4e025b204c0e3da1288752c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3240f3b5f4e025b204c0e3da1288752c">&#9670;&#160;</a></span>getDayOfWeekFromString()</h2>
@@ -144,7 +144,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Poco::DateTime::DaysOfWeek representing the parsed day of the week. </dd></dl>
 <p>Handle invalid input or return a default value</p>
-<p>Defaulting to Monday in case of invalid input</p>
 
 </div>
 </div>
@@ -226,6 +225,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Poco::Data::Date representing the parsed date. </dd></dl>
+<p>regex datePattern(R"(\d{2}\.\d{2}\.\d{4})"); The above regex is old one for date like 20.01.2024 and the below one is for 1.1.2024</p>
+<p>&lt; match_results for string objects</p>
 
 </div>
 </div>
@@ -253,6 +254,8 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Poco::Data::Time representing the parsed time. </dd></dl>
+<p>Extract the time components</p>
+<p>Construct a Poco::Data::Time instance</p>
 
 </div>
 </div>

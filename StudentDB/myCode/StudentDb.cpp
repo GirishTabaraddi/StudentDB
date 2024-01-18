@@ -102,7 +102,7 @@ void StudentDb::listCourses()
 
 	for(const auto& courses: this->m_courses)
 	{
-//		courses.second.get()->print();
+		//		courses.second.get()->print();
 		ostream& out = cout;
 		courses.second.get()->write(out);
 	}
@@ -217,7 +217,13 @@ void StudentDb::printStudent()
 			"to print his/her details - 0-9: ";
 	getline(cin, matrikelNumber);
 
-	auto matrikelNumberItr = this->m_students.find(stoi(matrikelNumber));
+	auto checkMatrikelnumber = [matrikelNumber](const auto& student){
+		return student.first == stoi(matrikelNumber);
+	};
+
+	//	auto matrikelNumberItr = this->m_students.find(stoi(matrikelNumber));
+	auto matrikelNumberItr = find_if(this->m_students.begin(),
+			this->m_students.end(), checkMatrikelnumber);
 
 	if(matrikelNumberItr != this->m_students.end())
 	{
@@ -225,12 +231,13 @@ void StudentDb::printStudent()
 
 		for(auto& itr : matrikelNumberItr->second.getEnrollments())
 		{
-			cout << "\n\t \t \t " << itr.printEnrollment() << endl;
+			cout << "\n\t \t \t " << matrikelNumberItr->second.getMatrikelNumber() << ";"
+					<< itr.printEnrollment() << endl;
 		}
 	}
 	else
 	{
-		cout << "\t \t Entered Matrikel Number does not match "
+		cout << "\n\t \t Entered Matrikel Number does not match "
 				"any student in the database." << endl;
 	}
 }
@@ -357,6 +364,12 @@ void StudentDb::performStudentUpdate(Student &student)
 				break;
 				case 5:
 				{
+					if(student.getEnrollments().empty())
+					{
+						cout << endl << "\t \t \t ERROR: Entered Student not "
+								"enrolled to update grade or delete enrollment!!!" << endl;
+						break;
+					}
 					cout << endl << "\t \t \t You chose option : " << numericChoice
 							<< " to update Enrollment." <<endl << endl;
 
@@ -366,6 +379,7 @@ void StudentDb::performStudentUpdate(Student &student)
 					getline(cin, courseKey);
 
 					auto courseKeyItr = this->m_courses.find(stoi(courseKey));
+
 
 					if(courseKeyItr != this->m_courses.end())
 					{
@@ -407,17 +421,23 @@ void StudentDb::performStudentUpdate(Student &student)
 void StudentDb::updateFirstName(Student &student)
 {
 	string firstName = "NA";
+	Poco::Data::Date NADate(1900,1,1);
 
 	cout << endl << "\t \t \t \t Enter First Name of the Student to Update - a-z/A-Z: ";
 	getline(cin, firstName);
+
+	student.updateStudent(firstName, "NA", NADate);
 }
 
 void StudentDb::updateLastName(Student &student)
 {
 	string lastName = "NA";
+	Poco::Data::Date NADate(1900,1,1);
 
 	cout << endl << "\t \t \t \t Enter Last Name of the Student to Update - a-z/A-Z: ";
 	getline(cin, lastName);
+
+	student.updateStudent("NA", lastName, NADate);
 }
 
 void StudentDb::updateDateOfBirth(Student &student)
@@ -567,7 +587,7 @@ void StudentDb::printAllEnrollments(std::ostream &out) const
 
 	for(auto& itr: StudentEnrollments)
 	{
-//		auto& count = itr.second;
+		//		auto& count = itr.second;
 
 		out << itr.second.size() << endl;
 
@@ -617,7 +637,6 @@ void StudentDb::processCoursesData(std::istream &in)
 		{
 			filedata.push_back(readLine);
 		}
-
 		unsigned char courseType = filedata.at(0)[0];
 
 		unsigned int courseKey;
@@ -660,6 +679,7 @@ void StudentDb::processCoursesData(std::istream &in)
 
 			this->m_courses[courseKey] = move(blockCourse);
 		}
+
 		loopIdx++;
 	}
 }
@@ -675,6 +695,7 @@ void StudentDb::processStudentsData(std::istream &in)
 
 	while(loopIdx < noOfStudents)
 	{
+
 		getline(in, readLine);
 		istringstream iss(readLine);
 
@@ -699,8 +720,12 @@ void StudentDb::processStudentsData(std::istream &in)
 
 		Student addStudent(firstName, lastName, dateOfBirth, address);
 
-		this->m_students.insert(make_pair(matrikelNumber, addStudent));
+		//			if(this->m_students.find(matrikelNumber) != this->m_students.end())
+		//			{
+		//				throw runtime_error("Duplicate MatrikelNumber exists");
+		//			}
 
+		this->m_students.insert(make_pair(matrikelNumber, addStudent));
 
 		loopIdx++;
 	}
@@ -742,9 +767,32 @@ void StudentDb::processEnrollmentData(std::istream &in)
 			{
 				Course* course = const_cast<Course*>(courseItr->second.get());
 
-				studentItr->second.addEnrollment(semester, course);
-				studentItr->second.updateGrade(grade, courseKey);
+				//! Enrollment check lambda function, returns true if a match is found and the iterator
+				//! will point to that element, else it will point to newEnd iterator i.e., it reaches
+				//! the end without finding a match.
+				auto newEnd = find_if(studentItr->second.getEnrollments().begin(),
+						studentItr->second.getEnrollments().end(),
+						[courseKey](const Enrollment& enrollment){
+					return enrollment.getcourse()->getcourseKey() == courseKey;});
+
+				if(newEnd == studentItr->second.getEnrollments().end())
+				{
+					studentItr->second.addEnrollment(semester, course);
+					studentItr->second.updateGrade(grade, courseKey);
+				}
+				else
+				{
+					cout << ("Enrollment already exists") << endl;
+				}
 			}
+			else
+			{
+				cout << ("Course not found") << endl;
+			}
+		}
+		else
+		{
+			cout << ("Student not found") << endl;
 		}
 
 		loopIdx++;

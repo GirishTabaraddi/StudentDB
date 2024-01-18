@@ -42,9 +42,13 @@ void Enrollment::setgrade(float grade)
 
 std::string Enrollment::printEnrollment() const
 {
+	ostringstream oss;
+
+	oss << fixed << setprecision(1) << this->m_grade;
+
 	string out = to_string(this->m_course->getcourseKey())
 			+ ";" + this->m_semester
-			+ ";" + to_string(this->m_grade);
+			+ ";" + oss.str();
 
 	return out;
 }

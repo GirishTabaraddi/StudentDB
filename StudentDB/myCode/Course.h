@@ -13,6 +13,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <iomanip>
 
 #include "formatterfile.h"
 

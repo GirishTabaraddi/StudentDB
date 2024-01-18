@@ -18,7 +18,7 @@ Student::Student(std::string firstName, std::string lastName,
 								m_firstName(firstName), m_lastName(lastName),
 								m_dateOfBirth(dateOfBirth), m_address(address)
 {
-	this->m_matrikelNumber = ++(Student::m_nextMatrikelNumber);
+	this->m_matrikelNumber = (Student::m_nextMatrikelNumber)++;
 }
 
 Student::~Student()
