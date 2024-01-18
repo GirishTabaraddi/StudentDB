@@ -15,6 +15,13 @@
 #include "WeeklyCourse.h"
 #include <sstream>
 
+#include <Poco/Net/SocketAddress.h>
+#include <Poco/Net/StreamSocket.h>
+#include <Poco/Net/SocketStream.h>
+#include <Poco/JSON/JSON.h>
+#include <Poco/JSON/Parser.h>
+#include <Poco/Dynamic/Var.h>
+
 /*!
  * @class StudentDb
  * @brief Represents a database of students and courses with various operations.
@@ -105,6 +112,19 @@ private:
      * @param in The input stream containing enrollment data.
      */
     void processEnrollmentData(std::istream &in);
+
+    /*!
+     * @brief Parses JSON data.
+     *
+     * This function uses POCO C++ JSON for parsing data. For more information,
+     * refer to the following Stack Overflow post:
+     *
+     * @see [Correct usage of POCO C++ JSON for parsing data]
+     * (https://stackoverflow.com/questions/15387154/correct-usage-of-poco-c-json-for-parsing-data)
+     *
+     * @param JSONData The JSON data to be parsed.
+     */
+    void parsingJSONData(std::string& JSONData);
 
 public:
     /*!
@@ -231,6 +251,11 @@ public:
      * @param in The input stream to read data from.
      */
     void read(std::istream& in);
+
+    /*!
+     * @brief Reads data from the server.
+     */
+    void readFromServer();
 };
 
 
