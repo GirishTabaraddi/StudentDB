@@ -101,28 +101,33 @@ Poco::DateTime::DaysOfWeek getDayOfWeekFromString(const std::string& dayString)
         {"sunday", Poco::DateTime::SUNDAY}
     };
 
-    std::string lowerDayString;
+    string lowerDayString;
+
     for (char c : dayString)
     {
-        lowerDayString += std::tolower(c);
+        lowerDayString += tolower(c);
     }
 
-    auto it = dayMap.find(lowerDayString);
-    if (it != dayMap.end())
+    for(auto& entry : dayMap)
     {
-        return it->second;
+        if(boost::algorithm::icontains(entry.first, lowerDayString))
+        {
+        	return entry.second;
+        }
     }
 
-    std::istringstream iss(dayString);
+    istringstream iss(dayString);
+
     int numericDay;
+
     if (iss >> numericDay && numericDay >= 1 && numericDay <= 7)
     {
         return static_cast<Poco::DateTime::DaysOfWeek>(numericDay);
     }
 
     //! Handle invalid input or return a default value
-    std::cerr << "Invalid day input: " << dayString
-    		<< ". Defaulting to Monday." << std::endl;
+    cerr << "Invalid day input: " << dayString
+    		<< ". Defaulting to Monday." << endl;
 
     return Poco::DateTime::MONDAY;
 }

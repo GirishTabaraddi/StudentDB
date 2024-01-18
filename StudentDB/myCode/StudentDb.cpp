@@ -184,8 +184,6 @@ void StudentDb::addEnrollment()
 			Course* course = const_cast<Course*>(findCourseIdItr->second.get());
 
 			matrikelNumberItr->second.addEnrollment(semester, course);
-
-			cout << "\t \t Enrollment Added" << endl;
 		}
 		else
 		{
@@ -198,15 +196,6 @@ void StudentDb::addEnrollment()
 		cout << endl << "\t \t \t ERROR: Entered Matrikel Number "
 				"doesn't exist in the database!!!" << endl;
 	}
-
-	//	for(auto& pairItr : this->m_students)
-	//	{
-	//		auto enrollments = pairItr.second.getenrollments();
-	//		for(auto& enrollmentItr : enrollments)
-	//		{
-	//			cout << enrollmentItr.printEnrollment() << endl;
-	//		}
-	//	}
 }
 
 void StudentDb::printStudent()
@@ -218,10 +207,12 @@ void StudentDb::printStudent()
 	getline(cin, matrikelNumber);
 
 	auto checkMatrikelnumber = [matrikelNumber](const auto& student){
+//	    cout << "Searching for: " << matrikelNumber << endl;
+//	    cout << "Current Matrikel: " << student.first << endl;
 		return student.first == stoi(matrikelNumber);
 	};
 
-	//	auto matrikelNumberItr = this->m_students.find(stoi(matrikelNumber));
+//		auto matrikelNumberItr = this->m_students.find(stoi(matrikelNumber));
 	auto matrikelNumberItr = find_if(this->m_students.begin(),
 			this->m_students.end(), checkMatrikelnumber);
 
@@ -229,10 +220,9 @@ void StudentDb::printStudent()
 	{
 		cout << "\n\t \t \t " << matrikelNumberItr->second.printStudent() << endl;
 
-		for(auto& itr : matrikelNumberItr->second.getEnrollments())
+		for(const Enrollment& enrollmentItr : matrikelNumberItr->second.getEnrollments())
 		{
-			cout << "\n\t \t \t " << matrikelNumberItr->second.getMatrikelNumber() << ";"
-					<< itr.printEnrollment() << endl;
+			cout << "\n\t \t \t " << enrollmentItr.printEnrollment() << endl;
 		}
 	}
 	else
@@ -253,7 +243,7 @@ void StudentDb::searchStudent()
 
 	for(const auto& pairItr : this->m_students)
 	{
-		const auto& findStudent = pairItr.second;
+		const Student& findStudent = pairItr.second;
 
 		string firstName = findStudent.getFirstName();
 		string lastName = findStudent.getLastName();
@@ -692,6 +682,7 @@ void StudentDb::processStudentsData(std::istream &in)
 	unsigned int noOfStudents = stoi(count);
 
 	unsigned int loopIdx = 0;
+	unsigned int highestMatrikelNumber = 0;
 
 	while(loopIdx < noOfStudents)
 	{
@@ -706,29 +697,52 @@ void StudentDb::processStudentsData(std::istream &in)
 			filedata.push_back(readLine);
 		}
 
-		unsigned int matrikelNumber = stoi(filedata.at(0));
-		string firstName = filedata.at(1);
-		string lastName = filedata.at(2);
-		Poco::Data::Date dateOfBirth = stringToPocoDateFormatter(filedata.at(3));
-		string streetName = filedata.at(4);
-		unsigned int postalCode = stoi(filedata.at(5));
-		string cityName = filedata.at(6);
-		string additionalInfo = filedata.at(7);
+		unsigned int matrikelNumber =
+				(filedata.size()>=1) ? stoi(filedata.at(0)) : 0;
+		string firstName =
+				(filedata.size()>=2) ? filedata.at(1) : "(firstName not assigned)";
+		string lastName =
+				(filedata.size()>=3) ? filedata.at(2) : "(lastName not assigned)";
+		Poco::Data::Date dateOfBirth =
+				(filedata.size()>=4) ? stringToPocoDateFormatter(filedata.at(3)) : Poco::Data::Date();
+		string streetName =
+				(filedata.size()>=5) ? filedata.at(4) : "(streetName not assigned)";
+		unsigned int postalCode =
+				(filedata.size()>=6) ? stoi(filedata.at(5)) : 0;
+		string cityName =
+				(filedata.size()>=7) ? filedata.at(6) : "(cityName not assigned)";
+		string additionalInfo =
+				(filedata.size()>=8) ? filedata.at(7) : "(additionalInfo not assigned)";
+
+
+//		auto checkMatrikel = [matrikelNumber](pair<const int,Student>& pairItr)
+//						{
+//			return pairItr.second.getMatrikelNumber() == matrikelNumber;
+//						};
+//
+//		auto itr = find_if(this->m_students.begin(), this->m_students.end(), checkMatrikel);
+//
+//		if(itr != this->m_students.end())
+//		{
+//			Student::setNextMatrikelNumber(matrikelNumber++);
+//		}
 
 		shared_ptr<Address> address =
 				make_shared<Address>(streetName, postalCode, cityName, additionalInfo);
 
 		Student addStudent(firstName, lastName, dateOfBirth, address);
 
-		//			if(this->m_students.find(matrikelNumber) != this->m_students.end())
-		//			{
-		//				throw runtime_error("Duplicate MatrikelNumber exists");
-		//			}
-
 		this->m_students.insert(make_pair(matrikelNumber, addStudent));
+
+		// Update highestMatrikelNumber if needed
+		highestMatrikelNumber = (highestMatrikelNumber >= matrikelNumber)
+				? highestMatrikelNumber : matrikelNumber;
 
 		loopIdx++;
 	}
+
+	// Set the nextMatrikelNumber after processing all students
+	Student::setNextMatrikelNumber(highestMatrikelNumber + 1);
 }
 
 void StudentDb::processEnrollmentData(std::istream &in)
@@ -752,10 +766,14 @@ void StudentDb::processEnrollmentData(std::istream &in)
 			filedata.push_back(readLine);
 		}
 
-		unsigned int matrikelNumber = stoi(filedata.at(0));
-		unsigned int courseKey = stoi(filedata.at(1));
-		string semester = filedata.at(2);
-		float grade = stof(filedata.at(3));
+		unsigned int matrikelNumber =
+				(filedata.size()>=1) ? stoi(filedata.at(0)) : 0;
+		unsigned int courseKey =
+				(filedata.size()>=2) ? stoi(filedata.at(1)) : 0;
+		string semester =
+				(filedata.size()>=3) ? filedata.at(2) : "(semester not assigned)";
+		float grade =
+				(filedata.size()>=4) ? stof(filedata.at(3)) : 0.0;
 
 		auto studentItr = this->m_students.find(matrikelNumber);
 
@@ -767,22 +785,26 @@ void StudentDb::processEnrollmentData(std::istream &in)
 			{
 				Course* course = const_cast<Course*>(courseItr->second.get());
 
-				//! Enrollment check lambda function, returns true if a match is found and the iterator
-				//! will point to that element, else it will point to newEnd iterator i.e., it reaches
-				//! the end without finding a match.
-				auto newEnd = find_if(studentItr->second.getEnrollments().begin(),
-						studentItr->second.getEnrollments().end(),
-						[courseKey](const Enrollment& enrollment){
-					return enrollment.getcourse()->getcourseKey() == courseKey;});
+				//! Check if the student is already enrolled in the specified course (using lambda function).
+				//! If enrolled, the iterator 'enrollmentItr' points to the existing enrollment;
+				//! otherwise, it points to the end.
+				auto isEnrolled = [courseKey](const Enrollment& enrollment){
+					return enrollment.getcourse()->getcourseKey() == courseKey;
+				};
 
-				if(newEnd == studentItr->second.getEnrollments().end())
+				auto enrollmentItr = find_if(studentItr->second.getEnrollments().begin(),
+						studentItr->second.getEnrollments().end(), isEnrolled);
+
+				//! Check if the 'enrollmentItr' points to the end of enrollments,
+				//! indicating that no existing enrollment for the specified courseKey was found.
+				if(enrollmentItr == studentItr->second.getEnrollments().end())
 				{
 					studentItr->second.addEnrollment(semester, course);
 					studentItr->second.updateGrade(grade, courseKey);
 				}
 				else
 				{
-					cout << ("Enrollment already exists") << endl;
+					cout << ("Enrollment already exists for the specified course.") << endl;
 				}
 			}
 			else

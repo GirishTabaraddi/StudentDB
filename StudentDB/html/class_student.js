@@ -8,7 +8,6 @@ var class_student =
     [ "getDateOfBirth", "class_student.html#a21f2dd9ab9faed9d58710735669f4301", null ],
     [ "getEnrollments", "class_student.html#a004d2a46e58b5faa24a726ac021082af", null ],
     [ "getFirstName", "class_student.html#aabc22298e32cdd47976bd3d3c5033df6", null ],
-    [ "getFullName", "class_student.html#a9e6efb33dd5f335d5717faddc6b8e1d0", null ],
     [ "getLastName", "class_student.html#a1e555d9d92cbf5ee319b55771c9891b9", null ],
     [ "getMatrikelNumber", "class_student.html#ad9b5383ee40e2b8f3c3225a1a1a28694", null ],
     [ "printStudent", "class_student.html#ab0ff21ff068dd1bf6f3ebd762f97853c", null ],

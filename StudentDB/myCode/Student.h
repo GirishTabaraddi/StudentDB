@@ -80,16 +80,23 @@ public:
     /*!
      * @brief Getter method that returns the Matrikel number of a student.
      *
-     * @return unsigned integer representing the Matrikel number.
+     * @return The Matrikel number as an unsigned integer.
      */
     const unsigned int getMatrikelNumber() const;
 
     /*!
-     * @brief Getter method that returns a string of the full name (first name + last name).
+     * @brief Setter method that sets the next Matrikel number for new students.
      *
-     * @return std::string representing the full name.
+     * @param newMatrikelNumber The new Matrikel number to set.
      */
-    const std::string getFullName() const;
+    static void setNextMatrikelNumber(unsigned int newMatrikelNumber);
+
+    /*!
+     * @brief Getter method that returns the next Matrikel number for new students.
+     *
+     * @return The next Matrikel number as an unsigned integer.
+     */
+    static unsigned int getNextMatrikelNumber();
 
     /*!
      * @brief Getter method that returns a string of the first name.
@@ -186,7 +193,6 @@ public:
      * @param out The output stream where the student's data will be written.
      */
     virtual void write(std::ostream& out) const;
-
 };
 
 

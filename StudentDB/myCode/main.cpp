@@ -81,12 +81,14 @@ int main ()
 		+Student(std::string firstName, std::string lastName,\n Poco::Data::Date dateOfBirth, std::shared_ptr<Address> address)
 		+~Student()
 		+getMatrikelNumber() : unsigned int {query}
-		+getFullName() : std::string {query}
+		+{static} getNextMatrikelNumber() : unsigned int
+		+{static} setNextMatrikelNumber(unsigned int newMatrikelNumber) : void
 		+getFirstName() : std::string& {query}
         +getLastName() : std::string& {query}
 		+getDateOfBirth() : Poco::Data::Date {query}
 		+getEnrollments() : std::vector<Enrollment>& {query}
 		+getAddress() : std::shared_ptr<Address> {query}
+		+printStudent() : std::string {query}
 		+addEnrollment(const std::string& semester, Course* courseId) : void
 		+updateStudent(std::string firstName, std::string lastName,\n Poco::Data::Date dateOfBirth) : void
 		+updateAddress(std::shared_ptr<Address> address) : void
