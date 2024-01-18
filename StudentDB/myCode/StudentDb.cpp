@@ -714,19 +714,6 @@ void StudentDb::processStudentsData(std::istream &in)
 		string additionalInfo =
 				(filedata.size()>=8) ? filedata.at(7) : "(additionalInfo not assigned)";
 
-
-//		auto checkMatrikel = [matrikelNumber](pair<const int,Student>& pairItr)
-//						{
-//			return pairItr.second.getMatrikelNumber() == matrikelNumber;
-//						};
-//
-//		auto itr = find_if(this->m_students.begin(), this->m_students.end(), checkMatrikel);
-//
-//		if(itr != this->m_students.end())
-//		{
-//			Student::setNextMatrikelNumber(matrikelNumber++);
-//		}
-
 		shared_ptr<Address> address =
 				make_shared<Address>(streetName, postalCode, cityName, additionalInfo);
 
@@ -820,3 +807,108 @@ void StudentDb::processEnrollmentData(std::istream &in)
 		loopIdx++;
 	}
 }
+
+void StudentDb::readFromServer()
+{
+	//! Create a socket address
+	Poco::Net::SocketAddress socketAddress("www.hhs.users.h-da.cloud", 4242);
+
+	string noOfUserDate = "1";
+	string readLine;
+
+	cout << "Enter the number of Student Data to be extracted from the server: ";
+	getline(cin, noOfUserDate);
+
+	int loopIdx = 0;
+
+	while(loopIdx < stoi(noOfUserDate))
+	{
+		//! Create a stream socket
+		Poco::Net::StreamSocket socket(socketAddress);
+
+        //! Create a SocketStream using the socket
+        Poco::Net::SocketStream stream(socket);
+
+        stream << "generate";
+        stream.flush();
+
+        //! Calling shutdownSend() indicates that you will no longer be sending data on the socket.
+        socket.shutdownSend();
+
+        vector<string> serverData;
+
+        while(getline(stream, readLine))
+        {
+        	serverData.push_back(readLine);
+        }
+
+        //! Calling shutdownReceive() indicates that you will no longer be receiving data on the socket.
+        socket.shutdownReceive();
+
+        stream << "quit";
+        stream.flush();
+
+        //! the socket is no longer in use
+        socket.close();
+
+        cout << serverData.at(0) << endl; // this prints 100 Generating
+
+//        string JSONData = serverData.at(1); //! This line contains the JSON Data required.
+
+        parsingJSONData(serverData.at(1));	//! This line contains the JSON Data required.
+
+		loopIdx++;
+	}
+}
+
+void StudentDb::parsingJSONData(std::string &JSONData)
+{
+    Poco::JSON::Parser jsonParser;
+
+    Poco::Dynamic::Var parsedJSONData = jsonParser.parse(JSONData);
+
+    Poco::Dynamic::Var parsedJSONDataResult = jsonParser.result();
+
+    //! Get the JSON Object
+    Poco::JSON::Object::Ptr jsonObject = parsedJSONDataResult.extract<Poco::JSON::Object::Ptr>();
+
+    string firstName = jsonObject->get("name")
+    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("firstName");
+
+    string lastName = jsonObject->get("name")
+    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("lastName");
+
+    int year = jsonObject->get("dateOfBirth")
+    				.extract<Poco::JSON::Object::Ptr>()->getValue<int>("year");
+    int month = jsonObject->get("dateOfBirth")
+            				.extract<Poco::JSON::Object::Ptr>()->getValue<int>("month")+1;
+    int day = jsonObject->get("dateOfBirth")
+            				.extract<Poco::JSON::Object::Ptr>()->getValue<int>("date");
+
+    Poco::Data::Date dateOfbirth(year, month, day);
+
+    string streetName = jsonObject->get("location")
+    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("street");
+    string postalCode = jsonObject->get("location")
+    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("postCode");
+    string cityName = jsonObject->get("location")
+    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("city");
+    string additionalInfo = jsonObject->get("location")
+    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("state");
+
+    shared_ptr<Address> address =
+    		make_shared<Address>(streetName, stoi(postalCode), cityName, additionalInfo);
+
+    Student student = Student(firstName, lastName, dateOfbirth, address);
+
+    this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
+}
+//		try
+//		{
+//			socket.connect(socketAddress);
+//		}
+//		catch(Poco::Exception& e)
+//		{
+//			cerr << "Failed to connect to: " << socketAddress.toString() << endl;
+//			return;
+//		}

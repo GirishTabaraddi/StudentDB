@@ -34,8 +34,8 @@ void SimpleUI::run()
 	cout << "\t 6 	-> Search Student in Database" << endl;
 	cout << "\t 7 	-> Update Student Details" << endl;
 	cout << "\t 8 	-> Write Student Database to a text file" << endl;
-	cout << "\t 9 	-> Read Student" << endl;
-	cout << "\t 10 	-> Read from server" << endl;
+	cout << "\t 9 	-> Read Student Database from a file" << endl;
+	cout << "\t 10 	-> Read Student Database from a server" << endl;
 
 	while(exitFlag == false)
 	{
@@ -109,7 +109,12 @@ void SimpleUI::run()
 				break;
 				case 8:
 				{
-					ofstream myfile("write_StudentDb.txt", ios::trunc);
+					cout << endl << "\t Enter the file name to write the data(.txt): ";
+
+					string filename;
+					getline(cin, filename);
+
+					ofstream myfile(filename, ios::trunc);
 					if(myfile.is_open())
 					{
 						this->m_db.write(myfile);
@@ -125,7 +130,12 @@ void SimpleUI::run()
 				break;
 				case 9:
 				{
-					ifstream inputFile("read_StudentDb.txt");
+					cout << endl << "\t Enter the file name to read the data from(.txt): ";
+
+					string filename = "read_StudentDb.txt";
+					getline(cin, filename);
+
+					ifstream inputFile(filename);
 					if(inputFile.is_open())
 					{
 						this->m_db.read(inputFile);
@@ -142,6 +152,8 @@ void SimpleUI::run()
 				case 10:
 				{
 					cout << "read from server" << endl;
+
+					this->m_db.readFromServer();
 				}
 				break;
 				default:

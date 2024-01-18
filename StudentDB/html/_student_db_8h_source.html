@@ -106,80 +106,94 @@ $(document).ready(function(){initNavTree('_student_db_8h_source.html',''); initR
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="_weekly_course_8h.html">WeeklyCourse.h</a>&quot;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_student_db.html">   22</a></span><span class="keyword">class </span><a class="code hl_class" href="class_student_db.html">StudentDb</a></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    std::map&lt;int, Student&gt; m_students;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    std::map&lt;int, std::unique_ptr&lt;const Course&gt;&gt; m_courses;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> performStudentUpdate(<a class="code hl_class" href="class_student.html">Student</a>&amp; student);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> updateFirstName(<a class="code hl_class" href="class_student.html">Student</a>&amp; student);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;Poco/Net/SocketAddress.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;Poco/Net/StreamSocket.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;Poco/Net/SocketStream.h&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;Poco/JSON/JSON.h&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;Poco/JSON/Parser.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;Poco/Dynamic/Var.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_student_db.html">   29</a></span><span class="keyword">class </span><a class="code hl_class" href="class_student_db.html">StudentDb</a></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    std::map&lt;int, Student&gt; m_students;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    std::map&lt;int, std::unique_ptr&lt;const Course&gt;&gt; m_courses;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> performStudentUpdate(<a class="code hl_class" href="class_student.html">Student</a>&amp; student);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> updateLastName(<a class="code hl_class" href="class_student.html">Student</a>&amp; student);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> updateFirstName(<a class="code hl_class" href="class_student.html">Student</a>&amp; student);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> updateDateOfBirth(<a class="code hl_class" href="class_student.html">Student</a>&amp; student);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> updateLastName(<a class="code hl_class" href="class_student.html">Student</a>&amp; student);</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">void</span> updateAddress(<a class="code hl_class" href="class_student.html">Student</a>&amp; student);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">void</span> updateDateOfBirth(<a class="code hl_class" href="class_student.html">Student</a>&amp; student);</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span> performEnrollmentUpdate(<a class="code hl_class" href="class_student.html">Student</a>&amp; student, <span class="keyword">const</span> std::string&amp; courseKey);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">void</span> processCoursesData(std::istream &amp;in);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordtype">void</span> processStudentsData(std::istream &amp;in);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">void</span> processEnrollmentData(std::istream &amp;in);</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <a class="code hl_function" href="class_student_db.html#ad1f774b2bdff8a79af838c988c4f2ec5">StudentDb</a>();</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keyword">const</span> std::map&lt;int, Student&gt;&amp; <a class="code hl_function" href="class_student_db.html#aefab809fd4f2f2873087807519a1eef3">getStudents</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> updateAddress(<a class="code hl_class" href="class_student.html">Student</a>&amp; student);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span> performEnrollmentUpdate(<a class="code hl_class" href="class_student.html">Student</a>&amp; student, <span class="keyword">const</span> std::string&amp; courseKey);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">void</span> processCoursesData(std::istream &amp;in);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span> processStudentsData(std::istream &amp;in);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordtype">void</span> processEnrollmentData(std::istream &amp;in);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <a class="code hl_function" href="class_student_db.html#ad1f774b2bdff8a79af838c988c4f2ec5">StudentDb</a>();</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keyword">const</span> std::map&lt;int, std::unique_ptr&lt;const Course&gt;&gt;&amp; <a class="code hl_function" href="class_student_db.html#af82b98870c964084ee703b6dc4d296e5">getCourses</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keyword">const</span> std::map&lt;int, Student&gt;&amp; <a class="code hl_function" href="class_student_db.html#aefab809fd4f2f2873087807519a1eef3">getStudents</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#aa55b52c9326a5a9b0f82dbde2daa3a28">addNewCourse</a>();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keyword">const</span> std::map&lt;int, std::unique_ptr&lt;const Course&gt;&gt;&amp; <a class="code hl_function" href="class_student_db.html#af82b98870c964084ee703b6dc4d296e5">getCourses</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#aa19418d775fc7860608d1390861675da">listCourses</a>();</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a21cf665a475b942c824163fb1ef77007">addNewStudent</a>();</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#abdd72a8cee3d6c6caba660f8a3e011a8">addEnrollment</a>();</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a31de5f464568d14a7d771ea071c97153">printStudent</a>();</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#aa55b52c9326a5a9b0f82dbde2daa3a28">addNewCourse</a>();</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#aa19418d775fc7860608d1390861675da">listCourses</a>();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a21cf665a475b942c824163fb1ef77007">addNewStudent</a>();</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#abdd72a8cee3d6c6caba660f8a3e011a8">addEnrollment</a>();</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a9fa43034484ac234d6d4a469c0a6252e">searchStudent</a>();</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#ab3a1aaad757e0f919e2ff64b7c5f8da9">updateStudent</a>();</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a4bfe87f6403641099ba21e0adafd576a">printAllStudentsDb</a>(std::ostream &amp;out) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a7366d32be275c78364ea142df2aba49b">printAllCoursesDb</a>(std::ostream &amp;out) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a1dc17a09737db5367017c72cd66f015d">printAllEnrollments</a>(std::ostream &amp;out) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a392a82331cda387b8a8c657934f76e4f">write</a>(std::ostream&amp; out) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a6f1b2a7ce4be5f0d1c01d896d79b6dcb">read</a>(std::istream&amp; in);</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>};</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a31de5f464568d14a7d771ea071c97153">printStudent</a>();</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a9fa43034484ac234d6d4a469c0a6252e">searchStudent</a>();</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#ab3a1aaad757e0f919e2ff64b7c5f8da9">updateStudent</a>();</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a4bfe87f6403641099ba21e0adafd576a">printAllStudentsDb</a>(std::ostream &amp;out) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a7366d32be275c78364ea142df2aba49b">printAllCoursesDb</a>(std::ostream &amp;out) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a1dc17a09737db5367017c72cd66f015d">printAllEnrollments</a>(std::ostream &amp;out) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a392a82331cda387b8a8c657934f76e4f">write</a>(std::ostream&amp; out) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a6f1b2a7ce4be5f0d1c01d896d79b6dcb">read</a>(std::istream&amp; in);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a842252fc62b7b186bdf3e5b85b9fa113">readFromServer</a>();</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_student_db.html#a53532283066d02f372d8eca62baed0ed">parsingJSONData</a>(std::string&amp; JSONData);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>};</div>
 </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="preprocessor">#endif </span><span class="comment">/* STUDENTDB_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="preprocessor">#endif </span><span class="comment">/* STUDENTDB_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="a_block_course_8h_html"><div class="ttname"><a href="_block_course_8h.html">BlockCourse.h</a></div></div>
 <div class="ttc" id="a_student_8h_html"><div class="ttname"><a href="_student_8h.html">Student.h</a></div></div>
 <div class="ttc" id="a_weekly_course_8h_html"><div class="ttname"><a href="_weekly_course_8h.html">WeeklyCourse.h</a></div></div>
-<div class="ttc" id="aclass_student_db_html"><div class="ttname"><a href="class_student_db.html">StudentDb</a></div><div class="ttdoc">Represents a database of students and courses with various operations.</div><div class="ttdef"><b>Definition</b> StudentDb.h:23</div></div>
+<div class="ttc" id="aclass_student_db_html"><div class="ttname"><a href="class_student_db.html">StudentDb</a></div><div class="ttdoc">Represents a database of students and courses with various operations.</div><div class="ttdef"><b>Definition</b> StudentDb.h:30</div></div>
 <div class="ttc" id="aclass_student_db_html_a1dc17a09737db5367017c72cd66f015d"><div class="ttname"><a href="class_student_db.html#a1dc17a09737db5367017c72cd66f015d">StudentDb::printAllEnrollments</a></div><div class="ttdeci">void printAllEnrollments(std::ostream &amp;out) const</div><div class="ttdoc">Print all Enrollments of the Student.</div><div class="ttdef"><b>Definition</b> StudentDb.cpp:564</div></div>
 <div class="ttc" id="aclass_student_db_html_a21cf665a475b942c824163fb1ef77007"><div class="ttname"><a href="class_student_db.html#a21cf665a475b942c824163fb1ef77007">StudentDb::addNewStudent</a></div><div class="ttdeci">void addNewStudent()</div><div class="ttdoc">Add a new student to the database.</div><div class="ttdef"><b>Definition</b> StudentDb.cpp:111</div></div>
 <div class="ttc" id="aclass_student_db_html_a31de5f464568d14a7d771ea071c97153"><div class="ttname"><a href="class_student_db.html#a31de5f464568d14a7d771ea071c97153">StudentDb::printStudent</a></div><div class="ttdeci">void printStudent()</div><div class="ttdoc">Print student details.</div><div class="ttdef"><b>Definition</b> StudentDb.cpp:201</div></div>
 <div class="ttc" id="aclass_student_db_html_a392a82331cda387b8a8c657934f76e4f"><div class="ttname"><a href="class_student_db.html#a392a82331cda387b8a8c657934f76e4f">StudentDb::write</a></div><div class="ttdeci">void write(std::ostream &amp;out) const</div><div class="ttdoc">Write all student and course data to the provided output stream.</div><div class="ttdef"><b>Definition</b> StudentDb.cpp:592</div></div>
 <div class="ttc" id="aclass_student_db_html_a4bfe87f6403641099ba21e0adafd576a"><div class="ttname"><a href="class_student_db.html#a4bfe87f6403641099ba21e0adafd576a">StudentDb::printAllStudentsDb</a></div><div class="ttdeci">void printAllStudentsDb(std::ostream &amp;out) const</div><div class="ttdoc">Print all Students in the entire database.</div><div class="ttdef"><b>Definition</b> StudentDb.cpp:540</div></div>
+<div class="ttc" id="aclass_student_db_html_a53532283066d02f372d8eca62baed0ed"><div class="ttname"><a href="class_student_db.html#a53532283066d02f372d8eca62baed0ed">StudentDb::parsingJSONData</a></div><div class="ttdeci">void parsingJSONData(std::string &amp;JSONData)</div><div class="ttdoc">Parses JSON data.</div><div class="ttdef"><b>Definition</b> StudentDb.cpp:864</div></div>
 <div class="ttc" id="aclass_student_db_html_a6f1b2a7ce4be5f0d1c01d896d79b6dcb"><div class="ttname"><a href="class_student_db.html#a6f1b2a7ce4be5f0d1c01d896d79b6dcb">StudentDb::read</a></div><div class="ttdeci">void read(std::istream &amp;in)</div><div class="ttdoc">Reads data from the input stream.</div><div class="ttdef"><b>Definition</b> StudentDb.cpp:599</div></div>
 <div class="ttc" id="aclass_student_db_html_a7366d32be275c78364ea142df2aba49b"><div class="ttname"><a href="class_student_db.html#a7366d32be275c78364ea142df2aba49b">StudentDb::printAllCoursesDb</a></div><div class="ttdeci">void printAllCoursesDb(std::ostream &amp;out) const</div><div class="ttdoc">Print all Courses in the entire database.</div><div class="ttdef"><b>Definition</b> StudentDb.cpp:552</div></div>
+<div class="ttc" id="aclass_student_db_html_a842252fc62b7b186bdf3e5b85b9fa113"><div class="ttname"><a href="class_student_db.html#a842252fc62b7b186bdf3e5b85b9fa113">StudentDb::readFromServer</a></div><div class="ttdeci">void readFromServer()</div><div class="ttdoc">Reads data from the server.</div><div class="ttdef"><b>Definition</b> StudentDb.cpp:811</div></div>
 <div class="ttc" id="aclass_student_db_html_a9fa43034484ac234d6d4a469c0a6252e"><div class="ttname"><a href="class_student_db.html#a9fa43034484ac234d6d4a469c0a6252e">StudentDb::searchStudent</a></div><div class="ttdeci">void searchStudent()</div><div class="ttdoc">Search for students.</div><div class="ttdef"><b>Definition</b> StudentDb.cpp:235</div></div>
 <div class="ttc" id="aclass_student_db_html_aa19418d775fc7860608d1390861675da"><div class="ttname"><a href="class_student_db.html#aa19418d775fc7860608d1390861675da">StudentDb::listCourses</a></div><div class="ttdeci">void listCourses()</div><div class="ttdoc">List all courses in the database with their data.</div><div class="ttdef"><b>Definition</b> StudentDb.cpp:99</div></div>
 <div class="ttc" id="aclass_student_db_html_aa55b52c9326a5a9b0f82dbde2daa3a28"><div class="ttname"><a href="class_student_db.html#aa55b52c9326a5a9b0f82dbde2daa3a28">StudentDb::addNewCourse</a></div><div class="ttdeci">void addNewCourse()</div><div class="ttdoc">Add a new course to the database.</div><div class="ttdef"><b>Definition</b> StudentDb.cpp:28</div></div>

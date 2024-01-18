@@ -50,6 +50,7 @@ int main ()
         -processCoursesData(std::istream& in) : void
         -processEnrollmentData(std::istream& in) : void
         -processStudentsData(std::istream& in) : void
+		-parsingJSONData(std::string& JSONData) : void
 
 		+StudentDb()
 		+getStudents() : std::map<int , Student> {query}
@@ -66,6 +67,7 @@ int main ()
         +printAllEnrollments(std::ostream& out) : void {query}
         +write(std::ostream& out) : void {query}
         +read(std::istream& in) : void
+        +readFromServer() : void
 	}
 
 	class Student

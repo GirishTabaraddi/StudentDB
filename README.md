@@ -58,7 +58,7 @@ Add commands for reading and writing to the SimpleUI. The command queries the us
 
 NOTE :  This exercise requires a lot of research that leads to a comparatively small number of lines of code. The points that you get for this exercise will therefore be based mostly on your ability to answer questions during the review regarding your code (which must, of course, be working) and the Poco classes used. Of course, your are free to search the internet for samples about how to use the Poco classes. If you use code from such samples (other than from the Poco documentation), provide the link to the source as comment in your code.
 
-Host "mnl.de" provides on port 4242 a service for obtaining sample user data. It’s usage is basically similar to the usage of the time service shown in the lecture, with the exception that commands have to be sent in order to receive data.
+Host "www.hhs.users.h-da.cloud" provides on port 4242 a service for obtaining sample user data. It’s usage is basically similar to the usage of the time service shown in the lecture, with the exception that commands have to be sent in order to receive data.
 
 The server understands two commands generate and quit. Here’s a sample session with the data sent (→) and received by the client (←).
 
