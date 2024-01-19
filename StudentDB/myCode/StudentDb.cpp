@@ -824,38 +824,52 @@ void StudentDb::readFromServer()
 	while(loopIdx < stoi(noOfUserDate))
 	{
 		//! Create a stream socket
-		Poco::Net::StreamSocket socket(socketAddress);
+		Poco::Net::StreamSocket socket;
 
-        //! Create a SocketStream using the socket
-        Poco::Net::SocketStream stream(socket);
+		try
+		{
+			socket.connect(socketAddress, Poco::Timespan(5, 0));
 
-        stream << "generate";
-        stream.flush();
+	        //! Create a SocketStream using the socket
+	        Poco::Net::SocketStream stream(socket);
 
-        //! Calling shutdownSend() indicates that you will no longer be sending data on the socket.
-        socket.shutdownSend();
+	        stream << "generate";
+	        stream.flush();
 
-        vector<string> serverData;
+	        //! Calling shutdownSend() indicates that you will no longer be sending data on the socket.
+	        socket.shutdownSend();
 
-        while(getline(stream, readLine))
-        {
-        	serverData.push_back(readLine);
-        }
+	        vector<string> serverData;
 
-        //! Calling shutdownReceive() indicates that you will no longer be receiving data on the socket.
-        socket.shutdownReceive();
+	        while(getline(stream, readLine))
+	        {
+	        	serverData.push_back(readLine);
+	        }
 
-        stream << "quit";
-        stream.flush();
+	        //! Calling shutdownReceive() indicates that you will no longer be receiving data on the socket.
+	        socket.shutdownReceive();
 
-        //! the socket is no longer in use
-        socket.close();
+	        stream << "quit";
+	        stream.flush();
 
-        cout << serverData.at(0) << endl; // this prints 100 Generating
+	        //! the socket is no longer in use
+	        socket.close();
 
-//        string JSONData = serverData.at(1); //! This line contains the JSON Data required.
+	        if(serverData.empty() == false)
+	        {
+		        cout << serverData.at(0) << endl; // this prints 100 Generating
 
-        parsingJSONData(serverData.at(1));	//! This line contains the JSON Data required.
+		        cout << loopIdx+1 << " User Data\n" << endl;
+
+		        parsingJSONData(serverData.at(1));	//! This line contains the JSON Data required.
+
+		        cout << serverData.at(2) << endl;
+	        }
+		}
+		catch(const Poco::Exception& e)
+		{
+			cerr << "Exception caught: " << e.displayText() << endl;
+		}
 
 		loopIdx++;
 	}
@@ -903,12 +917,3 @@ void StudentDb::parsingJSONData(std::string &JSONData)
 
     this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
 }
-//		try
-//		{
-//			socket.connect(socketAddress);
-//		}
-//		catch(Poco::Exception& e)
-//		{
-//			cerr << "Failed to connect to: " << socketAddress.toString() << endl;
-//			return;
-//		}
