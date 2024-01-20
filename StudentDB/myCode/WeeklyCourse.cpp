@@ -54,7 +54,7 @@ void WeeklyCourse::print() const
         << Course::printCourse()
         << ";" << to_string(this->m_daysOfWeek)
         << ";" << pocoTimeToStringFromatter(this->m_startTime)
-        << ";" << pocoTimeToStringFromatter(this->m_endTime);
+        << ";" << pocoTimeToStringFromatter(this->m_endTime) << endl;
 }
 
 

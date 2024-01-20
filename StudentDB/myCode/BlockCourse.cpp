@@ -61,7 +61,7 @@ void BlockCourse::print() const
         << ";" << pocoDateToStringFromatter(this->m_startDate)
         << ";" << pocoDateToStringFromatter(this->m_endDate)
         << ";" << pocoTimeToStringFromatter(this->m_startTime)
-        << ";" << pocoTimeToStringFromatter(this->m_endTime);
+        << ";" << pocoTimeToStringFromatter(this->m_endTime) << endl;
 }
 
 

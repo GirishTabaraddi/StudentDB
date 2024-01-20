@@ -150,7 +150,7 @@ public:
      * @param semester Semester for the enrollment.
      * @param courseId Pointer to the Course object.
      */
-    void addEnrollment(const std::string& semester, Course* courseId);
+    void addEnrollment(const std::string& semester, const Course* courseId);
 
     /*!
      * @brief Update the student details.

@@ -91,7 +91,7 @@ int main ()
 		+getEnrollments() : std::vector<Enrollment>& {query}
 		+getAddress() : std::shared_ptr<Address> {query}
 		+printStudent() : std::string {query}
-		+addEnrollment(const std::string& semester, Course* courseId) : void
+		+addEnrollment(const std::string& semester, const Course* courseId) : void
 		+updateStudent(std::string firstName, std::string lastName,\n Poco::Data::Date dateOfBirth) : void
 		+updateAddress(std::shared_ptr<Address> address) : void
 		+deleteEnrollment(unsigned int courseKey) : void

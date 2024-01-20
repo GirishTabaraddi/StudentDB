@@ -102,7 +102,7 @@ void StudentDb::listCourses()
 
 	for(const auto& courses: this->m_courses)
 	{
-		//		courses.second.get()->print();
+//		courses.second.get()->print();
 		ostream& out = cout;
 		courses.second.get()->write(out);
 	}
@@ -181,9 +181,9 @@ void StudentDb::addEnrollment()
 
 		if(findCourseIdItr != this->m_courses.end())
 		{
-			Course* course = const_cast<Course*>(findCourseIdItr->second.get());
+			const Course& courseref = *(findCourseIdItr->second);
 
-			matrikelNumberItr->second.addEnrollment(semester, course);
+			matrikelNumberItr->second.addEnrollment(semester, &courseref);
 		}
 		else
 		{
@@ -555,9 +555,7 @@ void StudentDb::printAllCoursesDb(std::ostream &out) const
 
 	for(const auto& coursesPair: this->m_courses)
 	{
-		const Course* course = coursesPair.second.get();
-
-		course->write(out);
+		coursesPair.second.get()->write(out);
 	}
 }
 
@@ -577,8 +575,6 @@ void StudentDb::printAllEnrollments(std::ostream &out) const
 
 	for(auto& itr: StudentEnrollments)
 	{
-		//		auto& count = itr.second;
-
 		out << itr.second.size() << endl;
 
 		for(const Enrollment& enrItr: itr.second)
@@ -770,7 +766,7 @@ void StudentDb::processEnrollmentData(std::istream &in)
 
 			if(courseItr != this->m_courses.end())
 			{
-				Course* course = const_cast<Course*>(courseItr->second.get());
+				const Course& courseref =  *(courseItr->second);
 
 				//! Check if the student is already enrolled in the specified course (using lambda function).
 				//! If enrolled, the iterator 'enrollmentItr' points to the existing enrollment;
@@ -786,7 +782,7 @@ void StudentDb::processEnrollmentData(std::istream &in)
 				//! indicating that no existing enrollment for the specified courseKey was found.
 				if(enrollmentItr == studentItr->second.getEnrollments().end())
 				{
-					studentItr->second.addEnrollment(semester, course);
+					studentItr->second.addEnrollment(semester, &courseref);
 					studentItr->second.updateGrade(grade, courseKey);
 				}
 				else

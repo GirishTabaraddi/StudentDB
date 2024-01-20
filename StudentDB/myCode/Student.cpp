@@ -89,7 +89,7 @@ std::string Student::printStudent() const
 //	cout << endl;
 }
 
-void Student::addEnrollment(const std::string& semester, Course *newCourseId)
+void Student::addEnrollment(const std::string& semester, const Course *newCourseId)
 {
 	//	for(Enrollment& enrollments: this->m_enrollments)
 	//	{
