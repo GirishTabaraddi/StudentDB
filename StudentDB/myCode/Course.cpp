@@ -9,8 +9,6 @@
 
 #include "Course.h"
 
-#include <sstream>
-
 using namespace std;
 
 Course::Course(unsigned int courseKey, std::string title, std::string major,
@@ -74,17 +72,6 @@ std::string Course::printCourse() const
     				+ ";" + creditpoints;
 
     return out;
-
-//	for(const auto& x : this->m_majorById)
-//	{
-//		string major = x.second;
-//
-//		cout << "Course Title: " << gettitle() << endl
-//			 << "Course Key: " << getcourseKey() << endl
-//			 << "Course Major ID: " << getmajor() << endl
-//			 << "Course creditPoints: " << getcreditPoints() << endl
-//			 << "Course Major: " << major << endl;
-//	}
 }
 
 void Course::write(std::ostream &out) const

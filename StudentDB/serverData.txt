@@ -1,11 +1,7 @@
 0
-9
-100000;emilie;nielsen;10.10.0123;8768 fjordvej;23725;aarhus;danmark
-100001;milagros;medina;05.03.0040;9377 avenida del planetario;17629;san sebastián;islas baleares
-100002;maxim;boerman;24.04.0104;1147 twijnstraat aan de werf;11798;emmen;flevoland
-100003;gabriel;scott;21.02.0118;1753 alfred st;2934;fountainbleu;alberta
-100004;keira;li;28.12.0068;7731 bealey avenue;27282;upper hutt;canterbury
-100005;siiri;joki;10.10.0034;7882 korkeavuorenkatu;11020;suomussalmi;finland proper
-100006;philippe;ouellet;18.09.0073;9435 west ave;20916;clinton;ontario
-100007;hilletje;toepoel;25.06.0105;8869 zadelstraat;17941;leerdam;flevoland
-100008;melike;abadan;26.02.0059;1002 abanoz sk;23694;kırklareli;kütahya
+5
+100000;maël;moreau;24.05.1999;3266 rue des ecrivains;8655;la conversion;jura
+100001;kaya;hakyemez;05.07.1978;2693 mevlana cd;14448;siirt;karabük
+100002;enrique;matthews;17.06.2007;8436 mockingbird hill;29807;pueblo;florida
+100003;eva;blum;29.09.1995;4954 gartenweg;6890;köln;nordrhein-westfalen
+100004;daline;da conceição;23.11.1940;4568 rua primeiro de maio ;27437;maricá;amazonas

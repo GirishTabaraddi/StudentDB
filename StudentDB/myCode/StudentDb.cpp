@@ -824,91 +824,125 @@ void StudentDb::readFromServer()
 	while(loopIdx < stoi(noOfUserDate))
 	{
 		//! Create a stream socket
-		Poco::Net::StreamSocket socket(socketAddress);
+		Poco::Net::StreamSocket socket;
 
-        //! Create a SocketStream using the socket
-        Poco::Net::SocketStream stream(socket);
+		try
+		{
+			socket.connect(socketAddress, Poco::Timespan(5, 0));
 
-        stream << "generate";
-        stream.flush();
+	        //! Create a SocketStream using the socket
+	        Poco::Net::SocketStream stream(socket);
 
-        //! Calling shutdownSend() indicates that you will no longer be sending data on the socket.
-        socket.shutdownSend();
+	        stream << "generate";
+	        stream.flush();
 
-        vector<string> serverData;
+	        //! Calling shutdownSend() indicates that you will no longer be sending data on the socket.
+	        socket.shutdownSend();
 
-        while(getline(stream, readLine))
-        {
-        	serverData.push_back(readLine);
-        }
+	        vector<string> serverData;
 
-        //! Calling shutdownReceive() indicates that you will no longer be receiving data on the socket.
-        socket.shutdownReceive();
+	        while(getline(stream, readLine))
+	        {
+	        	serverData.push_back(readLine);
+	        }
 
-        stream << "quit";
-        stream.flush();
+	        //! Calling shutdownReceive() indicates that you will no longer be receiving data on the socket.
+	        socket.shutdownReceive();
 
-        //! the socket is no longer in use
-        socket.close();
+	        stream << "quit";
+	        stream.flush();
 
-        cout << serverData.at(0) << endl; // this prints 100 Generating
+	        //! the socket is no longer in use
+	        socket.close();
 
-//        string JSONData = serverData.at(1); //! This line contains the JSON Data required.
+	        if(serverData.empty() == false)
+	        {
+		        cout << serverData.at(0) << endl; // this prints 100 Generating
 
-        parsingJSONData(serverData.at(1));	//! This line contains the JSON Data required.
+		        cout << loopIdx+1 << " User Data\n" << endl;
+
+		        parsingJSONData(serverData.at(1));	//! This line contains the JSON Data required.
+
+		        cout << serverData.at(2) << endl;
+	        }
+		}
+		catch(const Poco::Exception& e)
+		{
+			cerr << "Exception caught: " << e.displayText() << endl;
+		}
 
 		loopIdx++;
 	}
 }
 
+//void StudentDb::parsingJSONData(std::string &JSONData)
+//{
+//    Poco::JSON::Parser jsonParser;
+//
+//    Poco::Dynamic::Var parsedJSONData = jsonParser.parse(JSONData);
+//
+//    Poco::Dynamic::Var parsedJSONDataResult = jsonParser.result();
+//
+//    //! Get the JSON Object
+//    Poco::JSON::Object::Ptr jsonObject = parsedJSONDataResult.extract<Poco::JSON::Object::Ptr>();
+//
+//    string firstName = jsonObject->get("name")
+//    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("firstName");
+//
+//    string lastName = jsonObject->get("name")
+//    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("lastName");
+//
+//    int year = jsonObject->get("dateOfBirth")
+//    				.extract<Poco::JSON::Object::Ptr>()->getValue<int>("year")+1900;
+//    int month = jsonObject->get("dateOfBirth")
+//            				.extract<Poco::JSON::Object::Ptr>()->getValue<int>("month")+1;
+//    int day = jsonObject->get("dateOfBirth")
+//            				.extract<Poco::JSON::Object::Ptr>()->getValue<int>("date");
+//
+//    Poco::Data::Date dateOfbirth(year, month, day);
+//
+//    string streetName = jsonObject->get("location")
+//    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("street");
+//    string postalCode = jsonObject->get("location")
+//    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("postCode");
+//    string cityName = jsonObject->get("location")
+//    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("city");
+//    string additionalInfo = jsonObject->get("location")
+//    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("state");
+//
+//    shared_ptr<Address> address =
+//    		make_shared<Address>(streetName, stoi(postalCode), cityName, additionalInfo);
+//
+//    Student student = Student(firstName, lastName, dateOfbirth, address);
+//
+//    this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
+//}
+
 void StudentDb::parsingJSONData(std::string &JSONData)
 {
-    Poco::JSON::Parser jsonParser;
+	Poco::JSON::Parser jsonParser;
 
-    Poco::Dynamic::Var parsedJSONData = jsonParser.parse(JSONData);
+	Poco::Dynamic::Var parsedJSONData = jsonParser.parse(JSONData);
 
-    Poco::Dynamic::Var parsedJSONDataResult = jsonParser.result();
+	Poco::JSON::Object::Ptr jsonObjectPtr = parsedJSONData.extract<Poco::JSON::Object::Ptr>();
 
-    //! Get the JSON Object
-    Poco::JSON::Object::Ptr jsonObject = parsedJSONDataResult.extract<Poco::JSON::Object::Ptr>();
+	Poco::DynamicStruct JSONDataStruct = *jsonObjectPtr;
 
-    string firstName = jsonObject->get("name")
-    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("firstName");
+	string firstName = Poco::UTF8::unescape(JSONDataStruct["name"]["firstName"].toString());
+	string lastName = Poco::UTF8::unescape(JSONDataStruct["name"]["lastName"].toString());
+	int year = JSONDataStruct["dateOfBirth"]["year"].convert<int>()+1900;
+	int month = JSONDataStruct["dateOfBirth"]["month"].convert<int>()+1;
+	int day = JSONDataStruct["dateOfBirth"]["date"].convert<int>();
 
-    string lastName = jsonObject->get("name")
-    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("lastName");
+	string streetName = Poco::UTF8::unescape(JSONDataStruct["location"]["street"].toString());
+	int postalCode = JSONDataStruct["location"]["postCode"].convert<int>();
+	string cityName = Poco::UTF8::unescape(JSONDataStruct["location"]["city"].toString());
+	string additionalInfo = Poco::UTF8::unescape(JSONDataStruct["location"]["state"].toString());
 
-    int year = jsonObject->get("dateOfBirth")
-    				.extract<Poco::JSON::Object::Ptr>()->getValue<int>("year");
-    int month = jsonObject->get("dateOfBirth")
-            				.extract<Poco::JSON::Object::Ptr>()->getValue<int>("month")+1;
-    int day = jsonObject->get("dateOfBirth")
-            				.extract<Poco::JSON::Object::Ptr>()->getValue<int>("date");
+	shared_ptr<Address> address =
+			make_shared<Address>(streetName, postalCode, cityName, additionalInfo);
 
-    Poco::Data::Date dateOfbirth(year, month, day);
+	Student student = Student(firstName, lastName, Poco::Data::Date(year, month, day), address);
 
-    string streetName = jsonObject->get("location")
-    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("street");
-    string postalCode = jsonObject->get("location")
-    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("postCode");
-    string cityName = jsonObject->get("location")
-    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("city");
-    string additionalInfo = jsonObject->get("location")
-    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("state");
-
-    shared_ptr<Address> address =
-    		make_shared<Address>(streetName, stoi(postalCode), cityName, additionalInfo);
-
-    Student student = Student(firstName, lastName, dateOfbirth, address);
-
-    this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
+	this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
 }
-//		try
-//		{
-//			socket.connect(socketAddress);
-//		}
-//		catch(Poco::Exception& e)
-//		{
-//			cerr << "Failed to connect to: " << socketAddress.toString() << endl;
-//			return;
-//		}

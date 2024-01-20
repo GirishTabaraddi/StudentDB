@@ -10,13 +10,18 @@
 #ifndef COURSE_H_
 #define COURSE_H_
 
-#include <iostream>
-#include <string>
 #include <map>
 #include <iomanip>
 
 #include "formatterfile.h"
 
+/*!
+ * @class Course
+ * @brief Represents a course with relevant information such as title, major, and credit points.
+ *
+ * This class encapsulates the properties of a course, including its title, major, course key, and credit points.
+ * It provides methods to access and manipulate these attributes.
+ */
 class Course
 {
 private:

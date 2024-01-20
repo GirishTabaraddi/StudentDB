@@ -95,6 +95,11 @@ $(document).ready(function(){initNavTree('class_course.html',''); initResizable(
   <div class="headertitle"><div class="title">Course Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a course with relevant information such as title, major, and credit points.  
+ <a href="class_course.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_course_8h_source.html">Course.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Course:</div>
 <div class="dyncontent">
@@ -109,11 +114,11 @@ Inheritance diagram for Course:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a275539ab3ab7c035b0b80f111ff7b039" id="r_a275539ab3ab7c035b0b80f111ff7b039"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#a275539ab3ab7c035b0b80f111ff7b039">Course</a> (unsigned int courseKey, std::string title, std::string major, float creditPoints)</td></tr>
-<tr class="memdesc:a275539ab3ab7c035b0b80f111ff7b039"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameterized constructor for initializing a <a class="el" href="class_course.html">Course</a> object.  <br /></td></tr>
+<tr class="memdesc:a275539ab3ab7c035b0b80f111ff7b039"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameterized constructor for initializing a <a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a> object.  <br /></td></tr>
 <tr class="separator:a275539ab3ab7c035b0b80f111ff7b039"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9038f2e129526920037dda9e76d69d0" id="r_aa9038f2e129526920037dda9e76d69d0"><td class="memItemLeft" align="right" valign="top"><a id="aa9038f2e129526920037dda9e76d69d0" name="aa9038f2e129526920037dda9e76d69d0"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td></tr>
-<tr class="memdesc:aa9038f2e129526920037dda9e76d69d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of class <a class="el" href="class_course.html">Course</a>. <br /></td></tr>
+<tr class="memdesc:aa9038f2e129526920037dda9e76d69d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of class <a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a>. <br /></td></tr>
 <tr class="separator:aa9038f2e129526920037dda9e76d69d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5dc659384d48722761803efdcf8d499b" id="r_a5dc659384d48722761803efdcf8d499b"><td class="memItemLeft" align="right" valign="top">const std::map&lt; unsigned char, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#a5dc659384d48722761803efdcf8d499b">getmajorById</a> () const</td></tr>
 <tr class="memdesc:a5dc659384d48722761803efdcf8d499b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method to obtain the map of major IDs.  <br /></td></tr>
@@ -131,16 +136,19 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
 <tr class="memdesc:aaf9e0e94a3e63ae1822831e1515133f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method to obtain the credit points of the course.  <br /></td></tr>
 <tr class="separator:aaf9e0e94a3e63ae1822831e1515133f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e4b12abf486e9c5bd741a750d86713d" id="r_a1e4b12abf486e9c5bd741a750d86713d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#a1e4b12abf486e9c5bd741a750d86713d">printCourse</a> () const</td></tr>
-<tr class="memdesc:a1e4b12abf486e9c5bd741a750d86713d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a string representation of the <a class="el" href="class_course.html">Course</a>.  <br /></td></tr>
+<tr class="memdesc:a1e4b12abf486e9c5bd741a750d86713d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a string representation of the <a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a>.  <br /></td></tr>
 <tr class="separator:a1e4b12abf486e9c5bd741a750d86713d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4c864145d3392698d9295215bbec536" id="r_ad4c864145d3392698d9295215bbec536"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#ad4c864145d3392698d9295215bbec536">print</a> () const =0</td></tr>
-<tr class="memdesc:ad4c864145d3392698d9295215bbec536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints information about the <a class="el" href="class_course.html">Course</a>.  <br /></td></tr>
+<tr class="memdesc:ad4c864145d3392698d9295215bbec536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints information about the <a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a>.  <br /></td></tr>
 <tr class="separator:ad4c864145d3392698d9295215bbec536"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3512f59485143eb2bfac02a26bb7f61" id="r_ae3512f59485143eb2bfac02a26bb7f61"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#ae3512f59485143eb2bfac02a26bb7f61">write</a> (std::ostream &amp;out) const</td></tr>
 <tr class="memdesc:ae3512f59485143eb2bfac02a26bb7f61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the object's data to the provided output stream.  <br /></td></tr>
 <tr class="separator:ae3512f59485143eb2bfac02a26bb7f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a course with relevant information such as title, major, and credit points. </p>
+<p>This class encapsulates the properties of a course, including its title, major, course key, and credit points. It provides methods to access and manipulate these attributes. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a275539ab3ab7c035b0b80f111ff7b039" name="a275539ab3ab7c035b0b80f111ff7b039"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a275539ab3ab7c035b0b80f111ff7b039">&#9670;&#160;</a></span>Course()</h2>
 
@@ -179,8 +187,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
       </table>
 </div><div class="memdoc">
 
-<p>Parameterized constructor for initializing a <a class="el" href="class_course.html">Course</a> object. </p>
-<p>This constructor takes the necessary parameters to initialize a <a class="el" href="class_course.html">Course</a> object. It sets the course key, title, major, and credit points using the provided values. Additionally, it calls setMajor and setCreditPoints methods to set the major and credit points based on the provided major string and course key.</p>
+<p>Parameterized constructor for initializing a <a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a> object. </p>
+<p>This constructor takes the necessary parameters to initialize a <a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a> object. It sets the course key, title, major, and credit points using the provided values. Additionally, it calls setMajor and setCreditPoints methods to set the major and credit points based on the provided major string and course key.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">courseKey</td><td>- The unique identifier for the course. </td></tr>
@@ -322,8 +330,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
 </table>
 </div><div class="memdoc">
 
-<p>Prints information about the <a class="el" href="class_course.html">Course</a>. </p>
-<p>This function prints general information about the <a class="el" href="class_course.html">Course</a>, such as course key, title, major, and credit points. </p>
+<p>Prints information about the <a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a>. </p>
+<p>This function prints general information about the <a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a>, such as course key, title, major, and credit points. </p>
 
 <p>Implemented in <a class="el" href="class_block_course.html#ab1cb338152cfb8e74d12cd72a09ffc7e">BlockCourse</a>, and <a class="el" href="class_weekly_course.html#abfeeb25c0329b76bf86dcb31062ed6a1">WeeklyCourse</a>.</p>
 
@@ -344,9 +352,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
       </table>
 </div><div class="memdoc">
 
-<p>Generates a string representation of the <a class="el" href="class_course.html">Course</a>. </p>
-<p>This method creates and returns a string representation of the <a class="el" href="class_course.html">Course</a>, including its course key, title, major, and credit points.</p>
-<dl class="section return"><dt>Returns</dt><dd>A string containing information about the <a class="el" href="class_course.html">Course</a>. </dd></dl>
+<p>Generates a string representation of the <a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a>. </p>
+<p>This method creates and returns a string representation of the <a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a>, including its course key, title, major, and credit points.</p>
+<dl class="section return"><dt>Returns</dt><dd>A string containing information about the <a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a>. </dd></dl>
 
 </div>
 </div>

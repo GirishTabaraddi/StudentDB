@@ -101,66 +101,64 @@ $(document).ready(function(){initNavTree('_course_8h_source.html',''); initResiz
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#ifndef COURSE_H_</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define COURSE_H_</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;map&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;iomanip&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;iomanip&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="formatterfile_8h.html">formatterfile.h</a>&quot;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="formatterfile_8h.html">formatterfile.h</a>&quot;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_course.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="class_course.html">Course</a></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    std::map&lt;unsigned char, std::string&gt; m_majorById;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_courseKey;</div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_course.html">   25</a></span><span class="keyword">class </span><a class="code hl_class" href="class_course.html">Course</a></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    std::map&lt;unsigned char, std::string&gt; m_majorById;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    std::string m_title;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_courseKey;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> m_major;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::string m_title;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">float</span> m_creditPoints;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> m_major;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> setmajorById(std::string major);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span> setMajor(std::string major);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <a class="code hl_class" href="class_course.html">Course</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> courseKey, std::string title, std::string major, <span class="keywordtype">float</span> creditPoints);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_course.html#aa9038f2e129526920037dda9e76d69d0">~Course</a>();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">float</span> m_creditPoints;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> setmajorById(std::string major);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span> setMajor(std::string major);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_class" href="class_course.html">Course</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> courseKey, std::string title, std::string major, <span class="keywordtype">float</span> creditPoints);</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">const</span> std::map&lt;unsigned char, std::string&gt; <a class="code hl_function" href="class_course.html#a5dc659384d48722761803efdcf8d499b">getmajorById</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="class_course.html#a31489de2e51a1f0a0f7c444e7722a9bb">getcourseKey</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">const</span> std::string <a class="code hl_function" href="class_course.html#a11cb3b3abed4bbfd86a694023d05720e">gettitle</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code hl_function" href="class_course.html#a86da5abc4e4fe0191be453488ee9c5f6">getmajor</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_function" href="class_course.html#aaf9e0e94a3e63ae1822831e1515133f1">getcreditPoints</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    std::string <a class="code hl_function" href="class_course.html#a1e4b12abf486e9c5bd741a750d86713d">printCourse</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="class_course.html#ad4c864145d3392698d9295215bbec536">  153</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_course.html#ad4c864145d3392698d9295215bbec536">print</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_course.html#ae3512f59485143eb2bfac02a26bb7f61">write</a>(std::ostream&amp; out) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>};</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_course.html#aa9038f2e129526920037dda9e76d69d0">~Course</a>();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keyword">const</span> std::map&lt;unsigned char, std::string&gt; <a class="code hl_function" href="class_course.html#a5dc659384d48722761803efdcf8d499b">getmajorById</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="class_course.html#a31489de2e51a1f0a0f7c444e7722a9bb">getcourseKey</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">const</span> std::string <a class="code hl_function" href="class_course.html#a11cb3b3abed4bbfd86a694023d05720e">gettitle</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code hl_function" href="class_course.html#a86da5abc4e4fe0191be453488ee9c5f6">getmajor</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_function" href="class_course.html#aaf9e0e94a3e63ae1822831e1515133f1">getcreditPoints</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    std::string <a class="code hl_function" href="class_course.html#a1e4b12abf486e9c5bd741a750d86713d">printCourse</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="class_course.html#ad4c864145d3392698d9295215bbec536">  158</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_course.html#ad4c864145d3392698d9295215bbec536">print</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_course.html#ae3512f59485143eb2bfac02a26bb7f61">write</a>(std::ostream&amp; out) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>};</div>
 </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">#endif </span><span class="comment">/* COURSE_H_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="aclass_course_html"><div class="ttname"><a href="class_course.html">Course</a></div><div class="ttdef"><b>Definition</b> Course.h:21</div></div>
-<div class="ttc" id="aclass_course_html_a11cb3b3abed4bbfd86a694023d05720e"><div class="ttname"><a href="class_course.html#a11cb3b3abed4bbfd86a694023d05720e">Course::gettitle</a></div><div class="ttdeci">const std::string gettitle() const</div><div class="ttdoc">Getter method to obtain the title of the course.</div><div class="ttdef"><b>Definition</b> Course.cpp:46</div></div>
-<div class="ttc" id="aclass_course_html_a1e4b12abf486e9c5bd741a750d86713d"><div class="ttname"><a href="class_course.html#a1e4b12abf486e9c5bd741a750d86713d">Course::printCourse</a></div><div class="ttdeci">std::string printCourse() const</div><div class="ttdoc">Generates a string representation of the Course.</div><div class="ttdef"><b>Definition</b> Course.cpp:65</div></div>
-<div class="ttc" id="aclass_course_html_a31489de2e51a1f0a0f7c444e7722a9bb"><div class="ttname"><a href="class_course.html#a31489de2e51a1f0a0f7c444e7722a9bb">Course::getcourseKey</a></div><div class="ttdeci">const unsigned int getcourseKey() const</div><div class="ttdoc">Getter method to obtain the course key.</div><div class="ttdef"><b>Definition</b> Course.cpp:41</div></div>
-<div class="ttc" id="aclass_course_html_a5dc659384d48722761803efdcf8d499b"><div class="ttname"><a href="class_course.html#a5dc659384d48722761803efdcf8d499b">Course::getmajorById</a></div><div class="ttdeci">const std::map&lt; unsigned char, std::string &gt; getmajorById() const</div><div class="ttdoc">Getter method to obtain the map of major IDs.</div><div class="ttdef"><b>Definition</b> Course.cpp:36</div></div>
-<div class="ttc" id="aclass_course_html_a86da5abc4e4fe0191be453488ee9c5f6"><div class="ttname"><a href="class_course.html#a86da5abc4e4fe0191be453488ee9c5f6">Course::getmajor</a></div><div class="ttdeci">const unsigned char getmajor() const</div><div class="ttdoc">Getter method to obtain the major of the course.</div><div class="ttdef"><b>Definition</b> Course.cpp:51</div></div>
-<div class="ttc" id="aclass_course_html_aa9038f2e129526920037dda9e76d69d0"><div class="ttname"><a href="class_course.html#aa9038f2e129526920037dda9e76d69d0">Course::~Course</a></div><div class="ttdeci">virtual ~Course()</div><div class="ttdoc">Destructor of class Course.</div><div class="ttdef"><b>Definition</b> Course.cpp:61</div></div>
-<div class="ttc" id="aclass_course_html_aaf9e0e94a3e63ae1822831e1515133f1"><div class="ttname"><a href="class_course.html#aaf9e0e94a3e63ae1822831e1515133f1">Course::getcreditPoints</a></div><div class="ttdeci">const float getcreditPoints() const</div><div class="ttdoc">Getter method to obtain the credit points of the course.</div><div class="ttdef"><b>Definition</b> Course.cpp:56</div></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="preprocessor">#endif </span><span class="comment">/* COURSE_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aclass_course_html"><div class="ttname"><a href="class_course.html">Course</a></div><div class="ttdoc">Represents a course with relevant information such as title, major, and credit points.</div><div class="ttdef"><b>Definition</b> Course.h:26</div></div>
+<div class="ttc" id="aclass_course_html_a11cb3b3abed4bbfd86a694023d05720e"><div class="ttname"><a href="class_course.html#a11cb3b3abed4bbfd86a694023d05720e">Course::gettitle</a></div><div class="ttdeci">const std::string gettitle() const</div><div class="ttdoc">Getter method to obtain the title of the course.</div><div class="ttdef"><b>Definition</b> Course.cpp:44</div></div>
+<div class="ttc" id="aclass_course_html_a1e4b12abf486e9c5bd741a750d86713d"><div class="ttname"><a href="class_course.html#a1e4b12abf486e9c5bd741a750d86713d">Course::printCourse</a></div><div class="ttdeci">std::string printCourse() const</div><div class="ttdoc">Generates a string representation of the Course.</div><div class="ttdef"><b>Definition</b> Course.cpp:63</div></div>
+<div class="ttc" id="aclass_course_html_a31489de2e51a1f0a0f7c444e7722a9bb"><div class="ttname"><a href="class_course.html#a31489de2e51a1f0a0f7c444e7722a9bb">Course::getcourseKey</a></div><div class="ttdeci">const unsigned int getcourseKey() const</div><div class="ttdoc">Getter method to obtain the course key.</div><div class="ttdef"><b>Definition</b> Course.cpp:39</div></div>
+<div class="ttc" id="aclass_course_html_a5dc659384d48722761803efdcf8d499b"><div class="ttname"><a href="class_course.html#a5dc659384d48722761803efdcf8d499b">Course::getmajorById</a></div><div class="ttdeci">const std::map&lt; unsigned char, std::string &gt; getmajorById() const</div><div class="ttdoc">Getter method to obtain the map of major IDs.</div><div class="ttdef"><b>Definition</b> Course.cpp:34</div></div>
+<div class="ttc" id="aclass_course_html_a86da5abc4e4fe0191be453488ee9c5f6"><div class="ttname"><a href="class_course.html#a86da5abc4e4fe0191be453488ee9c5f6">Course::getmajor</a></div><div class="ttdeci">const unsigned char getmajor() const</div><div class="ttdoc">Getter method to obtain the major of the course.</div><div class="ttdef"><b>Definition</b> Course.cpp:49</div></div>
+<div class="ttc" id="aclass_course_html_aa9038f2e129526920037dda9e76d69d0"><div class="ttname"><a href="class_course.html#aa9038f2e129526920037dda9e76d69d0">Course::~Course</a></div><div class="ttdeci">virtual ~Course()</div><div class="ttdoc">Destructor of class Course.</div><div class="ttdef"><b>Definition</b> Course.cpp:59</div></div>
+<div class="ttc" id="aclass_course_html_aaf9e0e94a3e63ae1822831e1515133f1"><div class="ttname"><a href="class_course.html#aaf9e0e94a3e63ae1822831e1515133f1">Course::getcreditPoints</a></div><div class="ttdeci">const float getcreditPoints() const</div><div class="ttdoc">Getter method to obtain the credit points of the course.</div><div class="ttdef"><b>Definition</b> Course.cpp:54</div></div>
 <div class="ttc" id="aclass_course_html_ad4c864145d3392698d9295215bbec536"><div class="ttname"><a href="class_course.html#ad4c864145d3392698d9295215bbec536">Course::print</a></div><div class="ttdeci">virtual void print() const =0</div><div class="ttdoc">Prints information about the Course.</div></div>
-<div class="ttc" id="aclass_course_html_ae3512f59485143eb2bfac02a26bb7f61"><div class="ttname"><a href="class_course.html#ae3512f59485143eb2bfac02a26bb7f61">Course::write</a></div><div class="ttdeci">virtual void write(std::ostream &amp;out) const</div><div class="ttdoc">Write the object's data to the provided output stream.</div><div class="ttdef"><b>Definition</b> Course.cpp:90</div></div>
+<div class="ttc" id="aclass_course_html_ae3512f59485143eb2bfac02a26bb7f61"><div class="ttname"><a href="class_course.html#ae3512f59485143eb2bfac02a26bb7f61">Course::write</a></div><div class="ttdeci">virtual void write(std::ostream &amp;out) const</div><div class="ttdoc">Write the object's data to the provided output stream.</div><div class="ttdef"><b>Definition</b> Course.cpp:77</div></div>
 <div class="ttc" id="aformatterfile_8h_html"><div class="ttname"><a href="formatterfile_8h.html">formatterfile.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

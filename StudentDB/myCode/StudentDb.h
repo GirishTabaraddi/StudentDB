@@ -13,7 +13,6 @@
 #include "Student.h"
 #include "BlockCourse.h"
 #include "WeeklyCourse.h"
-#include <sstream>
 
 #include <Poco/Net/SocketAddress.h>
 #include <Poco/Net/StreamSocket.h>
@@ -21,6 +20,10 @@
 #include <Poco/JSON/JSON.h>
 #include <Poco/JSON/Parser.h>
 #include <Poco/Dynamic/Var.h>
+#include <Poco/Timespan.h>
+#include <Poco/JSON/Object.h>
+#include <Poco/DynamicStruct.h>
+#include <Poco/UTFString.h>
 
 /*!
  * @class StudentDb
