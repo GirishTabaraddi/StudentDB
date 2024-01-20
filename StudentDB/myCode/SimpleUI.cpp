@@ -171,9 +171,5 @@ void SimpleUI::run()
 		{
 			cout << endl << "ERROR: Invalid argument" << endl;
 		}
-//		catch(const out_of_range& e)
-//		{
-//			cout << endl << "ERROR: Invalid Input, Please enter a numeric value between - [0-10]" << endl;
-//		}
 	}
 }

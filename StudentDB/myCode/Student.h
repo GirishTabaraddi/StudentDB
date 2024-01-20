@@ -21,7 +21,8 @@
  * @class Student
  * @brief Represents a student with associated details and enrollment information.
  */
-class Student {
+class Student
+{
 private:
     /*!
      * @var m_nextMatrikelNumber - Next Matrikel Number incremented after assigning to a student.

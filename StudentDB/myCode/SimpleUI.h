@@ -11,7 +11,6 @@
 #define SIMPLEUI_H_
 
 #include "StudentDb.h"
-#include <string>
 #include <fstream>
 /*!
  * @class SimpleUI

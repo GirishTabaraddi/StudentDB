@@ -7,7 +7,6 @@ var class_student_db =
     [ "getCourses", "class_student_db.html#af82b98870c964084ee703b6dc4d296e5", null ],
     [ "getStudents", "class_student_db.html#aefab809fd4f2f2873087807519a1eef3", null ],
     [ "listCourses", "class_student_db.html#aa19418d775fc7860608d1390861675da", null ],
-    [ "parsingJSONData", "class_student_db.html#a53532283066d02f372d8eca62baed0ed", null ],
     [ "printAllCoursesDb", "class_student_db.html#a7366d32be275c78364ea142df2aba49b", null ],
     [ "printAllEnrollments", "class_student_db.html#a1dc17a09737db5367017c72cd66f015d", null ],
     [ "printAllStudentsDb", "class_student_db.html#a4bfe87f6403641099ba21e0adafd576a", null ],
