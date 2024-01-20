@@ -2,7 +2,7 @@ var class_student =
 [
     [ "Student", "class_student.html#a1cb0fe414d68df7e35ac55fdfe406eca", null ],
     [ "~Student", "class_student.html#a54a8ea060d6cd04222c3a2f89829f105", null ],
-    [ "addEnrollment", "class_student.html#ab1c62e289a4b1f29e5e47d70859969bf", null ],
+    [ "addEnrollment", "class_student.html#ab7152dd79b045a0a680ce6a51751605c", null ],
     [ "deleteEnrollment", "class_student.html#a6b8abeab2f8cf800cfdaa210c7eda7a5", null ],
     [ "getAddress", "class_student.html#a23cfed27fc219f493ddd49516a9ef9fd", null ],
     [ "getDateOfBirth", "class_student.html#a21f2dd9ab9faed9d58710735669f4301", null ],

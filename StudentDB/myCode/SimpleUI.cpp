@@ -130,7 +130,7 @@ void SimpleUI::run()
 				break;
 				case 9:
 				{
-					cout << endl << "\t Enter the file name to read the data from(.txt): ";
+					cout << endl << "\t Enter the file name to read the data from(.csv): ";
 
 					string filename = "read_StudentDb.txt";
 					getline(cin, filename);

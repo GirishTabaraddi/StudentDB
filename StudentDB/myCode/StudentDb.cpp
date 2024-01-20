@@ -102,9 +102,7 @@ void StudentDb::listCourses()
 
 	for(const auto& courses: this->m_courses)
 	{
-//		courses.second.get()->print();
-		ostream& out = cout;
-		courses.second.get()->write(out);
+		courses.second.get()->print();
 	}
 }
 

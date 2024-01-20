@@ -150,7 +150,7 @@ int main ()
 		+getmajor() : unsigned char {query}
 		+getcourseKey() : unsigned int {query}
 		+{abstract} print() : void {query}
-		+write(std::ostream& out) : void {query}
+		+{abstract} write(std::ostream& out) : void {query}
 	}
 
 	class BlockCourse

@@ -160,14 +160,14 @@ public:
 	/**
 	 * @brief Write the object's data to the provided output stream.
 	 *
-	 * This method is virtual and intended to be overridden by derived classes
+	 * This method is pure virtual and intended to be overridden by derived classes
 	 * to write their specific data to the output stream. It allows objects to
 	 * represent themselves in a standardized format when output is needed,
 	 * such as writing to a file or printing to the console.
 	 *
 	 * @param out The output stream where the object's data will be written.
 	 */
-	virtual void write(std::ostream& out) const;
+	virtual void write(std::ostream& out) const = 0;
 };
 
 #endif /* COURSE_H_ */

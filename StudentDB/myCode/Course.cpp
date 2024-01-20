@@ -68,13 +68,6 @@ std::string Course::printCourse() const
 
 	string creditpoints = ss.str();
 
-    string out = to_string(this->m_courseKey) + ";" + this->m_title + ";" + this->m_majorById.at(this->m_major)
-    				+ ";" + creditpoints;
-
-    return out;
-}
-
-void Course::write(std::ostream &out) const
-{
-	out << printCourse();
+	return (to_string(this->m_courseKey) + ";" + this->m_title + ";"
+			+ this->m_majorById.at(this->m_major) + ";" + creditpoints);
 }
