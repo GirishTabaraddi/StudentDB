@@ -151,9 +151,16 @@ void SimpleUI::run()
 				break;
 				case 10:
 				{
-					cout << "read from server" << endl;
+				    string noOfUserDate = "1";
+				    string readLine;
 
-					this->m_db.readFromServer();
+				    cout << "Enter the number of Student Data to be extracted from the server: ";
+				    getline(cin, noOfUserDate);
+
+				    for(int loopIdx = 0; loopIdx < stoi(noOfUserDate); loopIdx++)
+				    {
+				    	this->m_db.readFromServer();
+				    }
 				}
 				break;
 				default:

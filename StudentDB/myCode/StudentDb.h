@@ -25,6 +25,12 @@
 #include <Poco/DynamicStruct.h>
 #include <Poco/UTFString.h>
 
+#include <boost/asio.hpp>
+#include <boost/iostreams/stream.hpp>
+#include <boost/json.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+
 /*!
  * @class StudentDb
  * @brief Represents a database of students and courses with various operations.
@@ -122,8 +128,8 @@ private:
      * This function uses POCO C++ JSON for parsing data. For more information,
      * refer to the following Stack Overflow post:
      *
-     * @see [Correct usage of POCO C++ JSON for parsing data]
-     * (https://stackoverflow.com/questions/15387154/correct-usage-of-poco-c-json-for-parsing-data)
+     * @see []
+     * ()
      *
      * @param JSONData The JSON data to be parsed.
      */
