@@ -159,7 +159,7 @@ public:
      * @param lastName New last name.
      * @param dateOfBirth New date of birth.
      */
-    void updateStudent(std::string firstName, std::string lastName, Poco::Data::Date dateOfBirth);
+    void updateStudentDetails(std::string firstName, std::string lastName, Poco::Data::Date dateOfBirth);
 
     /*!
      * @brief Update the address of the student.

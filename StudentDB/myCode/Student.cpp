@@ -72,6 +72,7 @@ std::string Student::printStudent() const
 //			this->m_dateOfBirth.month() << "." << this->m_dateOfBirth.year();
 //
 //	return out;
+
 	string out = (to_string(this->m_matrikelNumber)
 			+ ";" + this->m_firstName
 			+ ";" + this->m_lastName
@@ -122,7 +123,7 @@ void Student::addEnrollment(const std::string& semester, const Course *newCourse
 	}
 }
 
-void Student::updateStudent(std::string firstName, std::string lastName,
+void Student::updateStudentDetails(std::string firstName, std::string lastName,
 		Poco::Data::Date dateOfBirth)
 {
 	Poco::Data::Date NADate(1900,1,1);

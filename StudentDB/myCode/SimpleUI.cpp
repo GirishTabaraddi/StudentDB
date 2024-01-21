@@ -62,13 +62,15 @@ void SimpleUI::run()
 				{
 					cout << endl << "\t You chose option : " << numericChoice
 							<< " to add new course." <<endl;
-					this->m_db.addNewCourse();
+
+					this->getUserInputsforNewCourse();
 				}
 				break;
 				case 2:
 				{
 					cout << endl << "\t You chose option : " << numericChoice
 							<< " to list all courses." <<endl;
+
 					this->m_db.listCourses();
 				}
 				break;
@@ -76,35 +78,51 @@ void SimpleUI::run()
 				{
 					cout << endl << "\t You chose option : " << numericChoice
 							<< " to add new student to the database." <<endl;
-					this->m_db.addNewStudent();
+
+					this->getUserInputsforNewStudent();
 				}
 				break;
 				case 4:
 				{
 					cout << endl << "\t You chose option : "
 							<< numericChoice << " to add new enrollment." <<endl;
-					this->m_db.addEnrollment();
+
+					this->getUserInputforNewEnrollment();
 				}
 				break;
 				case 5:
 				{
 					cout << endl << "\t You chose option : "
 							<< numericChoice << " to print the details of the student." <<endl;
-					this->m_db.printStudent();
+
+					string matrikelNumber = "0";
+
+					cout << endl << "\t \t Enter the Matrikel Number of the Student, "
+							"to print his/her details - 0-9: ";
+					getline(cin, matrikelNumber);
+
+					this->printStudent(matrikelNumber);
 				}
 				break;
 				case 6:
 				{
 					cout << endl << "\t You chose option : "
 							<< numericChoice << " to search specific student in database." <<endl;
-					this->m_db.searchStudent();
+
+					string searchString = "Gir";
+
+					cout << endl << "\t \t Enter Student Name to search in the Database - a-z/A-Z: ";
+					getline(cin, searchString);
+
+					this->searchStudent(searchString);
 				}
 				break;
 				case 7:
 				{
 					cout << endl << "\t You chose option : "
 							<< numericChoice << " to update the student details." <<endl;
-					this->m_db.updateStudent();
+
+					this->getUserInputforStudentUpdate();
 				}
 				break;
 				case 8:
@@ -178,5 +196,443 @@ void SimpleUI::run()
 		{
 			cout << endl << "ERROR: Invalid argument" << endl;
 		}
+	}
+}
+
+void SimpleUI::getUserInputsforNewCourse()
+{
+	//	unique_ptr<const Course> course = make_unique<Course>(1234, "APT", "Automation", 5);
+	//	unique_ptr<const Course> course1 = make_unique<Course>(1235, "EOS", "Embedded", 5);
+	//
+	//	this->m_courses.insert(make_pair(course->getcourseKey(), move(course)));
+	//	this->m_courses.insert(make_pair(course1->getcourseKey(), move(course1)));
+
+	string courseKey = "0";
+	string title = "NA";
+	string major = "NA";
+	string credits = "0.0";
+
+	string startTime = "0";
+	string endTime = "0";
+	string startDate = "0";
+	string endDate = "0";
+	string dayOfWeek = "0";
+	string courseType = "NA";
+
+	cout << endl << "\t \t Enter CourseKey: ";
+	getline(cin, courseKey);
+
+	cout << endl << "\t \t Enter Title of the Course: ";
+	getline(cin, title);
+
+	cout << endl << "\t \t Enter the Major in which the Course belongs to: ";
+	getline(cin, major);
+
+	cout << endl << "\t \t Enter the  credit points of the Course: ";
+	getline(cin, credits);
+
+	cout << endl << "\t \t Enter the Course Type - Weekly(W)/Block(B): ";
+	getline(cin, courseType);
+
+	cout << endl << "\t \t Enter the Course Start Time - HH:MM : ";
+	getline(cin, startTime);
+
+	cout << endl << "\t \t Enter the Course End Time - HH:MM : ";
+	getline(cin, endTime);
+
+	if(courseType == "B" || courseType == "b")
+	{
+		cout << endl << "\t \t Enter the Course Start Date - dd.mm.YYYY : ";
+		getline(cin, startDate);
+
+		cout << endl << "\t \t Enter the Course End Date - dd.mm.YYYY : ";
+		getline(cin, endDate);
+	}
+	if(courseType == "W" || courseType == "w")
+	{
+		cout << endl << "\t \t Enter the Course Week - Monday-Sunday : ";
+		getline(cin, dayOfWeek);
+	}
+
+	//! Call the addNewCourse function from the StudentDb.h
+	this->m_db.addNewCourse(courseKey, title, major,  credits, courseType,
+			startTime, endTime, startDate, endDate, dayOfWeek);
+}
+
+void SimpleUI::getUserInputsforNewStudent()
+{
+	//	shared_ptr<Address> address = make_shared<Address>("Am Karlshof", 64287, "Darmstadt", "xyz Info");
+	//
+	//	Poco::Data::Date dateOfBirth(1997,3,31);
+	//
+	//	Student student = Student("Girish", "Tabaraddi", dateOfBirth, address);
+	//
+	//	this->m_students.insert(make_pair(student.getmatrikelNumber(), student));
+
+	string firstName = "NA";
+	string lastName = "NA";
+	string DoBstring = "01.01.1990";
+	string streetName = "NA";
+	string postalCode = "NA";
+	string cityName = "NA";
+	string additionalInfo = "NA";
+
+	cout << endl << "\t \t Enter First Name of the Student - a-z/A-Z: ";
+	getline(cin, firstName);
+
+	cout << endl << "\t \t Enter Last Name of the Student - a-z/A-Z: ";
+	getline(cin, lastName);
+
+	cout << endl << "\t \t Enter Date of Birth of the Student - dd..mm..YYY : ";
+	getline(cin, DoBstring);
+
+	cout << endl << "\t \t Enter Street Name of the Student's Address - a-z/A-Z: ";
+	getline(cin, streetName);
+
+	cout << endl << "\t \t Enter Postal Code of the Student's Address - 0-9: ";
+	getline(cin, postalCode);
+
+	cout << endl << "\t \t Enter City Name of the Student's Address - a-z/A-Z: ";
+	getline(cin, cityName);
+
+	cout << endl << "\t \t Enter Additional Info related Student's Address - 0-9/a-z/A-Z: ";
+	getline(cin, additionalInfo);
+
+	//! Call the addnewstudent function from the StudentDb.h
+	this->m_db.addNewStudent(firstName, lastName, DoBstring, streetName,
+			postalCode, cityName, additionalInfo);
+}
+
+void SimpleUI::getUserInputforNewEnrollment()
+{
+	string matrikelNumber = "0";
+	string semester = "0";
+	string courseKey = "0";
+
+	cout << endl << "\t \t Enter the Matrikel Number of the Student, "
+			"to add his/her Enrollment - 0-9: ";
+	getline(cin, matrikelNumber);
+
+	cout << endl << "\t \t Enter the Semester of the Student "
+			"studying currently - a-z/A-Z/0-9: ";
+	getline(cin, semester);
+
+	cout << endl << "\t \t Enter the Course Key, "
+			"to which he/she wants to enroll - 0-9: ";
+	getline(cin, courseKey);
+
+	//! Call the addEnrollment function from the StudentDb.h
+	this->m_db.addEnrollment(matrikelNumber, semester, courseKey);
+}
+
+void SimpleUI::getUserInputforStudentUpdate()
+{
+	string matrikelNumber = "0";
+
+	cout << endl << "\t \t Enter the Matrikel Number of the Student, "
+			"to update his/her details - 0-9: ";
+	getline(cin, matrikelNumber);
+
+//	map<int, Student>& students = this->m_db.getStudents();
+
+	auto studentItr =  this->m_db.getStudents().find(stoi(matrikelNumber));
+
+	if(studentItr != this->m_db.getStudents().end())
+	{
+		cout << endl << "\t \t UPDATE STUDENT MENU: "
+				"Below are the index number to update the details" << endl << endl;
+
+		cout << "\t \t \t 0 -> To Exit Update Student Menu" << endl;
+		cout << "\t \t \t 1 -> Update First Name" << endl;
+		cout << "\t \t \t 2 -> Update Last Name" << endl;
+		cout << "\t \t \t 3 -> Update Date of Birth" << endl;
+		cout << "\t \t \t 4 -> Update Address" << endl;
+		cout << "\t \t \t 5 -> Update Enrollment" << endl;
+
+		Student& updateStudent = studentItr->second;
+
+		this->performStudentUpdate(updateStudent);
+	}
+	else
+	{
+		cout << endl << "\t \t \t ERROR: Entered Matrikel Number "
+				"doesn't exist in the database!!!" << endl;
+	}
+}
+
+void SimpleUI::performStudentUpdate(Student &updateStudent)
+{
+	bool exitFlag = false;
+
+	while(exitFlag == false)
+	{
+		string choice;
+
+		cout << endl << "\t \t \t Enter your choice to perform "
+				"the respective operation between 0 and 5: ";
+		getline(cin, choice);
+
+		try
+		{
+			int numericChoice = stoi(choice);
+
+			if(numericChoice >= 0 && numericChoice <= 5)
+			{
+				switch(numericChoice)
+				{
+				case 0:
+				{
+					cout << endl << "\t \t Exited Student Update Menu : "
+							<< numericChoice <<endl;
+					exitFlag = true;
+				}
+				break;
+				case 1:
+				{
+					cout << endl << "\t \t \t You chose option : " << numericChoice
+							<< " to update First Name." <<endl;
+
+					string firstName = "NA";
+					Poco::Data::Date NADate(1900,1,1);
+
+					cout << endl << "\t \t \t Enter First Name of the Student to Update - a-z/A-Z: ";
+					getline(cin, firstName);
+
+					updateStudent.updateStudentDetails(firstName, "NA", NADate);
+				}
+				break;
+				case 2:
+				{
+					cout << endl << "\t \t \t You chose option : " << numericChoice
+							<< " to update Last Name." <<endl;
+
+					string lastName = "NA";
+
+					cout << endl << "\t \t \t Enter Last Name of the Student to Update - a-z/A-Z: ";
+					getline(cin, lastName);
+
+					Poco::Data::Date NADate(1900,1,1);
+
+					updateStudent.updateStudentDetails("NA", lastName, NADate);
+				}
+				break;
+				case 3:
+				{
+					cout << endl << "\t \t \t You chose option : " << numericChoice
+							<< " to update Date of Birth." <<endl;
+
+					string DoBstring = "31.12.9999";
+
+					cout << endl << "\t \t \t \t Enter Date of Birth of the Student "
+							"to Update - dd..mm..YYY : ";
+					getline(cin, DoBstring);
+
+					Poco::Data::Date pocoDoB = stringToPocoDateFormatter(DoBstring);
+
+					updateStudent.updateStudentDetails("NA", "NA", pocoDoB);
+				}
+				break;
+				case 4:
+				{
+					cout << endl << "\t \t \t You chose option : " << numericChoice
+							<< " to update Address." <<endl;
+
+					this->getUserInputforAddressUpdate(updateStudent);
+				}
+				break;
+				case 5:
+				{
+					if(updateStudent.getEnrollments().empty())
+					{
+						cout << endl << "\t \t \t ERROR: Entered Student not "
+								"enrolled to update grade or delete enrollment!!!" << endl;
+						break;
+					}
+					cout << endl << "\t \t \t You chose option : " << numericChoice
+							<< " to update Enrollment." <<endl << endl;
+
+					string courseKey = "0";
+
+					cout << endl << "\t \t \t \t Enter CourseKey - 0-9: ";
+					getline(cin, courseKey);
+
+					auto courseKeyItr = this->m_db.getCourses().find(stoi(courseKey));
+
+
+					if(courseKeyItr != this->m_db.getCourses().end())
+					{
+						cout << "\t \t \t \t 0 -> To Exit Update Enrollment Menu" << endl;
+						cout << "\t \t \t \t 1 -> Delete Enrollment" << endl;
+						cout << "\t \t \t \t 2 -> Update Grade" << endl;
+
+						this->performEnrollmentUpdate(updateStudent, courseKey);
+					}
+					else
+					{
+						cout << endl << "\t \t \t ERROR: Entered Course Key "
+								"doesn't exist in the database!!!" << endl;
+					}
+				}
+				break;
+				default:
+				{
+					cout << endl << "\t \t \t ERROR: Invalid Input, "
+							"Please enter a numeric value between - [0-5]" << endl;
+				}
+				break;
+				}
+			}
+			else
+			{
+				cout << endl << "\t \t \t ERROR: Invalid Input, "
+						"Please enter a numeric value between - [0-5]" << endl;
+			}
+		}
+		catch(const invalid_argument& e)
+		{
+			cout << endl << "\t \t \t ERROR: Invalid Input, "
+					"Please enter a numeric value between - [0-5]" << endl;
+		}
+	}
+}
+
+void SimpleUI::getUserInputforAddressUpdate(Student &updateStudent)
+{
+	string streetName = "NA";
+	string postalCode = "NA";
+	string cityName = "NA";
+	string additionalInfo = "NA";
+
+	cout << endl << "\t \t \t \t Enter Street Name of the "
+			"Student's Address to Update - a-z/A-Z: ";
+	getline(cin, streetName);
+
+	cout << endl << "\t \t \t \t Enter Postal Code of the "
+			"Student's Address to Update - 0-9: ";
+	getline(cin, postalCode);
+
+	cout << endl << "\t \t \t \t Enter City Name of the "
+			"Student's Address to Update - a-z/A-Z: ";
+	getline(cin, cityName);
+
+	cout << endl << "\t \t \t \t Enter Additional Info related "
+			"to Student's Address to Update - a-z/A-Z: ";
+	getline(cin, additionalInfo);
+
+	shared_ptr<Address> address =
+			make_shared<Address>(streetName, stoi(postalCode),
+					cityName, additionalInfo);
+
+	updateStudent.updateAddress(address);
+}
+
+void SimpleUI::performEnrollmentUpdate(Student& updateStudent, const std::string& courseKey)
+{
+	bool exitFlag2 = false;
+
+	while(exitFlag2 == false)
+	{
+		string choice;
+
+		cout << endl << "\t \t \t \t Enter the index number "
+				"to delete enrollment / enter mark: ";
+		getline(cin, choice);
+
+		try
+		{
+			int numericChoice = stoi(choice);
+
+			if(numericChoice >= 0 && numericChoice <= 2)
+			{
+				switch(numericChoice)
+				{
+				case 0:
+				{
+					cout << endl << "\t \t \t You chose option : " << numericChoice
+							<< " to exit Update Enrollment." <<endl;
+					exitFlag2 = true;
+				}
+				break;
+				case 1:
+				{
+					cout << endl << "\t \t \t \t You chose option : " << numericChoice
+							<< " to Delete Enrollment." <<endl;
+
+					updateStudent.deleteEnrollment(stoi(courseKey));
+				}
+				break;
+				case 2:
+				{
+					cout << endl << "\t \t \t \t You chose option : " << numericChoice
+							<< " to update Grade." <<endl;
+
+					string grade = "0";
+
+					cout << endl << "\t \t \t \t \t Enter Grade to Update - 0-9: ";
+					getline(cin, grade);
+
+					updateStudent.updateGrade(stof(grade), stoi(courseKey));
+				}
+				break;
+				}
+			}
+			else
+			{
+				cout << endl << "\t \t \t ERROR: Invalid Input, "
+						"Please enter a numeric value between - [0-2]" << endl;
+			}
+		}
+		catch(const invalid_argument& e)
+		{
+			cout << endl << "\t \t \t ERROR: Invalid Input, "
+					"Please enter a numeric value between - [0-2]" << endl;
+		}
+	}
+}
+
+void SimpleUI::printStudent(std::string &matrikelNumber)
+{
+//	map<int, Student>& students = this->m_db.getStudents();
+
+	auto matrikelNumberItr = this->m_db.getStudents().find(stoi(matrikelNumber));
+
+	if(matrikelNumberItr != this->m_db.getStudents().end())
+	{
+		cout << "\n\t \t \t " << matrikelNumberItr->second.printStudent() << endl;
+
+		for(const Enrollment& enrollmentItr : matrikelNumberItr->second.getEnrollments())
+		{
+			cout << "\n\t \t \t " << enrollmentItr.printEnrollment() << endl;
+		}
+	}
+	else
+	{
+		cout << "\n\t \t Entered Matrikel Number does not match "
+				"any student in the database." << endl;
+	}
+}
+
+void SimpleUI::searchStudent(std::string &searchString)
+{
+	bool matchFound = false;
+
+	for(const auto& pairItr : this->m_db.getStudents())
+	{
+		const Student& findStudent = pairItr.second;
+
+		string firstName = findStudent.getFirstName();
+		string lastName = findStudent.getLastName();
+
+		if (boost::algorithm::icontains(firstName, searchString) ||
+				boost::algorithm::icontains(lastName, searchString))
+		{
+			matchFound = true;
+			cout << "\n\t \t \t " << findStudent.printStudent() << endl;
+		}
+	}
+	if(matchFound == false)
+	{
+		cout << "\t \t Entered string doesn't match the Student Name "
+				"or the Student does not exist in the Database" << endl;
 	}
 }
