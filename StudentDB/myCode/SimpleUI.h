@@ -89,7 +89,7 @@ public:
      *
      * Queries the user for a matrikel number and prints the student, including the enrolled courses and their results.
      */
-    void printStudent(std::string& matrikelNumber);
+    void printStudent();
 
     /*!
      * @brief Search for students.
@@ -97,7 +97,7 @@ public:
      * Queries the user for a string and prints the matrikel number, last name, and first name of all students
      * that have the provided string as a substring in their first or last name.
      */
-    void searchStudent(std::string& searchString);
+    void searchStudent();
 };
 
 

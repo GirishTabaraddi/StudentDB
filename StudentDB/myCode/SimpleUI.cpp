@@ -95,13 +95,7 @@ void SimpleUI::run()
 					cout << endl << "\t You chose option : "
 							<< numericChoice << " to print the details of the student." <<endl;
 
-					string matrikelNumber = "0";
-
-					cout << endl << "\t \t Enter the Matrikel Number of the Student, "
-							"to print his/her details - 0-9: ";
-					getline(cin, matrikelNumber);
-
-					this->printStudent(matrikelNumber);
+					this->printStudent();
 				}
 				break;
 				case 6:
@@ -109,12 +103,7 @@ void SimpleUI::run()
 					cout << endl << "\t You chose option : "
 							<< numericChoice << " to search specific student in database." <<endl;
 
-					string searchString = "Gir";
-
-					cout << endl << "\t \t Enter Student Name to search in the Database - a-z/A-Z: ";
-					getline(cin, searchString);
-
-					this->searchStudent(searchString);
+					this->searchStudent();
 				}
 				break;
 				case 7:
@@ -590,9 +579,14 @@ void SimpleUI::performEnrollmentUpdate(Student& updateStudent, const std::string
 	}
 }
 
-void SimpleUI::printStudent(std::string &matrikelNumber)
+void SimpleUI::printStudent()
 {
 //	map<int, Student>& students = this->m_db.getStudents();
+	string matrikelNumber = "0";
+
+	cout << endl << "\t \t Enter the Matrikel Number of the Student, "
+			"to print his/her details - 0-9: ";
+	getline(cin, matrikelNumber);
 
 	auto matrikelNumberItr = this->m_db.getStudents().find(stoi(matrikelNumber));
 
@@ -612,8 +606,13 @@ void SimpleUI::printStudent(std::string &matrikelNumber)
 	}
 }
 
-void SimpleUI::searchStudent(std::string &searchString)
+void SimpleUI::searchStudent()
 {
+	string searchString = "Gir";
+
+	cout << endl << "\t \t Enter Student Name to search in the Database - a-z/A-Z: ";
+	getline(cin, searchString);
+
 	bool matchFound = false;
 
 	for(const auto& pairItr : this->m_db.getStudents())
