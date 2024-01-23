@@ -71,7 +71,7 @@ void SimpleUI::run()
 					cout << endl << "\t You chose option : " << numericChoice
 							<< " to list all courses." <<endl;
 
-					this->m_db.listCourses();
+					this->listCourses();
 				}
 				break;
 				case 3:
@@ -121,11 +121,12 @@ void SimpleUI::run()
 					string filename;
 					getline(cin, filename);
 
-					ofstream myfile(filename, ios::trunc);
-					if(myfile.is_open())
+					ofstream writeFile(filename, ios::trunc);
+					if(writeFile.is_open())
 					{
-						this->m_db.write(myfile);
-						myfile.close();
+						this->m_db.write(writeFile);
+
+						writeFile.close();
 
 						cout << "\n\t Student Database is written to the file" << endl;
 					}
@@ -142,11 +143,12 @@ void SimpleUI::run()
 					string filename = "read_StudentDb.txt";
 					getline(cin, filename);
 
-					ifstream inputFile(filename);
-					if(inputFile.is_open())
+					ifstream readFile(filename);
+					if(readFile.is_open())
 					{
-						this->m_db.read(inputFile);
-						inputFile.close();
+						this->m_db.read(readFile);
+
+						readFile.close();
 
 						cout << "\n\t Read the Student Database from the file" << endl;
 					}
@@ -166,7 +168,7 @@ void SimpleUI::run()
 
 				    for(int loopIdx = 0; loopIdx < stoi(noOfUserDate); loopIdx++)
 				    {
-				    	this->m_db.readFromServer();
+				    	this->m_db.readStudentDataFromServer();
 				    }
 				}
 				break;
@@ -190,12 +192,6 @@ void SimpleUI::run()
 
 void SimpleUI::getUserInputsforNewCourse()
 {
-	//	unique_ptr<const Course> course = make_unique<Course>(1234, "APT", "Automation", 5);
-	//	unique_ptr<const Course> course1 = make_unique<Course>(1235, "EOS", "Embedded", 5);
-	//
-	//	this->m_courses.insert(make_pair(course->getcourseKey(), move(course)));
-	//	this->m_courses.insert(make_pair(course1->getcourseKey(), move(course1)));
-
 	string courseKey = "0";
 	string title = "NA";
 	string major = "NA";
@@ -243,21 +239,51 @@ void SimpleUI::getUserInputsforNewCourse()
 		getline(cin, dayOfWeek);
 	}
 
-	//! Call the addNewCourse function from the StudentDb.h
-	this->m_db.addNewCourse(courseKey, title, major,  credits, courseType,
-			startTime, endTime, startDate, endDate, dayOfWeek);
+	try
+	{
+		//! Call the addNewCourse function from the StudentDb.h
+		 StudentDb::RC_StudentDb_t result =
+					this->m_db.addNewCourse(courseKey, title, major, credits,
+							courseType, startTime, endTime, startDate,
+							endDate, dayOfWeek);
+
+		 switch(result)
+		 {
+		 case StudentDb::RC_StudentDb_t::RC_Success:
+		 {
+			 cout << "\t \t \nNew Course Added" << endl;
+			 break;
+		 }
+		 case StudentDb::RC_StudentDb_t::RC_Course_Exists:
+		 {
+			 cout << "\t \t \nEntered Course Already exists" << endl;
+			 break;
+		 }
+		 default:
+		 {
+			 cout << "\t \t \nUnexpected error during add course" << endl;
+			 break;
+		 }
+		 }
+	}
+	catch(const exception& e)
+	{
+		cerr << "\t \t \nException: " << e.what() << endl;
+	}
+}
+
+void SimpleUI::listCourses()
+{
+	cout << this->m_db.getCourses().size() << endl;
+
+	for(const auto& courses: this->m_db.getCourses())
+	{
+		cout << courses.second.get()->printCourse() << endl;
+	}
 }
 
 void SimpleUI::getUserInputsforNewStudent()
 {
-	//	shared_ptr<Address> address = make_shared<Address>("Am Karlshof", 64287, "Darmstadt", "xyz Info");
-	//
-	//	Poco::Data::Date dateOfBirth(1997,3,31);
-	//
-	//	Student student = Student("Girish", "Tabaraddi", dateOfBirth, address);
-	//
-	//	this->m_students.insert(make_pair(student.getmatrikelNumber(), student));
-
 	string firstName = "NA";
 	string lastName = "NA";
 	string DoBstring = "01.01.1990";
@@ -287,9 +313,36 @@ void SimpleUI::getUserInputsforNewStudent()
 	cout << endl << "\t \t Enter Additional Info related Student's Address - 0-9/a-z/A-Z: ";
 	getline(cin, additionalInfo);
 
-	//! Call the addnewstudent function from the StudentDb.h
-	this->m_db.addNewStudent(firstName, lastName, DoBstring, streetName,
-			postalCode, cityName, additionalInfo);
+	try
+	{
+		//! Call the addnewstudent function from the StudentDb.h
+		 StudentDb::RC_StudentDb_t result =
+				 this->m_db.addNewStudent(firstName, lastName, DoBstring,
+						 streetName, postalCode, cityName, additionalInfo);
+
+		 switch(result)
+		 {
+		 case StudentDb::RC_StudentDb_t::RC_Success:
+		 {
+			 cout << "\t \t \nNew Student Added" << endl;
+			 break;
+		 }
+		 case StudentDb::RC_StudentDb_t::RC_Student_Exists:
+		 {
+			 cout << "\t \t \nEntered Student Already exists" << endl;
+			 break;
+		 }
+		 default:
+		 {
+			 cout << "\t \t \nUnexpected error during add student" << endl;
+			 break;
+		 }
+		 }
+	}
+	catch(const exception& e)
+	{
+		cerr << "\t \t \nException: " << e.what() << endl;
+	}
 }
 
 void SimpleUI::getUserInputforNewEnrollment()
@@ -310,8 +363,45 @@ void SimpleUI::getUserInputforNewEnrollment()
 			"to which he/she wants to enroll - 0-9: ";
 	getline(cin, courseKey);
 
-	//! Call the addEnrollment function from the StudentDb.h
-	this->m_db.addEnrollment(matrikelNumber, semester, courseKey);
+	try
+	{
+		//! Call the addEnrollment function from the StudentDb.h
+		 StudentDb::RC_StudentDb_t result =
+				 this->m_db.addEnrollment(matrikelNumber, semester, courseKey);
+
+		 switch(result)
+		 {
+		 case StudentDb::RC_StudentDb_t::RC_Success:
+		 {
+			 cout << "\t \t \nNew Enrollment Added" << endl;
+			 break;
+		 }
+		 case StudentDb::RC_StudentDb_t::RC_Wrong_Course_Key:
+		 {
+			 cout << "\t \t \nEntered a wrong course key" << endl;
+			 break;
+		 }
+		 case StudentDb::RC_StudentDb_t::RC_Wrong_MatrikelNumber:
+		 {
+			 cout << "\t \t \nEntered matrikel number is wrong" << endl;
+			 break;
+		 }
+		 case StudentDb::RC_StudentDb_t::RC_Enrollment_Exists:
+		 {
+			 cout << "\t \t \nEntered Enrollment already exists" << endl;
+			 break;
+		 }
+		 default:
+		 {
+			 cout << "\t \t \nUnexpected error during add enrollment" << endl;
+			 break;
+		 }
+		 }
+	}
+	catch(const exception& e)
+	{
+		cerr << "\t \t \nException: " << e.what() << endl;
+	}
 }
 
 void SimpleUI::getUserInputforStudentUpdate()
@@ -321,8 +411,6 @@ void SimpleUI::getUserInputforStudentUpdate()
 	cout << endl << "\t \t Enter the Matrikel Number of the Student, "
 			"to update his/her details - 0-9: ";
 	getline(cin, matrikelNumber);
-
-//	map<int, Student>& students = this->m_db.getStudents();
 
 	auto studentItr =  this->m_db.getStudents().find(stoi(matrikelNumber));
 
@@ -626,6 +714,7 @@ void SimpleUI::searchStudent()
 				boost::algorithm::icontains(lastName, searchString))
 		{
 			matchFound = true;
+
 			cout << "\n\t \t \t " << findStudent.printStudent() << endl;
 		}
 	}

@@ -1,19 +1,19 @@
 var class_student_db =
 [
     [ "StudentDb", "class_student_db.html#ad1f774b2bdff8a79af838c988c4f2ec5", null ],
-    [ "addEnrollment", "class_student_db.html#abdd72a8cee3d6c6caba660f8a3e011a8", null ],
-    [ "addNewCourse", "class_student_db.html#aa55b52c9326a5a9b0f82dbde2daa3a28", null ],
-    [ "addNewStudent", "class_student_db.html#a21cf665a475b942c824163fb1ef77007", null ],
-    [ "getCourses", "class_student_db.html#af82b98870c964084ee703b6dc4d296e5", null ],
-    [ "getStudents", "class_student_db.html#aefab809fd4f2f2873087807519a1eef3", null ],
-    [ "listCourses", "class_student_db.html#aa19418d775fc7860608d1390861675da", null ],
-    [ "printAllCoursesDb", "class_student_db.html#a7366d32be275c78364ea142df2aba49b", null ],
-    [ "printAllEnrollments", "class_student_db.html#a1dc17a09737db5367017c72cd66f015d", null ],
-    [ "printAllStudentsDb", "class_student_db.html#a4bfe87f6403641099ba21e0adafd576a", null ],
-    [ "printStudent", "class_student_db.html#a31de5f464568d14a7d771ea071c97153", null ],
+    [ "addEnrollment", "class_student_db.html#a0e46d6cf448cc849e301b504d94d958f", null ],
+    [ "addNewCourse", "class_student_db.html#ada96694443c4e354c85cdaaa9f3c092b", null ],
+    [ "addNewStudent", "class_student_db.html#a3c9857b52f911919c7fba97dc2f90c5e", null ],
+    [ "getCourses", "class_student_db.html#a8eed85549123bdf841b59e6f935ba159", null ],
+    [ "getStudents", "class_student_db.html#aaef05fd4c4e778992a607e7921906591", null ],
+    [ "parsingJSONData", "class_student_db.html#a53532283066d02f372d8eca62baed0ed", null ],
     [ "read", "class_student_db.html#a6f1b2a7ce4be5f0d1c01d896d79b6dcb", null ],
-    [ "readFromServer", "class_student_db.html#a842252fc62b7b186bdf3e5b85b9fa113", null ],
-    [ "searchStudent", "class_student_db.html#a9fa43034484ac234d6d4a469c0a6252e", null ],
-    [ "updateStudent", "class_student_db.html#ab3a1aaad757e0f919e2ff64b7c5f8da9", null ],
-    [ "write", "class_student_db.html#a392a82331cda387b8a8c657934f76e4f", null ]
+    [ "readCoursesData", "class_student_db.html#aad04fa45ce4baa4c2a2bd039f8991b04", null ],
+    [ "readEnrollmentData", "class_student_db.html#ae0f114ce1acc2c0bd48eb41cf183e8c7", null ],
+    [ "readStudentDataFromServer", "class_student_db.html#a4418c1c048d4b8544f38e63a95469a04", null ],
+    [ "readStudentsData", "class_student_db.html#a8077c7b56a22703f2cbec33dc24cb9fe", null ],
+    [ "write", "class_student_db.html#a392a82331cda387b8a8c657934f76e4f", null ],
+    [ "writeCoursesData", "class_student_db.html#ae87481c5b130145fa9b5e50f72f35873", null ],
+    [ "writeEnrollmentsData", "class_student_db.html#a541c92227ee035d6c9a22fc26e9741b2", null ],
+    [ "writeStudentsData", "class_student_db.html#a7863888d78a2795a486c8509df1f03d2", null ]
 ];

@@ -32,7 +32,7 @@
  * @param date Poco::Data::Date object to be converted.
  * @return std::string representing the formatted date.
  */
-std::string pocoDateToStringFromatter(const Poco::Data::Date &date);
+std::string pocoDateToStringFormatter(const Poco::Data::Date &date);
 
 /*!
  * @brief Converts a string to Poco::Data::Date.
@@ -48,7 +48,7 @@ Poco::Data::Date stringToPocoDateFormatter(const std::string& stringDate);
  * @param time Poco::Data::Time object to be converted.
  * @return std::string representing the formatted time.
  */
-std::string pocoTimeToStringFromatter(const Poco::Data::Time &time);
+std::string pocoTimeToStringFormatter(const Poco::Data::Time &time);
 
 /*!
  * @brief Converts a string to Poco::Data::Time.

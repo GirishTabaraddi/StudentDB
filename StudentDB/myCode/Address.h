@@ -93,6 +93,11 @@ public:
      * @return std::string representing the formatted address.
      */
 	std::string printAddress() const;
+
+	/*!
+	 *
+	 */
+	void write(std::ostream& out) const;
 };
 
 #endif /* ADDRESS_H_ */

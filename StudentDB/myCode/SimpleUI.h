@@ -63,6 +63,11 @@ public:
     /*!
      *
      */
+    void listCourses();
+
+    /*!
+     *
+     */
     void getUserInputforStudentUpdate();
 
     /*!

@@ -47,8 +47,17 @@ std::string Enrollment::printEnrollment() const
 	oss << fixed << setprecision(1) << this->m_grade;
 
 	string out = to_string(this->m_course->getcourseKey())
-			+ ";" + this->m_semester
-			+ ";" + oss.str();
+			+ ";" + this->m_semester + ";" + oss.str();
 
 	return out;
+}
+
+void Enrollment::write(std::ostream &out) const
+{
+	ostringstream oss;
+
+	oss << fixed << setprecision(1) << this->m_grade;
+
+	out << to_string(this->m_course->getcourseKey())
+			<< ";" << this->m_semester << ";" << oss.str();
 }

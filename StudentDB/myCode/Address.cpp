@@ -51,3 +51,11 @@ std::string Address::printAddress() const
 
 	return out;
 }
+
+void Address::write(std::ostream &out) const
+{
+	out << this->m_street
+		<< ";" << to_string(this->m_postalCode)
+		<< ";" << this->m_cityName
+		<< ";" << this->m_additionalInfo;
+}

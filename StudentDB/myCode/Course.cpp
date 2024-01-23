@@ -62,12 +62,24 @@ Course::~Course()
 
 std::string Course::printCourse() const
 {
-	stringstream ss;
+	ostringstream oss;
 
-	ss << fixed << setprecision(1) << this->m_creditPoints;
+	oss << fixed << setprecision(1) << this->m_creditPoints;
 
-	string creditpoints = ss.str();
+	string creditpoints = oss.str();
 
 	return (to_string(this->m_courseKey) + ";" + this->m_title + ";"
 			+ this->m_majorById.at(this->m_major) + ";" + creditpoints);
+}
+
+void Course::write(std::ostream &out) const
+{
+	ostringstream oss;
+
+	oss << fixed << setprecision(1) << this->m_creditPoints;
+
+	string creditpoints = oss.str();
+
+	out << to_string(this->m_courseKey) << ";" << this->m_title << ";"
+			<< this->m_majorById.at(this->m_major) << ";" << creditpoints;
 }

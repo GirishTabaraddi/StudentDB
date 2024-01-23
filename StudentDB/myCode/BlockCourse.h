@@ -95,17 +95,7 @@ public:
      *
      * @return String representation of the course data.
      */
-	std::string printBlockCourse() const;
-
-	/**
-	 * @brief Prints specific information about the BlockCourse.
-	 *
-	 * This function prints additional details specific to the BlockCourse,
-	 * such as start and end dates, start and end times.
-	 *
-	 * @note This function overrides the virtual function in the base Course class.
-	 */
-	void print() const override;
+	std::string printCourse() const override;
 
 	/**
 	 * @brief Write the object's data to the provided output stream.

@@ -49,6 +49,16 @@ private:
     std::map<int, std::unique_ptr<const Course>> m_courses;
 
 public:
+    enum class RC_StudentDb_t
+    {
+    	RC_Success,
+    	RC_Wrong_Course_Key,
+		RC_Wrong_MatrikelNumber,
+		RC_Student_Exists,
+		RC_Course_Exists,
+		RC_Enrollment_Exists
+    };
+
     /*!
      * @brief Default constructor for StudentDb class.
      */
@@ -73,16 +83,11 @@ public:
      *
      * Queries the user for the required data and creates a new course in the database.
      */
-    void addNewCourse(std::string& courseKey,std::string& title,
+    RC_StudentDb_t addNewCourse(std::string& courseKey,std::string& title,
     		std::string& major,std::string& credits,
 			std::string& courseType,std::string& startTime,
 			std::string& endTime,std::string& startDate,
 			std::string& endDate,std::string& dayOfWeek);
-
-    /*!
-     * @brief List all courses in the database with their data.
-     */
-    void listCourses();
 
     /*!
      * @brief Add a new student to the database.
@@ -90,7 +95,7 @@ public:
      * Queries the user for the required data (member data of Student and Address)
      * and creates a new student in the database.
      */
-    void addNewStudent(std::string& firstName,std::string& lastName,
+    RC_StudentDb_t addNewStudent(std::string& firstName,std::string& lastName,
     		std::string& DoBstring,std::string& streetName,
 			std::string& postalCode,std::string& cityName,
 			std::string& additionalInfo);
@@ -101,19 +106,8 @@ public:
      * Queries the user for a matrikel number, a course id, a semester, and adds the enrollment.
      * If the enrollment already exists, a warning message is printed.
      */
-    void addEnrollment(std::string& matrikelNumber, std::string& semester,
+    RC_StudentDb_t addEnrollment(std::string& matrikelNumber, std::string& semester,
     		std::string& courseKey);
-
-    /*!
-     * @brief Print all Students in the entire database.
-     *
-     * This method prints the details of all students in the database
-     * to the specified output stream.
-     *
-     * @param out The output stream where student data will be printed.
-     */
-    void printAllStudentsDb(std::ostream &out) const;
-
 
     /*!
      * @brief Print all Courses in the entire database.
@@ -123,7 +117,17 @@ public:
      *
      * @param out The output stream where course data will be printed.
      */
-    void printAllCoursesDb(std::ostream &out) const;
+    void writeCoursesData(std::ostream &out) const;
+
+    /*!
+     * @brief Print all Students in the entire database.
+     *
+     * This method prints the details of all students in the database
+     * to the specified output stream.
+     *
+     * @param out The output stream where student data will be printed.
+     */
+    void writeStudentsData(std::ostream &out) const;
 
     /*!
      * @brief Print all Enrollments of the Student.
@@ -133,7 +137,7 @@ public:
      *
      * @param out The output stream where enrollment data will be printed.
      */
-    void printAllEnrollments(std::ostream &out) const;
+    void writeEnrollmentsData(std::ostream &out) const;
 
     /*!
      * @brief Write all student and course data to the provided output stream.
@@ -159,11 +163,6 @@ public:
     void read(std::istream& in);
 
     /*!
-     * @brief Reads data from the server.
-     */
-    void readFromServer();
-
-    /*!
      * @brief Processes courses data from the input stream.
      *
      * This function processes courses data read from the input stream. It parses
@@ -171,7 +170,7 @@ public:
      *
      * @param in The input stream containing courses data.
      */
-    void processCoursesData(std::istream &in);
+    void readCoursesData(std::istream &in);
 
     /*!
      * @brief Processes students data from the input stream.
@@ -181,7 +180,7 @@ public:
      *
      * @param in The input stream containing students data.
      */
-    void processStudentsData(std::istream &in);
+    void readStudentsData(std::istream &in);
 
     /*!
      * @brief Processes enrollment data from the input stream.
@@ -191,7 +190,12 @@ public:
      *
      * @param in The input stream containing enrollment data.
      */
-    void processEnrollmentData(std::istream &in);
+    void readEnrollmentData(std::istream &in);
+
+    /*!
+     * @brief Reads data from the server.
+     */
+    void readStudentDataFromServer();
 
     /*!
      * @brief Parses JSON data.

@@ -67,40 +67,18 @@ const std::shared_ptr<Address> Student::getAddress() const
 
 std::string Student::printStudent() const
 {
-//	string out = to_string(getmatrikelNumber()) + ";" + this->m_firstName + ";" +
-//			this->m_lastName + ";" << this->m_dateOfBirth.day() << "." <<
-//			this->m_dateOfBirth.month() << "." << this->m_dateOfBirth.year();
-//
-//	return out;
-
 	string out = (to_string(this->m_matrikelNumber)
 			+ ";" + this->m_firstName
 			+ ";" + this->m_lastName
-			+ ";" + pocoDateToStringFromatter(this->m_dateOfBirth) + ";");
+			+ ";" + pocoDateToStringFormatter(this->m_dateOfBirth) + ";");
 
 	out += getAddress()->printAddress();
 
 	return out;
-
-//	for(const Enrollment& eachEntries: this->m_enrollments)
-//	{
-//		cout << to_string(eachEntries.getcourse()->getcourseKey()) << ";" <<
-//				eachEntries.getsemester() << ";" << to_string(eachEntries.getgrade()) << endl;
-//	}
-//	cout << endl;
 }
 
 void Student::addEnrollment(const std::string& semester, const Course *newCourseId)
 {
-	//	for(Enrollment& enrollments: this->m_enrollments)
-	//	{
-	//		if(enrollments.getcourse()->getcourseKey() == newCourseId->getcourseKey())
-	//		{
-	//			cout << "WARNING: Enrollment already exists!!!" << endl;
-	//			return; //! Exit early if duplicate found.
-	//		}
-	//	}
-
 	unsigned int courseKey = newCourseId->getcourseKey();
 
 	auto isEnrolled = [courseKey](const Enrollment& enrollment){
@@ -118,8 +96,6 @@ void Student::addEnrollment(const std::string& semester, const Course *newCourse
 	else
 	{
 		this->m_enrollments.push_back(Enrollment(semester, newCourseId));
-
-//		cout << "\n\t \t Enrollment Added" << endl;
 	}
 }
 
@@ -158,6 +134,7 @@ void Student::deleteEnrollment(unsigned int courseKey)
 
 	if(delEnrollmentItr != this->m_enrollments.end())
 	{
+		//TODO: remove this cout
 		cout << "Entered Enrollment Deleted!!" << endl;
 		this->m_enrollments.erase(delEnrollmentItr, this->m_enrollments.end());
 	}
@@ -180,5 +157,10 @@ void Student::updateGrade(float grade, unsigned int courseKey)
 
 void Student::write(std::ostream &out) const
 {
-	out << printStudent() << endl;
+	out << to_string(this->m_matrikelNumber)
+		<< ";" << this->m_firstName
+		<< ";" << this->m_lastName << ";"
+		<< pocoDateToStringFormatter(this->m_dateOfBirth) + ";";
+
+	this->getAddress()->write(out);
 }

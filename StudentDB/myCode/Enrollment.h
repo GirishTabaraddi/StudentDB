@@ -85,6 +85,11 @@ public:
      * @return std::string representing the formatted enrollment information.
      */
 	std::string printEnrollment() const;
+
+	/*!
+	 *
+	 */
+	void write(std::ostream& out) const;
 };
 
 #endif /* ENROLLMENT_H_ */

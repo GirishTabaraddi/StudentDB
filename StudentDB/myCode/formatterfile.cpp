@@ -11,7 +11,7 @@
 
 using namespace std;
 
-std::string pocoDateToStringFromatter(const Poco::Data::Date &date)
+std::string pocoDateToStringFormatter(const Poco::Data::Date &date)
 {
 	string dateString = Poco::DateTimeFormatter::format
 			(Poco::LocalDateTime(date.year(), date.month(), date.day()), "%d.%m.%Y");
@@ -49,7 +49,7 @@ Poco::Data::Date stringToPocoDateFormatter(const std::string& stringDate)
 	return Poco::Data::Date(datetime.year(), datetime.month(), datetime.day());
 }
 
-std::string pocoTimeToStringFromatter(const Poco::Data::Time &time)
+std::string pocoTimeToStringFormatter(const Poco::Data::Time &time)
 {
 	string timeString;
 

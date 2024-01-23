@@ -146,16 +146,7 @@ public:
 	 *
 	 * @return A string containing information about the Course.
 	 */
-	std::string printCourse() const;
-
-	/*!
-	 * @brief Prints information about the Course.
-	 *
-	 * This function prints general information about the Course,
-	 * such as course key, title, major, and credit points.
-	 *
-	 */
-	virtual void print() const = 0;
+	virtual std::string printCourse() const;
 
 	/**
 	 * @brief Write the object's data to the provided output stream.
@@ -167,7 +158,7 @@ public:
 	 *
 	 * @param out The output stream where the object's data will be written.
 	 */
-	virtual void write(std::ostream& out) const = 0;
+	virtual void write(std::ostream& out) const;
 };
 
 #endif /* COURSE_H_ */

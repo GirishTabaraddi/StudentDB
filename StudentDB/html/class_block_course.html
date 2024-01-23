@@ -131,12 +131,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~BlockCourse</b> (
 <tr class="memitem:a9468b21a3f416d30b06075c1e5202f97" id="r_a9468b21a3f416d30b06075c1e5202f97"><td class="memItemLeft" align="right" valign="top">Poco::Data::Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_course.html#a9468b21a3f416d30b06075c1e5202f97">getEndTime</a> () const</td></tr>
 <tr class="memdesc:a9468b21a3f416d30b06075c1e5202f97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method for the end time of the course.  <br /></td></tr>
 <tr class="separator:a9468b21a3f416d30b06075c1e5202f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78409dd15382fdd304bb3965bff4ae77" id="r_a78409dd15382fdd304bb3965bff4ae77"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_course.html#a78409dd15382fdd304bb3965bff4ae77">printBlockCourse</a> () const</td></tr>
-<tr class="memdesc:a78409dd15382fdd304bb3965bff4ae77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print method that outputs the data of the block course.  <br /></td></tr>
-<tr class="separator:a78409dd15382fdd304bb3965bff4ae77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1cb338152cfb8e74d12cd72a09ffc7e" id="r_ab1cb338152cfb8e74d12cd72a09ffc7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_course.html#ab1cb338152cfb8e74d12cd72a09ffc7e">print</a> () const override</td></tr>
-<tr class="memdesc:ab1cb338152cfb8e74d12cd72a09ffc7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints specific information about the <a class="el" href="class_block_course.html" title="Represents a block course with specific scheduling details.">BlockCourse</a>.  <br /></td></tr>
-<tr class="separator:ab1cb338152cfb8e74d12cd72a09ffc7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af19f66d75012eece01741d1cd7e14898" id="r_af19f66d75012eece01741d1cd7e14898"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_course.html#af19f66d75012eece01741d1cd7e14898">printCourse</a> () const override</td></tr>
+<tr class="memdesc:af19f66d75012eece01741d1cd7e14898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print method that outputs the data of the block course.  <br /></td></tr>
+<tr class="separator:af19f66d75012eece01741d1cd7e14898"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a111d118c5d4fa960e002e95632196243" id="r_a111d118c5d4fa960e002e95632196243"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_course.html#a111d118c5d4fa960e002e95632196243">write</a> (std::ostream &amp;out) const override</td></tr>
 <tr class="memdesc:a111d118c5d4fa960e002e95632196243"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the object's data to the provided output stream.  <br /></td></tr>
 <tr class="separator:a111d118c5d4fa960e002e95632196243"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,9 +160,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
 <tr class="memitem:aaf9e0e94a3e63ae1822831e1515133f1 inherit pub_methods_class_course" id="r_aaf9e0e94a3e63ae1822831e1515133f1"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#aaf9e0e94a3e63ae1822831e1515133f1">getcreditPoints</a> () const</td></tr>
 <tr class="memdesc:aaf9e0e94a3e63ae1822831e1515133f1 inherit pub_methods_class_course"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method to obtain the credit points of the course.  <br /></td></tr>
 <tr class="separator:aaf9e0e94a3e63ae1822831e1515133f1 inherit pub_methods_class_course"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e4b12abf486e9c5bd741a750d86713d inherit pub_methods_class_course" id="r_a1e4b12abf486e9c5bd741a750d86713d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#a1e4b12abf486e9c5bd741a750d86713d">printCourse</a> () const</td></tr>
-<tr class="memdesc:a1e4b12abf486e9c5bd741a750d86713d inherit pub_methods_class_course"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a string representation of the <a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a>.  <br /></td></tr>
-<tr class="separator:a1e4b12abf486e9c5bd741a750d86713d inherit pub_methods_class_course"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a block course with specific scheduling details. </p>
@@ -331,8 +325,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
 
 </div>
 </div>
-<a id="ab1cb338152cfb8e74d12cd72a09ffc7e" name="ab1cb338152cfb8e74d12cd72a09ffc7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab1cb338152cfb8e74d12cd72a09ffc7e">&#9670;&#160;</a></span>print()</h2>
+<a id="af19f66d75012eece01741d1cd7e14898" name="af19f66d75012eece01741d1cd7e14898"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af19f66d75012eece01741d1cd7e14898">&#9670;&#160;</a></span>printCourse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -341,7 +335,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void BlockCourse::print </td>
+          <td class="memname">std::string BlockCourse::printCourse </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -354,31 +348,10 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
 </table>
 </div><div class="memdoc">
 
-<p>Prints specific information about the <a class="el" href="class_block_course.html" title="Represents a block course with specific scheduling details.">BlockCourse</a>. </p>
-<p>This function prints additional details specific to the <a class="el" href="class_block_course.html" title="Represents a block course with specific scheduling details.">BlockCourse</a>, such as start and end dates, start and end times.</p>
-<dl class="section note"><dt>Note</dt><dd>This function overrides the virtual function in the base <a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a> class. </dd></dl>
-
-<p>Implements <a class="el" href="class_course.html#ad4c864145d3392698d9295215bbec536">Course</a>.</p>
-
-</div>
-</div>
-<a id="a78409dd15382fdd304bb3965bff4ae77" name="a78409dd15382fdd304bb3965bff4ae77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78409dd15382fdd304bb3965bff4ae77">&#9670;&#160;</a></span>printBlockCourse()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string BlockCourse::printBlockCourse </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
 <p>Print method that outputs the data of the block course. </p>
 <dl class="section return"><dt>Returns</dt><dd>String representation of the course data. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="class_course.html#a1e4b12abf486e9c5bd741a750d86713d">Course</a>.</p>
 
 </div>
 </div>
@@ -415,7 +388,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="class_course.html#ab1e795949282f7c7c0cf34fe46828bfe">Course</a>.</p>
+<p>Reimplemented from <a class="el" href="class_course.html#ae3512f59485143eb2bfac02a26bb7f61">Course</a>.</p>
 
 </div>
 </div>

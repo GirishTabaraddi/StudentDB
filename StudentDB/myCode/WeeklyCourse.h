@@ -80,21 +80,11 @@ public:
 	Poco::Data::Time getEndTime() const;
 
     /*!
-     * @brief Print method that outputs the data of the weekly course.
+     * @brief Print method that outputs the data of the weekly course as a string.
      *
      * @return String representation of the course data.
      */
-	std::string printWeeklyCourse() const;
-
-	/**
-	 * @brief Prints specific information about the WeeklyCourse.
-	 *
-	 * This function prints additional details specific to the WeeklyCourse,
-	 * such as day of week, start and end times.
-	 *
-	 * @note This function overrides the virtual function in the base Course class.
-	 */
-	void print() const override;
+	std::string printCourse() const override;
 
 	/**
 	 * @brief Write the object's data to the provided output stream.

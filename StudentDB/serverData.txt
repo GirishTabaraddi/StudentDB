@@ -1,12 +1,6 @@
+0
 4
-W;1234;EOS;Embedded;5.0;3;10:15;11:45
-B;1235;FPGA;Power;5.0;11.01.2024;01.03.2024;08:30;09:45
-B;2371;C Programming;Automation;5.0;16.09.2019;20.09.2019;14:15;19:15
-W;5387;APT;Automation;5.0;3;07:45;09:15
-3
-100000;Olsen;Peter;23.11.1998;7158 Spurvevej;21361;Juelsminde;(additionalInfo not assigned)
-100001;Stein;Josephine;05.03.1997;2575 Tannenweg;49733;Delitzsch;Apartement 6b
-100002;Girish;Tabaraddi;31.03.1997;Am Karlshof;64287;Darmstadt;Hessen
-1
-100000;5387;WS2018;3.71
-100002;2371;SS2024;0.0
+100000;patricia;schlüter;25.05.1974;6957 birkenweg;23927;euskirchen;niedersachsen
+100001;anni;wirta;23.08.1957;3407 hämeenkatu;30584;iitti;central ostrobothnia
+100002;sarah;marquardt;01.02.1930;8513 lindenweg;15156;lichtenfels;schleswig-holstein
+100003;erica;fleming;13.11.1989;2786 wheeler ridge dr;5745;mildura;new south wales

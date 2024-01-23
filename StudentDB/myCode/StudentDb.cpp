@@ -25,96 +25,129 @@ std::map<int, std::unique_ptr<const Course> >& StudentDb::getCourses()
 	return this->m_courses;
 }
 
-void StudentDb::addNewCourse(std::string &courseKey, std::string &title,
+StudentDb::RC_StudentDb_t StudentDb::addNewCourse(std::string &courseKey, std::string &title,
 		std::string &major, std::string &credits, std::string &courseType,
 		std::string &startTime, std::string &endTime, std::string &startDate,
 		std::string &endDate, std::string &dayOfWeek)
 {
-	if(courseType == "B" || courseType == "b")
-	{
-		unique_ptr<BlockCourse> blockCourse =
-				make_unique<BlockCourse>(stoi(courseKey), title, major, stof(credits),
-						stringToPocoDateFormatter(startDate), stringToPocoDateFormatter(endDate),
-						stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
+	auto existingCourse = find_if(this->m_courses.begin(), this->m_courses.end(),
+			[&courseKey, &title](const auto& pairCourse){
+		const Course& courseref = *(pairCourse.second);
+		return (courseref.getcourseKey() == stoul(courseKey) &&
+				courseref.gettitle() == title);
+	});
 
-		this->m_courses.insert(make_pair(blockCourse->getcourseKey(), move(blockCourse)));
+	if(existingCourse != this->m_courses.end())
+	{
+		return RC_StudentDb_t::RC_Course_Exists;
 	}
-	if(courseType == "W" || courseType == "w")
+	else
 	{
-		Poco::DateTime::DaysOfWeek dayOfWeekinPoco = getDayOfWeekFromString(dayOfWeek);
+		if(courseType == "B" || courseType == "b")
+		{
+			unique_ptr<BlockCourse> blockCourse =
+					make_unique<BlockCourse>(stoi(courseKey), title, major, stof(credits),
+							stringToPocoDateFormatter(startDate), stringToPocoDateFormatter(endDate),
+							stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
 
-		unique_ptr<WeeklyCourse> weeklyCourse = make_unique<WeeklyCourse>(stoi(courseKey),
-				title, major, stof(credits), dayOfWeekinPoco,
-				stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
+			this->m_courses.insert(make_pair(blockCourse->getcourseKey(), move(blockCourse)));
+		}
+		if(courseType == "W" || courseType == "w")
+		{
+			Poco::DateTime::DaysOfWeek dayOfWeekinPoco = getDayOfWeekFromString(dayOfWeek);
 
-		this->m_courses.insert(make_pair(weeklyCourse->getcourseKey(), move(weeklyCourse)));
+			unique_ptr<WeeklyCourse> weeklyCourse = make_unique<WeeklyCourse>(stoi(courseKey),
+					title, major, stof(credits), dayOfWeekinPoco,
+					stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
+
+			this->m_courses.insert(make_pair(weeklyCourse->getcourseKey(), move(weeklyCourse)));
+		}
+
+		return RC_StudentDb_t::RC_Success;
 	}
 }
 
-void StudentDb::listCourses()
-{
-	cout << this->m_courses.size() << endl;
-
-	for(const auto& courses: this->m_courses)
-	{
-		courses.second.get()->print();
-	}
-}
-
-void StudentDb::addNewStudent(std::string &firstName, std::string &lastName,
+StudentDb::RC_StudentDb_t StudentDb::addNewStudent(std::string &firstName, std::string &lastName,
 		std::string &DoBstring, std::string &streetName,
 		std::string &postalCode, std::string &cityName,
 		std::string &additionalInfo)
 {
+	auto existingStudent = find_if(this->m_students.begin(), this->m_students.end(),
+			[&firstName,  &lastName, &streetName,
+			 &postalCode, &cityName, &additionalInfo](const auto& studentPair){
+		const Student& student = studentPair.second;
+		return (student.getFirstName() == firstName &&
+				student.getLastName() == lastName &&
+				student.getAddress()->getstreet() == streetName &&
+				student.getAddress()->getcityName() == cityName &&
+				student.getAddress()->getpostalCode() == stoi(postalCode) &&
+				student.getAddress()->getadditionalInfo() == additionalInfo);
+	});
+
+	if(existingStudent != this->m_students.end())
+	{
+		return RC_StudentDb_t::RC_Student_Exists;
+	}
+
 	shared_ptr<Address> address =
 			make_shared<Address>(streetName, stoi(postalCode), cityName, additionalInfo);
 
 	Student student = Student(firstName, lastName, stringToPocoDateFormatter(DoBstring), address);
 
 	this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
+
+	return RC_StudentDb_t::RC_Success;
 }
 
-void StudentDb::addEnrollment(std::string &matrikelNumber,
+StudentDb::RC_StudentDb_t StudentDb::addEnrollment(std::string &matrikelNumber,
 		std::string &semester, std::string &courseKey)
 {
-	auto matrikelNumberItr = this->m_students.find(stoi(matrikelNumber));
+	auto existingEnrollment = find_if(this->m_students.begin(), this->m_students.end(),
+			[&matrikelNumber, &courseKey, &semester](const auto& pairStudent){
+		const Student& student = pairStudent.second;
+		const auto& enrollments = student.getEnrollments();
+
+		auto enrollmentItr = find_if(
+				enrollments.begin(), enrollments.end(),
+				[&courseKey, &semester](const Enrollment& enrollment){
+			return (enrollment.getcourse()->getcourseKey() == stoul(courseKey) &&
+					enrollment.getsemester() == semester);
+	});
+		return (student.getMatrikelNumber() == stoul(matrikelNumber) &&
+				enrollmentItr != enrollments.end());
+	});
+
+	auto matrikelNumberItr = this->m_students.find(stoul(matrikelNumber));
 
 	if(matrikelNumberItr != this->m_students.end())
 	{
-		auto findCourseIdItr = this->m_courses.find(stoi(courseKey));
+		auto findCourseIdItr = this->m_courses.find(stoul(courseKey));
 
 		if(findCourseIdItr != this->m_courses.end())
 		{
+			if(existingEnrollment != this->m_students.end())
+			{
+				return RC_StudentDb_t::RC_Enrollment_Exists;
+			}
+
 			const Course& courseref = *(findCourseIdItr->second);
 
 			matrikelNumberItr->second.addEnrollment(semester, &courseref);
+
+			return RC_StudentDb_t::RC_Success;
 		}
 		else
 		{
-			cout << endl << "\t \t \t ERROR: Entered Course Key "
-					"doesn't exist in the database!!!" << endl;
+			return RC_StudentDb_t::RC_Wrong_Course_Key;
 		}
 	}
 	else
 	{
-		cout << endl << "\t \t \t ERROR: Entered Matrikel Number "
-				"doesn't exist in the database!!!" << endl;
+		return RC_StudentDb_t::RC_Wrong_MatrikelNumber;
 	}
 }
 
-void StudentDb::printAllStudentsDb(std::ostream &out) const
-{
-	out << this->m_students.size() << endl;
-
-	for(const auto& studentsPair: this->m_students)
-	{
-		const Student& student = studentsPair.second;
-
-		out << student.printStudent() << endl;
-	}
-}
-
-void StudentDb::printAllCoursesDb(std::ostream &out) const
+void StudentDb::writeCoursesData(std::ostream &out) const
 {
 	out << this->m_courses.size() << endl;
 
@@ -124,7 +157,21 @@ void StudentDb::printAllCoursesDb(std::ostream &out) const
 	}
 }
 
-void StudentDb::printAllEnrollments(std::ostream &out) const
+void StudentDb::writeStudentsData(std::ostream &out) const
+{
+	out << this->m_students.size() << endl;
+
+	for(const auto& studentsPair: this->m_students)
+	{
+		const Student& student = studentsPair.second;
+
+		student.write(out);
+
+		out << endl;
+	}
+}
+
+void StudentDb::writeEnrollmentsData(std::ostream &out) const
 {
 	map<unsigned int, vector<Enrollment>> StudentEnrollments;
 
@@ -145,16 +192,17 @@ void StudentDb::printAllEnrollments(std::ostream &out) const
 		for(const Enrollment& enrItr: itr.second)
 		{
 			out << itr.first << ";";
-			out << enrItr.printEnrollment();
+
+			enrItr.write(out);
 		}
 	}
 }
 
 void StudentDb::write(std::ostream &out) const
 {
-	printAllCoursesDb(out);
-	printAllStudentsDb(out);
-	printAllEnrollments(out);
+	this->writeCoursesData(out);
+	this->writeStudentsData(out);
+	this->writeEnrollmentsData(out);
 }
 
 void StudentDb::read(std::istream &in)
@@ -163,12 +211,12 @@ void StudentDb::read(std::istream &in)
 	this->m_courses.clear();
 	this->m_students.clear();
 
-	processCoursesData(in);
-	processStudentsData(in);
-	processEnrollmentData(in);
+	this->readCoursesData(in);
+	this->readStudentsData(in);
+	this->readEnrollmentData(in);
 }
 
-void StudentDb::processCoursesData(std::istream &in)
+void StudentDb::readCoursesData(std::istream &in)
 {
 	string readLine, count;
 
@@ -236,7 +284,7 @@ void StudentDb::processCoursesData(std::istream &in)
 	}
 }
 
-void StudentDb::processStudentsData(std::istream &in)
+void StudentDb::readStudentsData(std::istream &in)
 {
 	string count, readLine;
 
@@ -295,7 +343,7 @@ void StudentDb::processStudentsData(std::istream &in)
 	Student::setNextMatrikelNumber(highestMatrikelNumber + 1);
 }
 
-void StudentDb::processEnrollmentData(std::istream &in)
+void StudentDb::readEnrollmentData(std::istream &in)
 {
 	string count, readLine;
 
@@ -353,26 +401,26 @@ void StudentDb::processEnrollmentData(std::istream &in)
 					studentItr->second.addEnrollment(semester, &courseref);
 					studentItr->second.updateGrade(grade, courseKey);
 				}
-				else
-				{
-					cout << ("Enrollment already exists for the specified course.") << endl;
-				}
+//				else
+//				{
+//					cout << ("Enrollment already exists for the specified course.") << endl;
+//				}
 			}
-			else
-			{
-				cout << ("Course not found") << endl;
-			}
+//			else
+//			{
+//				cout << ("Course not found") << endl;
+//			}
 		}
-		else
-		{
-			cout << ("Student not found") << endl;
-		}
+//		else
+//		{
+//			cout << ("Student not found") << endl;
+//		}
 
 		loopIdx++;
 	}
 }
 
-void StudentDb::readFromServer()
+void StudentDb::readStudentDataFromServer()
 {
 	string hostname = "www.hhs.users.h-da.cloud";
 	string port = "4242";
@@ -397,6 +445,7 @@ void StudentDb::readFromServer()
 
 			if(socket.is_open())
 			{
+				//! TODO: need to remove cout
 				cout << "Connection to the server is successful" << endl;
 			}
 
@@ -417,17 +466,19 @@ void StudentDb::readFromServer()
 
 				if (!serverData.empty())
 				{
-					std::cout << serverData.at(0) << std::endl;
+					//! TODO: need to remove cout
+					cout << serverData.at(0) << std::endl;
 
 					if (serverData.size() > 1)
 					{
 						//! This line contains the JSON Data required.
-						parsingJSONData(serverData.at(1));
+						this->parsingJSONData(serverData.at(1));
 					}
 
 					if (serverData.size() > 2)
 					{
-						std::cout << serverData.at(2) << std::endl;
+						//! TODO: need to remove cout
+						cout << serverData.at(2) << std::endl;
 					}
 				}
 				stream << "quit\n";

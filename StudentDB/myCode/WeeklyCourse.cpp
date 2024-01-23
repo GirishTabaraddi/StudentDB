@@ -39,23 +39,24 @@ Poco::Data::Time WeeklyCourse::getEndTime() const
 	return this->m_endTime;
 }
 
-std::string WeeklyCourse::printWeeklyCourse() const
+std::string WeeklyCourse::printCourse() const
 {
-	string outStr = "W;" + Course::printCourse() +
+	string outStr =
+			"B;" + Course::printCourse() +
 			";" + to_string(this->m_daysOfWeek) +
-			";" + pocoTimeToStringFromatter(this->m_startTime) +
-			";" + pocoTimeToStringFromatter(this->m_endTime);
+			";" + pocoTimeToStringFormatter(this->m_startTime) +
+			";" + pocoTimeToStringFormatter(this->m_endTime);
 
 	return outStr;
 }
 
-void WeeklyCourse::print() const
-{
-    cout << WeeklyCourse::printWeeklyCourse() << endl;
-}
-
-
 void WeeklyCourse::write(std::ostream &out) const
 {
-	out << WeeklyCourse::printWeeklyCourse() << endl;
+	out << "W;";
+
+	Course::write(out);
+
+	out << ";" << to_string(this->m_daysOfWeek)
+		<< ";" << pocoTimeToStringFormatter(this->m_startTime)
+		<< ";" << pocoTimeToStringFormatter(this->m_endTime) << endl;
 }

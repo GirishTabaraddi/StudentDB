@@ -135,9 +135,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Student</b> ()</t
 <tr class="memitem:ab7152dd79b045a0a680ce6a51751605c" id="r_ab7152dd79b045a0a680ce6a51751605c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#ab7152dd79b045a0a680ce6a51751605c">addEnrollment</a> (const std::string &amp;semester, const <a class="el" href="class_course.html">Course</a> *courseId)</td></tr>
 <tr class="memdesc:ab7152dd79b045a0a680ce6a51751605c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add enrollment for the student.  <br /></td></tr>
 <tr class="separator:ab7152dd79b045a0a680ce6a51751605c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3751021673cd88384974641cb6ab0ebe" id="r_a3751021673cd88384974641cb6ab0ebe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#a3751021673cd88384974641cb6ab0ebe">updateStudent</a> (std::string firstName, std::string lastName, Poco::Data::Date dateOfBirth)</td></tr>
-<tr class="memdesc:a3751021673cd88384974641cb6ab0ebe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the student details.  <br /></td></tr>
-<tr class="separator:a3751021673cd88384974641cb6ab0ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4acb5a80819d80edb6aa8906443dece4" id="r_a4acb5a80819d80edb6aa8906443dece4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#a4acb5a80819d80edb6aa8906443dece4">updateStudentDetails</a> (std::string firstName, std::string lastName, Poco::Data::Date dateOfBirth)</td></tr>
+<tr class="memdesc:a4acb5a80819d80edb6aa8906443dece4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the student details.  <br /></td></tr>
+<tr class="separator:a4acb5a80819d80edb6aa8906443dece4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65f6472c27b847cd410d9b93bf7e06ab" id="r_a65f6472c27b847cd410d9b93bf7e06ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#a65f6472c27b847cd410d9b93bf7e06ab">updateAddress</a> (std::shared_ptr&lt; <a class="el" href="class_address.html">Address</a> &gt; address)</td></tr>
 <tr class="memdesc:a65f6472c27b847cd410d9b93bf7e06ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the address of the student.  <br /></td></tr>
 <tr class="separator:a65f6472c27b847cd410d9b93bf7e06ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,7 +147,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Student</b> ()</t
 <tr class="memitem:a6d90ac4f9f4cfa0488d64bddff2f4182" id="r_a6d90ac4f9f4cfa0488d64bddff2f4182"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#a6d90ac4f9f4cfa0488d64bddff2f4182">updateGrade</a> (float grade, unsigned int courseKey)</td></tr>
 <tr class="memdesc:a6d90ac4f9f4cfa0488d64bddff2f4182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the grade for a specific enrollment.  <br /></td></tr>
 <tr class="separator:a6d90ac4f9f4cfa0488d64bddff2f4182"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7c2406d3c7d58aee3ab8cc6ab9f1e33" id="r_ac7c2406d3c7d58aee3ab8cc6ab9f1e33"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#ac7c2406d3c7d58aee3ab8cc6ab9f1e33">write</a> (std::ostream &amp;out) const</td></tr>
+<tr class="memitem:ac7c2406d3c7d58aee3ab8cc6ab9f1e33" id="r_ac7c2406d3c7d58aee3ab8cc6ab9f1e33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#ac7c2406d3c7d58aee3ab8cc6ab9f1e33">write</a> (std::ostream &amp;out) const</td></tr>
 <tr class="memdesc:ac7c2406d3c7d58aee3ab8cc6ab9f1e33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the student's data to the provided output stream.  <br /></td></tr>
 <tr class="separator:ac7c2406d3c7d58aee3ab8cc6ab9f1e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -545,14 +545,14 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a3751021673cd88384974641cb6ab0ebe" name="a3751021673cd88384974641cb6ab0ebe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3751021673cd88384974641cb6ab0ebe">&#9670;&#160;</a></span>updateStudent()</h2>
+<a id="a4acb5a80819d80edb6aa8906443dece4" name="a4acb5a80819d80edb6aa8906443dece4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4acb5a80819d80edb6aa8906443dece4">&#9670;&#160;</a></span>updateStudentDetails()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Student::updateStudent </td>
+          <td class="memname">void Student::updateStudentDetails </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>firstName</em>, </td>
@@ -594,9 +594,6 @@ Static Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Student::write </td>
@@ -606,15 +603,10 @@ Static Public Member Functions</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Write the student's data to the provided output stream. </p>
-<p>This virtual method is intended to be overridden by derived classes to write the specific data of the student to the output stream. It allows objects to represent themselves in a standardized format when output is needed, such as writing to a file or printing to the console.</p>
+<p>This method writes the basic details of the student to the output stream. It is intended to be used as a default implementation for writing student details.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">out</td><td>The output stream where the student's data will be written. </td></tr>
