@@ -159,6 +159,11 @@ public:
 	 * @param out The output stream where the object's data will be written.
 	 */
 	virtual void write(std::ostream& out) const;
+
+//	/*!
+//	 *
+//	 */
+//	virtual static Course read(std::istream& in);
 };
 
 #endif /* COURSE_H_ */

@@ -61,3 +61,47 @@ void Enrollment::write(std::ostream &out) const
 	out << to_string(this->m_course->getcourseKey())
 			<< ";" << this->m_semester << ";" << oss.str();
 }
+
+//Enrollment Enrollment::read(std::istream &in)
+//{
+//	string inStr;
+//
+//	getline(in, inStr);
+//
+////	cout << "inside read: " << inStr << endl;
+//
+//	unsigned int matrikelNumber = stoul(splitAt(inStr, ';'));
+//	unsigned int courseKey = stoul(splitAt(inStr, ';'));
+//	string semester = splitAt(inStr, ';');
+//	float grade = stof(splitAt(inStr, ';'));
+//
+////	cout << matrikelNumber << " " << courseKey << " " << semester << " " << grade << endl;
+//
+//	return Enrollment(semester, nullptr);
+//}
+
+Enrollment Enrollment::read(std::istream &in, const Course *courseobj)
+{
+	string inStr;
+
+	getline(in, inStr);
+
+//	cout << "inside read: " << inStr << endl;
+
+	unsigned int courseKey = stoul(splitAt(inStr, ';'));
+	string semester = splitAt(inStr, ';');
+	float grade = stof(splitAt(inStr, ';'));
+
+	if(courseobj->getcourseKey() == courseKey)
+	{
+		Enrollment readEnrollment(semester, courseobj);
+
+		readEnrollment.setgrade(grade);
+
+		return readEnrollment;
+	}
+	else
+	{
+		return Enrollment(semester, nullptr);
+	}
+}

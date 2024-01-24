@@ -66,4 +66,9 @@ Poco::Data::Time stringToPocoTimeFormatter(const std::string& stringTime);
  */
 Poco::DateTime::DaysOfWeek getDayOfWeekFromString(const std::string& dayString);
 
+/*!
+ *
+ */
+std::string splitAt(std::string& remainder, char delimiter);
+
 #endif /* FORMATTERFILE_H_ */

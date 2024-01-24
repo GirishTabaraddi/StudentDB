@@ -98,6 +98,10 @@ public:
 	 */
 	void write(std::ostream& out) const override;
 
+	/*!
+	 *
+	 */
+	static std::unique_ptr<WeeklyCourse> read(std::istream& in);
 };
 
 #endif /* WEEKLYCOURSE_H_ */

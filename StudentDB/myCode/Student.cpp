@@ -90,12 +90,15 @@ void Student::addEnrollment(const std::string& semester, const Course *newCourse
 
 	if(addEnrollmentItr != this->m_enrollments.end())
 	{
-		cout << "\n\t \t WARNING: Enrollment already exists!!!" << endl;
+		//TODO: remove this cout
+//		cout << "\n\t \t WARNING: Enrollment already exists!!!" << endl;
 		return;
 	}
 	else
 	{
 		this->m_enrollments.push_back(Enrollment(semester, newCourseId));
+
+//		updateGrade(addEnrollmentItr->getgrade(), courseKey);
 	}
 }
 
@@ -163,4 +166,65 @@ void Student::write(std::ostream &out) const
 		<< pocoDateToStringFormatter(this->m_dateOfBirth) + ";";
 
 	this->getAddress()->write(out);
+}
+
+Student Student::read(std::istream &in)
+{
+//	string readLine;
+//
+//	getline(in, readLine);
+//	istringstream iss(readLine);
+//
+//	vector<string> filedata;
+//
+//	while(getline(iss, readLine, ';'))
+//	{
+//		filedata.push_back(readLine);
+//	}
+//
+////	unsigned int matrikelNumber =
+////			(filedata.size()>=1) ? stoi(filedata.at(0)) : 0;
+//	string firstName =
+//			(filedata.size()>=2) ? filedata.at(1) : "(firstName not assigned)";
+//	string lastName =
+//			(filedata.size()>=3) ? filedata.at(2) : "(lastName not assigned)";
+//	Poco::Data::Date dateOfBirth =
+//			(filedata.size()>=4) ? stringToPocoDateFormatter(filedata.at(3)) : Poco::Data::Date();
+//	string streetName =
+//			(filedata.size()>=5) ? filedata.at(4) : "(streetName not assigned)";
+//	unsigned int postalCode =
+//			(filedata.size()>=6) ? stoi(filedata.at(5)) : 0;
+//	string cityName =
+//			(filedata.size()>=7) ? filedata.at(6) : "(cityName not assigned)";
+//	string additionalInfo =
+//			(filedata.size()>=8) ? filedata.at(7) : "(additionalInfo not assigned)";
+
+	string inStr;
+
+	getline(in, inStr);
+
+	unsigned int matrikelNumber = stoul(splitAt(inStr, ';'));
+	string firstName = splitAt(inStr, ';');
+	string lastName = splitAt(inStr, ';');
+	Poco::Data::Date dateOfBirth = stringToPocoDateFormatter(splitAt(inStr, ';'));
+	string streetName = splitAt(inStr, ';');
+	unsigned int postalCode = stoi(splitAt(inStr, ';'));
+	string cityName = splitAt(inStr, ';');
+	string additionalInfo = splitAt(inStr, ';');
+
+	shared_ptr<Address> address =
+			make_shared<Address>(streetName, postalCode, cityName, additionalInfo);
+
+	Student addStudent(firstName, lastName, dateOfBirth, address);
+
+	unsigned int highestMatrikelNumber = 0;
+
+	highestMatrikelNumber = (highestMatrikelNumber >= matrikelNumber)
+											? highestMatrikelNumber : matrikelNumber;
+
+	// Set the nextMatrikelNumber after processing all students
+	Student::setNextMatrikelNumber(highestMatrikelNumber + 1);
+
+	return addStudent;
+
 }

@@ -47,7 +47,7 @@ Poco::Data::Time BlockCourse::getEndTime() const
 std::string BlockCourse::printCourse() const
 {
 	string outStr =
-			"W;" + Course::printCourse() +
+			"B;" + Course::printCourse() +
 			";" + pocoDateToStringFormatter(this->m_startDate) +
 			";" + pocoDateToStringFormatter(this->m_endDate) +
 			";" + pocoTimeToStringFormatter(this->m_startTime) +
@@ -67,4 +67,43 @@ void BlockCourse::write(std::ostream &out) const
 	    << ";" << pocoTimeToStringFormatter(this->m_startTime)
 	    << ";" << pocoTimeToStringFormatter(this->m_endTime)
 	    << endl;
+}
+
+std::unique_ptr<BlockCourse> BlockCourse::read(std::istream &in)
+{
+//	string courseType;
+//	getline(in >> std::ws, courseType, ';');
+//
+//	string courseKey;
+//	getline(in >> std::ws, courseKey, ';');
+//
+//	string title, major;
+//	getline(in >> std::ws, title, ';');
+//	getline(in >> std::ws, major, ';');
+//
+//	string creditPoints;
+//	getline(in >> std::ws, creditPoints, ';');
+//
+//	string startDate, endDate, startTime, endTime;
+//	getline(in >> std::ws, startDate, ';');
+//	getline(in >> std::ws, endDate, ';');
+//	getline(in >> std::ws, startTime, ';');
+//	getline(in >> std::ws, endTime, '\n');
+
+	string inStr;
+
+	getline(in, inStr);
+
+    string courseKey = splitAt(inStr, ';');
+    string title = splitAt(inStr, ';');
+    string major = splitAt(inStr, ';');
+    string creditPoints = splitAt(inStr, ';');
+    string startDate = splitAt(inStr, ';');
+    string endDate = splitAt(inStr, ';');
+    string startTime = splitAt(inStr, ';');
+    string endTime = splitAt(inStr, '\n');
+
+	return make_unique<BlockCourse>(stoi(courseKey), title, major, stof(creditPoints),
+			stringToPocoDateFormatter(startDate), stringToPocoDateFormatter(endDate),
+			stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
 }

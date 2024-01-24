@@ -90,6 +90,11 @@ public:
 	 *
 	 */
 	void write(std::ostream& out) const;
+
+	/*!
+	 *
+	 */
+	static Enrollment read(std::istream& in, const Course* courseobj);
 };
 
 #endif /* ENROLLMENT_H_ */

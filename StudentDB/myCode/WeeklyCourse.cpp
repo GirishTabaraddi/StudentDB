@@ -42,7 +42,7 @@ Poco::Data::Time WeeklyCourse::getEndTime() const
 std::string WeeklyCourse::printCourse() const
 {
 	string outStr =
-			"B;" + Course::printCourse() +
+			"W;" + Course::printCourse() +
 			";" + to_string(this->m_daysOfWeek) +
 			";" + pocoTimeToStringFormatter(this->m_startTime) +
 			";" + pocoTimeToStringFormatter(this->m_endTime);
@@ -59,4 +59,41 @@ void WeeklyCourse::write(std::ostream &out) const
 	out << ";" << to_string(this->m_daysOfWeek)
 		<< ";" << pocoTimeToStringFormatter(this->m_startTime)
 		<< ";" << pocoTimeToStringFormatter(this->m_endTime) << endl;
+}
+
+std::unique_ptr<WeeklyCourse> WeeklyCourse::read(std::istream &in)
+{
+//	string courseType;
+//	getline(in >> std::ws, courseType, ';');
+//
+//	string courseKey;
+//	getline(in >> std::ws, courseKey, ';');
+//
+//	string title, major;
+//	getline(in >> std::ws, title, ';');
+//	getline(in >> std::ws, major, ';');
+//
+//	string creditPoints;
+//	getline(in >> std::ws, creditPoints, ';');
+//
+//	string dayOfWeek, startTime, endTime;
+//	getline(in >> std::ws, dayOfWeek, ';');
+//	getline(in >> std::ws, startTime, ';');
+//	getline(in >> std::ws, endTime, '\n');
+
+	string inStr;
+
+	getline(in, inStr);
+
+    string courseKey = splitAt(inStr, ';');
+    string title = splitAt(inStr, ';');
+    string major = splitAt(inStr, ';');
+    string creditPoints = splitAt(inStr, ';');
+    string dayOfWeek = splitAt(inStr, ';');
+    string startTime = splitAt(inStr, ';');
+    string endTime = splitAt(inStr, '\n');
+
+	return make_unique<WeeklyCourse>
+	(stoi(courseKey), title, major, stof(creditPoints), getDayOfWeekFromString(dayOfWeek),
+			stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
 }

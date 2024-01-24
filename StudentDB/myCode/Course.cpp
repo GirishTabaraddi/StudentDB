@@ -83,3 +83,34 @@ void Course::write(std::ostream &out) const
 	out << to_string(this->m_courseKey) << ";" << this->m_title << ";"
 			<< this->m_majorById.at(this->m_major) << ";" << creditpoints;
 }
+
+//Course Course::read(std::istream &in)
+//{
+//	string readLine;
+//
+//	getline(in, readLine);
+//	istringstream iss(readLine);
+//
+//	vector<string> filedata;
+//
+//	while(getline(iss, readLine,';'))
+//	{
+//		filedata.push_back(readLine);
+//	}
+//	unsigned char courseType = filedata.at(0)[0];
+//
+//	if(courseType == 'W' || courseType == 'w')
+//	{
+//
+//	}
+//	else if(courseType == 'B' || courseType == 'b')
+//	{
+//		BlockCourse
+//	}
+//	unsigned int courseKey;
+//	string title, major;
+//	Poco::DateTime::DaysOfWeek dayOfWeek;
+//	Poco::Data::Time startTime, endTime;
+//	Poco::Data::Date startDate, endDate;
+//	float creditPoints;
+//}

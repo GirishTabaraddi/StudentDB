@@ -170,7 +170,7 @@ public:
      *
      * @param in The input stream containing courses data.
      */
-    void readCoursesData(std::istream &in);
+    void readCoursesData(std::string &str);
 
     /*!
      * @brief Processes students data from the input stream.
@@ -180,7 +180,7 @@ public:
      *
      * @param in The input stream containing students data.
      */
-    void readStudentsData(std::istream &in);
+    void readStudentsData(std::string &str);
 
     /*!
      * @brief Processes enrollment data from the input stream.
@@ -190,7 +190,7 @@ public:
      *
      * @param in The input stream containing enrollment data.
      */
-    void readEnrollmentData(std::istream &in);
+    void readEnrollmentData(std::string &str);
 
     /*!
      * @brief Reads data from the server.

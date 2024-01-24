@@ -108,6 +108,11 @@ public:
 	 * @param out The output stream where the object's data will be written.
 	 */
 	void write(std::ostream& out) const override;
+
+	/*!
+	 *
+	 */
+	static std::unique_ptr<BlockCourse> read(std::istream& in);
 };
 
 #endif /* BLOCKCOURSE_H_ */

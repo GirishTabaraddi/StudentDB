@@ -193,6 +193,11 @@ public:
      * @param out The output stream where the student's data will be written.
      */
      void write(std::ostream& out) const;
+
+     /*!
+      *
+      */
+     static Student read(std::istream& in);
 };
 
 

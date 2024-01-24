@@ -118,8 +118,8 @@ void SimpleUI::run()
 				{
 					cout << endl << "\t Enter the file name to write the data(.txt): ";
 
-					string filename;
-					getline(cin, filename);
+					string filename = "fileData.txt";
+//					getline(cin, filename);
 
 					ofstream writeFile(filename, ios::trunc);
 					if(writeFile.is_open())
@@ -141,7 +141,7 @@ void SimpleUI::run()
 					cout << endl << "\t Enter the file name to read the data from(.csv): ";
 
 					string filename = "read_StudentDb.txt";
-					getline(cin, filename);
+//					getline(cin, filename);
 
 					ifstream readFile(filename);
 					if(readFile.is_open())
@@ -449,8 +449,8 @@ void SimpleUI::performStudentUpdate(Student &updateStudent)
 				"the respective operation between 0 and 5: ";
 		getline(cin, choice);
 
-		try
-		{
+//		try
+//		{
 			int numericChoice = stoi(choice);
 
 			if(numericChoice >= 0 && numericChoice <= 5)
@@ -564,12 +564,12 @@ void SimpleUI::performStudentUpdate(Student &updateStudent)
 				cout << endl << "\t \t \t ERROR: Invalid Input, "
 						"Please enter a numeric value between - [0-5]" << endl;
 			}
-		}
-		catch(const invalid_argument& e)
-		{
-			cout << endl << "\t \t \t ERROR: Invalid Input, "
-					"Please enter a numeric value between - [0-5]" << endl;
-		}
+//		}
+//		catch(const invalid_argument& e)
+//		{
+//			cout << endl << "\t \t \t ERROR: Invalid Input, "
+//					"Please enter a numeric value between - [0-5]" << endl;
+//		}
 	}
 }
 

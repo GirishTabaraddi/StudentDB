@@ -185,16 +185,18 @@ void StudentDb::writeEnrollmentsData(std::ostream &out) const
 		}
 	}
 
+	out << StudentEnrollments.size() << endl;
+
 	for(auto& itr: StudentEnrollments)
 	{
-		out << itr.second.size() << endl;
-
 		for(const Enrollment& enrItr: itr.second)
 		{
 			out << itr.first << ";";
 
 			enrItr.write(out);
 		}
+
+		out << endl;
 	}
 }
 
@@ -211,212 +213,130 @@ void StudentDb::read(std::istream &in)
 	this->m_courses.clear();
 	this->m_students.clear();
 
-	this->readCoursesData(in);
-	this->readStudentsData(in);
-	this->readEnrollmentData(in);
-}
+	string LineStr;
+	unsigned int count = 0;
+	unsigned char caseChar;
 
-void StudentDb::readCoursesData(std::istream &in)
-{
-	string readLine, count;
-
-	//! This is the count present on the first line before the list of courses
-	getline(in, count);
-	int noofCourses = stoi(count);
-
-	int loopIdx = 0;
-
-	while(loopIdx < noofCourses)
+	while(getline(in, LineStr))
 	{
-		getline(in, readLine);
-		istringstream iss(readLine);
-
-		vector<string> filedata;
-
-		while(getline(iss, readLine,';'))
+		if(LineStr.find(";") == string::npos)
 		{
-			filedata.push_back(readLine);
-		}
-		unsigned char courseType = filedata.at(0)[0];
-
-		unsigned int courseKey;
-		string title, major;
-		Poco::DateTime::DaysOfWeek dayOfWeek;
-		Poco::Data::Time startTime, endTime;
-		Poco::Data::Date startDate, endDate;
-		float creditPoints;
-
-		if(courseType == 'W' or courseType == 'w')
-		{
-			courseKey = stoi(filedata.at(1));
-			title = filedata.at(2);
-			major = filedata.at(3);
-			creditPoints = stof(filedata.at(4));
-			dayOfWeek = getDayOfWeekFromString(filedata.at(5));
-			startTime = stringToPocoTimeFormatter(filedata.at(6));
-			endTime = stringToPocoTimeFormatter(filedata.at(7));
-
-			unique_ptr<WeeklyCourse> weeklyCourse =
-					make_unique<WeeklyCourse>(courseKey, title, major, creditPoints,
-							dayOfWeek, startTime, endTime);
-
-			this->m_courses[courseKey] = move(weeklyCourse);
-		}
-		else if(courseType == 'B' or courseType == 'b')
-		{
-			courseKey = stoi(filedata.at(1));
-			title = filedata.at(2);
-			major = filedata.at(3);
-			creditPoints = stof(filedata.at(4));
-			startDate = stringToPocoDateFormatter(filedata.at(5));
-			endDate = stringToPocoDateFormatter(filedata.at(6));
-			startTime = stringToPocoTimeFormatter(filedata.at(7));
-			endTime = stringToPocoTimeFormatter(filedata.at(8));
-
-			unique_ptr<BlockCourse> blockCourse =
-					make_unique<BlockCourse>(courseKey, title, major, creditPoints,
-							startDate, endDate, startTime, endTime);
-
-			this->m_courses[courseKey] = move(blockCourse);
-		}
-
-		loopIdx++;
-	}
-}
-
-void StudentDb::readStudentsData(std::istream &in)
-{
-	string count, readLine;
-
-	//! This is the count present on the first line before the list of students
-	getline(in, count);
-	unsigned int noOfStudents = stoi(count);
-
-	unsigned int loopIdx = 0;
-	unsigned int highestMatrikelNumber = 0;
-
-	while(loopIdx < noOfStudents)
-	{
-
-		getline(in, readLine);
-		istringstream iss(readLine);
-
-		vector<string> filedata;
-
-		while(getline(iss, readLine, ';'))
-		{
-			filedata.push_back(readLine);
-		}
-
-		unsigned int matrikelNumber =
-				(filedata.size()>=1) ? stoi(filedata.at(0)) : 0;
-		string firstName =
-				(filedata.size()>=2) ? filedata.at(1) : "(firstName not assigned)";
-		string lastName =
-				(filedata.size()>=3) ? filedata.at(2) : "(lastName not assigned)";
-		Poco::Data::Date dateOfBirth =
-				(filedata.size()>=4) ? stringToPocoDateFormatter(filedata.at(3)) : Poco::Data::Date();
-		string streetName =
-				(filedata.size()>=5) ? filedata.at(4) : "(streetName not assigned)";
-		unsigned int postalCode =
-				(filedata.size()>=6) ? stoi(filedata.at(5)) : 0;
-		string cityName =
-				(filedata.size()>=7) ? filedata.at(6) : "(cityName not assigned)";
-		string additionalInfo =
-				(filedata.size()>=8) ? filedata.at(7) : "(additionalInfo not assigned)";
-
-		shared_ptr<Address> address =
-				make_shared<Address>(streetName, postalCode, cityName, additionalInfo);
-
-		Student addStudent(firstName, lastName, dateOfBirth, address);
-
-		this->m_students.insert(make_pair(matrikelNumber, addStudent));
-
-		// Update highestMatrikelNumber if needed
-		highestMatrikelNumber = (highestMatrikelNumber >= matrikelNumber)
-						? highestMatrikelNumber : matrikelNumber;
-
-		loopIdx++;
-	}
-
-	// Set the nextMatrikelNumber after processing all students
-	Student::setNextMatrikelNumber(highestMatrikelNumber + 1);
-}
-
-void StudentDb::readEnrollmentData(std::istream &in)
-{
-	string count, readLine;
-
-	//! This is the count present on the first line before the list of enrollments.
-	getline(in, count);
-	unsigned int noOfEnrollments = stoi(count);
-
-	unsigned int loopIdx = 0;
-
-	while(loopIdx < noOfEnrollments)
-	{
-		getline(in, readLine);
-		istringstream iss(readLine);
-
-		vector<string> filedata;
-
-		while(getline(iss, readLine, ';'))
-		{
-			filedata.push_back(readLine);
-		}
-
-		unsigned int matrikelNumber =
-				(filedata.size()>=1) ? stoi(filedata.at(0)) : 0;
-		unsigned int courseKey =
-				(filedata.size()>=2) ? stoi(filedata.at(1)) : 0;
-		string semester =
-				(filedata.size()>=3) ? filedata.at(2) : "(semester not assigned)";
-		float grade =
-				(filedata.size()>=4) ? stof(filedata.at(3)) : 0.0;
-
-		auto studentItr = this->m_students.find(matrikelNumber);
-
-		if(studentItr != this->m_students.end())
-		{
-			auto courseItr = this->m_courses.find(courseKey);
-
-			if(courseItr != this->m_courses.end())
+			if(count == 0)
 			{
-				const Course& courseref =  *(courseItr->second);
-
-				//! Check if the student is already enrolled in the specified course (using lambda function).
-				//! If enrolled, the iterator 'enrollmentItr' points to the existing enrollment;
-				//! otherwise, it points to the end.
-				auto isEnrolled = [courseKey](const Enrollment& enrollment){
-					return enrollment.getcourse()->getcourseKey() == courseKey;
-				};
-
-				auto enrollmentItr = find_if(studentItr->second.getEnrollments().begin(),
-						studentItr->second.getEnrollments().end(), isEnrolled);
-
-				//! Check if the 'enrollmentItr' points to the end of enrollments,
-				//! indicating that no existing enrollment for the specified courseKey was found.
-				if(enrollmentItr == studentItr->second.getEnrollments().end())
-				{
-					studentItr->second.addEnrollment(semester, &courseref);
-					studentItr->second.updateGrade(grade, courseKey);
-				}
-//				else
-//				{
-//					cout << ("Enrollment already exists for the specified course.") << endl;
-//				}
+				caseChar = 'C';
 			}
-//			else
-//			{
-//				cout << ("Course not found") << endl;
-//			}
+			if(count == 1)
+			{
+				caseChar = 'S';
+			}
+			if(count == 2)
+			{
+				caseChar = 'E';
+			}
+			count++;
 		}
-//		else
-//		{
-//			cout << ("Student not found") << endl;
-//		}
+		else if(LineStr.find(";") != string::npos)
+		{
+			switch(caseChar)
+			{
+			case 'C':
+			{
+				this->readCoursesData(LineStr);
+			}
+			break;
+			case 'S':
+			{
+				this->readStudentsData(LineStr);
+			}
+			break;
+			case 'E':
+			{
+//				for(auto coursesItr = this->m_courses.begin(); coursesItr != this->m_courses.end(); coursesItr++)
+//				{
+//					cout << coursesItr->second->printCourse() << endl;
+//				}
+//				for(auto studentsItr = this->m_students.begin(); studentsItr != this->m_students.end(); studentsItr++)
+//				{
+//					cout << studentsItr->second.printStudent() << endl;
+//				}
+				this->readEnrollmentData(LineStr);
+			}
+			break;
+			default:
+			{
+				break;
+			}
+			}
+		}
+	}
+}
 
-		loopIdx++;
+void StudentDb::readCoursesData(std::string &str)
+{
+	string courseType = splitAt(str, ';');
+
+		if(courseType == "W" or courseType == "w")
+		{
+			istringstream iss(str);
+
+			unique_ptr<WeeklyCourse> weeklyCourse = WeeklyCourse::read(iss);
+
+			this->m_courses[weeklyCourse->getcourseKey()] = move(weeklyCourse);
+		}
+		else if(courseType == "B" or courseType == "b")
+		{
+			istringstream iss(str);
+
+			unique_ptr<BlockCourse> blockCourse = BlockCourse::read(iss);
+
+			this->m_courses[blockCourse->getcourseKey()] = move(blockCourse);
+		}
+}
+
+void StudentDb::readStudentsData(std::string &str)
+{
+	istringstream iss(str);
+
+	Student readStudent = Student::read(iss);
+
+	this->m_students.insert(make_pair(readStudent.getMatrikelNumber(), readStudent));
+}
+
+void StudentDb::readEnrollmentData(std::string &str)
+{
+	unsigned int matrikelNumber = stoul(splitAt(str, ';'));
+
+//	istringstream iss(str);
+//
+//	iss >> matrikelNumber;
+//	iss.ignore();
+
+	for(auto& pairItr : this->m_courses)
+	{
+		const Course& courseref =  *(pairItr.second.get());
+
+		auto checkMatrikel = this->m_students.find(matrikelNumber);
+
+		if(checkMatrikel->second.getMatrikelNumber() == matrikelNumber)
+		{
+//			cout << matrikelNumber << endl;
+
+			istringstream iss(str);
+
+			Enrollment readEnrollment = Enrollment::read(iss, &courseref);
+
+//			float grade = readEnrollment.getgrade();
+//
+//			cout << "grade here: " << grade << endl;
+
+			if(readEnrollment.getcourse() != nullptr)
+			{
+				checkMatrikel->second.addEnrollment(readEnrollment.getsemester(),
+						readEnrollment.getcourse());
+				checkMatrikel->second.updateGrade(readEnrollment.getgrade(),
+						readEnrollment.getcourse()->getcourseKey());
+			}
+		}
 	}
 }
 
