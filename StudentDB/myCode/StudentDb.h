@@ -14,16 +14,16 @@
 #include "BlockCourse.h"
 #include "WeeklyCourse.h"
 
-#include <Poco/Net/SocketAddress.h>
-#include <Poco/Net/StreamSocket.h>
-#include <Poco/Net/SocketStream.h>
-#include <Poco/JSON/JSON.h>
-#include <Poco/JSON/Parser.h>
-#include <Poco/Dynamic/Var.h>
-#include <Poco/Timespan.h>
-#include <Poco/JSON/Object.h>
-#include <Poco/DynamicStruct.h>
-#include <Poco/UTFString.h>
+//#include <Poco/Net/SocketAddress.h>
+//#include <Poco/Net/StreamSocket.h>
+//#include <Poco/Net/SocketStream.h>
+//#include <Poco/JSON/JSON.h>
+//#include <Poco/JSON/Parser.h>
+//#include <Poco/Dynamic/Var.h>
+//#include <Poco/Timespan.h>
+//#include <Poco/JSON/Object.h>
+//#include <Poco/DynamicStruct.h>
+//#include <Poco/UTFString.h>
 
 #include <boost/asio.hpp>
 #include <boost/iostreams/stream.hpp>
@@ -49,15 +49,19 @@ private:
     std::map<int, std::unique_ptr<const Course>> m_courses;
 
 public:
+    /**
+     * @brief Enum class representing return codes for Student Database operations.
+     */
     enum class RC_StudentDb_t
     {
-    	RC_Success,
-    	RC_Wrong_Course_Key,
-		RC_Wrong_MatrikelNumber,
-		RC_Student_Exists,
-		RC_Course_Exists,
-		RC_Enrollment_Exists
+        RC_Success,               ///< Operation completed successfully.
+        RC_Wrong_Course_Key,      ///< Provided course key is incorrect or not found.
+        RC_Wrong_MatrikelNumber,  ///< Provided matrikel number is incorrect or not found.
+        RC_Student_Exists,        ///< Student with the given details already exists in the database.
+        RC_Course_Exists,         ///< Course with the given details already exists in the database.
+        RC_Enrollment_Exists      ///< Enrollment for the student and course already exists in the database.
     };
+
 
     /*!
      * @brief Default constructor for StudentDb class.
@@ -82,6 +86,8 @@ public:
      * @brief Add a new course to the database.
      *
      * Queries the user for the required data and creates a new course in the database.
+     *
+     * @return Return code indicating the success or failure of the operation.
      */
     RC_StudentDb_t addNewCourse(std::string& courseKey,std::string& title,
     		std::string& major,std::string& credits,
@@ -94,6 +100,8 @@ public:
      *
      * Queries the user for the required data (member data of Student and Address)
      * and creates a new student in the database.
+     *
+     * @return Return code indicating the success or failure of the operation.
      */
     RC_StudentDb_t addNewStudent(std::string& firstName,std::string& lastName,
     		std::string& DoBstring,std::string& streetName,
@@ -105,6 +113,8 @@ public:
      *
      * Queries the user for a matrikel number, a course id, a semester, and adds the enrollment.
      * If the enrollment already exists, a warning message is printed.
+     *
+     * @return Return code indicating the success or failure of the operation.
      */
     RC_StudentDb_t addEnrollment(std::string& matrikelNumber, std::string& semester,
     		std::string& courseKey);
@@ -194,8 +204,10 @@ public:
 
     /*!
      * @brief Reads data from the server.
+     *
+     * @param noOfUserData Number of user data to be read from the server.
      */
-    void readStudentDataFromServer();
+    void readStudentDataFromServer(unsigned int noOfUserData);
 
     /*!
      * @brief Parses JSON data.
@@ -203,12 +215,17 @@ public:
      * This function uses POCO C++ JSON for parsing data. For more information,
      * refer to the following Stack Overflow post:
      *
-     * @see []
-     * ()
-     *
      * @param JSONData The JSON data to be parsed.
      */
     void parsingJSONData(std::string& JSONData);
+
+    /*!
+     * @brief Checks if the provided string is a valid server data string.
+     *
+     * @param eachStr The string to be checked.
+     * @return True if the string is valid, false otherwise.
+     */
+    bool isValidServerDataString(const std::string& eachStr);
 };
 
 

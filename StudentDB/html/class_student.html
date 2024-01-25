@@ -159,6 +159,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a1d7062b98562c680529fdf1bc8b0dcfe" id="r_a1d7062b98562c680529fdf1bc8b0dcfe"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#a1d7062b98562c680529fdf1bc8b0dcfe">getNextMatrikelNumber</a> ()</td></tr>
 <tr class="memdesc:a1d7062b98562c680529fdf1bc8b0dcfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method that returns the next Matrikel number for new students.  <br /></td></tr>
 <tr class="separator:a1d7062b98562c680529fdf1bc8b0dcfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa58f7b039d778b055d34593645326df" id="r_aaa58f7b039d778b055d34593645326df"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_student.html">Student</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student.html#aaa58f7b039d778b055d34593645326df">read</a> (std::istream &amp;in)</td></tr>
+<tr class="memdesc:aaa58f7b039d778b055d34593645326df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a <a class="el" href="class_student.html" title="Represents a student with associated details and enrollment information.">Student</a> object from the specified input stream.  <br /></td></tr>
+<tr class="separator:aaa58f7b039d778b055d34593645326df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a student with associated details and enrollment information. </p>
@@ -445,6 +448,42 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Method to print the student details. </p>
 <dl class="section return"><dt>Returns</dt><dd>std::string representing the formatted student information. </dd></dl>
+
+</div>
+</div>
+<a id="aaa58f7b039d778b055d34593645326df" name="aaa58f7b039d778b055d34593645326df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa58f7b039d778b055d34593645326df">&#9670;&#160;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_student.html">Student</a> Student::read </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read a <a class="el" href="class_student.html" title="Represents a student with associated details and enrollment information.">Student</a> object from the specified input stream. </p>
+<p>This static function reads information from the given input stream and constructs a <a class="el" href="class_student.html" title="Represents a student with associated details and enrollment information.">Student</a> object based on the data. The input stream is expected to contain semicolon-separated values representing matrikel number, first name, last name, date of birth, street name, postal code, city name, and additional address information.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>The input stream from which the <a class="el" href="class_student.html" title="Represents a student with associated details and enrollment information.">Student</a> information will be read. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The constructed <a class="el" href="class_student.html" title="Represents a student with associated details and enrollment information.">Student</a> object. </dd></dl>
 
 </div>
 </div>

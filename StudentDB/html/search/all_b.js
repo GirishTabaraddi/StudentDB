@@ -1,10 +1,18 @@
 var searchData=
 [
-  ['weeklycourse_0',['weeklycourse',['../class_weekly_course.html',1,'WeeklyCourse'],['../class_weekly_course.html#aeeaa70a997db1566e7810740b923d313',1,'WeeklyCourse::WeeklyCourse()']]],
-  ['weeklycourse_2ecpp_1',['WeeklyCourse.cpp',['../_weekly_course_8cpp.html',1,'']]],
-  ['weeklycourse_2eh_2',['WeeklyCourse.h',['../_weekly_course_8h.html',1,'']]],
-  ['write_3',['write',['../class_block_course.html#a111d118c5d4fa960e002e95632196243',1,'BlockCourse::write()'],['../class_course.html#ae3512f59485143eb2bfac02a26bb7f61',1,'Course::write()'],['../class_student.html#ac7c2406d3c7d58aee3ab8cc6ab9f1e33',1,'Student::write()'],['../class_student_db.html#a392a82331cda387b8a8c657934f76e4f',1,'StudentDb::write()'],['../class_weekly_course.html#a80b0fa6cceed9162fb244345d3c85839',1,'WeeklyCourse::write()']]],
-  ['writecoursesdata_4',['writeCoursesData',['../class_student_db.html#ae87481c5b130145fa9b5e50f72f35873',1,'StudentDb']]],
-  ['writeenrollmentsdata_5',['writeEnrollmentsData',['../class_student_db.html#a541c92227ee035d6c9a22fc26e9741b2',1,'StudentDb']]],
-  ['writestudentsdata_6',['writeStudentsData',['../class_student_db.html#a7863888d78a2795a486c8509df1f03d2',1,'StudentDb']]]
+  ['searchstudent_0',['searchStudent',['../class_simple_u_i.html#a4a60755da9b6d5de690447d23aac023e',1,'SimpleUI']]],
+  ['setgrade_1',['setgrade',['../class_enrollment.html#ad06e0e30e96958c0dc35a5ab78e8907c',1,'Enrollment']]],
+  ['setnextmatrikelnumber_2',['setNextMatrikelNumber',['../class_student.html#a6baf59332d3fd23a6a3a7e5f3b2072cd',1,'Student']]],
+  ['simpleui_3',['simpleui',['../class_simple_u_i.html',1,'SimpleUI'],['../class_simple_u_i.html#a12c337dbe5409373f20cd4d8386be8aa',1,'SimpleUI::SimpleUI()']]],
+  ['simpleui_2ecpp_4',['SimpleUI.cpp',['../_simple_u_i_8cpp.html',1,'']]],
+  ['simpleui_2eh_5',['SimpleUI.h',['../_simple_u_i_8h.html',1,'']]],
+  ['splitat_6',['splitat',['../formatterfile_8h.html#af9ed8bca3d4f21f8250c4b8fb16d39d8',1,'splitAt(std::string &amp;remainder, char delimiter):&#160;formatterfile.cpp'],['../formatterfile_8cpp.html#ab59fdfadea948286b3ff80f51c01a658',1,'splitAt(std::string &amp;input, char delimiter):&#160;formatterfile.cpp']]],
+  ['stringtopocodateformatter_7',['stringtopocodateformatter',['../formatterfile_8h.html#afc42acaf9fcb78aeca0de2aa7afff258',1,'stringToPocoDateFormatter(const std::string &amp;stringDate):&#160;formatterfile.cpp'],['../formatterfile_8cpp.html#afc42acaf9fcb78aeca0de2aa7afff258',1,'stringToPocoDateFormatter(const std::string &amp;stringDate):&#160;formatterfile.cpp']]],
+  ['stringtopocotimeformatter_8',['stringtopocotimeformatter',['../formatterfile_8h.html#abe4ddb20dbcf1a3cbfafbef0099b0c94',1,'stringToPocoTimeFormatter(const std::string &amp;stringTime):&#160;formatterfile.cpp'],['../formatterfile_8cpp.html#abe4ddb20dbcf1a3cbfafbef0099b0c94',1,'stringToPocoTimeFormatter(const std::string &amp;stringTime):&#160;formatterfile.cpp']]],
+  ['student_9',['student',['../class_student.html#a1cb0fe414d68df7e35ac55fdfe406eca',1,'Student::Student()'],['../class_student.html',1,'Student']]],
+  ['student_2ecpp_10',['Student.cpp',['../_student_8cpp.html',1,'']]],
+  ['student_2eh_11',['Student.h',['../_student_8h.html',1,'']]],
+  ['studentdb_12',['studentdb',['../class_student_db.html#ad1f774b2bdff8a79af838c988c4f2ec5',1,'StudentDb::StudentDb()'],['../class_student_db.html',1,'StudentDb']]],
+  ['studentdb_2ecpp_13',['StudentDb.cpp',['../_student_db_8cpp.html',1,'']]],
+  ['studentdb_2eh_14',['StudentDb.h',['../_student_db_8h.html',1,'']]]
 ];

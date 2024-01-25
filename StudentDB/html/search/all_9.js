@@ -1,17 +1,12 @@
 var searchData=
 [
-  ['searchstudent_0',['searchStudent',['../class_simple_u_i.html#a4a60755da9b6d5de690447d23aac023e',1,'SimpleUI']]],
-  ['setgrade_1',['setgrade',['../class_enrollment.html#ad06e0e30e96958c0dc35a5ab78e8907c',1,'Enrollment']]],
-  ['setnextmatrikelnumber_2',['setNextMatrikelNumber',['../class_student.html#a6baf59332d3fd23a6a3a7e5f3b2072cd',1,'Student']]],
-  ['simpleui_3',['simpleui',['../class_simple_u_i.html',1,'SimpleUI'],['../class_simple_u_i.html#a12c337dbe5409373f20cd4d8386be8aa',1,'SimpleUI::SimpleUI()']]],
-  ['simpleui_2ecpp_4',['SimpleUI.cpp',['../_simple_u_i_8cpp.html',1,'']]],
-  ['simpleui_2eh_5',['SimpleUI.h',['../_simple_u_i_8h.html',1,'']]],
-  ['stringtopocodateformatter_6',['stringtopocodateformatter',['../formatterfile_8h.html#afc42acaf9fcb78aeca0de2aa7afff258',1,'stringToPocoDateFormatter(const std::string &amp;stringDate):&#160;formatterfile.cpp'],['../formatterfile_8cpp.html#afc42acaf9fcb78aeca0de2aa7afff258',1,'stringToPocoDateFormatter(const std::string &amp;stringDate):&#160;formatterfile.cpp']]],
-  ['stringtopocotimeformatter_7',['stringtopocotimeformatter',['../formatterfile_8h.html#abe4ddb20dbcf1a3cbfafbef0099b0c94',1,'stringToPocoTimeFormatter(const std::string &amp;stringTime):&#160;formatterfile.cpp'],['../formatterfile_8cpp.html#abe4ddb20dbcf1a3cbfafbef0099b0c94',1,'stringToPocoTimeFormatter(const std::string &amp;stringTime):&#160;formatterfile.cpp']]],
-  ['student_8',['student',['../class_student.html#a1cb0fe414d68df7e35ac55fdfe406eca',1,'Student::Student()'],['../class_student.html',1,'Student']]],
-  ['student_2ecpp_9',['Student.cpp',['../_student_8cpp.html',1,'']]],
-  ['student_2eh_10',['Student.h',['../_student_8h.html',1,'']]],
-  ['studentdb_11',['studentdb',['../class_student_db.html#ad1f774b2bdff8a79af838c988c4f2ec5',1,'StudentDb::StudentDb()'],['../class_student_db.html',1,'StudentDb']]],
-  ['studentdb_2ecpp_12',['StudentDb.cpp',['../_student_db_8cpp.html',1,'']]],
-  ['studentdb_2eh_13',['StudentDb.h',['../_student_db_8h.html',1,'']]]
+  ['parsingjsondata_0',['parsingJSONData',['../class_student_db.html#a53532283066d02f372d8eca62baed0ed',1,'StudentDb']]],
+  ['performenrollmentupdate_1',['performEnrollmentUpdate',['../class_simple_u_i.html#a4af3ed0899d507e3e354ace35c504ac6',1,'SimpleUI']]],
+  ['performstudentupdate_2',['performStudentUpdate',['../class_simple_u_i.html#a2aeb281107ddc020d734c8179a7614fb',1,'SimpleUI']]],
+  ['pocodatetostringformatter_3',['pocodatetostringformatter',['../formatterfile_8cpp.html#a2e89225bd5f554f7e0f97869d5577c71',1,'pocoDateToStringFormatter(const Poco::Data::Date &amp;date):&#160;formatterfile.cpp'],['../formatterfile_8h.html#a2e89225bd5f554f7e0f97869d5577c71',1,'pocoDateToStringFormatter(const Poco::Data::Date &amp;date):&#160;formatterfile.cpp']]],
+  ['pocotimetostringformatter_4',['pocotimetostringformatter',['../formatterfile_8cpp.html#a46769bc4d1406c10ed15b18103f915ea',1,'pocoTimeToStringFormatter(const Poco::Data::Time &amp;time):&#160;formatterfile.cpp'],['../formatterfile_8h.html#a46769bc4d1406c10ed15b18103f915ea',1,'pocoTimeToStringFormatter(const Poco::Data::Time &amp;time):&#160;formatterfile.cpp']]],
+  ['printaddress_5',['printAddress',['../class_address.html#a7d3064867fc0951e90e2d99b947c8b31',1,'Address']]],
+  ['printcourse_6',['printcourse',['../class_block_course.html#af19f66d75012eece01741d1cd7e14898',1,'BlockCourse::printCourse()'],['../class_course.html#a1e4b12abf486e9c5bd741a750d86713d',1,'Course::printCourse()'],['../class_weekly_course.html#ac37117b8f34dde9be85ba33e3f0761ba',1,'WeeklyCourse::printCourse()']]],
+  ['printenrollment_7',['printEnrollment',['../class_enrollment.html#a6c65b5704c6101c35248e649d8eba6b1',1,'Enrollment']]],
+  ['printstudent_8',['printstudent',['../class_simple_u_i.html#a281c59bdc4cb12e52ca3329403a26917',1,'SimpleUI::printStudent()'],['../class_student.html#ab0ff21ff068dd1bf6f3ebd762f97853c',1,'Student::printStudent()']]]
 ];

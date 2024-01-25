@@ -134,7 +134,7 @@ Poco::DateTime::DaysOfWeek getDayOfWeekFromString(const std::string& dayString)
 
 std::string splitAt(std::string &input, char delimiter)
 {
-	auto pos = input.find(delimiter);
+	string::size_type pos = input.find(delimiter);
 
 	string returnStr;
 

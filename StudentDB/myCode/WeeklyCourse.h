@@ -99,7 +99,15 @@ public:
 	void write(std::ostream& out) const override;
 
 	/*!
+	 * @brief Reads a WeeklyCourse object from the specified input stream.
 	 *
+	 * This static function reads information from the given input stream and
+	 * constructs a WeeklyCourse object based on the data.
+	 * The input stream is expected to contain semicolon-separated values representing
+	 * course key, title, major, credit points, day of the week, start time, and end time.
+	 *
+	 * @param in The input stream from which the WeeklyCourse information will be read.
+	 * @return A unique pointer to the constructed WeeklyCourse object.
 	 */
 	static std::unique_ptr<WeeklyCourse> read(std::istream& in);
 };

@@ -67,7 +67,15 @@ Poco::Data::Time stringToPocoTimeFormatter(const std::string& stringTime);
 Poco::DateTime::DaysOfWeek getDayOfWeekFromString(const std::string& dayString);
 
 /*!
+ * @brief Split the input string at the specified delimiter.
  *
+ * This function takes an input string and splits it at the specified delimiter.
+ * It returns the portion of the string before the delimiter, and modifies the input
+ * string to contain the remaining portion after the delimiter.
+ *
+ * @param remainder The input string to be split, modified to contain the remaining portion.
+ * @param delimiter The character at which to split the input string.
+ * @return The portion of the string before the delimiter.
  */
 std::string splitAt(std::string& remainder, char delimiter);
 

@@ -17,16 +17,19 @@
 
 /*!
  * @class Course
- * @brief Represents a course with relevant information such as title, major, and credit points.
+ * @brief Represents a course with relevant information
+ * such as title, major, and credit points.
  *
- * This class encapsulates the properties of a course, including its title, major, course key, and credit points.
+ * This class encapsulates the properties of a course,
+ * including its title, major, course key, and credit points.
  * It provides methods to access and manipulate these attributes.
  */
 class Course
 {
 private:
 	/*!
-	 * @var m_majorByID - A map storing major IDs mapped to their corresponding strings.
+	 * @var m_majorByID - A map storing major IDs mapped
+	 * to their corresponding strings.
 	 */
 	std::map<unsigned char, std::string> m_majorById;
 

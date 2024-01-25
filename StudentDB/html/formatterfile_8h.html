@@ -127,11 +127,14 @@ Functions</h2></td></tr>
 <tr class="memitem:a3240f3b5f4e025b204c0e3da1288752c" id="r_a3240f3b5f4e025b204c0e3da1288752c"><td class="memItemLeft" align="right" valign="top">Poco::DateTime::DaysOfWeek&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#a3240f3b5f4e025b204c0e3da1288752c">getDayOfWeekFromString</a> (const std::string &amp;dayString)</td></tr>
 <tr class="memdesc:a3240f3b5f4e025b204c0e3da1288752c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a string representation of a day to Poco::DateTime::DaysOfWeek.  <br /></td></tr>
 <tr class="separator:a3240f3b5f4e025b204c0e3da1288752c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9ed8bca3d4f21f8250c4b8fb16d39d8" id="r_af9ed8bca3d4f21f8250c4b8fb16d39d8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#af9ed8bca3d4f21f8250c4b8fb16d39d8">splitAt</a> (std::string &amp;remainder, char delimiter)</td></tr>
+<tr class="memdesc:af9ed8bca3d4f21f8250c4b8fb16d39d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split the input string at the specified delimiter.  <br /></td></tr>
+<tr class="separator:af9ed8bca3d4f21f8250c4b8fb16d39d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><br  />
  Created on: 11-Jan-2024 </p><dl class="section author"><dt>Author</dt><dd>Girish Tabaraddi</dd></dl>
-<p>Built on: Tuesday 23-01-2024 17:04:32 </p>
+<p>Built on: Thursday 25-01-2024 15:44:50 </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a3240f3b5f4e025b204c0e3da1288752c" name="a3240f3b5f4e025b204c0e3da1288752c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3240f3b5f4e025b204c0e3da1288752c">&#9670;&#160;</a></span>getDayOfWeekFromString()</h2>
@@ -212,6 +215,45 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::string representing the formatted time. </dd></dl>
+
+</div>
+</div>
+<a id="af9ed8bca3d4f21f8250c4b8fb16d39d8" name="af9ed8bca3d4f21f8250c4b8fb16d39d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9ed8bca3d4f21f8250c4b8fb16d39d8">&#9670;&#160;</a></span>splitAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string splitAt </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>remainder</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>delimiter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Split the input string at the specified delimiter. </p>
+<p>This function takes an input string and splits it at the specified delimiter. It returns the portion of the string before the delimiter, and modifies the input string to contain the remaining portion after the delimiter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">remainder</td><td>The input string to be split, modified to contain the remaining portion. </td></tr>
+    <tr><td class="paramname">delimiter</td><td>The character at which to split the input string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The portion of the string before the delimiter. </dd></dl>
 
 </div>
 </div>

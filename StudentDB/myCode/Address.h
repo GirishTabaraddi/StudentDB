@@ -95,7 +95,13 @@ public:
 	std::string printAddress() const;
 
 	/*!
+	 * \brief Writes the Address information to the specified output stream.
 	 *
+	 * This function writes the street, postal code, city name,
+	 * and additional information of the Address object to the given output stream.
+	 * The information is separated by semicolons.
+	 *
+	 * \param out The output stream to which the Address information will be written.
 	 */
 	void write(std::ostream& out) const;
 };

@@ -340,76 +340,77 @@ void StudentDb::readEnrollmentData(std::string &str)
 	}
 }
 
-void StudentDb::readStudentDataFromServer()
+void StudentDb::readStudentDataFromServer(unsigned int noOfUserData)
 {
 	string hostname = "www.hhs.users.h-da.cloud";
 	string port = "4242";
 
-	boost::asio::io_service io_service;
+	boost::asio::ip::tcp::iostream stream;
 
-	boost::asio::ip::tcp::resolver resolver(io_service);
+	stream.connect(hostname, port);
+//	try
+//	{
+//		stream.connect(hostname, port);
+//	}
+//	catch(const exception& e)
+//	{
+//		std::cerr << "Exception caught: " << e.what() << std::endl;
+//	}
+//	if(stream)
+//	{
+		cout << "Connection to the server is successful" << endl;
 
-	boost::asio::ip::tcp::resolver::query query(hostname, port);
+//		for(unsigned int idx = 0; idx < noOfUserData; idx++)
+//		{
+			stream << "generate\n";
+			stream.flush();
 
-	boost::asio::ip::tcp::resolver::iterator iter = resolver.resolve(query);
+			string readLine;
+			vector<string> serverData;
 
-	if(iter != boost::asio::ip::tcp::resolver::iterator())
-	{
-		boost::asio::ip::tcp::endpoint endpoint = iter->endpoint();
+			while(getline(stream, readLine))
+			{
+				serverData.push_back(readLine);
+			}
 
-		boost::asio::ip::tcp::socket socket(io_service);
+			if(!stream)
+			{
+				cerr << "Stream Error: " << stream.error().message() << endl;
+			}
+			if(stream.eof())
+			{
+				cerr << "eof Error: " << stream.error().message() << endl;
+			}
 
-		try
-		{
-			socket.connect(endpoint);
-
-			if(socket.is_open())
+			if (!serverData.empty())
 			{
 				//! TODO: need to remove cout
-				cout << "Connection to the server is successful" << endl;
-			}
+				cout << serverData.at(0) << std::endl;
 
-			boost::asio::ip::tcp::iostream stream(move(socket));
-
-			if(stream)
-			{
-				stream << "generate\n";
-				stream.flush();
-
-				string readLine;
-				vector<string> serverData;
-
-				while(getline(stream, readLine))
+				try
 				{
-					serverData.push_back(readLine);
+					cout << noOfUserData << ":" << endl;
+					this->parsingJSONData(serverData.at(1));
+				}
+				catch (const std::exception &e)
+				{
+					std::cerr << "Error parsing JSON: " << e.what() << std::endl;
 				}
 
-				if (!serverData.empty())
+				if (serverData.size() > 2)
 				{
 					//! TODO: need to remove cout
-					cout << serverData.at(0) << std::endl;
-
-					if (serverData.size() > 1)
-					{
-						//! This line contains the JSON Data required.
-						this->parsingJSONData(serverData.at(1));
-					}
-
-					if (serverData.size() > 2)
-					{
-						//! TODO: need to remove cout
-						cout << serverData.at(2) << std::endl;
-					}
+					cout << serverData.at(2) << std::endl;
 				}
-				stream << "quit\n";
-				stream.flush();
 			}
-		}
-		catch(const exception& e)
-		{
-			std::cerr << "Exception caught: " << e.what() << std::endl;
-		}
-	}
+			else
+			{
+				cout << "No data from the server" << endl;
+			}
+//		}
+		stream << "quit\n";
+		stream.flush();
+//	}
 }
 
 void StudentDb::parsingJSONData(std::string &JSONData)
@@ -445,26 +446,65 @@ void StudentDb::parsingJSONData(std::string &JSONData)
 
 	boost::property_tree::read_json(iss, parsedData);
 
-	string firstName = parsedData.get<string>("name.firstName");
-	string lastName = parsedData.get<string>("name.lastName");
-	int year = parsedData.get<int>("dateOfBirth.year")+1900;
-	int month = parsedData.get<int>("dateOfBirth.month")+1;
-	int day = parsedData.get<int>("dateOfBirth.date");
+	if(this->isValidServerDataString(parsedData.get<string>("name.firstName")) &&
+			this->isValidServerDataString(parsedData.get<string>("name.lastName")) &&
+			this->isValidServerDataString(parsedData.get<string>("location.city")) &&
+			this->isValidServerDataString(parsedData.get<string>("location.street")) &&
+			this->isValidServerDataString(parsedData.get<string>("location.state")) &&
+			this->isValidServerDataString(parsedData.get<string>("dateOfBirth.year")) &&
+			this->isValidServerDataString(parsedData.get<string>("dateOfBirth.month")) &&
+			this->isValidServerDataString(parsedData.get<string>("dateOfBirth.date")) &&
+			this->isValidServerDataString(parsedData.get<string>("location.postCode")))
+	{
+		string firstName = parsedData.get<string>("name.firstName");
+		string lastName = parsedData.get<string>("name.lastName");
+		string yearStr = parsedData.get<string>("dateOfBirth.year");
+		string monthStr = parsedData.get<string>("dateOfBirth.month");
+		string dayStr = parsedData.get<string>("dateOfBirth.date");
+		string postCodeStr = parsedData.get<string>("location.postCode");
+		string city = parsedData.get<string>("location.city");
+		string street = parsedData.get<string>("location.street");
+		string additionalInfo = parsedData.get<string>("location.state");
 
-	Poco::Data::Date dateOfBirth(year, month, day);
 
-	string city = parsedData.get<string>("location.city");
-	string street = parsedData.get<string>("location.street");
-	int postCode = parsedData.get<int>("location.postCode");
-	string additionalInfo = parsedData.get<string>("location.state");
+		int year = (all_of(yearStr.begin(), yearStr.end(), ::isdigit))
+				? stoi(yearStr)+1900 : 1900;
+		int month = (all_of(monthStr.begin(), monthStr.end(), ::isdigit))
+				? stoi(monthStr)+1 : 1;
+		int day = (all_of(dayStr.begin(), dayStr.end(), ::isdigit))
+				? stoi(dayStr) : 1;
+		int postCode = (all_of(postCodeStr.begin(), postCodeStr.end(), ::isdigit))
+				? stoi(postCodeStr) : 9999;
 
-	shared_ptr<Address> address =
-			make_shared<Address>(street, postCode, city, additionalInfo);
+		Poco::Data::Date dateOfBirth(year, month, day);
 
-	Student student(firstName, lastName, dateOfBirth, address);
+		shared_ptr<Address> address =
+				make_shared<Address>(street, postCode, city, additionalInfo);
 
-	this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
+		Student student(firstName, lastName, dateOfBirth, address);
 
+		this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
+	}
+}
+
+bool StudentDb::isValidServerDataString(const std::string &eachStr)
+{
+//	for(char ch : eachStr)
+//	{
+//		if(!isprint(static_cast<unsigned char>(ch)))
+//		{
+//			return false;
+//		}
+//	}
+//	return true;
+	if(all_of(eachStr.begin(), eachStr.end(), ::isprint))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 //void StudentDb::readFromServer()

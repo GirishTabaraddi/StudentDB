@@ -87,12 +87,27 @@ public:
 	std::string printEnrollment() const;
 
 	/*!
+	 * @brief Writes the Enrollment information to the specified output stream.
 	 *
+	 * This function writes the course key, semester, and grade of the Enrollment
+	 * object to the given output stream. The information is separated by semicolons.
+	 * The grade is formatted with fixed precision to one decimal place.
+	 *
+	 * @param out The output stream to which the Enrollment information will be written.
 	 */
 	void write(std::ostream& out) const;
 
 	/*!
+	 * @brief Reads an Enrollment object from the specified input stream.
 	 *
+	 * This static function reads information from the given input stream and constructs an
+	 * Enrollment object based on the data. The input stream is expected to contain
+	 * semicolon-separated values representing course key, semester, and grade.
+	 * The constructed Enrollment object is associated with the provided Course object.
+	 *
+	 * @param in The input stream from which the Enrollment information will be read.
+	 * @param courseobj The Course object to which the Enrollment will be associated.
+	 * @return The constructed Enrollment object.
 	 */
 	static Enrollment read(std::istream& in, const Course* courseobj);
 };

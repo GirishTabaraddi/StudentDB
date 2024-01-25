@@ -168,7 +168,7 @@ void SimpleUI::run()
 
 				    for(int loopIdx = 0; loopIdx < stoi(noOfUserDate); loopIdx++)
 				    {
-				    	this->m_db.readStudentDataFromServer();
+				    	this->m_db.readStudentDataFromServer(stoul(noOfUserDate));
 				    }
 				}
 				break;
@@ -401,6 +401,64 @@ void SimpleUI::getUserInputforNewEnrollment()
 	catch(const exception& e)
 	{
 		cerr << "\t \t \nException: " << e.what() << endl;
+	}
+}
+
+void SimpleUI::printStudent()
+{
+//	map<int, Student>& students = this->m_db.getStudents();
+	string matrikelNumber = "0";
+
+	cout << endl << "\t \t Enter the Matrikel Number of the Student, "
+			"to print his/her details - 0-9: ";
+	getline(cin, matrikelNumber);
+
+	auto matrikelNumberItr = this->m_db.getStudents().find(stoi(matrikelNumber));
+
+	if(matrikelNumberItr != this->m_db.getStudents().end())
+	{
+		cout << "\n\t \t \t " << matrikelNumberItr->second.printStudent() << endl;
+
+		for(const Enrollment& enrollmentItr : matrikelNumberItr->second.getEnrollments())
+		{
+			cout << "\n\t \t \t " << enrollmentItr.printEnrollment() << endl;
+		}
+	}
+	else
+	{
+		cout << "\n\t \t Entered Matrikel Number does not match "
+				"any student in the database." << endl;
+	}
+}
+
+void SimpleUI::searchStudent()
+{
+	string searchString = "Gir";
+
+	cout << endl << "\t \t Enter Student Name to search in the Database - a-z/A-Z: ";
+	getline(cin, searchString);
+
+	bool matchFound = false;
+
+	for(const auto& pairItr : this->m_db.getStudents())
+	{
+		const Student& findStudent = pairItr.second;
+
+		string firstName = findStudent.getFirstName();
+		string lastName = findStudent.getLastName();
+
+		if (boost::algorithm::icontains(firstName, searchString) ||
+				boost::algorithm::icontains(lastName, searchString))
+		{
+			matchFound = true;
+
+			cout << "\n\t \t \t " << findStudent.printStudent() << endl;
+		}
+	}
+	if(matchFound == false)
+	{
+		cout << "\t \t Entered string doesn't match the Student Name "
+				"or the Student does not exist in the Database" << endl;
 	}
 }
 
@@ -664,63 +722,5 @@ void SimpleUI::performEnrollmentUpdate(Student& updateStudent, const std::string
 			cout << endl << "\t \t \t ERROR: Invalid Input, "
 					"Please enter a numeric value between - [0-2]" << endl;
 		}
-	}
-}
-
-void SimpleUI::printStudent()
-{
-//	map<int, Student>& students = this->m_db.getStudents();
-	string matrikelNumber = "0";
-
-	cout << endl << "\t \t Enter the Matrikel Number of the Student, "
-			"to print his/her details - 0-9: ";
-	getline(cin, matrikelNumber);
-
-	auto matrikelNumberItr = this->m_db.getStudents().find(stoi(matrikelNumber));
-
-	if(matrikelNumberItr != this->m_db.getStudents().end())
-	{
-		cout << "\n\t \t \t " << matrikelNumberItr->second.printStudent() << endl;
-
-		for(const Enrollment& enrollmentItr : matrikelNumberItr->second.getEnrollments())
-		{
-			cout << "\n\t \t \t " << enrollmentItr.printEnrollment() << endl;
-		}
-	}
-	else
-	{
-		cout << "\n\t \t Entered Matrikel Number does not match "
-				"any student in the database." << endl;
-	}
-}
-
-void SimpleUI::searchStudent()
-{
-	string searchString = "Gir";
-
-	cout << endl << "\t \t Enter Student Name to search in the Database - a-z/A-Z: ";
-	getline(cin, searchString);
-
-	bool matchFound = false;
-
-	for(const auto& pairItr : this->m_db.getStudents())
-	{
-		const Student& findStudent = pairItr.second;
-
-		string firstName = findStudent.getFirstName();
-		string lastName = findStudent.getLastName();
-
-		if (boost::algorithm::icontains(firstName, searchString) ||
-				boost::algorithm::icontains(lastName, searchString))
-		{
-			matchFound = true;
-
-			cout << "\n\t \t \t " << findStudent.printStudent() << endl;
-		}
-	}
-	if(matchFound == false)
-	{
-		cout << "\t \t Entered string doesn't match the Student Name "
-				"or the Student does not exist in the Database" << endl;
 	}
 }

@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('class_block_course.html',''); initResi
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_block_course-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">BlockCourse Class Reference</div></div>
 </div><!--header-->
@@ -160,6 +161,12 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
 <tr class="memitem:aaf9e0e94a3e63ae1822831e1515133f1 inherit pub_methods_class_course" id="r_aaf9e0e94a3e63ae1822831e1515133f1"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#aaf9e0e94a3e63ae1822831e1515133f1">getcreditPoints</a> () const</td></tr>
 <tr class="memdesc:aaf9e0e94a3e63ae1822831e1515133f1 inherit pub_methods_class_course"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method to obtain the credit points of the course.  <br /></td></tr>
 <tr class="separator:aaf9e0e94a3e63ae1822831e1515133f1 inherit pub_methods_class_course"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ac9ff331c103465cce9c483c4513195e4" id="r_ac9ff331c103465cce9c483c4513195e4"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; <a class="el" href="class_block_course.html">BlockCourse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_block_course.html#ac9ff331c103465cce9c483c4513195e4">read</a> (std::istream &amp;in)</td></tr>
+<tr class="memdesc:ac9ff331c103465cce9c483c4513195e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a <a class="el" href="class_block_course.html" title="Represents a block course with specific scheduling details.">BlockCourse</a> object from the specified input stream.  <br /></td></tr>
+<tr class="separator:ac9ff331c103465cce9c483c4513195e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a block course with specific scheduling details. </p>
@@ -352,6 +359,42 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Course</b> ()</td
 <dl class="section return"><dt>Returns</dt><dd>String representation of the course data. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="class_course.html#a1e4b12abf486e9c5bd741a750d86713d">Course</a>.</p>
+
+</div>
+</div>
+<a id="ac9ff331c103465cce9c483c4513195e4" name="ac9ff331c103465cce9c483c4513195e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9ff331c103465cce9c483c4513195e4">&#9670;&#160;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="class_block_course.html">BlockCourse</a> &gt; BlockCourse::read </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reads a <a class="el" href="class_block_course.html" title="Represents a block course with specific scheduling details.">BlockCourse</a> object from the specified input stream. </p>
+<p>This static function reads information from the given input stream and constructs a <a class="el" href="class_block_course.html" title="Represents a block course with specific scheduling details.">BlockCourse</a> object based on the data. The input stream is expected to contain semicolon-separated values representing course details, including course type, course key, title, major, credit points, start date, end date, start time, and end time.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>The input stream from which the <a class="el" href="class_block_course.html" title="Represents a block course with specific scheduling details.">BlockCourse</a> information will be read. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A unique pointer to the constructed <a class="el" href="class_block_course.html" title="Represents a block course with specific scheduling details.">BlockCourse</a> object. </dd></dl>
 
 </div>
 </div>

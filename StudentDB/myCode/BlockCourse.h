@@ -110,7 +110,16 @@ public:
 	void write(std::ostream& out) const override;
 
 	/*!
+	 * \brief Reads a BlockCourse object from the specified input stream.
 	 *
+	 * This static function reads information from the given input stream and
+	 * constructs a BlockCourse object based on the data.
+	 * The input stream is expected to contain semicolon-separated values
+	 * representing course details, including course type, course key, title,
+	 * major, credit points, start date, end date, start time, and end time.
+	 *
+	 * \param in The input stream from which the BlockCourse information will be read.
+	 * \return A unique pointer to the constructed BlockCourse object.
 	 */
 	static std::unique_ptr<BlockCourse> read(std::istream& in);
 };

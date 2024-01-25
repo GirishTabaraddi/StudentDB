@@ -195,9 +195,19 @@ public:
      void write(std::ostream& out) const;
 
      /*!
+      * @brief Read a Student object from the specified input stream.
       *
+      * This static function reads information from the given input stream and
+      * constructs a Student object based on the data. The input stream is expected
+      * to contain semicolon-separated values representing matrikel number,
+      * first name, last name, date of birth, street name, postal code,
+      * city name, and additional address information.
+      *
+      * @param in The input stream from which the Student information will be read.
+      * @return The constructed Student object.
       */
      static Student read(std::istream& in);
+
 };
 
 

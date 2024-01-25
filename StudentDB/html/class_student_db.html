@@ -104,16 +104,17 @@ $(document).ready(function(){initNavTree('class_student_db.html',''); initResiza
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a30b659c517fe917b05ae084d72f33662" id="r_a30b659c517fe917b05ae084d72f33662"><td class="memItemLeft" align="right" valign="top"><a id="a30b659c517fe917b05ae084d72f33662" name="a30b659c517fe917b05ae084d72f33662"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>RC_StudentDb_t</b> { <br />
-&#160;&#160;<b>RC_Success</b>
-, <b>RC_Wrong_Course_Key</b>
-, <b>RC_Wrong_MatrikelNumber</b>
-, <b>RC_Student_Exists</b>
+<tr class="memitem:a30b659c517fe917b05ae084d72f33662" id="r_a30b659c517fe917b05ae084d72f33662"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662">RC_StudentDb_t</a> { <br />
+&#160;&#160;<a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662a1cfbb9db1404cfda2f3f8c980df12e59">RC_Success</a>
+, <a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662ae221ce27a7885b7462df87f280f9bba4">RC_Wrong_Course_Key</a>
+, <a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662a3aa9d4e5ec2d636720d8ab34df77b644">RC_Wrong_MatrikelNumber</a>
+, <a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662ac8aabecaa57965b8184a347b284f7664">RC_Student_Exists</a>
 , <br />
-&#160;&#160;<b>RC_Course_Exists</b>
-, <b>RC_Enrollment_Exists</b>
+&#160;&#160;<a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662a25612eda4bab0c784fc5e74fb0148c07">RC_Course_Exists</a>
+, <a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662aeb74e38253b28b176bc7cb2c84f35a5a">RC_Enrollment_Exists</a>
 <br />
  }</td></tr>
+<tr class="memdesc:a30b659c517fe917b05ae084d72f33662"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum class representing return codes for <a class="el" href="class_student.html" title="Represents a student with associated details and enrollment information.">Student</a> Database operations.  <a href="class_student_db.html#a30b659c517fe917b05ae084d72f33662">More...</a><br /></td></tr>
 <tr class="separator:a30b659c517fe917b05ae084d72f33662"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -128,13 +129,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8eed85549123bdf841b59e6f935ba159" id="r_a8eed85549123bdf841b59e6f935ba159"><td class="memItemLeft" align="right" valign="top">std::map&lt; int, std::unique_ptr&lt; const <a class="el" href="class_course.html">Course</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a8eed85549123bdf841b59e6f935ba159">getCourses</a> ()</td></tr>
 <tr class="memdesc:a8eed85549123bdf841b59e6f935ba159"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method to fetch the courses.  <br /></td></tr>
 <tr class="separator:a8eed85549123bdf841b59e6f935ba159"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada96694443c4e354c85cdaaa9f3c092b" id="r_ada96694443c4e354c85cdaaa9f3c092b"><td class="memItemLeft" align="right" valign="top">RC_StudentDb_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#ada96694443c4e354c85cdaaa9f3c092b">addNewCourse</a> (std::string &amp;courseKey, std::string &amp;title, std::string &amp;major, std::string &amp;credits, std::string &amp;courseType, std::string &amp;startTime, std::string &amp;endTime, std::string &amp;startDate, std::string &amp;endDate, std::string &amp;dayOfWeek)</td></tr>
+<tr class="memitem:ada96694443c4e354c85cdaaa9f3c092b" id="r_ada96694443c4e354c85cdaaa9f3c092b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662">RC_StudentDb_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#ada96694443c4e354c85cdaaa9f3c092b">addNewCourse</a> (std::string &amp;courseKey, std::string &amp;title, std::string &amp;major, std::string &amp;credits, std::string &amp;courseType, std::string &amp;startTime, std::string &amp;endTime, std::string &amp;startDate, std::string &amp;endDate, std::string &amp;dayOfWeek)</td></tr>
 <tr class="memdesc:ada96694443c4e354c85cdaaa9f3c092b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new course to the database.  <br /></td></tr>
 <tr class="separator:ada96694443c4e354c85cdaaa9f3c092b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c9857b52f911919c7fba97dc2f90c5e" id="r_a3c9857b52f911919c7fba97dc2f90c5e"><td class="memItemLeft" align="right" valign="top">RC_StudentDb_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a3c9857b52f911919c7fba97dc2f90c5e">addNewStudent</a> (std::string &amp;firstName, std::string &amp;lastName, std::string &amp;DoBstring, std::string &amp;streetName, std::string &amp;postalCode, std::string &amp;cityName, std::string &amp;additionalInfo)</td></tr>
+<tr class="memitem:a3c9857b52f911919c7fba97dc2f90c5e" id="r_a3c9857b52f911919c7fba97dc2f90c5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662">RC_StudentDb_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a3c9857b52f911919c7fba97dc2f90c5e">addNewStudent</a> (std::string &amp;firstName, std::string &amp;lastName, std::string &amp;DoBstring, std::string &amp;streetName, std::string &amp;postalCode, std::string &amp;cityName, std::string &amp;additionalInfo)</td></tr>
 <tr class="memdesc:a3c9857b52f911919c7fba97dc2f90c5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new student to the database.  <br /></td></tr>
 <tr class="separator:a3c9857b52f911919c7fba97dc2f90c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e46d6cf448cc849e301b504d94d958f" id="r_a0e46d6cf448cc849e301b504d94d958f"><td class="memItemLeft" align="right" valign="top">RC_StudentDb_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a0e46d6cf448cc849e301b504d94d958f">addEnrollment</a> (std::string &amp;matrikelNumber, std::string &amp;semester, std::string &amp;courseKey)</td></tr>
+<tr class="memitem:a0e46d6cf448cc849e301b504d94d958f" id="r_a0e46d6cf448cc849e301b504d94d958f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662">RC_StudentDb_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a0e46d6cf448cc849e301b504d94d958f">addEnrollment</a> (std::string &amp;matrikelNumber, std::string &amp;semester, std::string &amp;courseKey)</td></tr>
 <tr class="memdesc:a0e46d6cf448cc849e301b504d94d958f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add enrollment for a student.  <br /></td></tr>
 <tr class="separator:a0e46d6cf448cc849e301b504d94d958f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae87481c5b130145fa9b5e50f72f35873" id="r_ae87481c5b130145fa9b5e50f72f35873"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#ae87481c5b130145fa9b5e50f72f35873">writeCoursesData</a> (std::ostream &amp;out) const</td></tr>
@@ -152,25 +153,67 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6f1b2a7ce4be5f0d1c01d896d79b6dcb" id="r_a6f1b2a7ce4be5f0d1c01d896d79b6dcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a6f1b2a7ce4be5f0d1c01d896d79b6dcb">read</a> (std::istream &amp;in)</td></tr>
 <tr class="memdesc:a6f1b2a7ce4be5f0d1c01d896d79b6dcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data from the input stream.  <br /></td></tr>
 <tr class="separator:a6f1b2a7ce4be5f0d1c01d896d79b6dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad04fa45ce4baa4c2a2bd039f8991b04" id="r_aad04fa45ce4baa4c2a2bd039f8991b04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#aad04fa45ce4baa4c2a2bd039f8991b04">readCoursesData</a> (std::istream &amp;in)</td></tr>
-<tr class="memdesc:aad04fa45ce4baa4c2a2bd039f8991b04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes courses data from the input stream.  <br /></td></tr>
-<tr class="separator:aad04fa45ce4baa4c2a2bd039f8991b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8077c7b56a22703f2cbec33dc24cb9fe" id="r_a8077c7b56a22703f2cbec33dc24cb9fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a8077c7b56a22703f2cbec33dc24cb9fe">readStudentsData</a> (std::istream &amp;in)</td></tr>
-<tr class="memdesc:a8077c7b56a22703f2cbec33dc24cb9fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes students data from the input stream.  <br /></td></tr>
-<tr class="separator:a8077c7b56a22703f2cbec33dc24cb9fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0f114ce1acc2c0bd48eb41cf183e8c7" id="r_ae0f114ce1acc2c0bd48eb41cf183e8c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#ae0f114ce1acc2c0bd48eb41cf183e8c7">readEnrollmentData</a> (std::istream &amp;in)</td></tr>
-<tr class="memdesc:ae0f114ce1acc2c0bd48eb41cf183e8c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes enrollment data from the input stream.  <br /></td></tr>
-<tr class="separator:ae0f114ce1acc2c0bd48eb41cf183e8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4418c1c048d4b8544f38e63a95469a04" id="r_a4418c1c048d4b8544f38e63a95469a04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a4418c1c048d4b8544f38e63a95469a04">readStudentDataFromServer</a> ()</td></tr>
-<tr class="memdesc:a4418c1c048d4b8544f38e63a95469a04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data from the server.  <br /></td></tr>
-<tr class="separator:a4418c1c048d4b8544f38e63a95469a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc69fcb253c90c7c43c8224094ba4cc" id="r_a1dc69fcb253c90c7c43c8224094ba4cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a1dc69fcb253c90c7c43c8224094ba4cc">readCoursesData</a> (std::string &amp;str)</td></tr>
+<tr class="memdesc:a1dc69fcb253c90c7c43c8224094ba4cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes courses data from the input stream.  <br /></td></tr>
+<tr class="separator:a1dc69fcb253c90c7c43c8224094ba4cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ed6114b00afede3649e50c2b3e0bf86" id="r_a2ed6114b00afede3649e50c2b3e0bf86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a2ed6114b00afede3649e50c2b3e0bf86">readStudentsData</a> (std::string &amp;str)</td></tr>
+<tr class="memdesc:a2ed6114b00afede3649e50c2b3e0bf86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes students data from the input stream.  <br /></td></tr>
+<tr class="separator:a2ed6114b00afede3649e50c2b3e0bf86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96fbf2c4cf7355854b6829cc87fbb897" id="r_a96fbf2c4cf7355854b6829cc87fbb897"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a96fbf2c4cf7355854b6829cc87fbb897">readEnrollmentData</a> (std::string &amp;str)</td></tr>
+<tr class="memdesc:a96fbf2c4cf7355854b6829cc87fbb897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes enrollment data from the input stream.  <br /></td></tr>
+<tr class="separator:a96fbf2c4cf7355854b6829cc87fbb897"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1e25b59f8a9e39d20533adc0c6cd952" id="r_ab1e25b59f8a9e39d20533adc0c6cd952"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#ab1e25b59f8a9e39d20533adc0c6cd952">readStudentDataFromServer</a> (unsigned int noOfUserData)</td></tr>
+<tr class="memdesc:ab1e25b59f8a9e39d20533adc0c6cd952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data from the server.  <br /></td></tr>
+<tr class="separator:ab1e25b59f8a9e39d20533adc0c6cd952"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53532283066d02f372d8eca62baed0ed" id="r_a53532283066d02f372d8eca62baed0ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a53532283066d02f372d8eca62baed0ed">parsingJSONData</a> (std::string &amp;JSONData)</td></tr>
 <tr class="memdesc:a53532283066d02f372d8eca62baed0ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses JSON data.  <br /></td></tr>
 <tr class="separator:a53532283066d02f372d8eca62baed0ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a003fe0ecfc0355523b009495eb7d6d8e" id="r_a003fe0ecfc0355523b009495eb7d6d8e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_student_db.html#a003fe0ecfc0355523b009495eb7d6d8e">isValidServerDataString</a> (const std::string &amp;eachStr)</td></tr>
+<tr class="memdesc:a003fe0ecfc0355523b009495eb7d6d8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the provided string is a valid server data string.  <br /></td></tr>
+<tr class="separator:a003fe0ecfc0355523b009495eb7d6d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a database of students and courses with various operations. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="a30b659c517fe917b05ae084d72f33662" name="a30b659c517fe917b05ae084d72f33662"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30b659c517fe917b05ae084d72f33662">&#9670;&#160;</a></span>RC_StudentDb_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662">StudentDb::RC_StudentDb_t</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enum class representing return codes for <a class="el" href="class_student.html" title="Represents a student with associated details and enrollment information.">Student</a> Database operations. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a30b659c517fe917b05ae084d72f33662a1cfbb9db1404cfda2f3f8c980df12e59" name="a30b659c517fe917b05ae084d72f33662a1cfbb9db1404cfda2f3f8c980df12e59"></a>RC_Success&#160;</td><td class="fielddoc"><p>Operation completed successfully. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30b659c517fe917b05ae084d72f33662ae221ce27a7885b7462df87f280f9bba4" name="a30b659c517fe917b05ae084d72f33662ae221ce27a7885b7462df87f280f9bba4"></a>RC_Wrong_Course_Key&#160;</td><td class="fielddoc"><p>Provided course key is incorrect or not found. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30b659c517fe917b05ae084d72f33662a3aa9d4e5ec2d636720d8ab34df77b644" name="a30b659c517fe917b05ae084d72f33662a3aa9d4e5ec2d636720d8ab34df77b644"></a>RC_Wrong_MatrikelNumber&#160;</td><td class="fielddoc"><p>Provided matrikel number is incorrect or not found. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30b659c517fe917b05ae084d72f33662ac8aabecaa57965b8184a347b284f7664" name="a30b659c517fe917b05ae084d72f33662ac8aabecaa57965b8184a347b284f7664"></a>RC_Student_Exists&#160;</td><td class="fielddoc"><p><a class="el" href="class_student.html" title="Represents a student with associated details and enrollment information.">Student</a> with the given details already exists in the database. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30b659c517fe917b05ae084d72f33662a25612eda4bab0c784fc5e74fb0148c07" name="a30b659c517fe917b05ae084d72f33662a25612eda4bab0c784fc5e74fb0148c07"></a>RC_Course_Exists&#160;</td><td class="fielddoc"><p><a class="el" href="class_course.html" title="Represents a course with relevant information such as title, major, and credit points.">Course</a> with the given details already exists in the database. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a30b659c517fe917b05ae084d72f33662aeb74e38253b28b176bc7cb2c84f35a5a" name="a30b659c517fe917b05ae084d72f33662aeb74e38253b28b176bc7cb2c84f35a5a"></a>RC_Enrollment_Exists&#160;</td><td class="fielddoc"><p><a class="el" href="class_enrollment.html" title="Represents the enrollment of a student in a course for a specific semester.">Enrollment</a> for the student and course already exists in the database. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a0e46d6cf448cc849e301b504d94d958f" name="a0e46d6cf448cc849e301b504d94d958f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0e46d6cf448cc849e301b504d94d958f">&#9670;&#160;</a></span>addEnrollment()</h2>
 
@@ -178,7 +221,7 @@ Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">StudentDb::RC_StudentDb_t StudentDb::addEnrollment </td>
+          <td class="memname"><a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662">StudentDb::RC_StudentDb_t</a> StudentDb::addEnrollment </td>
           <td>(</td>
           <td class="paramtype">std::string &amp;&#160;</td>
           <td class="paramname"><em>matrikelNumber</em>, </td>
@@ -204,7 +247,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Add enrollment for a student. </p>
-<p>Queries the user for a matrikel number, a course id, a semester, and adds the enrollment. If the enrollment already exists, a warning message is printed. </p>
+<p>Queries the user for a matrikel number, a course id, a semester, and adds the enrollment. If the enrollment already exists, a warning message is printed.</p>
+<dl class="section return"><dt>Returns</dt><dd>Return code indicating the success or failure of the operation. </dd></dl>
 
 </div>
 </div>
@@ -215,7 +259,7 @@ Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">StudentDb::RC_StudentDb_t StudentDb::addNewCourse </td>
+          <td class="memname"><a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662">StudentDb::RC_StudentDb_t</a> StudentDb::addNewCourse </td>
           <td>(</td>
           <td class="paramtype">std::string &amp;&#160;</td>
           <td class="paramname"><em>courseKey</em>, </td>
@@ -283,7 +327,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Add a new course to the database. </p>
-<p>Queries the user for the required data and creates a new course in the database. </p>
+<p>Queries the user for the required data and creates a new course in the database.</p>
+<dl class="section return"><dt>Returns</dt><dd>Return code indicating the success or failure of the operation. </dd></dl>
 
 </div>
 </div>
@@ -294,7 +339,7 @@ Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">StudentDb::RC_StudentDb_t StudentDb::addNewStudent </td>
+          <td class="memname"><a class="el" href="class_student_db.html#a30b659c517fe917b05ae084d72f33662">StudentDb::RC_StudentDb_t</a> StudentDb::addNewStudent </td>
           <td>(</td>
           <td class="paramtype">std::string &amp;&#160;</td>
           <td class="paramname"><em>firstName</em>, </td>
@@ -344,7 +389,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Add a new student to the database. </p>
-<p>Queries the user for the required data (member data of <a class="el" href="class_student.html" title="Represents a student with associated details and enrollment information.">Student</a> and <a class="el" href="class_address.html" title="Represents an address with specific details.">Address</a>) and creates a new student in the database. </p>
+<p>Queries the user for the required data (member data of <a class="el" href="class_student.html" title="Represents a student with associated details and enrollment information.">Student</a> and <a class="el" href="class_address.html" title="Represents an address with specific details.">Address</a>) and creates a new student in the database.</p>
+<dl class="section return"><dt>Returns</dt><dd>Return code indicating the success or failure of the operation. </dd></dl>
 
 </div>
 </div>
@@ -388,6 +434,33 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a003fe0ecfc0355523b009495eb7d6d8e" name="a003fe0ecfc0355523b009495eb7d6d8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a003fe0ecfc0355523b009495eb7d6d8e">&#9670;&#160;</a></span>isValidServerDataString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool StudentDb::isValidServerDataString </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>eachStr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the provided string is a valid server data string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eachStr</td><td>The string to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the string is valid, false otherwise. </dd></dl>
+
+</div>
+</div>
 <a id="a53532283066d02f372d8eca62baed0ed" name="a53532283066d02f372d8eca62baed0ed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a53532283066d02f372d8eca62baed0ed">&#9670;&#160;</a></span>parsingJSONData()</h2>
 
@@ -406,7 +479,6 @@ Public Member Functions</h2></td></tr>
 
 <p>Parses JSON data. </p>
 <p>This function uses POCO C++ JSON for parsing data. For more information, refer to the following Stack Overflow post:</p>
-<dl class="section see"><dt>See also</dt><dd>[] ()</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">JSONData</td><td>The JSON data to be parsed. </td></tr>
@@ -444,8 +516,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aad04fa45ce4baa4c2a2bd039f8991b04" name="aad04fa45ce4baa4c2a2bd039f8991b04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad04fa45ce4baa4c2a2bd039f8991b04">&#9670;&#160;</a></span>readCoursesData()</h2>
+<a id="a1dc69fcb253c90c7c43c8224094ba4cc" name="a1dc69fcb253c90c7c43c8224094ba4cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dc69fcb253c90c7c43c8224094ba4cc">&#9670;&#160;</a></span>readCoursesData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -453,8 +525,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void StudentDb::readCoursesData </td>
           <td>(</td>
-          <td class="paramtype">std::istream &amp;&#160;</td>
-          <td class="paramname"><em>in</em></td><td>)</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -468,12 +540,11 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>This is the count present on the first line before the list of courses</p>
 
 </div>
 </div>
-<a id="ae0f114ce1acc2c0bd48eb41cf183e8c7" name="ae0f114ce1acc2c0bd48eb41cf183e8c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0f114ce1acc2c0bd48eb41cf183e8c7">&#9670;&#160;</a></span>readEnrollmentData()</h2>
+<a id="a96fbf2c4cf7355854b6829cc87fbb897" name="a96fbf2c4cf7355854b6829cc87fbb897"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96fbf2c4cf7355854b6829cc87fbb897">&#9670;&#160;</a></span>readEnrollmentData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -481,8 +552,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void StudentDb::readEnrollmentData </td>
           <td>(</td>
-          <td class="paramtype">std::istream &amp;&#160;</td>
-          <td class="paramname"><em>in</em></td><td>)</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -496,14 +567,11 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>This is the count present on the first line before the list of enrollments.</p>
-<p>Check if the student is already enrolled in the specified course (using lambda function). If enrolled, the iterator 'enrollmentItr' points to the existing enrollment; otherwise, it points to the end.</p>
-<p>Check if the 'enrollmentItr' points to the end of enrollments, indicating that no existing enrollment for the specified courseKey was found.</p>
 
 </div>
 </div>
-<a id="a4418c1c048d4b8544f38e63a95469a04" name="a4418c1c048d4b8544f38e63a95469a04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4418c1c048d4b8544f38e63a95469a04">&#9670;&#160;</a></span>readStudentDataFromServer()</h2>
+<a id="ab1e25b59f8a9e39d20533adc0c6cd952" name="ab1e25b59f8a9e39d20533adc0c6cd952"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1e25b59f8a9e39d20533adc0c6cd952">&#9670;&#160;</a></span>readStudentDataFromServer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -511,22 +579,27 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void StudentDb::readStudentDataFromServer </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>noOfUserData</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Reads data from the server. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">noOfUserData</td><td>Number of user data to be read from the server. </td></tr>
+  </table>
+  </dd>
+</dl>
 <p>TODO: need to remove cout</p>
-<p>TODO: need to remove cout</p>
-<p>This line contains the JSON Data required.</p>
 <p>TODO: need to remove cout</p>
 
 </div>
 </div>
-<a id="a8077c7b56a22703f2cbec33dc24cb9fe" name="a8077c7b56a22703f2cbec33dc24cb9fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8077c7b56a22703f2cbec33dc24cb9fe">&#9670;&#160;</a></span>readStudentsData()</h2>
+<a id="a2ed6114b00afede3649e50c2b3e0bf86" name="a2ed6114b00afede3649e50c2b3e0bf86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ed6114b00afede3649e50c2b3e0bf86">&#9670;&#160;</a></span>readStudentsData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -534,8 +607,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void StudentDb::readStudentsData </td>
           <td>(</td>
-          <td class="paramtype">std::istream &amp;&#160;</td>
-          <td class="paramname"><em>in</em></td><td>)</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -549,7 +622,6 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>This is the count present on the first line before the list of students</p>
 
 </div>
 </div>

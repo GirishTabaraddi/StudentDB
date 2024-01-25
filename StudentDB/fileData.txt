@@ -1,9 +1,6 @@
-2
-B;2371;C Programming;Automation;5.0;16.09.2019;20.09.2019;14:15;19:15
-W;5387;APT;Automation;5.0;3;07:45;09:15
-2
-100000;Olsen;Peter;23.11.1998;7158 Spurvevej;21361;Juelsminde;
-100001;Stein;Josephine;05.03.1997;2575 Tannenweg;49733;Delitzsch;Apartement 6b
-2
-100000;2371;WS2018;2.3
-100001;5387;SS2024;3.7
+0
+3
+100000;christina;obrien;19.10.2022;2569 station road;23876;malahide;cavan
+100001;eren;sardjoe;19.06.2007;5455 majellapark;33256;velsen;flevoland
+100002;finn;kraft;06.05.1989;8570 finkenweg;11966;ludwigslust;niedersachsen
+0

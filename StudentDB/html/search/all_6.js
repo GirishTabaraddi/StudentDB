@@ -27,7 +27,9 @@ var searchData=
   ['getstreet_24',['getstreet',['../class_address.html#ae3b13da85de59b0768533dc287c078e7',1,'Address']]],
   ['getstudents_25',['getStudents',['../class_student_db.html#aaef05fd4c4e778992a607e7921906591',1,'StudentDb']]],
   ['gettitle_26',['gettitle',['../class_course.html#a11cb3b3abed4bbfd86a694023d05720e',1,'Course']]],
-  ['getuserinputfornewenrollment_27',['getUserInputforNewEnrollment',['../class_simple_u_i.html#a02c7b93f63a82016543fc79e885fff3b',1,'SimpleUI']]],
-  ['getuserinputsfornewcourse_28',['getUserInputsforNewCourse',['../class_simple_u_i.html#a1a626d4e015b79eef5b0850e2840113d',1,'SimpleUI']]],
-  ['getuserinputsfornewstudent_29',['getUserInputsforNewStudent',['../class_simple_u_i.html#a5f9f3c98ebe2b10b63cd641501076694',1,'SimpleUI']]]
+  ['getuserinputforaddressupdate_27',['getUserInputforAddressUpdate',['../class_simple_u_i.html#a5731f2a6ec2ed016573767f0647086de',1,'SimpleUI']]],
+  ['getuserinputfornewenrollment_28',['getUserInputforNewEnrollment',['../class_simple_u_i.html#a02c7b93f63a82016543fc79e885fff3b',1,'SimpleUI']]],
+  ['getuserinputforstudentupdate_29',['getUserInputforStudentUpdate',['../class_simple_u_i.html#abedcb179be843baa7e34e645cc5d6fd1',1,'SimpleUI']]],
+  ['getuserinputsfornewcourse_30',['getUserInputsforNewCourse',['../class_simple_u_i.html#a1a626d4e015b79eef5b0850e2840113d',1,'SimpleUI']]],
+  ['getuserinputsfornewstudent_31',['getUserInputsforNewStudent',['../class_simple_u_i.html#a5f9f3c98ebe2b10b63cd641501076694',1,'SimpleUI']]]
 ];
