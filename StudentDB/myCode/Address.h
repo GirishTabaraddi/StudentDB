@@ -13,6 +13,8 @@
 #include <string>
 #include <iostream>
 
+#include "formatterfile.h"
+
 /*!
  * @class Address
  * @brief Represents an address with specific details.
@@ -104,6 +106,21 @@ public:
 	 * \param out The output stream to which the Address information will be written.
 	 */
 	void write(std::ostream& out) const;
+
+	/*!
+	 * @brief Reads an Address from the input stream.
+	 *
+	 * This static member function reads an Address from the provided input stream.
+	 * It expects the address information to be formatted in a specific way within
+	 * a single line of the input stream.
+	 *
+	 * The expected format is "street;postalCode;city;additionalInfo".
+	 *
+	 * @param in The input stream from which to read the Address.
+	 * @return A shared pointer to the dynamically allocated Address object.
+	 */
+	static std::shared_ptr<Address> read(std::istream& in);
+
 };
 
 #endif /* ADDRESS_H_ */

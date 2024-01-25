@@ -63,7 +63,7 @@ int main ()
         +write(std::ostream& out) : void {query}
         +read(std::istream& in) : void
         +readCoursesData(std::string& str) : void
-        +readStudentDataFromServer(unsigned int noOfUserData) : void
+        +readStudentsData(std::string& str) : void
         +readEnrollmentData(std::string& str) : void
         +readStudentDataFromServer(unsigned int noOfUserData) : void
         +parsingJSONData(std::string& JSONData) : void
@@ -115,6 +115,7 @@ int main ()
 		+getadditionalInfo() : std::string& {query}
 		+printAddress() : std::string {query}
 		+write(std::ostream& out) : void {query}
+		+{static} read(std::istream& in) : std::shared_ptr<Address>
 	}
 
 	class Enrollment
@@ -155,6 +156,7 @@ int main ()
 		+getcreditPoints() : float {query}
 		+printCourse() : std::string {query}
 		+write(std::ostream& out) : void {query}
+		+{static} read(std::istream& in) : std::unique_ptr<Course>
 	}
 
 	class BlockCourse

@@ -1,6 +1,9 @@
-0
-3
-100000;christina;obrien;19.10.2022;2569 station road;23876;malahide;cavan
-100001;eren;sardjoe;19.06.2007;5455 majellapark;33256;velsen;flevoland
-100002;finn;kraft;06.05.1989;8570 finkenweg;11966;ludwigslust;niedersachsen
-0
+2
+W;1234;EOS;Embedded;5.0;1;05:15;06:45
+B;1235;C Programming;Automation;5.0;16.09.2024;20.09.2025;08:15;10:15
+2
+100000;Drashti;Shah;31.03.1997;7158 RheinNeckarStrasse;64295;Darmstadt;
+100001;Girish;Tabaraddi;01.03.1997;2575 Am Karlshof;64287;Darmstadt;Apartement 10b
+2
+100000;1235;SS2023;2.3
+100001;1234;SS2024;1.0

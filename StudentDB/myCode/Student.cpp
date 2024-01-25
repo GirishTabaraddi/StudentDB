@@ -207,13 +207,18 @@ Student Student::read(std::istream &in)
 	string firstName = splitAt(inStr, ';');
 	string lastName = splitAt(inStr, ';');
 	Poco::Data::Date dateOfBirth = stringToPocoDateFormatter(splitAt(inStr, ';'));
-	string streetName = splitAt(inStr, ';');
-	unsigned int postalCode = stoi(splitAt(inStr, ';'));
-	string cityName = splitAt(inStr, ';');
-	string additionalInfo = splitAt(inStr, ';');
 
-	shared_ptr<Address> address =
-			make_shared<Address>(streetName, postalCode, cityName, additionalInfo);
+//	string streetName = splitAt(inStr, ';');
+//	unsigned int postalCode = stoi(splitAt(inStr, ';'));
+//	string cityName = splitAt(inStr, ';');
+//	string additionalInfo = splitAt(inStr, ';');
+
+//	shared_ptr<Address> address =
+//			make_shared<Address>(streetName, postalCode, cityName, additionalInfo);
+
+	istringstream iss(inStr);
+
+	shared_ptr<Address> address = Address::read(iss);
 
 	Student addStudent(firstName, lastName, dateOfBirth, address);
 

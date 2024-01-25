@@ -101,12 +101,12 @@ $(document).ready(function(){initNavTree('_student_8h_source.html',''); initResi
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#ifndef STUDENT_H_</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define STUDENT_H_</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="_enrollment_8h.html">Enrollment.h</a>&quot;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="_address_8h.html">Address.h</a>&quot;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="formatterfile_8h.html">formatterfile.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="_enrollment_8h.html">Enrollment.h</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="_address_8h.html">Address.h</a>&quot;</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_student.html">   24</a></span><span class="keyword">class </span><a class="code hl_class" href="class_student.html">Student</a></div>
@@ -171,7 +171,7 @@ $(document).ready(function(){initNavTree('_student_8h_source.html',''); initResi
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="preprocessor">#endif </span><span class="comment">/* STUDENT_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="a_address_8h_html"><div class="ttname"><a href="_address_8h.html">Address.h</a></div></div>
 <div class="ttc" id="a_enrollment_8h_html"><div class="ttname"><a href="_enrollment_8h.html">Enrollment.h</a></div></div>
-<div class="ttc" id="aclass_course_html"><div class="ttname"><a href="class_course.html">Course</a></div><div class="ttdoc">Represents a course with relevant information such as title, major, and credit points.</div><div class="ttdef"><b>Definition</b> Course.h:28</div></div>
+<div class="ttc" id="aclass_course_html"><div class="ttname"><a href="class_course.html">Course</a></div><div class="ttdoc">Forward declaration.</div><div class="ttdef"><b>Definition</b> Course.h:31</div></div>
 <div class="ttc" id="aclass_student_html"><div class="ttname"><a href="class_student.html">Student</a></div><div class="ttdoc">Represents a student with associated details and enrollment information.</div><div class="ttdef"><b>Definition</b> Student.h:25</div></div>
 <div class="ttc" id="aclass_student_html_a004d2a46e58b5faa24a726ac021082af"><div class="ttname"><a href="class_student.html#a004d2a46e58b5faa24a726ac021082af">Student::getEnrollments</a></div><div class="ttdeci">const std::vector&lt; Enrollment &gt; &amp; getEnrollments() const</div><div class="ttdoc">Getter method to list all the enrollments done.</div><div class="ttdef"><b>Definition</b> Student.cpp:58</div></div>
 <div class="ttc" id="aclass_student_html_a1d7062b98562c680529fdf1bc8b0dcfe"><div class="ttname"><a href="class_student.html#a1d7062b98562c680529fdf1bc8b0dcfe">Student::getNextMatrikelNumber</a></div><div class="ttdeci">static unsigned int getNextMatrikelNumber()</div><div class="ttdoc">Getter method that returns the next Matrikel number for new students.</div><div class="ttdef"><b>Definition</b> Student.cpp:38</div></div>
@@ -190,7 +190,6 @@ $(document).ready(function(){initNavTree('_student_8h_source.html',''); initResi
 <div class="ttc" id="aclass_student_html_ab7152dd79b045a0a680ce6a51751605c"><div class="ttname"><a href="class_student.html#ab7152dd79b045a0a680ce6a51751605c">Student::addEnrollment</a></div><div class="ttdeci">void addEnrollment(const std::string &amp;semester, const Course *courseId)</div><div class="ttdoc">Add enrollment for the student.</div><div class="ttdef"><b>Definition</b> Student.cpp:80</div></div>
 <div class="ttc" id="aclass_student_html_ac7c2406d3c7d58aee3ab8cc6ab9f1e33"><div class="ttname"><a href="class_student.html#ac7c2406d3c7d58aee3ab8cc6ab9f1e33">Student::write</a></div><div class="ttdeci">void write(std::ostream &amp;out) const</div><div class="ttdoc">Write the student's data to the provided output stream.</div><div class="ttdef"><b>Definition</b> Student.cpp:161</div></div>
 <div class="ttc" id="aclass_student_html_ad9b5383ee40e2b8f3c3225a1a1a28694"><div class="ttname"><a href="class_student.html#ad9b5383ee40e2b8f3c3225a1a1a28694">Student::getMatrikelNumber</a></div><div class="ttdeci">const unsigned int getMatrikelNumber() const</div><div class="ttdoc">Getter method that returns the Matrikel number of a student.</div><div class="ttdef"><b>Definition</b> Student.cpp:28</div></div>
-<div class="ttc" id="aformatterfile_8h_html"><div class="ttname"><a href="formatterfile_8h.html">formatterfile.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

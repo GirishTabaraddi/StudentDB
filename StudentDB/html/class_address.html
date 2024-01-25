@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('class_address.html',''); initResizable
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_address-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Address Class Reference</div></div>
 </div><!--header-->
@@ -128,6 +129,12 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Address</b> ()</t
 <tr class="memitem:ac35b0420dbb9cba5ace41b0c5ce015d1" id="r_ac35b0420dbb9cba5ace41b0c5ce015d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_address.html#ac35b0420dbb9cba5ace41b0c5ce015d1">write</a> (std::ostream &amp;out) const</td></tr>
 <tr class="memdesc:ac35b0420dbb9cba5ace41b0c5ce015d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the <a class="el" href="class_address.html" title="Represents an address with specific details.">Address</a> information to the specified output stream.  <br /></td></tr>
 <tr class="separator:ac35b0420dbb9cba5ace41b0c5ce015d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ab9043de5339daa70f7b01fe208523869" id="r_ab9043de5339daa70f7b01fe208523869"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_address.html">Address</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_address.html#ab9043de5339daa70f7b01fe208523869">read</a> (std::istream &amp;in)</td></tr>
+<tr class="memdesc:ab9043de5339daa70f7b01fe208523869"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads an <a class="el" href="class_address.html" title="Represents an address with specific details.">Address</a> from the input stream.  <br /></td></tr>
+<tr class="separator:ab9043de5339daa70f7b01fe208523869"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents an address with specific details. </p>
@@ -282,6 +289,43 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Address</b> ()</t
 
 <p>Method to print the address. </p>
 <dl class="section return"><dt>Returns</dt><dd>std::string representing the formatted address. </dd></dl>
+
+</div>
+</div>
+<a id="ab9043de5339daa70f7b01fe208523869" name="ab9043de5339daa70f7b01fe208523869"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9043de5339daa70f7b01fe208523869">&#9670;&#160;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_address.html">Address</a> &gt; Address::read </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reads an <a class="el" href="class_address.html" title="Represents an address with specific details.">Address</a> from the input stream. </p>
+<p>This static member function reads an <a class="el" href="class_address.html" title="Represents an address with specific details.">Address</a> from the provided input stream. It expects the address information to be formatted in a specific way within a single line of the input stream.</p>
+<p>The expected format is "street;postalCode;city;additionalInfo".</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>The input stream from which to read the <a class="el" href="class_address.html" title="Represents an address with specific details.">Address</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A shared pointer to the dynamically allocated <a class="el" href="class_address.html" title="Represents an address with specific details.">Address</a> object. </dd></dl>
 
 </div>
 </div>

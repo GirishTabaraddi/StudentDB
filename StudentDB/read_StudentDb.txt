@@ -1,9 +1,9 @@
 2
-W;5387;APT;Automation;5;3;07:45;09:15
-B;2371;C Programming;Automation;5;16.9.2019;20.9.2019;14:15;19:15
+W;1234;EOS;Embedded;5;1;5:15;6:45
+B;1235;C Programming;Automation;5;16.9.2024;20.9.2025;8:15;10:15
 2
-100000;Olsen;Peter;23.11.1998;7158 Spurvevej;21361;Juelsminde;
-100001;Stein;Josephine;5.3.1997;2575 Tannenweg;49733;Delitzsch;Apartement 6b
+100000;Drashti;Shah;31.3.1997;7158 RheinNeckarStrasse;64295;Darmstadt;
+100001;Girish;Tabaraddi;1.3.1997;2575 Am Karlshof;64287;Darmstadt;Apartement 10b
 2
-100000;2371;WS2018;2.3
-100001;5387;SS2024;3.7
+100000;1235;SS2023;2.3
+100001;1234;SS2024;1.0

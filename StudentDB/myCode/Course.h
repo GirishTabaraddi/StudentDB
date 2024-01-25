@@ -15,6 +15,9 @@
 
 #include "formatterfile.h"
 
+class BlockCourse;  ///< Forward declaration
+class WeeklyCourse; ///< Forward declaration
+
 /*!
  * @class Course
  * @brief Represents a course with relevant information
@@ -163,10 +166,20 @@ public:
 	 */
 	virtual void write(std::ostream& out) const;
 
-//	/*!
-//	 *
-//	 */
-//	virtual static Course read(std::istream& in);
+	/*!
+	 * @brief Reads a Course from the input stream.
+	 *
+	 * This static member function reads a Course from the provided input stream.
+	 * It reads a line from the stream, determines the course type, and delegates
+	 * the reading process to the corresponding derived class (BlockCourse or WeeklyCourse).
+	 * It returns a unique pointer to the dynamically allocated Course object.
+	 *
+	 * @param in The input stream from which to read the Course.
+	 * @return A unique pointer to the dynamically allocated Course object,
+	 * or nullptr if an unsupported course type is encountered.
+	 */
+	static std::unique_ptr<Course> read(std::istream& in);
+
 };
 
 #endif /* COURSE_H_ */

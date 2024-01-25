@@ -10,12 +10,12 @@
 #ifndef STUDENT_H_
 #define STUDENT_H_
 
-#include "Enrollment.h"
-#include "Address.h"
-#include "formatterfile.h"
-
+#include <sstream>
 #include <vector>
 #include <memory>
+
+#include "Enrollment.h"
+#include "Address.h"
 
 /*!
  * @class Student

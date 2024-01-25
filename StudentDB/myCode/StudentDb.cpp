@@ -241,12 +241,27 @@ void StudentDb::read(std::istream &in)
 			{
 			case 'C':
 			{
-				this->readCoursesData(LineStr);
+//				this->readCoursesData(LineStr);
+
+				istringstream iss(LineStr);
+
+				unique_ptr<Course> course = Course::read(iss);
+
+				if(course != nullptr)
+				{
+					this->m_courses[course->getcourseKey()] = move(course);
+				}
 			}
 			break;
 			case 'S':
 			{
-				this->readStudentsData(LineStr);
+//				this->readStudentsData(LineStr);
+
+				istringstream iss(LineStr);
+
+				Student readStudent = Student::read(iss);
+
+				this->m_students.insert(make_pair(readStudent.getMatrikelNumber(), readStudent));
 			}
 			break;
 			case 'E':
@@ -273,24 +288,33 @@ void StudentDb::read(std::istream &in)
 
 void StudentDb::readCoursesData(std::string &str)
 {
-	string courseType = splitAt(str, ';');
+	istringstream iss(str);
 
-		if(courseType == "W" or courseType == "w")
-		{
-			istringstream iss(str);
+	unique_ptr<Course> course = Course::read(iss);
 
-			unique_ptr<WeeklyCourse> weeklyCourse = WeeklyCourse::read(iss);
-
-			this->m_courses[weeklyCourse->getcourseKey()] = move(weeklyCourse);
-		}
-		else if(courseType == "B" or courseType == "b")
-		{
-			istringstream iss(str);
-
-			unique_ptr<BlockCourse> blockCourse = BlockCourse::read(iss);
-
-			this->m_courses[blockCourse->getcourseKey()] = move(blockCourse);
-		}
+	if(course != nullptr)
+	{
+		this->m_courses[course->getcourseKey()] = move(course);
+	}
+//
+//	string courseType = splitAt(str, ';');
+//
+//	if(courseType == "W" or courseType == "w")
+//	{
+//		istringstream iss(str);
+//
+//		unique_ptr<WeeklyCourse> weeklyCourse = WeeklyCourse::read(iss);
+//
+//		this->m_courses[weeklyCourse->getcourseKey()] = move(weeklyCourse);
+//	}
+//	else if(courseType == "B" or courseType == "b")
+//	{
+//		istringstream iss(str);
+//
+//		unique_ptr<BlockCourse> blockCourse = BlockCourse::read(iss);
+//
+//		this->m_courses[blockCourse->getcourseKey()] = move(blockCourse);
+//	}
 }
 
 void StudentDb::readStudentsData(std::string &str)
