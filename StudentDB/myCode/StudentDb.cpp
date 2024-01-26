@@ -30,41 +30,81 @@ StudentDb::RC_StudentDb_t StudentDb::addNewCourse(std::string &courseKey, std::s
 		std::string &startTime, std::string &endTime, std::string &startDate,
 		std::string &endDate, std::string &dayOfWeek)
 {
-	auto existingCourse = find_if(this->m_courses.begin(), this->m_courses.end(),
-			[&courseKey, &title](const auto& pairCourse){
-		const Course& courseref = *(pairCourse.second);
-		return (courseref.getcourseKey() == stoul(courseKey) &&
-				courseref.gettitle() == title);
-	});
+//	 //! using lambda function to iterate over m_courses map and add if there are no new courses.
+//	auto existingCourse = find_if(this->m_courses.begin(), this->m_courses.end(),
+//			[&courseKey, &title](const auto& pairCourse){
+//		const Course& courseref = *(pairCourse.second);
+//		return (courseref.getcourseKey() == stoul(courseKey) ||
+//				courseref.gettitle() == title);
+//	});
+//
+//	if(existingCourse != this->m_courses.end())
+//	{
+//		return RC_StudentDb_t::RC_Course_Exists;
+//	}
+//	else
+//	{
+//		if(courseType == "B" || courseType == "b")
+//		{
+//			unique_ptr<BlockCourse> blockCourse =
+//					make_unique<BlockCourse>(stoi(courseKey), title, major, stof(credits),
+//							stringToPocoDateFormatter(startDate), stringToPocoDateFormatter(endDate),
+//							stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
+//
+//			this->m_courses.insert(make_pair(blockCourse->getcourseKey(), move(blockCourse)));
+//		}
+//		if(courseType == "W" || courseType == "w")
+//		{
+//			Poco::DateTime::DaysOfWeek dayOfWeekinPoco = getDayOfWeekFromString(dayOfWeek);
+//
+//			unique_ptr<WeeklyCourse> weeklyCourse = make_unique<WeeklyCourse>(stoi(courseKey),
+//					title, major, stof(credits), dayOfWeekinPoco,
+//					stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
+//
+//			this->m_courses.insert(make_pair(weeklyCourse->getcourseKey(), move(weeklyCourse)));
+//		}
+//
+//		return RC_StudentDb_t::RC_Success;
+//	}
 
-	if(existingCourse != this->m_courses.end())
+	//! using for loop to iterate over each of the courses in map
+	for(auto& itr : this->m_courses)
 	{
-		return RC_StudentDb_t::RC_Course_Exists;
+		const Course& courseref = *(itr.second);
+
+		if((courseref.getcourseKey() == stoul(courseKey))
+				|| (courseref.gettitle() == title))
+		{
+			return RC_StudentDb_t::RC_Course_Exists;
+		}
 	}
-	else
+
+	if(courseType == "B" || courseType == "b")
 	{
-		if(courseType == "B" || courseType == "b")
-		{
-			unique_ptr<BlockCourse> blockCourse =
-					make_unique<BlockCourse>(stoi(courseKey), title, major, stof(credits),
-							stringToPocoDateFormatter(startDate), stringToPocoDateFormatter(endDate),
-							stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
+		unique_ptr<BlockCourse> blockCourse =
+				make_unique<BlockCourse>(stoi(courseKey), title,
+						major, stof(credits),
+						stringToPocoDateFormatter(startDate),
+						stringToPocoDateFormatter(endDate),
+						stringToPocoTimeFormatter(startTime),
+						stringToPocoTimeFormatter(endTime));
 
-			this->m_courses.insert(make_pair(blockCourse->getcourseKey(), move(blockCourse)));
-		}
-		if(courseType == "W" || courseType == "w")
-		{
-			Poco::DateTime::DaysOfWeek dayOfWeekinPoco = getDayOfWeekFromString(dayOfWeek);
-
-			unique_ptr<WeeklyCourse> weeklyCourse = make_unique<WeeklyCourse>(stoi(courseKey),
-					title, major, stof(credits), dayOfWeekinPoco,
-					stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
-
-			this->m_courses.insert(make_pair(weeklyCourse->getcourseKey(), move(weeklyCourse)));
-		}
-
-		return RC_StudentDb_t::RC_Success;
+		this->m_courses.insert(make_pair(blockCourse->getcourseKey(), move(blockCourse)));
 	}
+	else if(courseType == "W" || courseType == "w")
+	{
+		Poco::DateTime::DaysOfWeek dayOfWeekinPoco = getDayOfWeekFromString(dayOfWeek);
+
+		unique_ptr<WeeklyCourse> weeklyCourse =
+				make_unique<WeeklyCourse>(stoi(courseKey),
+						title, major, stof(credits), dayOfWeekinPoco,
+						stringToPocoTimeFormatter(startTime),
+						stringToPocoTimeFormatter(endTime));
+
+		this->m_courses.insert(make_pair(weeklyCourse->getcourseKey(), move(weeklyCourse)));
+	}
+
+	return RC_StudentDb_t::RC_Success;
 }
 
 StudentDb::RC_StudentDb_t StudentDb::addNewStudent(std::string &firstName, std::string &lastName,
@@ -72,21 +112,38 @@ StudentDb::RC_StudentDb_t StudentDb::addNewStudent(std::string &firstName, std::
 		std::string &postalCode, std::string &cityName,
 		std::string &additionalInfo)
 {
-	auto existingStudent = find_if(this->m_students.begin(), this->m_students.end(),
-			[&firstName,  &lastName, &streetName,
-			 &postalCode, &cityName, &additionalInfo](const auto& studentPair){
-		const Student& student = studentPair.second;
-		return (student.getFirstName() == firstName &&
+//	//! finding existing students using lambda function
+//	auto existingStudent = find_if(this->m_students.begin(), this->m_students.end(),
+//			[&firstName,  &lastName, &streetName,
+//			 &postalCode, &cityName, &additionalInfo](const auto& studentPair){
+//		const Student& student = studentPair.second;
+//		return (student.getFirstName() == firstName &&
+//				student.getLastName() == lastName &&
+//				student.getAddress()->getstreet() == streetName &&
+//				student.getAddress()->getcityName() == cityName &&
+//				student.getAddress()->getpostalCode() == stoi(postalCode) &&
+//				student.getAddress()->getadditionalInfo() == additionalInfo);
+//	});
+//
+//	if(existingStudent != this->m_students.end())
+//	{
+//		return RC_StudentDb_t::RC_Student_Exists;
+//	}
+
+	//! using for loop to find m_students if they exist already.
+	for(auto& itr : this->m_students)
+	{
+		const Student& student = itr.second;
+
+		if(student.getFirstName() == firstName &&
 				student.getLastName() == lastName &&
 				student.getAddress()->getstreet() == streetName &&
 				student.getAddress()->getcityName() == cityName &&
 				student.getAddress()->getpostalCode() == stoi(postalCode) &&
-				student.getAddress()->getadditionalInfo() == additionalInfo);
-	});
-
-	if(existingStudent != this->m_students.end())
-	{
-		return RC_StudentDb_t::RC_Student_Exists;
+				student.getAddress()->getadditionalInfo() == additionalInfo)
+		{
+			return RC_StudentDb_t::RC_Student_Exists;
+		}
 	}
 
 	shared_ptr<Address> address =
@@ -102,37 +159,28 @@ StudentDb::RC_StudentDb_t StudentDb::addNewStudent(std::string &firstName, std::
 StudentDb::RC_StudentDb_t StudentDb::addEnrollment(std::string &matrikelNumber,
 		std::string &semester, std::string &courseKey)
 {
-	auto existingEnrollment = find_if(this->m_students.begin(), this->m_students.end(),
-			[&matrikelNumber, &courseKey, &semester](const auto& pairStudent){
-		const Student& student = pairStudent.second;
-		const auto& enrollments = student.getEnrollments();
+	auto findStudent = this->m_students.find(stoul(matrikelNumber));
 
-		auto enrollmentItr = find_if(
-				enrollments.begin(), enrollments.end(),
-				[&courseKey, &semester](const Enrollment& enrollment){
-			return (enrollment.getcourse()->getcourseKey() == stoul(courseKey) &&
-					enrollment.getsemester() == semester);
-	});
-		return (student.getMatrikelNumber() == stoul(matrikelNumber) &&
-				enrollmentItr != enrollments.end());
-	});
-
-	auto matrikelNumberItr = this->m_students.find(stoul(matrikelNumber));
-
-	if(matrikelNumberItr != this->m_students.end())
+	if(findStudent != this->m_students.end())
 	{
-		auto findCourseIdItr = this->m_courses.find(stoul(courseKey));
+		auto findCourse = this->m_courses.find(stoul(courseKey));
 
-		if(findCourseIdItr != this->m_courses.end())
+		if(findCourse != this->m_courses.end())
 		{
-			if(existingEnrollment != this->m_students.end())
+			const auto& enrollments = findStudent->second.getEnrollments();
+
+			for(const Enrollment& enrollmentItr : enrollments)
 			{
-				return RC_StudentDb_t::RC_Enrollment_Exists;
+				if(enrollmentItr.getcourse()->getcourseKey() == stoul(courseKey) &&
+						enrollmentItr.getsemester() == semester)
+				{
+					return RC_StudentDb_t::RC_Enrollment_Exists;
+				}
 			}
 
-			const Course& courseref = *(findCourseIdItr->second);
+			const Course& courseref = *(findCourse->second);
 
-			matrikelNumberItr->second.addEnrollment(semester, &courseref);
+			findStudent->second.addEnrollment(semester, &courseref);
 
 			return RC_StudentDb_t::RC_Success;
 		}

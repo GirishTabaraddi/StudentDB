@@ -256,7 +256,7 @@ void SimpleUI::getUserInputsforNewCourse()
 		 }
 		 case StudentDb::RC_StudentDb_t::RC_Course_Exists:
 		 {
-			 cout << "\t \t \nEntered Course Already exists" << endl;
+			 cout << "\t \t \nCourse with the given details already exists in the database." << endl;
 			 break;
 		 }
 		 default:
@@ -329,7 +329,7 @@ void SimpleUI::getUserInputsforNewStudent()
 		 }
 		 case StudentDb::RC_StudentDb_t::RC_Student_Exists:
 		 {
-			 cout << "\t \t \nEntered Student Already exists" << endl;
+			 cout << "\t \t \nStudent with the given details already exists in the database." << endl;
 			 break;
 		 }
 		 default:
@@ -378,17 +378,17 @@ void SimpleUI::getUserInputforNewEnrollment()
 		 }
 		 case StudentDb::RC_StudentDb_t::RC_Wrong_Course_Key:
 		 {
-			 cout << "\t \t \nEntered a wrong course key" << endl;
+			 cout << "\t \t \nProvided course key is incorrect or not found" << endl;
 			 break;
 		 }
 		 case StudentDb::RC_StudentDb_t::RC_Wrong_MatrikelNumber:
 		 {
-			 cout << "\t \t \nEntered matrikel number is wrong" << endl;
+			 cout << "\t \t \nProvided matrikel number is incorrect or not found." << endl;
 			 break;
 		 }
 		 case StudentDb::RC_StudentDb_t::RC_Enrollment_Exists:
 		 {
-			 cout << "\t \t \nEntered Enrollment already exists" << endl;
+			 cout << "\t \t \nEnrollment for the student and course already exists in the database." << endl;
 			 break;
 		 }
 		 default:
