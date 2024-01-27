@@ -420,69 +420,37 @@ void StudentDb::readStudentDataFromServer(unsigned int noOfUserData)
 	boost::asio::ip::tcp::iostream stream;
 
 	stream.connect(hostname, port);
-//	try
-//	{
-//		stream.connect(hostname, port);
-//	}
-//	catch(const exception& e)
-//	{
-//		std::cerr << "Exception caught: " << e.what() << std::endl;
-//	}
-//	if(stream)
-//	{
-		cout << "Connection to the server is successful" << endl;
 
-//		for(unsigned int idx = 0; idx < noOfUserData; idx++)
-//		{
-			stream << "generate\n";
-			stream.flush();
+	if(!stream)
+	{
+		cerr << "Connection to server unsuccessful!!" << stream.error().message() << endl;
+	}
 
-			string readLine;
-			vector<string> serverData;
-
-			while(getline(stream, readLine))
-			{
-				serverData.push_back(readLine);
-			}
-
-			if(!stream)
-			{
-				cerr << "Stream Error: " << stream.error().message() << endl;
-			}
-			if(stream.eof())
-			{
-				cerr << "eof Error: " << stream.error().message() << endl;
-			}
-
-			if (!serverData.empty())
-			{
-				//! TODO: need to remove cout
-				cout << serverData.at(0) << std::endl;
-
-				try
-				{
-					cout << noOfUserData << ":" << endl;
-					this->parsingJSONData(serverData.at(1));
-				}
-				catch (const std::exception &e)
-				{
-					std::cerr << "Error parsing JSON: " << e.what() << std::endl;
-				}
-
-				if (serverData.size() > 2)
-				{
-					//! TODO: need to remove cout
-					cout << serverData.at(2) << std::endl;
-				}
-			}
-			else
-			{
-				cout << "No data from the server" << endl;
-			}
-//		}
-		stream << "quit\n";
+	for(unsigned int idx = 0; idx < noOfUserData; idx++)
+	{
+		stream << "generate" << endl;
 		stream.flush();
-//	}
+
+		string line1, line2, line3;
+
+		getline(stream, line1);
+
+		getline(stream, line2);
+
+		getline(stream, line3);
+
+		//TODO: remove these lines
+		cout << line1 << endl;
+
+//		cout << line2 << endl;
+		this->parsingJSONData(line2);
+
+		//TODO: remove these lines
+		cout << line3 << endl;
+	}
+
+	stream << "quit" << endl;
+	stream.flush();
 }
 
 void StudentDb::parsingJSONData(std::string &JSONData)

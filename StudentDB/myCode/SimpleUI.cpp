@@ -119,7 +119,7 @@ void SimpleUI::run()
 					cout << endl << "\t Enter the file name to write the data(.txt): ";
 
 					string filename = "fileData.txt";
-//					getline(cin, filename);
+					getline(cin, filename);
 
 					ofstream writeFile(filename, ios::trunc);
 					if(writeFile.is_open())
@@ -141,7 +141,7 @@ void SimpleUI::run()
 					cout << endl << "\t Enter the file name to read the data from(.csv): ";
 
 					string filename = "read_StudentDb.txt";
-//					getline(cin, filename);
+					getline(cin, filename);
 
 					ifstream readFile(filename);
 					if(readFile.is_open())
@@ -166,10 +166,7 @@ void SimpleUI::run()
 				    cout << "Enter the number of Student Data to be extracted from the server: ";
 				    getline(cin, noOfUserDate);
 
-				    for(int loopIdx = 0; loopIdx < stoi(noOfUserDate); loopIdx++)
-				    {
-				    	this->m_db.readStudentDataFromServer(stoul(noOfUserDate));
-				    }
+				    this->m_db.readStudentDataFromServer(stoul(noOfUserDate));
 				}
 				break;
 				default:

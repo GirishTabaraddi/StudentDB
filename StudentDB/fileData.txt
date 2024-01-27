@@ -1,9 +1,9 @@
-2
-W;1234;EOS;Embedded;5.0;1;05:15;06:45
-B;1235;C Programming;Automation;5.0;16.09.2024;20.09.2025;08:15;10:15
-2
-100000;Drashti;Shah;31.03.1997;7158 RheinNeckarStrasse;64295;Darmstadt;
-100001;Girish;Tabaraddi;01.03.1997;2575 Am Karlshof;64287;Darmstadt;Apartement 10b
-2
-100000;1235;SS2023;2.3
-100001;1234;SS2024;1.0
+0
+6
+100000;faustine;gonzalez;05.01.1960;6663 rue du village;3618;argenteuil;yonne
+100001;fletcher;wood;11.04.1980;5052 esk street;22500;whanganui;auckland
+100002;victor;hansen;22.06.1974;5861 smedegade;4552;hammel;midtjylland
+100003;kirk;burns;25.11.1937;8432 church road;9999;canterbury;borders
+100004;gerke;scheffer;30.03.1947;1633 abstederdijk;32504;losser;zeeland
+100005;maya;francois;19.08.2024;6917 rue denfert-rochereau;1669;lully vd;appenzell innerrhoden
+0
