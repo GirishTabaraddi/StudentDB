@@ -308,8 +308,6 @@ void StudentDb::read(std::istream &in)
 			{
 //				this->readStudentsData(LineStr);
 
-//				unsigned int matrikelNumber = stoul(splitAt(LineStr, ';'));
-
 				istringstream iss(LineStr);
 
 				Student readStudent = Student::read(iss);
@@ -617,49 +615,6 @@ bool StudentDb::isValidServerDataString(const std::string &eachStr)
 
 //void StudentDb::parsingJSONData(std::string &JSONData)
 //{
-//    Poco::JSON::Parser jsonParser;
-//
-//    Poco::Dynamic::Var parsedJSONData = jsonParser.parse(JSONData);
-//
-//    Poco::Dynamic::Var parsedJSONDataResult = jsonParser.result();
-//
-//    //! Get the JSON Object
-//    Poco::JSON::Object::Ptr jsonObject = parsedJSONDataResult.extract<Poco::JSON::Object::Ptr>();
-//
-//    string firstName = jsonObject->get("name")
-//    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("firstName");
-//
-//    string lastName = jsonObject->get("name")
-//    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("lastName");
-//
-//    int year = jsonObject->get("dateOfBirth")
-//    				.extract<Poco::JSON::Object::Ptr>()->getValue<int>("year")+1900;
-//    int month = jsonObject->get("dateOfBirth")
-//            				.extract<Poco::JSON::Object::Ptr>()->getValue<int>("month")+1;
-//    int day = jsonObject->get("dateOfBirth")
-//            				.extract<Poco::JSON::Object::Ptr>()->getValue<int>("date");
-//
-//    Poco::Data::Date dateOfbirth(year, month, day);
-//
-//    string streetName = jsonObject->get("location")
-//    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("street");
-//    string postalCode = jsonObject->get("location")
-//    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("postCode");
-//    string cityName = jsonObject->get("location")
-//    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("city");
-//    string additionalInfo = jsonObject->get("location")
-//    				.extract<Poco::JSON::Object::Ptr>()->getValue<string>("state");
-//
-//    shared_ptr<Address> address =
-//    		make_shared<Address>(streetName, stoi(postalCode), cityName, additionalInfo);
-//
-//    Student student = Student(firstName, lastName, dateOfbirth, address);
-//
-//    this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
-//}
-//
-//void StudentDb::parsingJSONData(std::string &JSONData)
-//{
 //	Poco::JSON::Parser jsonParser;
 //
 //	Poco::Dynamic::Var parsedJSONData = jsonParser.parse(JSONData);
@@ -668,21 +623,32 @@ bool StudentDb::isValidServerDataString(const std::string &eachStr)
 //
 //	Poco::DynamicStruct JSONDataStruct = *jsonObjectPtr;
 //
-//	string firstName = Poco::UTF8::unescape(JSONDataStruct["name"]["firstName"].toString());
-//	string lastName = Poco::UTF8::unescape(JSONDataStruct["name"]["lastName"].toString());
-//	int year = JSONDataStruct["dateOfBirth"]["year"].convert<int>()+1900;
-//	int month = JSONDataStruct["dateOfBirth"]["month"].convert<int>()+1;
-//	int day = JSONDataStruct["dateOfBirth"]["date"].convert<int>();
+//	if(this->isValidServerDataString(JSONDataStruct["name"]["firstName"].toString()) &&
+//			this->isValidServerDataString(JSONDataStruct["name"]["lastName"].toString()) &&
+//			this->isValidServerDataString(JSONDataStruct["dateOfBirth"]["year"].toString()) &&
+//			this->isValidServerDataString(JSONDataStruct["dateOfBirth"]["month"].toString()) &&
+//			this->isValidServerDataString(JSONDataStruct["dateOfBirth"]["date"].toString()) &&
+//			this->isValidServerDataString(JSONDataStruct["location"]["street"].toString()) &&
+//			this->isValidServerDataString(JSONDataStruct["location"]["postCode"].toString()) &&
+//			this->isValidServerDataString(JSONDataStruct["location"]["city"].toString()) &&
+//			this->isValidServerDataString(JSONDataStruct["location"]["state"].toString()))
+//	{
+//		string firstName = Poco::UTF8::unescape(JSONDataStruct["name"]["firstName"].toString());
+//		string lastName = Poco::UTF8::unescape(JSONDataStruct["name"]["lastName"].toString());
+//		int year = JSONDataStruct["dateOfBirth"]["year"].convert<int>()+1900;
+//		int month = JSONDataStruct["dateOfBirth"]["month"].convert<int>()+1;
+//		int day = JSONDataStruct["dateOfBirth"]["date"].convert<int>();
 //
-//	string streetName = Poco::UTF8::unescape(JSONDataStruct["location"]["street"].toString());
-//	int postalCode = JSONDataStruct["location"]["postCode"].convert<int>();
-//	string cityName = Poco::UTF8::unescape(JSONDataStruct["location"]["city"].toString());
-//	string additionalInfo = Poco::UTF8::unescape(JSONDataStruct["location"]["state"].toString());
+//		string streetName = Poco::UTF8::unescape(JSONDataStruct["location"]["street"].toString());
+//		int postalCode = JSONDataStruct["location"]["postCode"].convert<int>();
+//		string cityName = Poco::UTF8::unescape(JSONDataStruct["location"]["city"].toString());
+//		string additionalInfo = Poco::UTF8::unescape(JSONDataStruct["location"]["state"].toString());
 //
-//	shared_ptr<Address> address =
-//			make_shared<Address>(streetName, postalCode, cityName, additionalInfo);
+//		shared_ptr<Address> address =
+//				make_shared<Address>(streetName, postalCode, cityName, additionalInfo);
 //
-//	Student student = Student(firstName, lastName, Poco::Data::Date(year, month, day), address);
+//		Student student = Student(firstName, lastName, Poco::Data::Date(year, month, day), address);
 //
-//	this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
+//		this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
+//	}
 //}

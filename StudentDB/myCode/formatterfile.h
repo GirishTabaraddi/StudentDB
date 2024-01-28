@@ -119,5 +119,4 @@ bool isValidFilename(const std::string& filename);
  */
 bool isPrintableInput(std::string& input);
 
-
 #endif /* FORMATTERFILE_H_ */
