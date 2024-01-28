@@ -15,20 +15,26 @@
 
 #include "formatterfile.h"
 
+class BlockCourse;  ///< Forward declaration
+class WeeklyCourse; ///< Forward declaration
+
 /*!
  * @class Course
- * @brief Represents a course with relevant information such as title, major, and credit points.
+ * @brief Represents a course with relevant information
+ * such as title, major, and credit points.
  *
- * This class encapsulates the properties of a course, including its title, major, course key, and credit points.
+ * This class encapsulates the properties of a course,
+ * including its title, major, course key, and credit points.
  * It provides methods to access and manipulate these attributes.
  */
 class Course
 {
 private:
 	/*!
-	 * @var m_majorByID - A map storing major IDs mapped to their corresponding strings.
+	 * @var m_majorByID - A map storing major IDs mapped
+	 * to their corresponding strings.
 	 */
-	std::map<unsigned char, std::string> m_majorById;
+	static std::map<unsigned char, std::string> m_majorById;
 
 	/*!
 	 * @var m_courseKey - A variable that stores the course key.
@@ -51,15 +57,6 @@ private:
 	float m_creditPoints;
 
 private:
-	/*!
-	 * @brief Sets the major ID based on the first character of the given major string.
-	 *
-	 * This method takes a major string as input and sets the major ID based on its
-	 * first character using the setMajor method.
-	 *
-	 * @param major A string representing the major.
-	 */
-	void setmajorById(std::string major);
 
 	/*!
 	 * @brief Sets the major based on the first character of the given major string.
@@ -100,7 +97,7 @@ public:
 	 *
 	 * @return A map containing major IDs and their corresponding strings.
 	 */
-	const std::map<unsigned char, std::string> getmajorById() const;
+	static const std::map<unsigned char, std::string> getmajorById();
 
 	/*!
 	 * @brief Getter method to obtain the course key.
@@ -146,21 +143,12 @@ public:
 	 *
 	 * @return A string containing information about the Course.
 	 */
-	std::string printCourse() const;
-
-	/*!
-	 * @brief Prints information about the Course.
-	 *
-	 * This function prints general information about the Course,
-	 * such as course key, title, major, and credit points.
-	 *
-	 */
-	virtual void print() const = 0;
+	virtual std::string printCourse() const;
 
 	/**
 	 * @brief Write the object's data to the provided output stream.
 	 *
-	 * This method is virtual and intended to be overridden by derived classes
+	 * This method is pure virtual and intended to be overridden by derived classes
 	 * to write their specific data to the output stream. It allows objects to
 	 * represent themselves in a standardized format when output is needed,
 	 * such as writing to a file or printing to the console.
@@ -168,6 +156,21 @@ public:
 	 * @param out The output stream where the object's data will be written.
 	 */
 	virtual void write(std::ostream& out) const;
+
+	/*!
+	 * @brief Reads a Course from the input stream.
+	 *
+	 * This static member function reads a Course from the provided input stream.
+	 * It reads a line from the stream, determines the course type, and delegates
+	 * the reading process to the corresponding derived class (BlockCourse or WeeklyCourse).
+	 * It returns a unique pointer to the dynamically allocated Course object.
+	 *
+	 * @param in The input stream from which to read the Course.
+	 * @return A unique pointer to the dynamically allocated Course object,
+	 * or nullptr if an unsupported course type is encountered.
+	 */
+	static std::unique_ptr<Course> read(std::istream& in);
+
 };
 
 #endif /* COURSE_H_ */

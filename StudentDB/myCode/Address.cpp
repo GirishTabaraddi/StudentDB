@@ -51,3 +51,24 @@ std::string Address::printAddress() const
 
 	return out;
 }
+
+void Address::write(std::ostream &out) const
+{
+	out << this->m_street
+		<< ";" << to_string(this->m_postalCode)
+		<< ";" << this->m_cityName
+		<< ";" << this->m_additionalInfo;
+}
+
+std::shared_ptr<Address> Address::read(std::istream &in)
+{
+	string inStr;
+	getline(in, inStr);
+
+	string street = splitAt(inStr, ';');
+	unsigned int postalCode = stoi(splitAt(inStr, ';'));
+	string city = splitAt(inStr, ';');
+	string additionalInfo = splitAt(inStr, ';');
+
+	return make_shared<Address>(street, postalCode, city, additionalInfo);
+}

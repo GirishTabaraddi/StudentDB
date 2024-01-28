@@ -9,31 +9,40 @@
 
 #include "Course.h"
 
+#include "BlockCourse.h"
+#include "WeeklyCourse.h"
+
 using namespace std;
+
+std::map<unsigned char, std::string> Course::m_majorById =
+{
+		{'A', "Automation"},
+		{'E', "Embedded Systems"},
+		{'C', "Communication"},
+		{'P', "Power"}
+};
 
 Course::Course(unsigned int courseKey, std::string title, std::string major,
 		float creditPoints) : m_courseKey(courseKey), m_title(title), m_creditPoints(creditPoints)
 {
 	setMajor(major);
-	setmajorById(major);
 }
 
-void Course::setmajorById(std::string major)
-{
-	this->m_majorById[getmajor()] = major;
-}
 
 void Course::setMajor(std::string major)
 {
-	if(!major.empty())
+	for(const auto& itr : this->getmajorById())
 	{
-		this->m_major = major[0];
+		if(boost::algorithm::icontains(itr.second, major))
+		{
+			this->m_major = toupper(major[0]);
+		}
 	}
 }
 
-const std::map<unsigned char, std::string> Course::getmajorById() const
+const std::map<unsigned char, std::string> Course::getmajorById()
 {
-	return this->m_majorById;
+	return Course::m_majorById;
 }
 
 const unsigned int Course::getcourseKey() const
@@ -62,19 +71,57 @@ Course::~Course()
 
 std::string Course::printCourse() const
 {
-	stringstream ss;
+	ostringstream oss;
 
-	ss << fixed << setprecision(1) << this->m_creditPoints;
+	oss << fixed << setprecision(1) << this->m_creditPoints;
 
-	string creditpoints = ss.str();
+	string creditpoints = oss.str();
 
-    string out = to_string(this->m_courseKey) + ";" + this->m_title + ";" + this->m_majorById.at(this->m_major)
-    				+ ";" + creditpoints;
-
-    return out;
+	return (to_string(this->m_courseKey) + ";" + this->m_title + ";"
+			+ this->m_majorById.at(this->m_major) + ";" + creditpoints);
 }
 
 void Course::write(std::ostream &out) const
 {
-	out << printCourse();
+	auto itr = this->m_majorById.find(this->m_major);
+
+	if(itr != this->m_majorById.end())
+	{
+		ostringstream oss;
+
+		oss << fixed << setprecision(1) << this->m_creditPoints;
+
+		string creditpoints = oss.str();
+
+		out << to_string(this->m_courseKey) << ";" << this->m_title << ";"
+				<< this->m_majorById.at(this->m_major) << ";" << creditpoints;
+	}
+}
+
+std::unique_ptr<Course> Course::read(std::istream &in)
+{
+	string inStr;
+
+	getline(in, inStr);
+
+	string courseType = splitAt(inStr, ';');
+
+	if(courseType == "B" || courseType == "b")
+	{
+		istringstream iss(inStr);
+
+		unique_ptr<BlockCourse> blockCoursePtr = BlockCourse::read(iss);
+
+		return blockCoursePtr;
+	}
+	else if(courseType == "W" || courseType == "w")
+	{
+		istringstream iss(inStr);
+
+		unique_ptr<WeeklyCourse> weeklyCoursePtr = WeeklyCourse::read(iss);
+
+		return weeklyCoursePtr;
+	}
+
+	return nullptr;
 }

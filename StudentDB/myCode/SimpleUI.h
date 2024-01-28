@@ -44,6 +44,68 @@ public:
      *        and executes the respective operation.
      */
     void run();
+
+    /*!
+     * @brief Get user inputs for creating a new course.
+     */
+    void getUserInputsforNewCourse();
+
+    /*!
+     * @brief List's all courses.
+     */
+    void listCourses();
+
+    /*!
+     * @brief Get user inputs for adding a new student.
+     */
+    void getUserInputsforNewStudent();
+
+    /*!
+     * @brief Get user inputs for enrolling a student in a course.
+     */
+    void getUserInputforNewEnrollment();
+
+    /*!
+     * @brief Print details of a student, including enrolled courses and results.
+     *
+     * Queries the user for a matrikel number and prints the corresponding student details.
+     */
+    void printStudent();
+
+    /*!
+     * @brief Search for students based on a provided string.
+     *
+     * Queries the user for a string and prints the matrikel number, last name, and first name of all students
+     * having the provided string as a substring in their first or last name.
+     */
+    void searchStudent();
+
+    /*!
+     * @brief Get user inputs for updating student information.
+     */
+    void getUserInputforStudentUpdate();
+
+    /*!
+     * @brief Perform updates on a Student object.
+     *
+     * @param updateStudent Reference to a Student object.
+     */
+    void performStudentUpdate(Student& updateStudent);
+
+    /*!
+     * @brief Get user inputs for updating student's address information.
+     *
+     * @param updateStudent Reference to a Student object.
+     */
+    void getUserInputforAddressUpdate(Student& updateStudent);
+
+    /*!
+     * @brief Perform updates on a student's enrollment information.
+     *
+     * @param updateStudent Reference to a Student object.
+     * @param courseKey The key of the course to be updated.
+     */
+    void performEnrollmentUpdate(Student& updateStudent, const std::string& courseKey);
 };
 
 

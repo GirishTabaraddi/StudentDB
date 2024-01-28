@@ -95,17 +95,7 @@ public:
      *
      * @return String representation of the course data.
      */
-	std::string printBlockCourse() const;
-
-	/**
-	 * @brief Prints specific information about the BlockCourse.
-	 *
-	 * This function prints additional details specific to the BlockCourse,
-	 * such as start and end dates, start and end times.
-	 *
-	 * @note This function overrides the virtual function in the base Course class.
-	 */
-	void print() const override;
+	std::string printCourse() const override;
 
 	/**
 	 * @brief Write the object's data to the provided output stream.
@@ -118,6 +108,20 @@ public:
 	 * @param out The output stream where the object's data will be written.
 	 */
 	void write(std::ostream& out) const override;
+
+	/*!
+	 * \brief Reads a BlockCourse object from the specified input stream.
+	 *
+	 * This static function reads information from the given input stream and
+	 * constructs a BlockCourse object based on the data.
+	 * The input stream is expected to contain semicolon-separated values
+	 * representing course details, including course type, course key, title,
+	 * major, credit points, start date, end date, start time, and end time.
+	 *
+	 * \param in The input stream from which the BlockCourse information will be read.
+	 * \return A unique pointer to the constructed BlockCourse object.
+	 */
+	static std::unique_ptr<BlockCourse> read(std::istream& in);
 };
 
 #endif /* BLOCKCOURSE_H_ */

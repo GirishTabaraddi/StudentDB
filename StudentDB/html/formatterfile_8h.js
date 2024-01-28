@@ -1,8 +1,14 @@
 var formatterfile_8h =
 [
+    [ "floatInputCheck", "formatterfile_8h.html#a78abb0e87022c230f619cf96f868e253", null ],
     [ "getDayOfWeekFromString", "formatterfile_8h.html#a3240f3b5f4e025b204c0e3da1288752c", null ],
-    [ "pocoDateToStringFromatter", "formatterfile_8h.html#aaf30701a785440f08d9f7087f95506c7", null ],
-    [ "pocoTimeToStringFromatter", "formatterfile_8h.html#aadf3efa2ad15edac861d28167d04ce41", null ],
+    [ "integerInputCheck", "formatterfile_8h.html#a601c4d7ac23d08b6103364b5bc007db6", null ],
+    [ "isPrintableInput", "formatterfile_8h.html#a3c67537f4520527304ff0d5e2f176594", null ],
+    [ "isValidFilename", "formatterfile_8h.html#a01ccb863c3829906a1cad09584ce0ce3", null ],
+    [ "pocoDateToStringFormatter", "formatterfile_8h.html#a2e89225bd5f554f7e0f97869d5577c71", null ],
+    [ "pocoTimeToStringFormatter", "formatterfile_8h.html#a46769bc4d1406c10ed15b18103f915ea", null ],
+    [ "splitAt", "formatterfile_8h.html#af9ed8bca3d4f21f8250c4b8fb16d39d8", null ],
+    [ "stringInputCheck", "formatterfile_8h.html#ace51a9720599aca159979479f580d1c9", null ],
     [ "stringToPocoDateFormatter", "formatterfile_8h.html#afc42acaf9fcb78aeca0de2aa7afff258", null ],
     [ "stringToPocoTimeFormatter", "formatterfile_8h.html#abe4ddb20dbcf1a3cbfafbef0099b0c94", null ]
 ];

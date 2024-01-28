@@ -80,21 +80,11 @@ public:
 	Poco::Data::Time getEndTime() const;
 
     /*!
-     * @brief Print method that outputs the data of the weekly course.
+     * @brief Print method that outputs the data of the weekly course as a string.
      *
      * @return String representation of the course data.
      */
-	std::string printWeeklyCourse() const;
-
-	/**
-	 * @brief Prints specific information about the WeeklyCourse.
-	 *
-	 * This function prints additional details specific to the WeeklyCourse,
-	 * such as day of week, start and end times.
-	 *
-	 * @note This function overrides the virtual function in the base Course class.
-	 */
-	void print() const override;
+	std::string printCourse() const override;
 
 	/**
 	 * @brief Write the object's data to the provided output stream.
@@ -108,6 +98,18 @@ public:
 	 */
 	void write(std::ostream& out) const override;
 
+	/*!
+	 * @brief Reads a WeeklyCourse object from the specified input stream.
+	 *
+	 * This static function reads information from the given input stream and
+	 * constructs a WeeklyCourse object based on the data.
+	 * The input stream is expected to contain semicolon-separated values representing
+	 * course key, title, major, credit points, day of the week, start time, and end time.
+	 *
+	 * @param in The input stream from which the WeeklyCourse information will be read.
+	 * @return A unique pointer to the constructed WeeklyCourse object.
+	 */
+	static std::unique_ptr<WeeklyCourse> read(std::istream& in);
 };
 
 #endif /* WEEKLYCOURSE_H_ */

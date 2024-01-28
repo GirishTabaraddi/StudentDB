@@ -15,10 +15,10 @@ unsigned int Student::m_nextMatrikelNumber = 100000;
 
 Student::Student(std::string firstName, std::string lastName,
 		Poco::Data::Date dateOfBirth, std::shared_ptr<Address> address) :
+		m_matrikelNumber(Student::m_nextMatrikelNumber++),
 								m_firstName(firstName), m_lastName(lastName),
 								m_dateOfBirth(dateOfBirth), m_address(address)
 {
-	this->m_matrikelNumber = (Student::m_nextMatrikelNumber)++;
 }
 
 Student::~Student()
@@ -33,11 +33,6 @@ const unsigned int Student::getMatrikelNumber() const
 void Student::setNextMatrikelNumber(unsigned int newMatrikelnumber)
 {
 	m_nextMatrikelNumber = newMatrikelnumber;
-}
-
-unsigned int Student::getNextMatrikelNumber()
-{
-	return m_nextMatrikelNumber;
 }
 
 const Poco::Data::Date Student::getDateOfBirth() const
@@ -67,39 +62,18 @@ const std::shared_ptr<Address> Student::getAddress() const
 
 std::string Student::printStudent() const
 {
-//	string out = to_string(getmatrikelNumber()) + ";" + this->m_firstName + ";" +
-//			this->m_lastName + ";" << this->m_dateOfBirth.day() << "." <<
-//			this->m_dateOfBirth.month() << "." << this->m_dateOfBirth.year();
-//
-//	return out;
 	string out = (to_string(this->m_matrikelNumber)
 			+ ";" + this->m_firstName
 			+ ";" + this->m_lastName
-			+ ";" + pocoDateToStringFromatter(this->m_dateOfBirth) + ";");
+			+ ";" + pocoDateToStringFormatter(this->m_dateOfBirth) + ";");
 
 	out += getAddress()->printAddress();
 
 	return out;
-
-//	for(const Enrollment& eachEntries: this->m_enrollments)
-//	{
-//		cout << to_string(eachEntries.getcourse()->getcourseKey()) << ";" <<
-//				eachEntries.getsemester() << ";" << to_string(eachEntries.getgrade()) << endl;
-//	}
-//	cout << endl;
 }
 
-void Student::addEnrollment(const std::string& semester, Course *newCourseId)
+void Student::addEnrollment(const std::string& semester, const Course *newCourseId)
 {
-	//	for(Enrollment& enrollments: this->m_enrollments)
-	//	{
-	//		if(enrollments.getcourse()->getcourseKey() == newCourseId->getcourseKey())
-	//		{
-	//			cout << "WARNING: Enrollment already exists!!!" << endl;
-	//			return; //! Exit early if duplicate found.
-	//		}
-	//	}
-
 	unsigned int courseKey = newCourseId->getcourseKey();
 
 	auto isEnrolled = [courseKey](const Enrollment& enrollment){
@@ -111,18 +85,19 @@ void Student::addEnrollment(const std::string& semester, Course *newCourseId)
 
 	if(addEnrollmentItr != this->m_enrollments.end())
 	{
-		cout << "\n\t \t WARNING: Enrollment already exists!!!" << endl;
+		//TODO: remove this cout
+//		cout << "\n\t \t WARNING: Enrollment already exists!!!" << endl;
 		return;
 	}
 	else
 	{
 		this->m_enrollments.push_back(Enrollment(semester, newCourseId));
 
-//		cout << "\n\t \t Enrollment Added" << endl;
+//		updateGrade(addEnrollmentItr->getgrade(), courseKey);
 	}
 }
 
-void Student::updateStudent(std::string firstName, std::string lastName,
+void Student::updateStudentDetails(std::string firstName, std::string lastName,
 		Poco::Data::Date dateOfBirth)
 {
 	Poco::Data::Date NADate(1900,1,1);
@@ -157,6 +132,7 @@ void Student::deleteEnrollment(unsigned int courseKey)
 
 	if(delEnrollmentItr != this->m_enrollments.end())
 	{
+		//TODO: remove this cout
 		cout << "Entered Enrollment Deleted!!" << endl;
 		this->m_enrollments.erase(delEnrollmentItr, this->m_enrollments.end());
 	}
@@ -179,5 +155,76 @@ void Student::updateGrade(float grade, unsigned int courseKey)
 
 void Student::write(std::ostream &out) const
 {
-	out << printStudent() << endl;
+	out << to_string(this->m_matrikelNumber)
+		<< ";" << this->m_firstName
+		<< ";" << this->m_lastName << ";"
+		<< pocoDateToStringFormatter(this->m_dateOfBirth) + ";";
+
+	this->getAddress()->write(out);
+}
+
+Student Student::read(std::istream &in)
+{
+//	string readLine;
+//
+//	getline(in, readLine);
+//	istringstream iss(readLine);
+//
+//	vector<string> filedata;
+//
+//	while(getline(iss, readLine, ';'))
+//	{
+//		filedata.push_back(readLine);
+//	}
+//
+////	unsigned int matrikelNumber =
+////			(filedata.size()>=1) ? stoi(filedata.at(0)) : 0;
+//	string firstName =
+//			(filedata.size()>=2) ? filedata.at(1) : "(firstName not assigned)";
+//	string lastName =
+//			(filedata.size()>=3) ? filedata.at(2) : "(lastName not assigned)";
+//	Poco::Data::Date dateOfBirth =
+//			(filedata.size()>=4) ? stringToPocoDateFormatter(filedata.at(3)) : Poco::Data::Date();
+//	string streetName =
+//			(filedata.size()>=5) ? filedata.at(4) : "(streetName not assigned)";
+//	unsigned int postalCode =
+//			(filedata.size()>=6) ? stoi(filedata.at(5)) : 0;
+//	string cityName =
+//			(filedata.size()>=7) ? filedata.at(6) : "(cityName not assigned)";
+//	string additionalInfo =
+//			(filedata.size()>=8) ? filedata.at(7) : "(additionalInfo not assigned)";
+
+	string inStr;
+
+	getline(in, inStr);
+
+	unsigned int matrikelNumber = stoul(splitAt(inStr, ';'));
+	string firstName = splitAt(inStr, ';');
+	string lastName = splitAt(inStr, ';');
+	Poco::Data::Date dateOfBirth = stringToPocoDateFormatter(splitAt(inStr, ';'));
+
+//	string streetName = splitAt(inStr, ';');
+//	unsigned int postalCode = stoi(splitAt(inStr, ';'));
+//	string cityName = splitAt(inStr, ';');
+//	string additionalInfo = splitAt(inStr, ';');
+
+//	shared_ptr<Address> address =
+//			make_shared<Address>(streetName, postalCode, cityName, additionalInfo);
+
+	istringstream iss(inStr);
+
+	shared_ptr<Address> address = Address::read(iss);
+
+	Student addStudent(firstName, lastName, dateOfBirth, address);
+
+	unsigned int highestMatrikelNumber = 0;
+
+	highestMatrikelNumber = (highestMatrikelNumber >= matrikelNumber)
+											? highestMatrikelNumber : matrikelNumber;
+
+	// Set the nextMatrikelNumber after processing all students
+	Student::setNextMatrikelNumber(highestMatrikelNumber + 1);
+
+	return addStudent;
+
 }

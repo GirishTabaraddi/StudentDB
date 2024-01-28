@@ -10,12 +10,12 @@
 #ifndef STUDENT_H_
 #define STUDENT_H_
 
-#include "Enrollment.h"
-#include "Address.h"
-#include "formatterfile.h"
-
+#include <sstream>
 #include <vector>
 #include <memory>
+
+#include "Enrollment.h"
+#include "Address.h"
 
 /*!
  * @class Student
@@ -93,13 +93,6 @@ public:
     static void setNextMatrikelNumber(unsigned int newMatrikelNumber);
 
     /*!
-     * @brief Getter method that returns the next Matrikel number for new students.
-     *
-     * @return The next Matrikel number as an unsigned integer.
-     */
-    static unsigned int getNextMatrikelNumber();
-
-    /*!
      * @brief Getter method that returns a string of the first name.
      *
      * @return std::string representing the first name.
@@ -150,7 +143,7 @@ public:
      * @param semester Semester for the enrollment.
      * @param courseId Pointer to the Course object.
      */
-    void addEnrollment(const std::string& semester, Course* courseId);
+    void addEnrollment(const std::string& semester, const Course* courseId);
 
     /*!
      * @brief Update the student details.
@@ -159,7 +152,7 @@ public:
      * @param lastName New last name.
      * @param dateOfBirth New date of birth.
      */
-    void updateStudent(std::string firstName, std::string lastName, Poco::Data::Date dateOfBirth);
+    void updateStudentDetails(std::string firstName, std::string lastName, Poco::Data::Date dateOfBirth);
 
     /*!
      * @brief Update the address of the student.
@@ -186,14 +179,28 @@ public:
     /**
      * @brief Write the student's data to the provided output stream.
      *
-     * This virtual method is intended to be overridden by derived classes
-     * to write the specific data of the student to the output stream. It
-     * allows objects to represent themselves in a standardized format when
-     * output is needed, such as writing to a file or printing to the console.
+     * This method writes the basic details of the student to the output stream.
+     * It is intended to be used as a default implementation for writing student
+     * details.
      *
      * @param out The output stream where the student's data will be written.
      */
-    virtual void write(std::ostream& out) const;
+     void write(std::ostream& out) const;
+
+     /*!
+      * @brief Read a Student object from the specified input stream.
+      *
+      * This static function reads information from the given input stream and
+      * constructs a Student object based on the data. The input stream is expected
+      * to contain semicolon-separated values representing matrikel number,
+      * first name, last name, date of birth, street name, postal code,
+      * city name, and additional address information.
+      *
+      * @param in The input stream from which the Student information will be read.
+      * @return The constructed Student object.
+      */
+     static Student read(std::istream& in);
+
 };
 
 
