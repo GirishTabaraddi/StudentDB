@@ -5,7 +5,7 @@ var searchData=
   ['getcityname_2',['getcityName',['../class_address.html#a7c96e1faeaa077c34e46e4568cd9d3b7',1,'Address']]],
   ['getcourse_3',['getcourse',['../class_enrollment.html#ac595cc09bf66b1f40ef8a7bb1877a907',1,'Enrollment']]],
   ['getcoursekey_4',['getcourseKey',['../class_course.html#a31489de2e51a1f0a0f7c444e7722a9bb',1,'Course']]],
-  ['getcourses_5',['getCourses',['../class_student_db.html#a8eed85549123bdf841b59e6f935ba159',1,'StudentDb']]],
+  ['getcourses_5',['getCourses',['../class_student_db.html#af82b98870c964084ee703b6dc4d296e5',1,'StudentDb']]],
   ['getcreditpoints_6',['getcreditPoints',['../class_course.html#aaf9e0e94a3e63ae1822831e1515133f1',1,'Course']]],
   ['getdateofbirth_7',['getDateOfBirth',['../class_student.html#a21f2dd9ab9faed9d58710735669f4301',1,'Student']]],
   ['getdayofweekfromstring_8',['getdayofweekfromstring',['../formatterfile_8h.html#a3240f3b5f4e025b204c0e3da1288752c',1,'getDayOfWeekFromString(const std::string &amp;dayString):&#160;formatterfile.cpp'],['../formatterfile_8cpp.html#a3240f3b5f4e025b204c0e3da1288752c',1,'getDayOfWeekFromString(const std::string &amp;dayString):&#160;formatterfile.cpp']]],
@@ -24,11 +24,6 @@ var searchData=
   ['getstartdate_21',['getStartDate',['../class_block_course.html#a6b99a73417827b66342c0f4b5aeb7df6',1,'BlockCourse']]],
   ['getstarttime_22',['getstarttime',['../class_block_course.html#a58bf0695c2ce7306c506fac501500e32',1,'BlockCourse::getStartTime()'],['../class_weekly_course.html#a3ec70c8b6f7aad18a000f65392d249b7',1,'WeeklyCourse::getStartTime()']]],
   ['getstreet_23',['getstreet',['../class_address.html#ae3b13da85de59b0768533dc287c078e7',1,'Address']]],
-  ['getstudents_24',['getStudents',['../class_student_db.html#aaef05fd4c4e778992a607e7921906591',1,'StudentDb']]],
-  ['gettitle_25',['gettitle',['../class_course.html#a11cb3b3abed4bbfd86a694023d05720e',1,'Course']]],
-  ['getuserinputforaddressupdate_26',['getUserInputforAddressUpdate',['../class_simple_u_i.html#a5731f2a6ec2ed016573767f0647086de',1,'SimpleUI']]],
-  ['getuserinputfornewenrollment_27',['getUserInputforNewEnrollment',['../class_simple_u_i.html#a02c7b93f63a82016543fc79e885fff3b',1,'SimpleUI']]],
-  ['getuserinputforstudentupdate_28',['getUserInputforStudentUpdate',['../class_simple_u_i.html#abedcb179be843baa7e34e645cc5d6fd1',1,'SimpleUI']]],
-  ['getuserinputsfornewcourse_29',['getUserInputsforNewCourse',['../class_simple_u_i.html#a1a626d4e015b79eef5b0850e2840113d',1,'SimpleUI']]],
-  ['getuserinputsfornewstudent_30',['getUserInputsforNewStudent',['../class_simple_u_i.html#a5f9f3c98ebe2b10b63cd641501076694',1,'SimpleUI']]]
+  ['getstudents_24',['getStudents',['../class_student_db.html#aefab809fd4f2f2873087807519a1eef3',1,'StudentDb']]],
+  ['gettitle_25',['gettitle',['../class_course.html#a11cb3b3abed4bbfd86a694023d05720e',1,'Course']]]
 ];

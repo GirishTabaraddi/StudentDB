@@ -13,8 +13,8 @@ using namespace std;
 
 Address::Address(std::string street, unsigned short postalCode,
 		std::string cityName, std::string additionalInfo) :
-				m_street(street), m_postalCode(postalCode),
-				m_cityName(cityName), m_additionalInfo(additionalInfo)
+						m_street(street), m_postalCode(postalCode),
+						m_cityName(cityName), m_additionalInfo(additionalInfo)
 {
 }
 
@@ -55,9 +55,9 @@ std::string Address::printAddress() const
 void Address::write(std::ostream &out) const
 {
 	out << this->m_street
-		<< ";" << to_string(this->m_postalCode)
-		<< ";" << this->m_cityName
-		<< ";" << this->m_additionalInfo;
+			<< ";" << to_string(this->m_postalCode)
+			<< ";" << this->m_cityName
+			<< ";" << this->m_additionalInfo;
 }
 
 std::shared_ptr<Address> Address::read(std::istream &in)

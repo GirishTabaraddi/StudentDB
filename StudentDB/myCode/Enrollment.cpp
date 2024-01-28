@@ -12,7 +12,7 @@
 using namespace std;
 
 Enrollment::Enrollment(std::string semester, const Course* courseObj) :
-		m_grade(0.0), m_semester(semester), m_course(courseObj)
+				m_grade(0.0), m_semester(semester), m_course(courseObj)
 {
 }
 
@@ -35,7 +35,7 @@ const Course* Enrollment::getcourse() const
 	return this->m_course;
 }
 
-void Enrollment::setgrade(float grade)
+void Enrollment::setgrade(const float &grade)
 {
 	this->m_grade = grade;
 }
@@ -47,7 +47,7 @@ std::string Enrollment::printEnrollment() const
 	oss << fixed << setprecision(1) << this->m_grade;
 
 	string out = to_string(this->m_course->getcourseKey())
-			+ ";" + this->m_semester + ";" + oss.str();
+					+ ";" + this->m_semester + ";" + oss.str();
 
 	return out;
 }
@@ -59,7 +59,7 @@ void Enrollment::write(std::ostream &out) const
 	oss << fixed << setprecision(1) << this->m_grade;
 
 	out << to_string(this->m_course->getcourseKey())
-			<< ";" << this->m_semester << ";" << oss.str();
+					<< ";" << this->m_semester << ";" << oss.str();
 }
 
 //Enrollment Enrollment::read(std::istream &in)
@@ -86,7 +86,7 @@ Enrollment Enrollment::read(std::istream &in, const Course *courseobj)
 
 	getline(in, inStr);
 
-//	cout << "inside read: " << inStr << endl;
+	//	cout << "inside read: " << inStr << endl;
 
 	unsigned int courseKey = stoul(splitAt(inStr, ';'));
 	string semester = splitAt(inStr, ';');

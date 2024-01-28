@@ -1,13 +1,7 @@
-2
-W;1234;EOS;Embedded Systems;5.0;1;05:15;06:45
-B;1235;C Programming;Automation;5.0;16.09.2024;20.09.2025;08:15;10:15
-7
-100001;Drashti;Shah;31.03.1997;7158 RheinNeckarStrasse;64295;Darmstadt;
-100002;manon;lefebvre;02.03.1970;7582 rue dubois;24042;villeurbanne;manche
-100003;mikkel;madsen;24.02.2006;5834 neptunvej;30872;viby sj.;midtjylland
-100004;erik;herrera;02.09.1926;6940 parker rd;51573;garland;kentucky
-100005;cherilyn;broeder;05.12.1981;3455 jacobijnenstraat;64365;best;utrecht
-100006;jonathan;gimenez;24.05.1927;5418 avenida de salamanca;63748;burgos;asturias
-100007;christopher;griffin;04.05.1968;1940 the avenue;9999;leeds;herefordshire
-1
-100001;1234;SS2024;1.0
+0
+4
+100000;vera;ray;29.05.2002;1908 sunset st;59044;lincoln;wisconsin
+100001;benito;nieto;30.07.1998;1293 avenida de burgos;21288;parla;melilla
+100002;faye;van den biggelaar;11.11.1933;8026 gansstraat;62543;someren;gelderland
+100003;cody;hughes;27.05.1982;3230 park road;18408;kilcoole;kerry
+0

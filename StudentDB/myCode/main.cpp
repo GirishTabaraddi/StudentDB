@@ -24,6 +24,12 @@ int main ()
 }
 
 
+
+
+
+
+
+
 /*!
  * @startuml
 
@@ -34,16 +40,21 @@ int main ()
 		+SimpleUI(StudentDb& db)
 		+~SimpleUI()
 		+run() : void
-		+getUserInputsforNewCourse() : void
-		+listCourses() : void
-        +getUserInputsforNewStudent() : void
-        +getUserInputforNewEnrollment() : void
-        +printStudent() : void
-        +searchStudent() : void
-        +getUserInputforStudentUpdate() : void
-        +performStudentUpdate(Student& updateStudent) : void
-        +getUserInputforAddressUpdate(Student& updateStudent) : void
-        +performEnrollmentUpdate(Student& updateStudent, \n const std::string& courseKey) : void
+
+		-getUserInputsforNewCourse() : void {query}
+		-listCourses() : void {query}
+		-getUserInputsforNewStudent() : void {query}
+		-getUserInputforNewEnrollment() : void {query}
+		-printStudent() : void {query}
+        -searchStudent() : void {query}
+        -getUserInputforStudentUpdate() : void {query}
+        -performStudentUpdate(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
+        -getUserInputforFirstName(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
+        -getUserInputforLastName(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
+        -getUserInputforDateOfBirth(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
+        -getUserInputforAddressUpdate(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
+        -getUserInputforEnrollmentUpdate(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
+        -performEnrollmentUpdate(const std::string& courseKey, \n const Student& updateStudent) : void {query}
 	}
 
 	class StudentDb
@@ -52,22 +63,29 @@ int main ()
 		-m_courses : std::map<int, std::unique_ptr<const Course>>
 
 		+StudentDb()
-		+getStudents() : std::map<int , Student>&
-        +getCourses() : std::map<int , std::unique_ptr<const Course>>&
+        +getStudents() : std::map<int , Student>& {query}
+        +getCourses() : std::map<int , std::unique_ptr<const Course>>& {query}
 		+addNewCourse(std::string& courseKey, std::string& title, std::string& major, \n std::string& credits, std::string& courseType, \n std::string& startTime, std::string& endTime, \n std::string& startDate, std::string& endDate, \n std::string& dayOfWeek) : StudentDb::RC_StudentDb_t
 		+addNewStudent(std::string& firstName, std::string& lastName, std::string& DoBstring, \n std::string& streetName, std::string& postalCode, \n std::string& cityName, std::string& additionalInfo) : StudentDb::RC_StudentDb_t
-		+addEnrollment(std::string& matrikelNumber, \n std::string& semester, std::string& courseKey) : StudentDb::RC_StudentDb_t
-        +writeCoursesData(std::ostream& out) : void {query}
-        +writeStudentsData(std::ostream& out) : void {query}
-        +writeEnrollmentsData(std::ostream& out) : void {query}
+		+addEnrollment(std::string& matrikelNumber, std::string& semester, \n std::string& courseKey) : StudentDb::RC_StudentDb_t
+        +updateFirstName(const std::string& newFirstName, unsigned int matrikelNumber) : void
+        +updateLastName(const std::string& newLastName, unsigned int matrikelNumber) : void
+        +updateDateOfBirth(const Poco::Data::Date& dateOfBirth, unsigned int matrikelNumber) : void
+        +updateAddress(const std::string& street, const unsigned int& postalCode, \n const std::string& cityName, const std::string& additionalInfo, \n unsigned int matrikelNumber) : void
+        +deleteEnrollment(const unsigned int& courseKey, const unsigned int matrikelNumber) : void
+        +updateGrade(const unsigned int& courseKey, const float& newGrade, \n const unsigned int matrikelNumber) : void
         +write(std::ostream& out) : void {query}
         +read(std::istream& in) : void
-        +readCoursesData(std::string& str) : void
-        +readStudentsData(std::string& str) : void
-        +readEnrollmentData(std::string& str) : void
         +readStudentDataFromServer(unsigned int noOfUserData) : void
-        +parsingJSONData(std::string& JSONData) : void
-        +isValidServerDataString(const std::string& eachStr) : bool
+
+        -readCoursesData(std::string& str) : void
+        -readStudentsData(std::string& str) : void
+        -readEnrollmentData(std::string& str) : void
+        -writeCoursesData(std::ostream& out) : void {query}
+        -writeStudentsData(std::ostream& out) : void {query}
+        -writeEnrollmentsData(std::ostream& out) : void {query}
+        -parsingJSONData(std::string& JSONData) : void
+        -isValidServerDataString(const std::string& eachStr) : bool
 	}
 
 	class Student
@@ -83,18 +101,20 @@ int main ()
 		+Student(std::string firstName, std::string lastName,\n Poco::Data::Date dateOfBirth, std::shared_ptr<Address> address)
 		+~Student()
 		+getMatrikelNumber() : unsigned int {query}
-		+{static} setNextMatrikelNumber(unsigned int newMatrikelNumber) : void
 		+getFirstName() : std::string& {query}
         +getLastName() : std::string& {query}
 		+getDateOfBirth() : Poco::Data::Date {query}
 		+getEnrollments() : std::vector<Enrollment>& {query}
 		+getAddress() : std::shared_ptr<Address> {query}
+		+{static} setNextMatrikelNumber(unsigned int newMatrikelNumber) : void
+        +setFirstName(const std::string& firstName) : void
+        +setLastName(const std::string& lastName) : void
+        +setDateOfBirth(const Poco::Data::Date& dateOfBirth) : void
+        +setAddress(const std::shared_ptr<Address> address) : void
 		+printStudent() : std::string {query}
 		+addEnrollment(const std::string& semester, const Course* courseId) : void
-		+updateStudentDetails(std::string firstName, std::string lastName,\n Poco::Data::Date dateOfBirth) : void
-		+updateAddress(std::shared_ptr<Address> address) : void
-		+deleteEnrollment(unsigned int courseKey) : void
-		+updateGrade(float grade, unsigned int courseKey) : void
+		+deleteEnrollment(const unsigned int& courseKey) : void
+		+updateGrade(const float& grade, const unsigned int& courseKey) : void
 		+write(std::ostream& out) : void {query}
 		+{static} read(std::istream& in) : Student
 	}
