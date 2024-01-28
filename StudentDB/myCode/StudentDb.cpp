@@ -261,9 +261,6 @@ void StudentDb::read(std::istream &in)
 	this->m_courses.clear();
 	this->m_students.clear();
 
-	// Reset the matrikel number to its initial value
-	Student::setNextMatrikelNumber(100000);
-
 	string LineStr;
 	unsigned int count = 0;
 	unsigned char caseChar;

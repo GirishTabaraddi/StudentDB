@@ -97,8 +97,8 @@ void Student::addEnrollment(const std::string& semester, const Course *newCourse
 	}
 }
 
-void Student::updateStudentDetails(std::string firstName, std::string lastName,
-		Poco::Data::Date dateOfBirth)
+void Student::updateStudentDetails(std::string& firstName, std::string& lastName,
+		Poco::Data::Date& dateOfBirth)
 {
 	Poco::Data::Date NADate(1900,1,1);
 
@@ -199,31 +199,18 @@ Student Student::read(std::istream &in)
 	getline(in, inStr);
 
 	unsigned int matrikelNumber = stoul(splitAt(inStr, ';'));
+
+	Student::m_nextMatrikelNumber = matrikelNumber;
+
 	string firstName = splitAt(inStr, ';');
 	string lastName = splitAt(inStr, ';');
 	Poco::Data::Date dateOfBirth = stringToPocoDateFormatter(splitAt(inStr, ';'));
-
-//	string streetName = splitAt(inStr, ';');
-//	unsigned int postalCode = stoi(splitAt(inStr, ';'));
-//	string cityName = splitAt(inStr, ';');
-//	string additionalInfo = splitAt(inStr, ';');
-
-//	shared_ptr<Address> address =
-//			make_shared<Address>(streetName, postalCode, cityName, additionalInfo);
 
 	istringstream iss(inStr);
 
 	shared_ptr<Address> address = Address::read(iss);
 
 	Student addStudent(firstName, lastName, dateOfBirth, address);
-
-	unsigned int highestMatrikelNumber = 0;
-
-	highestMatrikelNumber = (highestMatrikelNumber >= matrikelNumber)
-											? highestMatrikelNumber : matrikelNumber;
-
-	// Set the nextMatrikelNumber after processing all students
-	Student::setNextMatrikelNumber(highestMatrikelNumber + 1);
 
 	return addStudent;
 

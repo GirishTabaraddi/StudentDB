@@ -43,34 +43,34 @@ public:
      * @brief Lists all the properties available in the database, requests input from the user,
      *        and executes the respective operation.
      */
-    void run();
+    void run() const;
 
     /*!
      * @brief Get user inputs for creating a new course.
      */
-    void getUserInputsforNewCourse();
+    void getUserInputsforNewCourse() const;
 
     /*!
      * @brief List's all courses.
      */
-    void listCourses();
+    void listCourses() const;
 
     /*!
      * @brief Get user inputs for adding a new student.
      */
-    void getUserInputsforNewStudent();
+    void getUserInputsforNewStudent() const;
 
     /*!
      * @brief Get user inputs for enrolling a student in a course.
      */
-    void getUserInputforNewEnrollment();
+    void getUserInputforNewEnrollment() const;
 
     /*!
      * @brief Print details of a student, including enrolled courses and results.
      *
      * Queries the user for a matrikel number and prints the corresponding student details.
      */
-    void printStudent();
+    void printStudent() const;
 
     /*!
      * @brief Search for students based on a provided string.
@@ -78,26 +78,26 @@ public:
      * Queries the user for a string and prints the matrikel number, last name, and first name of all students
      * having the provided string as a substring in their first or last name.
      */
-    void searchStudent();
+    void searchStudent() const;
 
     /*!
      * @brief Get user inputs for updating student information.
      */
-    void getUserInputforStudentUpdate();
+    void getUserInputforStudentUpdate() const;
 
     /*!
      * @brief Perform updates on a Student object.
      *
      * @param updateStudent Reference to a Student object.
      */
-    void performStudentUpdate(Student& updateStudent);
+    void performStudentUpdate(Student& updateStudent) const;
 
     /*!
      * @brief Get user inputs for updating student's address information.
      *
      * @param updateStudent Reference to a Student object.
      */
-    void getUserInputforAddressUpdate(Student& updateStudent);
+    void getUserInputforAddressUpdate(Student& updateStudent) const;
 
     /*!
      * @brief Perform updates on a student's enrollment information.
@@ -105,7 +105,7 @@ public:
      * @param updateStudent Reference to a Student object.
      * @param courseKey The key of the course to be updated.
      */
-    void performEnrollmentUpdate(Student& updateStudent, const std::string& courseKey);
+    void performEnrollmentUpdate(Student& updateStudent, const std::string& courseKey) const;
 };
 
 

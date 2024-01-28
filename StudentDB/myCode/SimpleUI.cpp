@@ -19,7 +19,7 @@ SimpleUI::~SimpleUI()
 {
 }
 
-void SimpleUI::run()
+void SimpleUI::run() const
 {
 	bool exitFlag = false;
 
@@ -212,7 +212,7 @@ void SimpleUI::run()
 	}
 }
 
-void SimpleUI::getUserInputsforNewCourse()
+void SimpleUI::getUserInputsforNewCourse() const
 {
 	string courseKey = "0";
 	string title = "NA";
@@ -371,7 +371,7 @@ void SimpleUI::getUserInputsforNewCourse()
 	//	}
 }
 
-void SimpleUI::listCourses()
+void SimpleUI::listCourses() const
 {
 	cout << this->m_db.getCourses().size() << endl;
 
@@ -381,7 +381,7 @@ void SimpleUI::listCourses()
 	}
 }
 
-void SimpleUI::getUserInputsforNewStudent()
+void SimpleUI::getUserInputsforNewStudent() const
 {
 	string firstName = "NA";
 	string lastName = "NA";
@@ -488,7 +488,7 @@ void SimpleUI::getUserInputsforNewStudent()
 	//	}
 }
 
-void SimpleUI::getUserInputforNewEnrollment()
+void SimpleUI::getUserInputforNewEnrollment() const
 {
 	string matrikelNumber = "0";
 	string semester = "0";
@@ -567,7 +567,7 @@ void SimpleUI::getUserInputforNewEnrollment()
 	//	}
 }
 
-void SimpleUI::printStudent()
+void SimpleUI::printStudent() const
 {
 	//	map<int, Student>& students = this->m_db.getStudents();
 	string matrikelNumber = "0";
@@ -600,7 +600,7 @@ void SimpleUI::printStudent()
 	}
 }
 
-void SimpleUI::searchStudent()
+void SimpleUI::searchStudent() const
 {
 	string searchString = "Gir";
 
@@ -637,7 +637,7 @@ void SimpleUI::searchStudent()
 	}
 }
 
-void SimpleUI::getUserInputforStudentUpdate()
+void SimpleUI::getUserInputforStudentUpdate() const
 {
 	string matrikelNumber = "0";
 
@@ -667,6 +667,10 @@ void SimpleUI::getUserInputforStudentUpdate()
 
 		Student& updateStudent = studentItr->second;
 
+//		const Student& updateStudent = this->m_db.getStudents().at(stoi(matrikelNumber));
+
+//		Student updateStudentCopy = studentItr->second;
+
 		this->performStudentUpdate(updateStudent);
 	}
 	else
@@ -676,7 +680,7 @@ void SimpleUI::getUserInputforStudentUpdate()
 	}
 }
 
-void SimpleUI::performStudentUpdate(Student &updateStudent)
+void SimpleUI::performStudentUpdate(Student &updateStudent) const
 {
 	bool exitFlag = false;
 
@@ -715,6 +719,7 @@ void SimpleUI::performStudentUpdate(Student &updateStudent)
 						<< " to update First Name." <<endl;
 
 				string firstName = "NA";
+				string lastName = "NA";
 				Poco::Data::Date NADate(1900,1,1);
 
 				cout << endl << "\t \t \t Enter First Name of the Student to Update - a-z/A-Z: ";
@@ -726,7 +731,8 @@ void SimpleUI::performStudentUpdate(Student &updateStudent)
 					return;
 				}
 
-				updateStudent.updateStudentDetails(firstName, "NA", NADate);
+//				this->m_db.updateStudent(matrikelnumber, firstname);
+				updateStudent.updateStudentDetails(firstName, lastName, NADate);
 			}
 			break;
 			case 2:
@@ -734,6 +740,7 @@ void SimpleUI::performStudentUpdate(Student &updateStudent)
 				cout << endl << "\t \t \t You chose option : " << numericChoice
 						<< " to update Last Name." <<endl;
 
+				string firstName = "NA";
 				string lastName = "NA";
 
 				cout << endl << "\t \t \t Enter Last Name of the Student to Update - a-z/A-Z: ";
@@ -747,7 +754,7 @@ void SimpleUI::performStudentUpdate(Student &updateStudent)
 
 				Poco::Data::Date NADate(1900,1,1);
 
-				updateStudent.updateStudentDetails("NA", lastName, NADate);
+				updateStudent.updateStudentDetails(firstName, lastName, NADate);
 			}
 			break;
 			case 3:
@@ -755,6 +762,8 @@ void SimpleUI::performStudentUpdate(Student &updateStudent)
 				cout << endl << "\t \t \t You chose option : " << numericChoice
 						<< " to update Date of Birth." <<endl;
 
+				string firstName = "NA";
+				string lastName = "NA";
 				string DoBstring = "31.12.9999";
 
 				cout << endl << "\t \t \t \t Enter Date of Birth of the Student "
@@ -771,7 +780,7 @@ void SimpleUI::performStudentUpdate(Student &updateStudent)
 
 				Poco::Data::Date pocoDoB = stringToPocoDateFormatter(DoBstring);
 
-				updateStudent.updateStudentDetails("NA", "NA", pocoDoB);
+				updateStudent.updateStudentDetails(firstName, lastName, pocoDoB);
 			}
 			break;
 			case 4:
@@ -844,7 +853,7 @@ void SimpleUI::performStudentUpdate(Student &updateStudent)
 	}
 }
 
-void SimpleUI::getUserInputforAddressUpdate(Student &updateStudent)
+void SimpleUI::getUserInputforAddressUpdate(Student &updateStudent) const
 {
 	string streetName = "NA";
 	string postalCode = "NA";
@@ -898,7 +907,7 @@ void SimpleUI::getUserInputforAddressUpdate(Student &updateStudent)
 	updateStudent.updateAddress(address);
 }
 
-void SimpleUI::performEnrollmentUpdate(Student& updateStudent, const std::string& courseKey)
+void SimpleUI::performEnrollmentUpdate(Student& updateStudent, const std::string& courseKey) const
 {
 	bool exitFlag2 = false;
 
@@ -916,8 +925,8 @@ void SimpleUI::performEnrollmentUpdate(Student& updateStudent, const std::string
 			return;
 		}
 
-		try
-		{
+//		try
+//		{
 			int numericChoice = stoi(choice);
 
 			if(numericChoice >= 0 && numericChoice <= 2)
@@ -959,11 +968,11 @@ void SimpleUI::performEnrollmentUpdate(Student& updateStudent, const std::string
 				cout << endl << "\t \t \t ERROR: Invalid Input, "
 						"Please enter a numeric value between - [0-2]" << endl;
 			}
-		}
-		catch(const invalid_argument& e)
-		{
-			cout << endl << "\t \t \t ERROR: Invalid Input, "
-					"Please enter a numeric value between - [0-2]" << endl;
-		}
+//		}
+//		catch(const invalid_argument& e)
+//		{
+//			cout << endl << "\t \t \t ERROR: Invalid Input, "
+//					"Please enter a numeric value between - [0-2]" << endl;
+//		}
 	}
 }

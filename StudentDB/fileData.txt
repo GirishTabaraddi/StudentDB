@@ -1,9 +1,1 @@
-2
-W;1234;EOS;Embedded Systems;5.0;1;05:15;06:45
-B;1235;C Programming;Automation;5.0;16.09.2024;20.09.2025;08:15;10:15
-2
-100000;x;y;31.03.1997;7158 RheinNeckarStrasse;64295;Darmstadt;
-100001;z;a;01.03.1997;2575 Am Karlshof;64287;Darmstadt;Apartement 10b
-2
-100000;1235;SS2023;2.3
-100001;1234;SS2024;1.0
+
