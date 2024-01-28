@@ -10,7 +10,9 @@ Remember the storage space optimization in Course: the property major is stored 
 
 Matrikel numbers for new students are generated automatically. Each time a new student is created, the value from class member nextMatrikelNumber is used, which is incremented afterwards.
 
-The class SimpleUI provides a simple user interface for the database. It is created with the student database as argument. The run method continuously lists the available commands  waits for the user to choose one by entering the number and executes the command. Command execution may involve further data input from the user, of course.
+The class SimpleUI provides a simple user interface for the database. It is created with the student database as argument. The run method continuously lists the available commands  waits for the user to choose one by entering the number and executes the command. Command execution may involve further data input from the user, of course. Command execution is implemented by invoking the methods of the various classes. 
+
+Note that all communication with user must be implemented in SimpleUI. Using cin or cout in any of the other classes results in 0 points for the submission. With respect to the general model-viewcontroller pattern (look it up!), the StudentDb is the model and the SimpleUI provides both the view and the controller.
 
 The commands to be implemented are:
 
@@ -46,13 +48,14 @@ Here’s a short example:
 
 ![CSV_Format](https://github.com/GirishTabaraddi/StudentDB/blob/feature/add-basic-info-to-studentDB/CSV_Format.png)
 
-Implement writing by adding methods virtual void write(std::ostream& out) to Course and Student. Objects write a single line with their data to the ostream. The classes BlockCourse and WeeklyCourse write a character indicating the actual type followed by the data members of the base class and the derived class. Implement this by implementing Course::write in such a way that it writes the base class’s data without a line terminator (e.g. “5387;APT;Automation;5”) and call this method from the derived classes after writing the leading type indicator and before writing the data members of the derived class.
+Implement writing by adding methods virtual void write(std::ostream& out) to Course and Student. Objects write a single line with their data to the ostream. The classes BlockCourse and
+WeeklyCourse write a character indicating the actual type followed by the data members of the base class and the derived class. Implement this by implementing Course::write in such a way that it writes the base class’s data without a line terminator (e.g. “5387;APT;Automation;5”) and call this method of the superclass from the derived classes after writing the leading type indicator and before writing the data members of the derived class.
 
-Finally add void write(std::ostream& out) to StudentDb. It calculates the number of items to write for each kind and invokes the write method for each of the items.
+Finally add void write(std::ostream& out) to StudentDb. It calculates the number of items to write for each kind and invokes the write method for each of the items. The actual data for items must be written by methods defined in the respective classes. For example, the data for an enrollment must be written by a method void Enrollment::write(std::ostream& out).
 
-Of course, we also want to read back the data. Add a method void read(std::istream& in) to StudentDb that clears the database and then restores the content from the data in the file. Make sure that nextMatrikelNumber has the highest matrikel number plus one when all data has been processed.
+Of course, we also want to read back the data. Add a method void read(std::istream& in) to StudentDb that clears the database and then restores the content from the data in the file. Make sure that nextMatrikelNumber has the highest matrikel number plus one when all data has been processed. Similar to the write-methods, this StudentDb::read must delegate the task of reading from the stream (or at least evaluating the data read) as much as possible to methods of the classes that have written the data. For example, when StudentDb::read has read the number of lines that contain enrollment data, these lines must be read and evaluated by a class method Enrollment Enrollment::read(std::istream& in).
 
-Add commands for reading and writing to the SimpleUI. The command queries the user for a file name, creates the file stream and invokes the read and write methods respectively.
+Add commands for reading and writing to the class SimpleUI. The command queries the user for a file name, creates the file stream and invokes the read and write methods respectively. Note that as a consequence of the implementation hints outlined above, SimpleUI must not contain any code for reading or writing. It only invokes the respective methods of StudentDb. Not implementing the methods as outlined above results in 0 points for the submission.
 
 ## Exercise 3.3: Obtaining test data
 
@@ -69,7 +72,7 @@ The server understands two commands generate and quit. Here’s a sample session
 	→ quit
 	← 200 Closing connection. Bye bye!
 
-Use a Poco::Net::SocketStream for the connection to the server. Once established, it can be used like any other std::iostream.
+Use a boost iostream for the connection to the server. Once established, it can be used like any other std::iostream.
 
 Note that the server has a timeout of 5 seconds. If no command is received within this time span, the connection is closed automatically.
 
@@ -81,12 +84,11 @@ Here’s a formatted sample output (picture data omitted):
 
 ![JSON_Format_Output](https://github.com/GirishTabaraddi/StudentDB/blob/feature/add-basic-info-to-studentDB/JSON_Format_Output.png)
 
-The Poco library provides classes for parsing this data.
+The boost JSON library provides classes for parsing this data.
 
 Add another command to your test menu for the StudentDb that queries the user for the number of students to add. When executing, the command connects to the server, issues the generate and creates new student records using the data received. This is repeated as often as required.
 
 Be nice, terminate your session with the server by sending the quit command rather than relying on the connection timeout.
-
 
 ### Final Updated UML
 
