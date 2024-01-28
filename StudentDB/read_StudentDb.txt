@@ -2,8 +2,8 @@
 W;1234;EOS;Embedded;5;1;5:15;6:45
 B;1235;C Programming;Automation;5;16.9.2024;20.9.2025;8:15;10:15
 2
-100000;Drashti;Shah;31.3.1997;7158 RheinNeckarStrasse;64295;Darmstadt;
-100001;Girish;Tabaraddi;1.3.1997;2575 Am Karlshof;64287;Darmstadt;Apartement 10b
+100000;x;y;31.3.1997;7158 RheinNeckarStrasse;64295;Darmstadt;
+100001;z;a;1.3.1997;2575 Am Karlshof;64287;Darmstadt;Apartement 10b
 2
 100000;1235;SS2023;2.3
 100001;1234;SS2024;1.0

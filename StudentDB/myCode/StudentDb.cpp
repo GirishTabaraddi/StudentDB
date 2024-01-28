@@ -261,6 +261,9 @@ void StudentDb::read(std::istream &in)
 	this->m_courses.clear();
 	this->m_students.clear();
 
+	// Reset the matrikel number to its initial value
+	Student::setNextMatrikelNumber(100000);
+
 	string LineStr;
 	unsigned int count = 0;
 	unsigned char caseChar;
@@ -304,6 +307,8 @@ void StudentDb::read(std::istream &in)
 			case 'S':
 			{
 //				this->readStudentsData(LineStr);
+
+//				unsigned int matrikelNumber = stoul(splitAt(LineStr, ';'));
 
 				istringstream iss(LineStr);
 
@@ -547,20 +552,16 @@ bool StudentDb::isValidServerDataString(const std::string &eachStr)
 	}
 }
 
-//void StudentDb::readFromServer()
+//void StudentDb::readStudentDataFromServer(unsigned int noOfUserData)
 //{
 //	//! Create a socket address
 //	Poco::Net::SocketAddress socketAddress("www.hhs.users.h-da.cloud", 4242);
 //
-//	string noOfUserDate = "1";
 //	string readLine;
 //
-//	cout << "Enter the number of Student Data to be extracted from the server: ";
-//	getline(cin, noOfUserDate);
+//	unsigned int loopIdx = 0;
 //
-//	int loopIdx = 0;
-//
-//	while(loopIdx < stoi(noOfUserDate))
+//	while(loopIdx < noOfUserData)
 //	{
 //		//! Create a stream socket
 //		Poco::Net::StreamSocket socket;
@@ -656,7 +657,7 @@ bool StudentDb::isValidServerDataString(const std::string &eachStr)
 //
 //    this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
 //}
-
+//
 //void StudentDb::parsingJSONData(std::string &JSONData)
 //{
 //	Poco::JSON::Parser jsonParser;

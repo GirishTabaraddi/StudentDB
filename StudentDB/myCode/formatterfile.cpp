@@ -34,7 +34,7 @@ Poco::Data::Date stringToPocoDateFormatter(const std::string& stringDate)
 
 	if (!regex_match(stringDate, match, datePattern))
 	{
-	    cout << "ERROR: Please enter a valid date format - dd.mm.YYYY : " << endl;
+	    cerr << "ERROR: Please enter a valid date format - dd.mm.YYYY : " << endl;
 	    datetime = Poco::DateTimeParser::parse("%d.%m.%Y", "00.00.0000", i);
 	}
 	else
@@ -68,7 +68,7 @@ Poco::Data::Time stringToPocoTimeFormatter(const std::string &stringTime)
 
 	if(!regex_match(stringTime, timePattern))
 	{
-		cout << "ERROR: Please enter a valid time format - HH:MM : " << endl;
+		cerr << "ERROR: Please enter a valid time format - HH:MM : " << endl;
 
 		datetime = Poco::DateTimeParser::parse("%H:%M", "00:00", i);
 	}
@@ -151,4 +151,62 @@ std::string splitAt(std::string &input, char delimiter)
 	}
 
 	return returnStr;
+}
+
+bool integerInputCheck(std::string &input)
+{
+	size_t resultLength;
+
+	stoi(input, &resultLength);
+
+	if(resultLength != input.length())
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool stringInputCheck(std::string &input)
+{
+	if(all_of(input.begin(), input.end(), ::isalpha))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool floatInputCheck(std::string &input)
+{
+	size_t resultLength;
+
+	stof(input, &resultLength);
+
+	if(resultLength != input.length())
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool isValidFilename(const std::string &filename)
+{
+	regex filenamePattern(R"([a-zA-Z0-9_-]+\.[tT][xX][tT])");
+
+	return regex_match(filename, filenamePattern);
+}
+
+bool isPrintableInput(std::string &input)
+{
+	for(auto itr = input.begin(); itr != input.end(); itr++)
+	{
+		if(!isprint(static_cast<unsigned char>(*itr)))
+		{
+			return false;
+		}
+	}
+
+	return true;
 }

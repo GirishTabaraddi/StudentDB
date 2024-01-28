@@ -34,7 +34,7 @@ private:
 	 * @var m_majorByID - A map storing major IDs mapped
 	 * to their corresponding strings.
 	 */
-	std::map<unsigned char, std::string> m_majorById;
+	static std::map<unsigned char, std::string> m_majorById;
 
 	/*!
 	 * @var m_courseKey - A variable that stores the course key.
@@ -57,15 +57,6 @@ private:
 	float m_creditPoints;
 
 private:
-	/*!
-	 * @brief Sets the major ID based on the first character of the given major string.
-	 *
-	 * This method takes a major string as input and sets the major ID based on its
-	 * first character using the setMajor method.
-	 *
-	 * @param major A string representing the major.
-	 */
-	void setmajorById(std::string major);
 
 	/*!
 	 * @brief Sets the major based on the first character of the given major string.
@@ -106,7 +97,7 @@ public:
 	 *
 	 * @return A map containing major IDs and their corresponding strings.
 	 */
-	const std::map<unsigned char, std::string> getmajorById() const;
+	static const std::map<unsigned char, std::string> getmajorById();
 
 	/*!
 	 * @brief Getter method to obtain the course key.

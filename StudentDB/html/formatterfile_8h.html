@@ -130,12 +130,54 @@ Functions</h2></td></tr>
 <tr class="memitem:af9ed8bca3d4f21f8250c4b8fb16d39d8" id="r_af9ed8bca3d4f21f8250c4b8fb16d39d8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#af9ed8bca3d4f21f8250c4b8fb16d39d8">splitAt</a> (std::string &amp;remainder, char delimiter)</td></tr>
 <tr class="memdesc:af9ed8bca3d4f21f8250c4b8fb16d39d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split the input string at the specified delimiter.  <br /></td></tr>
 <tr class="separator:af9ed8bca3d4f21f8250c4b8fb16d39d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a601c4d7ac23d08b6103364b5bc007db6" id="r_a601c4d7ac23d08b6103364b5bc007db6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#a601c4d7ac23d08b6103364b5bc007db6">integerInputCheck</a> (std::string &amp;input)</td></tr>
+<tr class="memdesc:a601c4d7ac23d08b6103364b5bc007db6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given input is a valid integer.  <br /></td></tr>
+<tr class="separator:a601c4d7ac23d08b6103364b5bc007db6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace51a9720599aca159979479f580d1c9" id="r_ace51a9720599aca159979479f580d1c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#ace51a9720599aca159979479f580d1c9">stringInputCheck</a> (std::string &amp;input)</td></tr>
+<tr class="memdesc:ace51a9720599aca159979479f580d1c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given input is a valid string.  <br /></td></tr>
+<tr class="separator:ace51a9720599aca159979479f580d1c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78abb0e87022c230f619cf96f868e253" id="r_a78abb0e87022c230f619cf96f868e253"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#a78abb0e87022c230f619cf96f868e253">floatInputCheck</a> (std::string &amp;input)</td></tr>
+<tr class="memdesc:a78abb0e87022c230f619cf96f868e253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given input is a valid floating-point number.  <br /></td></tr>
+<tr class="separator:a78abb0e87022c230f619cf96f868e253"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01ccb863c3829906a1cad09584ce0ce3" id="r_a01ccb863c3829906a1cad09584ce0ce3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#a01ccb863c3829906a1cad09584ce0ce3">isValidFilename</a> (const std::string &amp;filename)</td></tr>
+<tr class="memdesc:a01ccb863c3829906a1cad09584ce0ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given string is a valid filename.  <br /></td></tr>
+<tr class="separator:a01ccb863c3829906a1cad09584ce0ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c67537f4520527304ff0d5e2f176594" id="r_a3c67537f4520527304ff0d5e2f176594"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#a3c67537f4520527304ff0d5e2f176594">isPrintableInput</a> (std::string &amp;input)</td></tr>
+<tr class="memdesc:a3c67537f4520527304ff0d5e2f176594"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given input consists of printable characters.  <br /></td></tr>
+<tr class="separator:a3c67537f4520527304ff0d5e2f176594"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><br  />
  Created on: 11-Jan-2024 </p><dl class="section author"><dt>Author</dt><dd>Girish Tabaraddi</dd></dl>
-<p>Built on: Friday 26-01-2024 16:58:25 </p>
+<p>Built on: Sunday 28-01-2024 11:15:25 </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a78abb0e87022c230f619cf96f868e253" name="a78abb0e87022c230f619cf96f868e253"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78abb0e87022c230f619cf96f868e253">&#9670;&#160;</a></span>floatInputCheck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool floatInputCheck </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the given input is a valid floating-point number. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>The input string to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the input is a valid floating-point number; otherwise, false. </dd></dl>
+
+</div>
+</div>
 <a id="a3240f3b5f4e025b204c0e3da1288752c" name="a3240f3b5f4e025b204c0e3da1288752c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3240f3b5f4e025b204c0e3da1288752c">&#9670;&#160;</a></span>getDayOfWeekFromString()</h2>
 
@@ -161,6 +203,87 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Poco::DateTime::DaysOfWeek representing the parsed day of the week. </dd></dl>
 <p>Handle invalid input or return a default value</p>
+
+</div>
+</div>
+<a id="a601c4d7ac23d08b6103364b5bc007db6" name="a601c4d7ac23d08b6103364b5bc007db6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a601c4d7ac23d08b6103364b5bc007db6">&#9670;&#160;</a></span>integerInputCheck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool integerInputCheck </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the given input is a valid integer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>The input string to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the input is a valid integer; otherwise, false. </dd></dl>
+
+</div>
+</div>
+<a id="a3c67537f4520527304ff0d5e2f176594" name="a3c67537f4520527304ff0d5e2f176594"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c67537f4520527304ff0d5e2f176594">&#9670;&#160;</a></span>isPrintableInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isPrintableInput </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the given input consists of printable characters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>The input string to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the input consists of printable characters; otherwise, false. </dd></dl>
+
+</div>
+</div>
+<a id="a01ccb863c3829906a1cad09584ce0ce3" name="a01ccb863c3829906a1cad09584ce0ce3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01ccb863c3829906a1cad09584ce0ce3">&#9670;&#160;</a></span>isValidFilename()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isValidFilename </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the given string is a valid filename. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>The string to be checked as a filename. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the input is a valid filename; otherwise, false. </dd></dl>
 
 </div>
 </div>
@@ -254,6 +377,33 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The portion of the string before the delimiter. </dd></dl>
+
+</div>
+</div>
+<a id="ace51a9720599aca159979479f580d1c9" name="ace51a9720599aca159979479f580d1c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace51a9720599aca159979479f580d1c9">&#9670;&#160;</a></span>stringInputCheck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool stringInputCheck </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the given input is a valid string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>The input string to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the input is a valid string; otherwise, false. </dd></dl>
 
 </div>
 </div>

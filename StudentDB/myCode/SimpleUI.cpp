@@ -41,11 +41,18 @@ void SimpleUI::run()
 	{
 		string choice;
 
-		cout << endl << "\t Enter your choice to perform the respective operation between 0 and 10: ";
-		getline(cin, choice);
-
 		try
 		{
+			cout << endl << "\t Enter your choice to perform the respective operation between 0 and 10: ";
+			getline(cin, choice);
+
+			if(!integerInputCheck(choice))
+			{
+				cerr << endl << "\t You entered an invalid choice (hint: 0-10)" << endl;
+				return;
+			}
+
+
 			int numericChoice = stoi(choice);
 
 			if(numericChoice >= 0 && numericChoice <= 10)
@@ -121,6 +128,12 @@ void SimpleUI::run()
 					string filename = "fileData.txt";
 					getline(cin, filename);
 
+					if(!isValidFilename(filename))
+					{
+						cerr << "Invalid filename format (hint: use .txt extension)" << endl;
+						return;
+					}
+
 					ofstream writeFile(filename, ios::trunc);
 					if(writeFile.is_open())
 					{
@@ -138,10 +151,16 @@ void SimpleUI::run()
 				break;
 				case 9:
 				{
-					cout << endl << "\t Enter the file name to read the data from(.csv): ";
+					cout << endl << "\t Enter the file name to read the data from(.txt): ";
 
 					string filename = "read_StudentDb.txt";
 					getline(cin, filename);
+
+					if(!isValidFilename(filename))
+					{
+						cerr << "Invalid filename format (hint: use .txt extension)" << endl;
+						return;
+					}
 
 					ifstream readFile(filename);
 					if(readFile.is_open())
@@ -160,29 +179,35 @@ void SimpleUI::run()
 				break;
 				case 10:
 				{
-				    string noOfUserDate = "1";
-				    string readLine;
+					string noOfUserDate = "1";
+					string readLine;
 
-				    cout << "Enter the number of Student Data to be extracted from the server: ";
-				    getline(cin, noOfUserDate);
+					cout << "Enter the number of Student Data to be extracted from the server: ";
+					getline(cin, noOfUserDate);
 
-				    this->m_db.readStudentDataFromServer(stoul(noOfUserDate));
+					if(!integerInputCheck(noOfUserDate))
+					{
+						cerr << endl << "\t You entered an invalid choice (hint: 0-999)" << endl;
+						return;
+					}
+
+					this->m_db.readStudentDataFromServer(stoul(noOfUserDate));
 				}
 				break;
 				default:
 				{
-					cout << endl << "ERROR: Invalid Input, Please enter a numeric value between - [0-10]" << endl;
+					cerr << endl << "ERROR: Invalid Input, Please enter a numeric value between - [0-10]" << endl;
 				}
 				}
 			}
 			else
 			{
-				cout << endl << "ERROR: Invalid Input, Please enter a numeric value between - [0-10]" << endl;
+				cerr << endl << "ERROR: Invalid Input, Please enter a numeric value between - [0-10]" << endl;
 			}
 		}
 		catch(const invalid_argument& e)
 		{
-			cout << endl << "ERROR: Invalid argument" << endl;
+			cerr << endl << "ERROR: Invalid argument" << endl;
 		}
 	}
 }
@@ -201,72 +226,149 @@ void SimpleUI::getUserInputsforNewCourse()
 	string dayOfWeek = "0";
 	string courseType = "NA";
 
-	cout << endl << "\t \t Enter CourseKey: ";
+	cout << endl << "\t \t Enter CourseKey - (0-9): ";
 	getline(cin, courseKey);
 
-	cout << endl << "\t \t Enter Title of the Course: ";
+	if(!integerInputCheck(courseKey))
+	{
+		cerr << endl << "\t You entered an invalid course key (hint: int)" << endl;
+		return;
+	}
+
+	cout << endl << "\t \t Enter Title of the Course - (a-z/A-Z): ";
 	getline(cin, title);
 
-	cout << endl << "\t \t Enter the Major in which the Course belongs to: ";
+	if(!stringInputCheck(title))
+	{
+		cerr << endl << "\t You entered an invalid title (hint: alpha)" << endl;
+		return;
+	}
+
+	cout << endl << "\t \t Available Majors are : Automation, Embedded Systems, Communication and Power\n"
+			"\t \t Enter the Major in which the Course belongs to: ";
 	getline(cin, major);
 
-	cout << endl << "\t \t Enter the  credit points of the Course: ";
+	bool isValidMajor = false;
+
+	for(const auto& itr : Course::getmajorById())
+	{
+		if(!boost::algorithm::icontains(itr.second, major))
+		{
+			isValidMajor = true;
+			break;
+		}
+	}
+
+	if(!isValidMajor)
+	{
+		cerr << endl << "\t You entered a wrong Major" << endl;
+		return;
+	}
+
+	cout << endl << "\t \t Enter the credit points of the Course - (0-9): ";
 	getline(cin, credits);
 
-	cout << endl << "\t \t Enter the Course Type - Weekly(W)/Block(B): ";
+	if(!floatInputCheck(credits))
+	{
+		cerr << endl << "\t You entered an invalid credits (hint: float)" << endl;
+		return;
+	}
+
+	cout << endl << "\t \t Enter the Course Type - Weekly(W/w)/Block(B/b): ";
 	getline(cin, courseType);
+
+	if(courseType != "B" && courseType != "b" && courseType != "W" && courseType != "w")
+	{
+		cerr << endl << "\t You entered an invalid course type (hint: B/W/b/w)" << endl;
+		return;
+	}
+
+	regex timePattern(R"(\d{1,2}\:\d{1,2})");
 
 	cout << endl << "\t \t Enter the Course Start Time - HH:MM : ";
 	getline(cin, startTime);
 
+	if(!regex_match(startTime, timePattern))
+	{
+		cerr << "You entered an invalid time format (hint: HH:MM)" << endl;
+		return;
+	}
+
 	cout << endl << "\t \t Enter the Course End Time - HH:MM : ";
 	getline(cin, endTime);
 
+	if(!regex_match(endTime, timePattern))
+	{
+		cerr << "You entered an invalid time format (hint: HH:MM)" << endl;
+		return;
+	}
+
 	if(courseType == "B" || courseType == "b")
 	{
+		regex datePattern(R"((\d{1,2})\.(\d{1,2})\.(\d{4}))");
+
 		cout << endl << "\t \t Enter the Course Start Date - dd.mm.YYYY : ";
 		getline(cin, startDate);
 
+		if(!regex_match(startDate, datePattern))
+		{
+			cerr << "You entered an invalid date format (hint: dd.mm.YYYY)" << endl;
+			return;
+		}
+
 		cout << endl << "\t \t Enter the Course End Date - dd.mm.YYYY : ";
 		getline(cin, endDate);
+
+		if(!regex_match(endDate, datePattern))
+		{
+			cerr << "You entered an invalid date format (hint: dd.mm.YYYY)" << endl;
+			return;
+		}
 	}
+
 	if(courseType == "W" || courseType == "w")
 	{
-		cout << endl << "\t \t Enter the Course Week - Monday-Sunday : ";
+		cout << endl << "\t \t Enter the Course Week - (Monday-Sunday) : ";
 		getline(cin, dayOfWeek);
+
+		if(!stringInputCheck(dayOfWeek))
+		{
+			cerr << endl << "\t You entered an invalid Week (hint: Monday-Sunday)" << endl;
+			return;
+		}
 	}
 
-	try
-	{
-		//! Call the addNewCourse function from the StudentDb.h
-		 StudentDb::RC_StudentDb_t result =
-					this->m_db.addNewCourse(courseKey, title, major, credits,
-							courseType, startTime, endTime, startDate,
-							endDate, dayOfWeek);
+	//	try
+	//	{
+	//! Call the addNewCourse function from the StudentDb.h
+	StudentDb::RC_StudentDb_t result =
+			this->m_db.addNewCourse(courseKey, title, major, credits,
+					courseType, startTime, endTime, startDate,
+					endDate, dayOfWeek);
 
-		 switch(result)
-		 {
-		 case StudentDb::RC_StudentDb_t::RC_Success:
-		 {
-			 cout << "\t \t \nNew Course Added" << endl;
-			 break;
-		 }
-		 case StudentDb::RC_StudentDb_t::RC_Course_Exists:
-		 {
-			 cout << "\t \t \nCourse with the given details already exists in the database." << endl;
-			 break;
-		 }
-		 default:
-		 {
-			 cout << "\t \t \nUnexpected error during add course" << endl;
-			 break;
-		 }
-		 }
-	}
-	catch(const exception& e)
+	switch(result)
 	{
-		cerr << "\t \t \nException: " << e.what() << endl;
+	case StudentDb::RC_StudentDb_t::RC_Success:
+	{
+		cout << "\t \t \nNew Course Added" << endl;
+		break;
 	}
+	case StudentDb::RC_StudentDb_t::RC_Course_Exists:
+	{
+		cout << "\t \t \nCourse with the given details already exists in the database." << endl;
+		break;
+	}
+	default:
+	{
+		cout << "\t \t \nUnexpected error during add course" << endl;
+		break;
+	}
+	}
+	//	}
+	//	catch(const exception& e)
+	//	{
+	//		cerr << "\t \t \nException: " << e.what() << endl;
+	//	}
 }
 
 void SimpleUI::listCourses()
@@ -289,57 +391,101 @@ void SimpleUI::getUserInputsforNewStudent()
 	string cityName = "NA";
 	string additionalInfo = "NA";
 
-	cout << endl << "\t \t Enter First Name of the Student - a-z/A-Z: ";
+	cout << endl << "\t \t Enter First Name of the Student - (a-z/A-Z): ";
 	getline(cin, firstName);
 
-	cout << endl << "\t \t Enter Last Name of the Student - a-z/A-Z: ";
+	if(!stringInputCheck(firstName))
+	{
+		cerr << endl << "\t You entered an invalid first name (hint: a-z/A-Z)" << endl;
+		return;
+	}
+
+	cout << endl << "\t \t Enter Last Name of the Student - (a-z/A-Z): ";
 	getline(cin, lastName);
 
-	cout << endl << "\t \t Enter Date of Birth of the Student - dd..mm..YYY : ";
+	if(!stringInputCheck(lastName))
+	{
+		cerr << endl << "\t You entered an invalid last name (hint: a-z/A-Z)" << endl;
+		return;
+	}
+
+	cout << endl << "\t \t Enter Date of Birth of the Student - dd..mm..YYYY : ";
 	getline(cin, DoBstring);
 
-	cout << endl << "\t \t Enter Street Name of the Student's Address - a-z/A-Z: ";
+	regex datePattern(R"((\d{1,2})\.(\d{1,2})\.(\d{4}))");
+
+	if(!regex_match(DoBstring, datePattern))
+	{
+		cerr << "You entered an invalid date format (hint: dd.mm.YYYY)" << endl;
+		return;
+	}
+
+	cout << endl << "\t \t Enter Street Name of the Student's Address - (a-z/A-Z): ";
 	getline(cin, streetName);
+
+	if(!isPrintableInput(streetName))
+	{
+		cerr << endl << "\t You entered an invalid street name (hint: a-z/A-Z)" << endl;
+		return;
+	}
 
 	cout << endl << "\t \t Enter Postal Code of the Student's Address - 0-9: ";
 	getline(cin, postalCode);
 
+	if(!integerInputCheck(postalCode))
+	{
+		cerr << endl << "\t You entered an invalid post code (hint: 0-9)" << endl;
+		return;
+	}
+
 	cout << endl << "\t \t Enter City Name of the Student's Address - a-z/A-Z: ";
 	getline(cin, cityName);
+
+	if(!isPrintableInput(cityName))
+	{
+		cerr << endl << "\t You entered an invalid city name (hint: a-z/A-Z)" << endl;
+		return;
+	}
 
 	cout << endl << "\t \t Enter Additional Info related Student's Address - 0-9/a-z/A-Z: ";
 	getline(cin, additionalInfo);
 
-	try
+	if(!isPrintableInput(additionalInfo))
 	{
-		//! Call the addnewstudent function from the StudentDb.h
-		 StudentDb::RC_StudentDb_t result =
-				 this->m_db.addNewStudent(firstName, lastName, DoBstring,
-						 streetName, postalCode, cityName, additionalInfo);
+		cerr << endl << "\t You entered an invalid additionalInfo (hint: 0-9/a-z/A-Z)" << endl;
+		return;
+	}
 
-		 switch(result)
-		 {
-		 case StudentDb::RC_StudentDb_t::RC_Success:
-		 {
-			 cout << "\t \t \nNew Student Added" << endl;
-			 break;
-		 }
-		 case StudentDb::RC_StudentDb_t::RC_Student_Exists:
-		 {
-			 cout << "\t \t \nStudent with the given details already exists in the database." << endl;
-			 break;
-		 }
-		 default:
-		 {
-			 cout << "\t \t \nUnexpected error during add student" << endl;
-			 break;
-		 }
-		 }
-	}
-	catch(const exception& e)
+	//	try
+	//	{
+	//! Call the addnewstudent function from the StudentDb.h
+	StudentDb::RC_StudentDb_t result =
+			this->m_db.addNewStudent(firstName, lastName, DoBstring,
+					streetName, postalCode, cityName, additionalInfo);
+
+	switch(result)
 	{
-		cerr << "\t \t \nException: " << e.what() << endl;
+	case StudentDb::RC_StudentDb_t::RC_Success:
+	{
+		cout << "\t \t \nNew Student Added" << endl;
+		break;
 	}
+	case StudentDb::RC_StudentDb_t::RC_Student_Exists:
+	{
+		cout << "\t \t \nStudent with the given details already exists in the database." << endl;
+		break;
+	}
+	default:
+	{
+		cout << "\t \t \nUnexpected error during add student" << endl;
+		break;
+	}
+	}
+	//	}
+	//	catch(const exception& e)
+	//	{
+	//		cerr << "\t \t \nException: " << e.what() << endl;
+	//	}
 }
 
 void SimpleUI::getUserInputforNewEnrollment()
@@ -349,66 +495,92 @@ void SimpleUI::getUserInputforNewEnrollment()
 	string courseKey = "0";
 
 	cout << endl << "\t \t Enter the Matrikel Number of the Student, "
-			"to add his/her Enrollment - 0-9: ";
+			"to add his/her Enrollment - (0-9): ";
 	getline(cin, matrikelNumber);
 
+	if(!integerInputCheck(matrikelNumber))
+	{
+		cerr << endl << "\t You entered an invalid matrikelNumber (hint: 0-9)" << endl;
+		return;
+	}
+
 	cout << endl << "\t \t Enter the Semester of the Student "
-			"studying currently - a-z/A-Z/0-9: ";
+			"studying currently - (hint: WiSe2023/SoSe2024): ";
 	getline(cin, semester);
+
+	regex semesterPattern("^(SoSe|WiSe)\\d{4}");
+
+	if(!regex_match(semester, semesterPattern))
+	{
+		cerr << endl << "\t You entered an invalid matrikelNumber (hint: WiSe2023/SoSe2024)" << endl;
+		return;
+	}
 
 	cout << endl << "\t \t Enter the Course Key, "
 			"to which he/she wants to enroll - 0-9: ";
 	getline(cin, courseKey);
 
-	try
+	if(!integerInputCheck(courseKey))
 	{
-		//! Call the addEnrollment function from the StudentDb.h
-		 StudentDb::RC_StudentDb_t result =
-				 this->m_db.addEnrollment(matrikelNumber, semester, courseKey);
+		cerr << endl << "\t You entered an invalid course key (hint: int)" << endl;
+		return;
+	}
 
-		 switch(result)
-		 {
-		 case StudentDb::RC_StudentDb_t::RC_Success:
-		 {
-			 cout << "\t \t \nNew Enrollment Added" << endl;
-			 break;
-		 }
-		 case StudentDb::RC_StudentDb_t::RC_Wrong_Course_Key:
-		 {
-			 cout << "\t \t \nProvided course key is incorrect or not found" << endl;
-			 break;
-		 }
-		 case StudentDb::RC_StudentDb_t::RC_Wrong_MatrikelNumber:
-		 {
-			 cout << "\t \t \nProvided matrikel number is incorrect or not found." << endl;
-			 break;
-		 }
-		 case StudentDb::RC_StudentDb_t::RC_Enrollment_Exists:
-		 {
-			 cout << "\t \t \nEnrollment for the student and course already exists in the database." << endl;
-			 break;
-		 }
-		 default:
-		 {
-			 cout << "\t \t \nUnexpected error during add enrollment" << endl;
-			 break;
-		 }
-		 }
-	}
-	catch(const exception& e)
+	//	try
+	//	{
+	//! Call the addEnrollment function from the StudentDb.h
+	StudentDb::RC_StudentDb_t result =
+			this->m_db.addEnrollment(matrikelNumber, semester, courseKey);
+
+	switch(result)
 	{
-		cerr << "\t \t \nException: " << e.what() << endl;
+	case StudentDb::RC_StudentDb_t::RC_Success:
+	{
+		cout << "\t \t \nNew Enrollment Added" << endl;
+		break;
 	}
+	case StudentDb::RC_StudentDb_t::RC_Wrong_Course_Key:
+	{
+		cout << "\t \t \nProvided course key is incorrect or not found" << endl;
+		break;
+	}
+	case StudentDb::RC_StudentDb_t::RC_Wrong_MatrikelNumber:
+	{
+		cout << "\t \t \nProvided matrikel number is incorrect or not found." << endl;
+		break;
+	}
+	case StudentDb::RC_StudentDb_t::RC_Enrollment_Exists:
+	{
+		cout << "\t \t \nEnrollment for the student and course already exists in the database." << endl;
+		break;
+	}
+	default:
+	{
+		cerr << "\t \t \nUnexpected error during add enrollment" << endl;
+		break;
+	}
+	}
+	//	}
+	//	catch(const exception& e)
+	//	{
+	//		cerr << "\t \t \nException: " << e.what() << endl;
+	//	}
 }
 
 void SimpleUI::printStudent()
 {
-//	map<int, Student>& students = this->m_db.getStudents();
+	//	map<int, Student>& students = this->m_db.getStudents();
 	string matrikelNumber = "0";
 
 	cout << endl << "\t \t Enter the Matrikel Number of the Student, "
 			"to print his/her details - 0-9: ";
 	getline(cin, matrikelNumber);
+
+	if(!integerInputCheck(matrikelNumber))
+	{
+		cerr << endl << "\t You entered an invalid matrikelNumber (hint: 0-9)" << endl;
+		return;
+	}
 
 	auto matrikelNumberItr = this->m_db.getStudents().find(stoi(matrikelNumber));
 
@@ -423,7 +595,7 @@ void SimpleUI::printStudent()
 	}
 	else
 	{
-		cout << "\n\t \t Entered Matrikel Number does not match "
+		cerr << "\n\t \t Entered Matrikel Number does not match "
 				"any student in the database." << endl;
 	}
 }
@@ -434,6 +606,12 @@ void SimpleUI::searchStudent()
 
 	cout << endl << "\t \t Enter Student Name to search in the Database - a-z/A-Z: ";
 	getline(cin, searchString);
+
+	if(!stringInputCheck(searchString))
+	{
+		cerr << endl << "\t You entered an invalid string to search student (hint: a-z/A-Z)" << endl;
+		return;
+	}
 
 	bool matchFound = false;
 
@@ -454,7 +632,7 @@ void SimpleUI::searchStudent()
 	}
 	if(matchFound == false)
 	{
-		cout << "\t \t Entered string doesn't match the Student Name "
+		cerr << "\t \t Entered string doesn't match the Student Name "
 				"or the Student does not exist in the Database" << endl;
 	}
 }
@@ -466,6 +644,12 @@ void SimpleUI::getUserInputforStudentUpdate()
 	cout << endl << "\t \t Enter the Matrikel Number of the Student, "
 			"to update his/her details - 0-9: ";
 	getline(cin, matrikelNumber);
+
+	if(!integerInputCheck(matrikelNumber))
+	{
+		cerr << endl << "\t You entered an invalid matrikelNumber (hint: 0-9)" << endl;
+		return;
+	}
 
 	auto studentItr =  this->m_db.getStudents().find(stoi(matrikelNumber));
 
@@ -487,7 +671,7 @@ void SimpleUI::getUserInputforStudentUpdate()
 	}
 	else
 	{
-		cout << endl << "\t \t \t ERROR: Entered Matrikel Number "
+		cerr << endl << "\t \t \t ERROR: Entered Matrikel Number "
 				"doesn't exist in the database!!!" << endl;
 	}
 }
@@ -504,127 +688,159 @@ void SimpleUI::performStudentUpdate(Student &updateStudent)
 				"the respective operation between 0 and 5: ";
 		getline(cin, choice);
 
-//		try
-//		{
-			int numericChoice = stoi(choice);
+		if(!integerInputCheck(choice))
+		{
+			cerr << endl << "\t You entered an invalid choice (hint: 0-5)" << endl;
+			return;
+		}
 
-			if(numericChoice >= 0 && numericChoice <= 5)
+		//		try
+		//		{
+		int numericChoice = stoi(choice);
+
+		if(numericChoice >= 0 && numericChoice <= 5)
+		{
+			switch(numericChoice)
 			{
-				switch(numericChoice)
+			case 0:
+			{
+				cout << endl << "\t \t Exited Student Update Menu : "
+						<< numericChoice <<endl;
+				exitFlag = true;
+			}
+			break;
+			case 1:
+			{
+				cout << endl << "\t \t \t You chose option : " << numericChoice
+						<< " to update First Name." <<endl;
+
+				string firstName = "NA";
+				Poco::Data::Date NADate(1900,1,1);
+
+				cout << endl << "\t \t \t Enter First Name of the Student to Update - a-z/A-Z: ";
+				getline(cin, firstName);
+
+				if(!stringInputCheck(firstName))
 				{
-				case 0:
-				{
-					cout << endl << "\t \t Exited Student Update Menu : "
-							<< numericChoice <<endl;
-					exitFlag = true;
+					cerr << endl << "\t You entered an invalid first name (hint: a-z/A-Z)" << endl;
+					return;
 				}
-				break;
-				case 1:
+
+				updateStudent.updateStudentDetails(firstName, "NA", NADate);
+			}
+			break;
+			case 2:
+			{
+				cout << endl << "\t \t \t You chose option : " << numericChoice
+						<< " to update Last Name." <<endl;
+
+				string lastName = "NA";
+
+				cout << endl << "\t \t \t Enter Last Name of the Student to Update - a-z/A-Z: ";
+				getline(cin, lastName);
+
+				if(!stringInputCheck(lastName))
 				{
-					cout << endl << "\t \t \t You chose option : " << numericChoice
-							<< " to update First Name." <<endl;
-
-					string firstName = "NA";
-					Poco::Data::Date NADate(1900,1,1);
-
-					cout << endl << "\t \t \t Enter First Name of the Student to Update - a-z/A-Z: ";
-					getline(cin, firstName);
-
-					updateStudent.updateStudentDetails(firstName, "NA", NADate);
+					cerr << endl << "\t You entered an invalid last name (hint: a-z/A-Z)" << endl;
+					return;
 				}
-				break;
-				case 2:
+
+				Poco::Data::Date NADate(1900,1,1);
+
+				updateStudent.updateStudentDetails("NA", lastName, NADate);
+			}
+			break;
+			case 3:
+			{
+				cout << endl << "\t \t \t You chose option : " << numericChoice
+						<< " to update Date of Birth." <<endl;
+
+				string DoBstring = "31.12.9999";
+
+				cout << endl << "\t \t \t \t Enter Date of Birth of the Student "
+						"to Update - dd..mm..YYY : ";
+				getline(cin, DoBstring);
+
+				regex datePattern(R"((\d{1,2})\.(\d{1,2})\.(\d{4}))");
+
+				if(!regex_match(DoBstring, datePattern))
 				{
-					cout << endl << "\t \t \t You chose option : " << numericChoice
-							<< " to update Last Name." <<endl;
-
-					string lastName = "NA";
-
-					cout << endl << "\t \t \t Enter Last Name of the Student to Update - a-z/A-Z: ";
-					getline(cin, lastName);
-
-					Poco::Data::Date NADate(1900,1,1);
-
-					updateStudent.updateStudentDetails("NA", lastName, NADate);
+					cerr << "You entered an invalid date format (hint: dd.mm.YYYY)" << endl;
+					return;
 				}
-				break;
-				case 3:
+
+				Poco::Data::Date pocoDoB = stringToPocoDateFormatter(DoBstring);
+
+				updateStudent.updateStudentDetails("NA", "NA", pocoDoB);
+			}
+			break;
+			case 4:
+			{
+				cout << endl << "\t \t \t You chose option : " << numericChoice
+						<< " to update Address." <<endl;
+
+				this->getUserInputforAddressUpdate(updateStudent);
+			}
+			break;
+			case 5:
+			{
+				if(updateStudent.getEnrollments().empty())
 				{
-					cout << endl << "\t \t \t You chose option : " << numericChoice
-							<< " to update Date of Birth." <<endl;
-
-					string DoBstring = "31.12.9999";
-
-					cout << endl << "\t \t \t \t Enter Date of Birth of the Student "
-							"to Update - dd..mm..YYY : ";
-					getline(cin, DoBstring);
-
-					Poco::Data::Date pocoDoB = stringToPocoDateFormatter(DoBstring);
-
-					updateStudent.updateStudentDetails("NA", "NA", pocoDoB);
+					cout << endl << "\t \t \t ERROR: Entered Student not "
+							"enrolled to update grade or delete enrollment!!!" << endl;
+					break;
 				}
-				break;
-				case 4:
+				cout << endl << "\t \t \t You chose option : " << numericChoice
+						<< " to update Enrollment." <<endl << endl;
+
+				string courseKey = "0";
+
+				cout << endl << "\t \t \t \t Enter CourseKey - 0-9: ";
+				getline(cin, courseKey);
+
+				if(!integerInputCheck(courseKey))
 				{
-					cout << endl << "\t \t \t You chose option : " << numericChoice
-							<< " to update Address." <<endl;
-
-					this->getUserInputforAddressUpdate(updateStudent);
+					cerr << endl << "\t You entered an invalid course key (hint: int)" << endl;
+					return;
 				}
-				break;
-				case 5:
+
+				auto courseKeyItr = this->m_db.getCourses().find(stoi(courseKey));
+
+
+				if(courseKeyItr != this->m_db.getCourses().end())
 				{
-					if(updateStudent.getEnrollments().empty())
-					{
-						cout << endl << "\t \t \t ERROR: Entered Student not "
-								"enrolled to update grade or delete enrollment!!!" << endl;
-						break;
-					}
-					cout << endl << "\t \t \t You chose option : " << numericChoice
-							<< " to update Enrollment." <<endl << endl;
+					cout << "\t \t \t \t 0 -> To Exit Update Enrollment Menu" << endl;
+					cout << "\t \t \t \t 1 -> Delete Enrollment" << endl;
+					cout << "\t \t \t \t 2 -> Update Grade" << endl;
 
-					string courseKey = "0";
-
-					cout << endl << "\t \t \t \t Enter CourseKey - 0-9: ";
-					getline(cin, courseKey);
-
-					auto courseKeyItr = this->m_db.getCourses().find(stoi(courseKey));
-
-
-					if(courseKeyItr != this->m_db.getCourses().end())
-					{
-						cout << "\t \t \t \t 0 -> To Exit Update Enrollment Menu" << endl;
-						cout << "\t \t \t \t 1 -> Delete Enrollment" << endl;
-						cout << "\t \t \t \t 2 -> Update Grade" << endl;
-
-						this->performEnrollmentUpdate(updateStudent, courseKey);
-					}
-					else
-					{
-						cout << endl << "\t \t \t ERROR: Entered Course Key "
-								"doesn't exist in the database!!!" << endl;
-					}
+					this->performEnrollmentUpdate(updateStudent, courseKey);
 				}
-				break;
-				default:
+				else
 				{
-					cout << endl << "\t \t \t ERROR: Invalid Input, "
-							"Please enter a numeric value between - [0-5]" << endl;
-				}
-				break;
+					cout << endl << "\t \t \t ERROR: Entered Course Key "
+							"doesn't exist in the database!!!" << endl;
 				}
 			}
-			else
+			break;
+			default:
 			{
 				cout << endl << "\t \t \t ERROR: Invalid Input, "
 						"Please enter a numeric value between - [0-5]" << endl;
 			}
-//		}
-//		catch(const invalid_argument& e)
-//		{
-//			cout << endl << "\t \t \t ERROR: Invalid Input, "
-//					"Please enter a numeric value between - [0-5]" << endl;
-//		}
+			break;
+			}
+		}
+		else
+		{
+			cout << endl << "\t \t \t ERROR: Invalid Input, "
+					"Please enter a numeric value between - [0-5]" << endl;
+		}
+		//		}
+		//		catch(const invalid_argument& e)
+		//		{
+		//			cout << endl << "\t \t \t ERROR: Invalid Input, "
+		//					"Please enter a numeric value between - [0-5]" << endl;
+		//		}
 	}
 }
 
@@ -639,17 +855,41 @@ void SimpleUI::getUserInputforAddressUpdate(Student &updateStudent)
 			"Student's Address to Update - a-z/A-Z: ";
 	getline(cin, streetName);
 
+	if(!isPrintableInput(streetName))
+	{
+		cerr << endl << "\t You entered an invalid street name (hint: a-z/A-Z)" << endl;
+		return;
+	}
+
 	cout << endl << "\t \t \t \t Enter Postal Code of the "
 			"Student's Address to Update - 0-9: ";
 	getline(cin, postalCode);
+
+	if(!integerInputCheck(postalCode))
+	{
+		cerr << endl << "\t You entered an invalid post code (hint: 0-9)" << endl;
+		return;
+	}
 
 	cout << endl << "\t \t \t \t Enter City Name of the "
 			"Student's Address to Update - a-z/A-Z: ";
 	getline(cin, cityName);
 
+	if(!isPrintableInput(cityName))
+	{
+		cerr << endl << "\t You entered an invalid city name (hint: a-z/A-Z)" << endl;
+		return;
+	}
+
 	cout << endl << "\t \t \t \t Enter Additional Info related "
 			"to Student's Address to Update - a-z/A-Z: ";
 	getline(cin, additionalInfo);
+
+	if(!isPrintableInput(additionalInfo))
+	{
+		cerr << endl << "\t You entered an invalid additionalInfo (hint: 0-9/a-z/A-Z)" << endl;
+		return;
+	}
 
 	shared_ptr<Address> address =
 			make_shared<Address>(streetName, stoi(postalCode),
@@ -667,8 +907,14 @@ void SimpleUI::performEnrollmentUpdate(Student& updateStudent, const std::string
 		string choice;
 
 		cout << endl << "\t \t \t \t Enter the index number "
-				"to delete enrollment / enter mark: ";
+				"to delete enrollment / enter mark (hint: 0-2): ";
 		getline(cin, choice);
+
+		if(!integerInputCheck(choice))
+		{
+			cerr << endl << "\t You entered an invalid choice (hint: 0-2)" << endl;
+			return;
+		}
 
 		try
 		{

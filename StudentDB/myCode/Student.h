@@ -93,13 +93,6 @@ public:
     static void setNextMatrikelNumber(unsigned int newMatrikelNumber);
 
     /*!
-     * @brief Getter method that returns the next Matrikel number for new students.
-     *
-     * @return The next Matrikel number as an unsigned integer.
-     */
-    static unsigned int getNextMatrikelNumber();
-
-    /*!
      * @brief Getter method that returns a string of the first name.
      *
      * @return std::string representing the first name.

@@ -15,10 +15,10 @@ unsigned int Student::m_nextMatrikelNumber = 100000;
 
 Student::Student(std::string firstName, std::string lastName,
 		Poco::Data::Date dateOfBirth, std::shared_ptr<Address> address) :
+		m_matrikelNumber(Student::m_nextMatrikelNumber++),
 								m_firstName(firstName), m_lastName(lastName),
 								m_dateOfBirth(dateOfBirth), m_address(address)
 {
-	this->m_matrikelNumber = (Student::m_nextMatrikelNumber)++;
 }
 
 Student::~Student()
@@ -33,11 +33,6 @@ const unsigned int Student::getMatrikelNumber() const
 void Student::setNextMatrikelNumber(unsigned int newMatrikelnumber)
 {
 	m_nextMatrikelNumber = newMatrikelnumber;
-}
-
-unsigned int Student::getNextMatrikelNumber()
-{
-	return m_nextMatrikelNumber;
 }
 
 const Poco::Data::Date Student::getDateOfBirth() const

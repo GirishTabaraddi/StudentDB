@@ -79,4 +79,45 @@ Poco::DateTime::DaysOfWeek getDayOfWeekFromString(const std::string& dayString);
  */
 std::string splitAt(std::string& remainder, char delimiter);
 
+/*!
+ * @brief Checks if the given input is a valid integer.
+ *
+ * @param input The input string to be checked.
+ * @return True if the input is a valid integer; otherwise, false.
+ */
+bool integerInputCheck(std::string& input);
+
+/*!
+ * @brief Checks if the given input is a valid string.
+ *
+ * @param input The input string to be checked.
+ * @return True if the input is a valid string; otherwise, false.
+ */
+bool stringInputCheck(std::string& input);
+
+/*!
+ * @brief Checks if the given input is a valid floating-point number.
+ *
+ * @param input The input string to be checked.
+ * @return True if the input is a valid floating-point number; otherwise, false.
+ */
+bool floatInputCheck(std::string& input);
+
+/*!
+ * @brief Checks if the given string is a valid filename.
+ *
+ * @param filename The string to be checked as a filename.
+ * @return True if the input is a valid filename; otherwise, false.
+ */
+bool isValidFilename(const std::string& filename);
+
+/*!
+ * @brief Checks if the given input consists of printable characters.
+ *
+ * @param input The input string to be checked.
+ * @return True if the input consists of printable characters; otherwise, false.
+ */
+bool isPrintableInput(std::string& input);
+
+
 #endif /* FORMATTERFILE_H_ */

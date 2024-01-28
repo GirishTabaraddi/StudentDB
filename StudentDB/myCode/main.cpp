@@ -84,7 +84,6 @@ int main ()
 		+~Student()
 		+getMatrikelNumber() : unsigned int {query}
 		+{static} setNextMatrikelNumber(unsigned int newMatrikelNumber) : void
-		+{static} getNextMatrikelNumber() : unsigned int
 		+getFirstName() : std::string& {query}
         +getLastName() : std::string& {query}
 		+getDateOfBirth() : Poco::Data::Date {query}
@@ -137,18 +136,17 @@ int main ()
 
 	abstract class Course
 	{
-		-m_majorById : std::map<unsigned char, std::string>
+		-{static} m_majorById : static std::map<unsigned char, std::string>
 		-m_courseKey : unsigned int
 		-m_title : std::string
 		-m_major : unsigned char
 		-m_creditPoints : float
 
-		-setmajorById(std::string major) : void
 		-setMajor(std::string major) : void
 
 		+Course(unsigned int courseKey, std::string title,\n std::string major, float creditPoints)
 		+~Course()
-		+getmajorById() : std::map<unsigned char , std::string> {query}
+		+{static} getmajorById() : static std::map<unsigned char , std::string> {query}
 		+getcourseKey() : unsigned int {query}
 		+gettitle() : std::string {query}
 		+getmajor() : unsigned char {query}

@@ -14,29 +14,35 @@
 
 using namespace std;
 
+std::map<unsigned char, std::string> Course::m_majorById =
+{
+		{'A', "Automation"},
+		{'E', "Embedded Systems"},
+		{'C', "Communication"},
+		{'P', "Power"}
+};
+
 Course::Course(unsigned int courseKey, std::string title, std::string major,
 		float creditPoints) : m_courseKey(courseKey), m_title(title), m_creditPoints(creditPoints)
 {
 	setMajor(major);
-	setmajorById(major);
 }
 
-void Course::setmajorById(std::string major)
-{
-	this->m_majorById[getmajor()] = major;
-}
 
 void Course::setMajor(std::string major)
 {
-	if(!major.empty())
+	for(const auto& itr : this->getmajorById())
 	{
-		this->m_major = major[0];
+		if(boost::algorithm::icontains(itr.second, major))
+		{
+			this->m_major = toupper(major[0]);
+		}
 	}
 }
 
-const std::map<unsigned char, std::string> Course::getmajorById() const
+const std::map<unsigned char, std::string> Course::getmajorById()
 {
-	return this->m_majorById;
+	return Course::m_majorById;
 }
 
 const unsigned int Course::getcourseKey() const
@@ -77,14 +83,19 @@ std::string Course::printCourse() const
 
 void Course::write(std::ostream &out) const
 {
-	ostringstream oss;
+	auto itr = this->m_majorById.find(this->m_major);
 
-	oss << fixed << setprecision(1) << this->m_creditPoints;
+	if(itr != this->m_majorById.end())
+	{
+		ostringstream oss;
 
-	string creditpoints = oss.str();
+		oss << fixed << setprecision(1) << this->m_creditPoints;
 
-	out << to_string(this->m_courseKey) << ";" << this->m_title << ";"
-			<< this->m_majorById.at(this->m_major) << ";" << creditpoints;
+		string creditpoints = oss.str();
+
+		out << to_string(this->m_courseKey) << ";" << this->m_title << ";"
+				<< this->m_majorById.at(this->m_major) << ";" << creditpoints;
+	}
 }
 
 std::unique_ptr<Course> Course::read(std::istream &in)
