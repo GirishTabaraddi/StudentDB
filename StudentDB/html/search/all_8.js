@@ -1,9 +1,13 @@
 var searchData=
 [
-  ['pocodatetostringformatter_0',['pocodatetostringformatter',['../formatterfile_8cpp.html#a2e89225bd5f554f7e0f97869d5577c71',1,'pocoDateToStringFormatter(const Poco::Data::Date &amp;date):&#160;formatterfile.cpp'],['../formatterfile_8h.html#a2e89225bd5f554f7e0f97869d5577c71',1,'pocoDateToStringFormatter(const Poco::Data::Date &amp;date):&#160;formatterfile.cpp']]],
-  ['pocotimetostringformatter_1',['pocotimetostringformatter',['../formatterfile_8cpp.html#a46769bc4d1406c10ed15b18103f915ea',1,'pocoTimeToStringFormatter(const Poco::Data::Time &amp;time):&#160;formatterfile.cpp'],['../formatterfile_8h.html#a46769bc4d1406c10ed15b18103f915ea',1,'pocoTimeToStringFormatter(const Poco::Data::Time &amp;time):&#160;formatterfile.cpp']]],
-  ['printaddress_2',['printAddress',['../class_address.html#a7d3064867fc0951e90e2d99b947c8b31',1,'Address']]],
-  ['printcourse_3',['printcourse',['../class_block_course.html#af19f66d75012eece01741d1cd7e14898',1,'BlockCourse::printCourse()'],['../class_course.html#a1e4b12abf486e9c5bd741a750d86713d',1,'Course::printCourse()'],['../class_weekly_course.html#ac37117b8f34dde9be85ba33e3f0761ba',1,'WeeklyCourse::printCourse()']]],
-  ['printenrollment_4',['printEnrollment',['../class_enrollment.html#a6c65b5704c6101c35248e649d8eba6b1',1,'Enrollment']]],
-  ['printstudent_5',['printStudent',['../class_student.html#ab0ff21ff068dd1bf6f3ebd762f97853c',1,'Student']]]
+  ['rc_5fcourse_5fexists_0',['RC_Course_Exists',['../class_student_db.html#a30b659c517fe917b05ae084d72f33662a25612eda4bab0c784fc5e74fb0148c07',1,'StudentDb']]],
+  ['rc_5fenrollment_5fexists_1',['RC_Enrollment_Exists',['../class_student_db.html#a30b659c517fe917b05ae084d72f33662aeb74e38253b28b176bc7cb2c84f35a5a',1,'StudentDb']]],
+  ['rc_5fstudent_5fexists_2',['RC_Student_Exists',['../class_student_db.html#a30b659c517fe917b05ae084d72f33662ac8aabecaa57965b8184a347b284f7664',1,'StudentDb']]],
+  ['rc_5fstudentdb_5ft_3',['RC_StudentDb_t',['../class_student_db.html#a30b659c517fe917b05ae084d72f33662',1,'StudentDb']]],
+  ['rc_5fsuccess_4',['RC_Success',['../class_student_db.html#a30b659c517fe917b05ae084d72f33662a1cfbb9db1404cfda2f3f8c980df12e59',1,'StudentDb']]],
+  ['rc_5fwrong_5fcourse_5fkey_5',['RC_Wrong_Course_Key',['../class_student_db.html#a30b659c517fe917b05ae084d72f33662ae221ce27a7885b7462df87f280f9bba4',1,'StudentDb']]],
+  ['rc_5fwrong_5fmatrikelnumber_6',['RC_Wrong_MatrikelNumber',['../class_student_db.html#a30b659c517fe917b05ae084d72f33662a3aa9d4e5ec2d636720d8ab34df77b644',1,'StudentDb']]],
+  ['read_7',['read',['../class_address.html#ab9043de5339daa70f7b01fe208523869',1,'Address::read()'],['../class_block_course.html#ac9ff331c103465cce9c483c4513195e4',1,'BlockCourse::read()'],['../class_course.html#a97698e7aadb1664b3ed6d0c09271a520',1,'Course::read()'],['../class_enrollment.html#a4621adb9a0e115636670d00e1eb0152a',1,'Enrollment::read()'],['../class_student.html#aaa58f7b039d778b055d34593645326df',1,'Student::read()'],['../class_student_db.html#a6f1b2a7ce4be5f0d1c01d896d79b6dcb',1,'StudentDb::read()'],['../class_weekly_course.html#ad7ea665d819611863c2e37aa3fadbbb8',1,'WeeklyCourse::read()']]],
+  ['readstudentdatafromserver_8',['readStudentDataFromServer',['../class_student_db.html#ab1e25b59f8a9e39d20533adc0c6cd952',1,'StudentDb']]],
+  ['run_9',['run',['../class_simple_u_i.html#affd53fb3bcc0ec52f81a7e2b35c406ff',1,'SimpleUI']]]
 ];

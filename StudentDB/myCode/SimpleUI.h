@@ -101,32 +101,32 @@ private:
 	void performStudentUpdate(unsigned int matrikelNumber,
 			const Student& updateStudent) const;
 
-	/*!
-	 * @brief Get user inputs for updating the first name of a student.
-	 *
-	 * @param matrikelNumber The matrikel number of the student.
-	 * @param updateStudent Reference to a Student object.
-	 */
-	void getUserInputforFirstName(unsigned int matrikelNumber,
-			const Student& updateStudent) const;
-
-	/*!
-	 * @brief Get user inputs for updating the last name of a student.
-	 *
-	 * @param matrikelNumber The matrikel number of the student.
-	 * @param updateStudent Reference to a Student object.
-	 */
-	void getUserInputforLastName(unsigned int matrikelNumber,
-			const Student& updateStudent) const;
-
-	/*!
-	 * @brief Get user inputs for updating the date of birth of a student.
-	 *
-	 * @param matrikelNumber The matrikel number of the student.
-	 * @param updateStudent Reference to a Student object.
-	 */
-	void getUserInputforDateOfBirth(unsigned int matrikelNumber,
-			const Student& updateStudent) const;
+//	/*!
+//	 * @brief Get user inputs for updating the first name of a student.
+//	 *
+//	 * @param matrikelNumber The matrikel number of the student.
+//	 * @param updateStudent Reference to a Student object.
+//	 */
+//	void getUserInputforFirstName(unsigned int matrikelNumber,
+//			const Student& updateStudent) const;
+//
+//	/*!
+//	 * @brief Get user inputs for updating the last name of a student.
+//	 *
+//	 * @param matrikelNumber The matrikel number of the student.
+//	 * @param updateStudent Reference to a Student object.
+//	 */
+//	void getUserInputforLastName(unsigned int matrikelNumber,
+//			const Student& updateStudent) const;
+//
+//	/*!
+//	 * @brief Get user inputs for updating the date of birth of a student.
+//	 *
+//	 * @param matrikelNumber The matrikel number of the student.
+//	 * @param updateStudent Reference to a Student object.
+//	 */
+//	void getUserInputforDateOfBirth(unsigned int matrikelNumber,
+//			const Student& updateStudent) const;
 
 	/*!
 	 * @brief Get user inputs for updating student's address information.

@@ -153,60 +153,83 @@ std::string splitAt(std::string &input, char delimiter)
 	return returnStr;
 }
 
-bool integerInputCheck(std::string &input)
+//bool integerInputCheck(std::string &input)
+//{
+//	size_t resultLength;
+//
+//	stoi(input, &resultLength);
+//
+//	if(resultLength != input.length())
+//	{
+//		return false;
+//	}
+//
+//	return true;
+//}
+//
+//bool stringInputCheck(std::string &input)
+//{
+//	if(all_of(input.begin(), input.end(), ::isalpha))
+//	{
+//		return true;
+//	}
+//
+//	return false;
+//}
+//
+//bool floatInputCheck(std::string &input)
+//{
+//	size_t resultLength;
+//
+//	stof(input, &resultLength);
+//
+//	if(resultLength != input.length())
+//	{
+//		return false;
+//	}
+//
+//	return true;
+//}
+//
+//bool isValidFilename(const std::string &filename)
+//{
+//	regex filenamePattern(R"([a-zA-Z0-9_-]+\.[tT][xX][tT])");
+//
+//	return regex_match(filename, filenamePattern);
+//}
+//
+//bool isPrintableInput(std::string &input)
+//{
+//	for(auto itr = input.begin(); itr != input.end(); itr++)
+//	{
+//		if(!isprint(static_cast<unsigned char>(*itr)))
+//		{
+//			return false;
+//		}
+//	}
+//
+//	return true;
+//}
+
+void getUserInput(const std::string &prompt, const std::string &inputPattern,
+		std::string &userInput)
 {
-	size_t resultLength;
+	bool checkInput = false;
 
-	stoi(input, &resultLength);
-
-	if(resultLength != input.length())
+	while(!checkInput)
 	{
-		return false;
-	}
+		cout << prompt;
+		getline(cin, userInput);
 
-	return true;
-}
-
-bool stringInputCheck(std::string &input)
-{
-	if(all_of(input.begin(), input.end(), ::isalpha))
-	{
-		return true;
-	}
-
-	return false;
-}
-
-bool floatInputCheck(std::string &input)
-{
-	size_t resultLength;
-
-	stof(input, &resultLength);
-
-	if(resultLength != input.length())
-	{
-		return false;
-	}
-
-	return true;
-}
-
-bool isValidFilename(const std::string &filename)
-{
-	regex filenamePattern(R"([a-zA-Z0-9_-]+\.[tT][xX][tT])");
-
-	return regex_match(filename, filenamePattern);
-}
-
-bool isPrintableInput(std::string &input)
-{
-	for(auto itr = input.begin(); itr != input.end(); itr++)
-	{
-		if(!isprint(static_cast<unsigned char>(*itr)))
+		if(!regex_match(userInput, regex(inputPattern)))
 		{
-			return false;
+			cerr << "Invalid input format. Please try again." << endl;
+			cout.flush();
+			checkInput = false;
+		}
+		else
+		{
+			checkInput = true;
 		}
 	}
-
-	return true;
 }

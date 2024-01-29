@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['updateaddress_0',['updateAddress',['../class_student_db.html#a3409d283b1ebdf2b11d60a1f6cb8d123',1,'StudentDb']]],
-  ['updatedateofbirth_1',['updateDateOfBirth',['../class_student_db.html#ac22ac0dd54ededacb9325282ad16b2bf',1,'StudentDb']]],
-  ['updatefirstname_2',['updateFirstName',['../class_student_db.html#a378289c52a0c7086538112f021487b85',1,'StudentDb']]],
-  ['updategrade_3',['updategrade',['../class_student.html#a9a414224c385cf350ca38f993ca4d0af',1,'Student::updateGrade()'],['../class_student_db.html#a9a9190a3b18bd8d586359f0010386de3',1,'StudentDb::updateGrade(const unsigned int &amp;courseKey, const float &amp;newGrade, const unsigned int matrikelNumber)']]],
-  ['updatelastname_4',['updateLastName',['../class_student_db.html#ab1510f42a67ed67dc99a4b2bec621ee3',1,'StudentDb']]]
+  ['weeklycourse_0',['weeklycourse',['../class_weekly_course.html',1,'WeeklyCourse'],['../class_weekly_course.html#aeeaa70a997db1566e7810740b923d313',1,'WeeklyCourse::WeeklyCourse()']]],
+  ['weeklycourse_2ecpp_1',['WeeklyCourse.cpp',['../_weekly_course_8cpp.html',1,'']]],
+  ['weeklycourse_2eh_2',['WeeklyCourse.h',['../_weekly_course_8h.html',1,'']]],
+  ['write_3',['write',['../class_address.html#ac35b0420dbb9cba5ace41b0c5ce015d1',1,'Address::write()'],['../class_block_course.html#a111d118c5d4fa960e002e95632196243',1,'BlockCourse::write()'],['../class_course.html#ae3512f59485143eb2bfac02a26bb7f61',1,'Course::write()'],['../class_enrollment.html#a171a81962559376a3960c4d71f169d59',1,'Enrollment::write()'],['../class_student.html#ac7c2406d3c7d58aee3ab8cc6ab9f1e33',1,'Student::write()'],['../class_student_db.html#a392a82331cda387b8a8c657934f76e4f',1,'StudentDb::write()'],['../class_weekly_course.html#a80b0fa6cceed9162fb244345d3c85839',1,'WeeklyCourse::write()']]]
 ];

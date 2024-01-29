@@ -8,10 +8,10 @@ var searchData=
   ['getcourses_5',['getCourses',['../class_student_db.html#af82b98870c964084ee703b6dc4d296e5',1,'StudentDb']]],
   ['getcreditpoints_6',['getcreditPoints',['../class_course.html#aaf9e0e94a3e63ae1822831e1515133f1',1,'Course']]],
   ['getdateofbirth_7',['getDateOfBirth',['../class_student.html#a21f2dd9ab9faed9d58710735669f4301',1,'Student']]],
-  ['getdayofweekfromstring_8',['getdayofweekfromstring',['../formatterfile_8h.html#a3240f3b5f4e025b204c0e3da1288752c',1,'getDayOfWeekFromString(const std::string &amp;dayString):&#160;formatterfile.cpp'],['../formatterfile_8cpp.html#a3240f3b5f4e025b204c0e3da1288752c',1,'getDayOfWeekFromString(const std::string &amp;dayString):&#160;formatterfile.cpp']]],
+  ['getdayofweekfromstring_8',['getdayofweekfromstring',['../formatterfile_8cpp.html#a3240f3b5f4e025b204c0e3da1288752c',1,'getDayOfWeekFromString(const std::string &amp;dayString):&#160;formatterfile.cpp'],['../formatterfile_8h.html#a3240f3b5f4e025b204c0e3da1288752c',1,'getDayOfWeekFromString(const std::string &amp;dayString):&#160;formatterfile.cpp']]],
   ['getdaysofweek_9',['getDaysOfWeek',['../class_weekly_course.html#aacf3de35f63aa56c439a3db95ff47b7c',1,'WeeklyCourse']]],
   ['getenddate_10',['getEndDate',['../class_block_course.html#a79cc06ea3eb8eb2c070860dbd22bccc1',1,'BlockCourse']]],
-  ['getendtime_11',['getendtime',['../class_weekly_course.html#a6e495ae87bcdc927b1332f65393e155f',1,'WeeklyCourse::getEndTime()'],['../class_block_course.html#a9468b21a3f416d30b06075c1e5202f97',1,'BlockCourse::getEndTime()']]],
+  ['getendtime_11',['getendtime',['../class_block_course.html#a9468b21a3f416d30b06075c1e5202f97',1,'BlockCourse::getEndTime()'],['../class_weekly_course.html#a6e495ae87bcdc927b1332f65393e155f',1,'WeeklyCourse::getEndTime()']]],
   ['getenrollments_12',['getEnrollments',['../class_student.html#a004d2a46e58b5faa24a726ac021082af',1,'Student']]],
   ['getfirstname_13',['getFirstName',['../class_student.html#aabc22298e32cdd47976bd3d3c5033df6',1,'Student']]],
   ['getgrade_14',['getgrade',['../class_enrollment.html#adf61241b81f46d2a627c23a061f44d03',1,'Enrollment']]],
@@ -25,5 +25,6 @@ var searchData=
   ['getstarttime_22',['getstarttime',['../class_block_course.html#a58bf0695c2ce7306c506fac501500e32',1,'BlockCourse::getStartTime()'],['../class_weekly_course.html#a3ec70c8b6f7aad18a000f65392d249b7',1,'WeeklyCourse::getStartTime()']]],
   ['getstreet_23',['getstreet',['../class_address.html#ae3b13da85de59b0768533dc287c078e7',1,'Address']]],
   ['getstudents_24',['getStudents',['../class_student_db.html#aefab809fd4f2f2873087807519a1eef3',1,'StudentDb']]],
-  ['gettitle_25',['gettitle',['../class_course.html#a11cb3b3abed4bbfd86a694023d05720e',1,'Course']]]
+  ['gettitle_25',['gettitle',['../class_course.html#a11cb3b3abed4bbfd86a694023d05720e',1,'Course']]],
+  ['getuserinput_26',['getuserinput',['../formatterfile_8cpp.html#a93d67edac41f6ee0c53928102b073fa2',1,'getUserInput(const std::string &amp;prompt, const std::string &amp;inputPattern, std::string &amp;userInput):&#160;formatterfile.cpp'],['../formatterfile_8h.html#a93d67edac41f6ee0c53928102b073fa2',1,'getUserInput(const std::string &amp;prompt, const std::string &amp;inputPattern, std::string &amp;userInput):&#160;formatterfile.cpp']]]
 ];

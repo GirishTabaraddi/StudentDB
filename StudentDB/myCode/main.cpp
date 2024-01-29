@@ -49,9 +49,9 @@ int main ()
         -searchStudent() : void {query}
         -getUserInputforStudentUpdate() : void {query}
         -performStudentUpdate(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
-        -getUserInputforFirstName(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
-        -getUserInputforLastName(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
-        -getUserInputforDateOfBirth(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
+//        -getUserInputforFirstName(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
+//        -getUserInputforLastName(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
+//        -getUserInputforDateOfBirth(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
         -getUserInputforAddressUpdate(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
         -getUserInputforEnrollmentUpdate(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
         -performEnrollmentUpdate(const std::string& courseKey, \n const Student& updateStudent) : void {query}

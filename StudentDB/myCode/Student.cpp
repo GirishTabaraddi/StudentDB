@@ -96,18 +96,33 @@ void Student::addEnrollment(const std::string& semester, const Course *newCourse
 {
 	unsigned int courseKey = newCourseId->getcourseKey();
 
-	auto isEnrolled = [courseKey](const Enrollment& enrollment){
-		return (enrollment.getcourse()->getcourseKey() == courseKey);
-	};
+//	auto isEnrolled = [courseKey](const Enrollment& enrollment){
+//		return (enrollment.getcourse()->getcourseKey() == courseKey);
+//	};
+//
+//	auto addEnrollmentItr = find_if(this->m_enrollments.begin(),
+//			this->m_enrollments.end(), isEnrolled);
+//
+//	if(addEnrollmentItr != this->m_enrollments.end())
+//	{
+//		return;
+//	}
+//	else
+//	{
+//		this->m_enrollments.push_back(Enrollment(semester, newCourseId));
+//	}
 
-	auto addEnrollmentItr = find_if(this->m_enrollments.begin(),
-			this->m_enrollments.end(), isEnrolled);
+	bool enrollmentFound = false;
 
-	if(addEnrollmentItr != this->m_enrollments.end())
+	for(const Enrollment& enrollment : this->m_enrollments)
 	{
-		return;
+		if(enrollment.getcourse()->getcourseKey() == courseKey)
+		{
+			enrollmentFound = true;
+			break;
+		}
 	}
-	else
+	if(!enrollmentFound)
 	{
 		this->m_enrollments.push_back(Enrollment(semester, newCourseId));
 	}
@@ -117,33 +132,56 @@ void Student::addEnrollment(const std::string& semester, const Course *newCourse
 
 void Student::deleteEnrollment(const unsigned int &courseKey)
 {
-	auto isEnrolled = [courseKey](const Enrollment& enrollment){
-		return enrollment.getcourse()->getcourseKey() == courseKey;
-	};
+//	auto isEnrolled = [courseKey](const Enrollment& enrollment){
+//		return enrollment.getcourse()->getcourseKey() == courseKey;
+//	};
+//
+//	auto delEnrollmentItr = remove_if(this->m_enrollments.begin(),
+//			this->m_enrollments.end(), isEnrolled);
+//
+//	if(delEnrollmentItr != this->m_enrollments.end())
+//	{
+//		//TODO: remove this cout
+//		cout << "Entered Enrollment Deleted!!" << endl;
+//		this->m_enrollments.erase(delEnrollmentItr, this->m_enrollments.end());
+//	}
 
-	auto delEnrollmentItr = remove_if(this->m_enrollments.begin(),
-			this->m_enrollments.end(), isEnrolled);
-
-	if(delEnrollmentItr != this->m_enrollments.end())
+	for(vector<Enrollment>::iterator itr = this->m_enrollments.begin(); itr != this->m_enrollments.end();)
 	{
-		//TODO: remove this cout
-		cout << "Entered Enrollment Deleted!!" << endl;
-		this->m_enrollments.erase(delEnrollmentItr, this->m_enrollments.end());
+		if(itr->getcourse()->getcourseKey() == courseKey)
+		{
+			cout << "Entered Enrollment Deleted!!" << endl;
+			itr = this->m_enrollments.erase(itr);
+		}
+		else
+		{
+			itr++;
+		}
 	}
 }
 
 void Student::updateGrade(const float &grade, const unsigned int &courseKey)
 {
-	auto isEnrolled = [courseKey](const Enrollment& enrollment){
-		return enrollment.getcourse()->getcourseKey() == courseKey;
-	};
+//	auto isEnrolled = [courseKey](const Enrollment& enrollment){
+//		return enrollment.getcourse()->getcourseKey() == courseKey;
+//	};
+//
+//	auto enrollmentItr = find_if(this->m_enrollments.begin(),
+//			this->m_enrollments.end(), isEnrolled);
+//
+//	if(enrollmentItr != this->m_enrollments.end())
+//	{
+//		enrollmentItr->setgrade(grade);
+//	}
 
-	auto enrollmentItr = find_if(this->m_enrollments.begin(),
-			this->m_enrollments.end(), isEnrolled);
-
-	if(enrollmentItr != this->m_enrollments.end())
+	for(vector<Enrollment>::iterator itr = this->m_enrollments.begin();
+			itr != this->m_enrollments.end(); itr++)
 	{
-		enrollmentItr->setgrade(grade);
+		if(itr->getcourse()->getcourseKey() == courseKey)
+		{
+			itr->setgrade(grade);
+			break;
+		}
 	}
 }
 

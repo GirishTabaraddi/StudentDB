@@ -69,7 +69,7 @@ StudentDb::addNewCourse(std::string &courseKey, std::string &title,
 	//	}
 
 	//! using for loop to iterate over each of the courses in map
-	for(auto& itr : this->m_courses)
+	for(const pair<const int, unique_ptr<const Course>>& itr : this->m_courses)
 	{
 		const Course& courseref = *(itr.second);
 
@@ -133,7 +133,7 @@ StudentDb::addNewStudent(std::string &firstName, std::string &lastName,
 	//	}
 
 	//! using for loop to find m_students if they exist already.
-	for(auto& itr : this->m_students)
+	for(const pair<const int,Student>& itr : this->m_students)
 	{
 		const Student& student = itr.second;
 
@@ -162,15 +162,15 @@ StudentDb::RC_StudentDb_t
 StudentDb::addEnrollment(std::string &matrikelNumber,
 		std::string &semester, std::string &courseKey)
 {
-	auto findStudent = this->m_students.find(stoul(matrikelNumber));
+	map<int, Student>::iterator findStudent = this->m_students.find(stoul(matrikelNumber));
 
 	if(findStudent != this->m_students.end())
 	{
-		auto findCourse = this->m_courses.find(stoul(courseKey));
+		map<int, unique_ptr<const Course>>::iterator findCourse = this->m_courses.find(stoul(courseKey));
 
 		if(findCourse != this->m_courses.end())
 		{
-			const auto& enrollments = findStudent->second.getEnrollments();
+			const vector<Enrollment>& enrollments = findStudent->second.getEnrollments();
 
 			for(const Enrollment& enrollmentItr : enrollments)
 			{
@@ -249,7 +249,7 @@ void StudentDb::writeCoursesData(std::ostream &out) const
 {
 	out << this->m_courses.size() << endl;
 
-	for(const auto& coursesPair: this->m_courses)
+	for(const pair<const int, unique_ptr<const Course>>& coursesPair: this->m_courses)
 	{
 		coursesPair.second.get()->write(out);
 	}
@@ -259,7 +259,7 @@ void StudentDb::writeStudentsData(std::ostream &out) const
 {
 	out << this->m_students.size() << endl;
 
-	for(const auto& studentsPair: this->m_students)
+	for(const pair<const int,Student>& studentsPair: this->m_students)
 	{
 		const Student& student = studentsPair.second;
 
@@ -273,7 +273,7 @@ void StudentDb::writeEnrollmentsData(std::ostream &out) const
 {
 	map<unsigned int, vector<Enrollment>> StudentEnrollments;
 
-	for(const auto& eachStudent: this->m_students)
+	for(const pair<const int,Student>& eachStudent: this->m_students)
 	{
 		unsigned int matrikelNumber = eachStudent.second.getMatrikelNumber();
 
@@ -285,7 +285,7 @@ void StudentDb::writeEnrollmentsData(std::ostream &out) const
 
 	out << StudentEnrollments.size() << endl;
 
-	for(auto& itr: StudentEnrollments)
+	for(pair<int, vector<Enrollment>> itr: StudentEnrollments)
 	{
 		for(const Enrollment& enrItr: itr.second)
 		{
@@ -426,11 +426,11 @@ void StudentDb::readEnrollmentData(std::string &str)
 	//	iss >> matrikelNumber;
 	//	iss.ignore();
 
-	for(auto& pairItr : this->m_courses)
+	for(const pair<const int, unique_ptr<const Course>>& pairItr : this->m_courses)
 	{
 		const Course& courseref =  *(pairItr.second.get());
 
-		auto checkMatrikel = this->m_students.find(matrikelNumber);
+		map<int, Student>::iterator checkMatrikel = this->m_students.find(matrikelNumber);
 
 		if(checkMatrikel->second.getMatrikelNumber() == matrikelNumber)
 		{
