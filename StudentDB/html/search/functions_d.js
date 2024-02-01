@@ -6,5 +6,6 @@ var searchData=
   ['_7eenrollment_3',['~Enrollment',['../class_enrollment.html#a02fa17a25d83281407240566a787e0d0',1,'Enrollment']]],
   ['_7esimpleui_4',['~SimpleUI',['../class_simple_u_i.html#a95cfaa895ce80b4ddbdfc2bd57f8f83b',1,'SimpleUI']]],
   ['_7estudent_5',['~Student',['../class_student.html#a54a8ea060d6cd04222c3a2f89829f105',1,'Student']]],
-  ['_7eweeklycourse_6',['~WeeklyCourse',['../class_weekly_course.html#aab5b62a2770656c4064e413952dc03dc',1,'WeeklyCourse']]]
+  ['_7estudentdb_6',['~StudentDb',['../class_student_db.html#a4e0cf54d63ba2b890db886572d625708',1,'StudentDb']]],
+  ['_7eweeklycourse_7',['~WeeklyCourse',['../class_weekly_course.html#aab5b62a2770656c4064e413952dc03dc',1,'WeeklyCourse']]]
 ];

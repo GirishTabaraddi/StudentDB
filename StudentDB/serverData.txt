@@ -1,7 +1,0 @@
-0
-4
-100000;vera;ray;29.05.2002;1908 sunset st;59044;lincoln;wisconsin
-100001;benito;nieto;30.07.1998;1293 avenida de burgos;21288;parla;melilla
-100002;faye;van den biggelaar;11.11.1933;8026 gansstraat;62543;someren;gelderland
-100003;cody;hughes;27.05.1982;3230 park road;18408;kilcoole;kerry
-0

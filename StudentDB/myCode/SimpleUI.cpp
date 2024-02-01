@@ -197,23 +197,23 @@ void SimpleUI::getUserInputsforNewCourse() const
 
 	while (!isValidMajor)
 	{
-	    getUserInput("\t \t Available Majors are : Automation, Embedded Systems,"
-	                  " Communication and Power\n \t \t Enter the Major in which "
-	                  "the Course belongs to: ", "[a-zA-Z]+", major);
+		getUserInput("\t \t Available Majors are : Automation, Embedded Systems,"
+				" Communication and Power\n \t \t Enter the Major in which "
+				"the Course belongs to: ", "[a-zA-Z]+", major);
 
-	    for (const auto &itr : Course::getmajorById())
-	    {
-	        if (boost::algorithm::icontains(itr.second, major))
-	        {
-	            isValidMajor = true;
-	            break;
-	        }
-	    }
+		for (const auto &itr : Course::getmajorById())
+		{
+			if (boost::algorithm::icontains(itr.second, major))
+			{
+				isValidMajor = true;
+				break;
+			}
+		}
 
-	    if (!isValidMajor)
-	    {
-	        cout << endl << "\t You entered a wrong Major" << endl;
-	    }
+		if (!isValidMajor)
+		{
+			cout << endl << "\t You entered a wrong Major" << endl;
+		}
 	}
 
 	getUserInput("\t \t Enter the credit points of the Course - (0-9): ", "\\d+", credits);
@@ -233,7 +233,7 @@ void SimpleUI::getUserInputsforNewCourse() const
 		getUserInput("\t \t Enter the Course Start Date - dd.mm.YYYY : ",
 				R"((\d{1,2})\.(\d{1,2})\.(\d{4}))", startDate);
 		getUserInput("\t \t Enter the Course End Date - dd.mm.YYYY : ",
-						R"((\d{1,2})\.(\d{1,2})\.(\d{4}))", endDate);
+				R"((\d{1,2})\.(\d{1,2})\.(\d{4}))", endDate);
 	}
 	else if(courseType == "W" || courseType == "w")
 	{
@@ -268,11 +268,43 @@ void SimpleUI::getUserInputsforNewCourse() const
 
 void SimpleUI::listCourses() const
 {
-	cout << this->m_db.getCourses().size() << endl;
+	cout << "No of Courses in Database: "<< this->m_db.getCourses().size() << endl << endl;
 
 	for(const pair<const int, unique_ptr<const Course>>& courses: this->m_db.getCourses())
 	{
-		cout << courses.second.get()->printCourse() << endl;
+		const Course* course = courses.second.get();
+
+		if (const BlockCourse* blockcourse = dynamic_cast<const BlockCourse*>(course))
+		{
+			cout << "[Type: Block] | ";
+			cout << "[key: " << course->getcourseKey() << "] | ";
+			cout << "[Title: " << course->gettitle() << "] | ";
+			cout << "[Major: " << course->getmajorById().at(course->getmajor()) << "] | ";
+			cout << "[Credits: " << course->getcreditPoints() << "] | ";
+
+			cout << endl << "\t";
+
+			cout << "[StartDate: " << pocoDateToStringFormatter(blockcourse->getStartDate()) << "] | ";
+			cout << "[EndDate: " << pocoDateToStringFormatter(blockcourse->getEndDate()) << "] | ";
+			cout << "[StartTime: " << pocoTimeToStringFormatter(blockcourse->getStartTime()) << "] | ";
+			cout << "[EndTime: " << pocoTimeToStringFormatter(blockcourse->getEndTime()) << "]";
+		}
+		else if (const WeeklyCourse* weeklycourse = dynamic_cast<const WeeklyCourse*>(course))
+		{
+			cout << "[Type: Weekly] | ";
+			cout << "[key: " << course->getcourseKey() << "] | ";
+			cout << "[Title: " << course->gettitle() << "] | ";
+			cout << "[Major: " << course->getmajorById().at(course->getmajor()) << "] | ";
+			cout << "[Credits: " << course->getcreditPoints() << "] | ";
+
+			cout << endl << "\t";
+
+			cout << "[WeekDay: " << weeklycourse->getDaysOfWeek() << "] | ";
+			cout << "[StartTime: " << pocoTimeToStringFormatter(weeklycourse->getStartTime()) << "] | ";
+			cout << "[EndTime: " << pocoTimeToStringFormatter(weeklycourse->getEndTime()) << "]";
+		}
+
+		cout << endl << endl;
 	}
 }
 
@@ -377,11 +409,27 @@ void SimpleUI::printStudent() const
 
 	if(matrikelNumberItr != this->m_db.getStudents().end())
 	{
-		cout << "\n\t \t \t " << matrikelNumberItr->second.printStudent() << endl;
+		const Student& student = matrikelNumberItr->second;
 
-		for(const Enrollment& enrollmentItr : matrikelNumberItr->second.getEnrollments())
+		cout << endl << "[MatrikelNumber: " << student.getMatrikelNumber() << "] | ";
+		cout << "[FirstName: " << student.getFirstName() << "] | ";
+		cout << "[LastName: " << student.getLastName() << "] | ";
+		cout << "[DateOfBirth: " << pocoDateToStringFormatter(student.getDateOfBirth()) << "] | ";
+
+		cout << endl << "\t";
+
+		cout << "[Street: " << student.getAddress()->getstreet() << "] | ";
+		cout << "[PostalCode: " << student.getAddress()->getpostalCode() << "] | ";
+		cout << "[City: " << student.getAddress()->getcityName() << "] | ";
+		cout << "[AdditionalInfo: " << student.getAddress()->getadditionalInfo() << "] | ";
+
+		cout << endl << "\t";
+
+		for(const Enrollment& enrollment : student.getEnrollments())
 		{
-			cout << "\n\t \t \t " << enrollmentItr.printEnrollment() << endl;
+			cout << "[CourseKey: " << enrollment.getcourse()->getcourseKey() << "] | ";
+			cout << "[Semester: " << enrollment.getsemester() << "] | ";
+			cout << "[Grade: " << enrollment.getgrade() << "] | ";
 		}
 	}
 	else
@@ -389,6 +437,8 @@ void SimpleUI::printStudent() const
 		cout << "\n\t \t Entered Matrikel Number does not match "
 				"any student in the database." << endl;
 	}
+
+	cout << endl << endl;
 }
 
 void SimpleUI::searchStudent() const
@@ -400,19 +450,31 @@ void SimpleUI::searchStudent() const
 
 	bool matchFound = false;
 
-	for(const auto& pairItr : this->m_db.getStudents())
+	for(const pair<const int,Student> & studentsItr : this->m_db.getStudents())
 	{
-		const Student& findStudent = pairItr.second;
+		const Student& student = studentsItr.second;
 
-		string firstName = findStudent.getFirstName();
-		string lastName = findStudent.getLastName();
+		string firstName = student.getFirstName();
+		string lastName = student.getLastName();
 
 		if (boost::algorithm::icontains(firstName, searchString) ||
 				boost::algorithm::icontains(lastName, searchString))
 		{
 			matchFound = true;
 
-			cout << "\n\t \t \t " << findStudent.printStudent() << endl;
+			cout << endl << "[MatrikelNumber: " << student.getMatrikelNumber() << "] | ";
+			cout << "[FirstName: " << student.getFirstName() << "] | ";
+			cout << "[LastName: " << student.getLastName() << "] | ";
+			cout << "[DateOfBirth: " << pocoDateToStringFormatter(student.getDateOfBirth()) << "] | ";
+
+			cout << endl << "\t";
+
+			cout << "[Street: " << student.getAddress()->getstreet() << "] | ";
+			cout << "[PostalCode: " << student.getAddress()->getpostalCode() << "] | ";
+			cout << "[City: " << student.getAddress()->getcityName() << "] | ";
+			cout << "[AdditionalInfo: " << student.getAddress()->getadditionalInfo() << "] | ";
+
+			cout << endl << endl;
 		}
 	}
 	if(matchFound == false)
@@ -504,7 +566,7 @@ void SimpleUI::performStudentUpdate(unsigned int matrikelNumber,
 				cout << endl << "\t \t \t \t Existing Last Name of the Student: "
 						<< updateStudent.getLastName() << endl;
 				getUserInput("\t \t \t \t Enter Last Name of the Student to Update - a-z/A-Z: ",
-							"[a-zA-Z]+", lastName);
+						"[a-zA-Z]+", lastName);
 
 				this->m_db.updateLastName(lastName, matrikelNumber);
 			}
@@ -520,8 +582,6 @@ void SimpleUI::performStudentUpdate(unsigned int matrikelNumber,
 						<< pocoDateToStringFormatter(updateStudent.getDateOfBirth()) << endl;
 				getUserInput("\t \t \t \t Enter Date of Birth of the Student "
 						"to Update - dd..mm..YYY : ", R"((\d{1,2})\.(\d{1,2})\.(\d{4}))", DoBstring);
-
-//				Poco::Data::Date pocoDoB = stringToPocoDateFormatter(DoBstring);
 
 				this->m_db.updateDateOfBirth(stringToPocoDateFormatter(DoBstring), matrikelNumber);
 			}
@@ -558,54 +618,13 @@ void SimpleUI::performStudentUpdate(unsigned int matrikelNumber,
 	}
 }
 
-//void SimpleUI::getUserInputforFirstName(unsigned int matrikelNumber,
-//		const Student& updateStudent)const
-//{
-//	string firstName;
-//
-//	cout << endl << "\t \t \t \t Existing First Name of the Student: "
-//			<< updateStudent.getFirstName() << endl;
-//	getUserInput("\t \t \t \t Enter First Name of the Student to Update - a-z/A-Z: ",
-//			"[a-zA-Z]+", firstName);
-//
-//	this->m_db.updateFirstName(firstName, matrikelNumber);
-//}
-//
-//void SimpleUI::getUserInputforLastName(unsigned int matrikelNumber,
-//		const Student& updateStudent) const
-//{
-//	string lastName;
-//
-//	cout << endl << "\t \t \t \t Existing Last Name of the Student: "
-//			<< updateStudent.getLastName() << endl;
-//	getUserInput("\t \t \t \t Enter Last Name of the Student to Update - a-z/A-Z: ",
-//				"[a-zA-Z]+", lastName);
-//
-//	this->m_db.updateLastName(lastName, matrikelNumber);
-//}
-//
-//void SimpleUI::getUserInputforDateOfBirth(unsigned int matrikelNumber,
-//		const Student& updateStudent) const
-//{
-//	string DoBstring = "31.12.9999";
-//
-//	cout << endl << "\t \t \t \t Existing Date of Birth of the Student: "
-//			<< pocoDateToStringFormatter(updateStudent.getDateOfBirth()) << endl;
-//	getUserInput("\t \t \t \t Enter Date of Birth of the Student "
-//			"to Update - dd..mm..YYY : ", R"((\d{1,2})\.(\d{1,2})\.(\d{4}))", DoBstring);
-//
-//	Poco::Data::Date pocoDoB = stringToPocoDateFormatter(DoBstring);
-//
-//	this->m_db.updateDateOfBirth(pocoDoB, matrikelNumber);
-//}
-
 void SimpleUI::getUserInputforAddressUpdate(unsigned int matrikelNumber,
 		const Student& updateStudent) const
 {
 	string streetName, postalCode, cityName, additionalInfo;
 
 	cout << endl << "\t \t \t \t Existing Street Name of the Student's Address: "
-				<< updateStudent.getAddress()->getstreet() << endl;
+			<< updateStudent.getAddress()->getstreet() << endl;
 	getUserInput("\t \t \t \t Enter Street Name of the "
 			"Student's Address to Update - a-z/A-Z: ",
 			"[a-zA-Z0-9\\s\\p{P}]+", streetName);
@@ -616,12 +635,12 @@ void SimpleUI::getUserInputforAddressUpdate(unsigned int matrikelNumber,
 			"Student's Address to Update - 0-9: ", "\\d+", postalCode);
 
 	cout << endl << "\t \t \t \t Existing City Name of the Student's Address: "
-				<< updateStudent.getAddress()->getcityName() << endl;
+			<< updateStudent.getAddress()->getcityName() << endl;
 	getUserInput("\t \t \t \t Enter City Name of the "
 			"Student's Address to Update - a-z/A-Z: ", "[a-zA-Z\\s]+", cityName);
 
 	cout << endl << "\t \t \t \t Existing Additional Info of the Student's Address: "
-				<< updateStudent.getAddress()->getadditionalInfo() << endl;
+			<< updateStudent.getAddress()->getadditionalInfo() << endl;
 	getUserInput("\t \t \t \t Enter Additional Info related "
 			"to Student's Address to Update - 0-9/a-z/A-Z: ",
 			"[a-zA-Z0-9\\s\\p{P}]+", additionalInfo);

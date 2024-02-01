@@ -6,8 +6,7 @@ using namespace std;
 
 //! Add your project's header files here
 #include "SimpleUI.h"
-
-#include "formatterfile.h"
+#include "helperFunctions.h"
 
 //! Main program
 int main ()
@@ -39,7 +38,7 @@ int main ()
 
 		+SimpleUI(StudentDb& db)
 		+~SimpleUI()
-		+run() : void
+		+run() : void {query}
 
 		-getUserInputsforNewCourse() : void {query}
 		-listCourses() : void {query}
@@ -49,9 +48,6 @@ int main ()
         -searchStudent() : void {query}
         -getUserInputforStudentUpdate() : void {query}
         -performStudentUpdate(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
-//        -getUserInputforFirstName(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
-//        -getUserInputforLastName(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
-//        -getUserInputforDateOfBirth(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
         -getUserInputforAddressUpdate(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
         -getUserInputforEnrollmentUpdate(unsigned int matrikelNumber, \n const Student& updateStudent) : void {query}
         -performEnrollmentUpdate(const std::string& courseKey, \n const Student& updateStudent) : void {query}
@@ -63,6 +59,7 @@ int main ()
 		-m_courses : std::map<int, std::unique_ptr<const Course>>
 
 		+StudentDb()
+		+~StudentDb()
         +getStudents() : std::map<int , Student>& {query}
         +getCourses() : std::map<int , std::unique_ptr<const Course>>& {query}
 		+addNewCourse(std::string& courseKey, std::string& title, std::string& major, \n std::string& credits, std::string& courseType, \n std::string& startTime, std::string& endTime, \n std::string& startDate, std::string& endDate, \n std::string& dayOfWeek) : StudentDb::RC_StudentDb_t
@@ -111,7 +108,6 @@ int main ()
         +setLastName(const std::string& lastName) : void
         +setDateOfBirth(const Poco::Data::Date& dateOfBirth) : void
         +setAddress(const std::shared_ptr<Address> address) : void
-		+printStudent() : std::string {query}
 		+addEnrollment(const std::string& semester, const Course* courseId) : void
 		+deleteEnrollment(const unsigned int& courseKey) : void
 		+updateGrade(const float& grade, const unsigned int& courseKey) : void
@@ -132,7 +128,6 @@ int main ()
 		+getpostalCode() : unsigned short {query}
 		+getcityName() : std::string& {query}
 		+getadditionalInfo() : std::string& {query}
-		+printAddress() : std::string {query}
 		+write(std::ostream& out) : void {query}
 		+{static} read(std::istream& in) : std::shared_ptr<Address>
 	}
@@ -149,7 +144,6 @@ int main ()
 		+getsemester() : std::string& {query}
 		+getcourse() : Course* {query}
 		+setgrade(float grade) : void
-		+printEnrollment() : std::string {query}
 		+write(std::ostream& out) : void {query}
 		+{static} read(std::istream& in, const Course* courseobj) : Enrollment
 	}
@@ -170,7 +164,6 @@ int main ()
 		+getcourseKey() : unsigned int {query}
 		+gettitle() : std::string {query}
 		+getmajor() : unsigned char {query}
-		+printCourse() : std::string {query}
 		+getcreditPoints() : float {query}
 		+printCourse() : std::string {query}
 		+write(std::ostream& out) : void {query}
@@ -190,7 +183,6 @@ int main ()
 		+getEndDate() : Poco::Data::Date {query}
 		+getStartTime() : Poco::Data::Time {query}
 		+getEndTime() : Poco::Data::Time {query}
-		+printCourse() : std::string {query}
 		+write(std::ostream& out) : void {query}
 		+{static} read(std::istream& in) : std::unique_ptr<BlockCourse>
 	}
@@ -206,7 +198,6 @@ int main ()
 		+getDaysOfWeek() : Poco::DateTime::DaysOfWeek {query}
 		+getStartTime() : Poco::Data::Time {query}
 		+getEndTime() : Poco::Data::Time {query}
-		+printCourse() : std::string {query}
 		+write(std::ostream& out) : void {query}
 		+{static} read(std::istream& in) : std::unique_ptr<WeeklyCourse>
 	}

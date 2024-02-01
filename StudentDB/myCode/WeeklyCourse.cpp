@@ -15,8 +15,8 @@ WeeklyCourse::WeeklyCourse(unsigned int courseKey, std::string title,
 		std::string major, float creditPoints,
 		Poco::DateTime::DaysOfWeek daysOfWeek, Poco::Data::Time startTime,
 		Poco::Data::Time endTime) :
-						Course(courseKey, title, major, creditPoints), m_daysOfWeek(daysOfWeek),
-						m_startTime(startTime), m_endTime(endTime)
+		Course(courseKey, title, major, creditPoints), m_daysOfWeek(daysOfWeek),
+		m_startTime(startTime), m_endTime(endTime)
 {
 }
 
@@ -39,17 +39,6 @@ Poco::Data::Time WeeklyCourse::getEndTime() const
 	return this->m_endTime;
 }
 
-std::string WeeklyCourse::printCourse() const
-{
-	string outStr =
-			"W;" + Course::printCourse() +
-			";" + to_string(this->m_daysOfWeek) +
-			";" + pocoTimeToStringFormatter(this->m_startTime) +
-			";" + pocoTimeToStringFormatter(this->m_endTime);
-
-	return outStr;
-}
-
 void WeeklyCourse::write(std::ostream &out) const
 {
 	out << "W;";
@@ -57,8 +46,8 @@ void WeeklyCourse::write(std::ostream &out) const
 	Course::write(out);
 
 	out << ";" << to_string(this->m_daysOfWeek)
-				<< ";" << pocoTimeToStringFormatter(this->m_startTime)
-				<< ";" << pocoTimeToStringFormatter(this->m_endTime) << endl;
+		<< ";" << pocoTimeToStringFormatter(this->m_startTime)
+		<< ";" << pocoTimeToStringFormatter(this->m_endTime) << endl;
 }
 
 std::unique_ptr<WeeklyCourse> WeeklyCourse::read(std::istream &in)

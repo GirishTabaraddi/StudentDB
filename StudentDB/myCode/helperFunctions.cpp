@@ -1,5 +1,5 @@
 /*!
- * @file formatterfile.cpp
+ * @file helperFunctions.cpp
  *
  * \n Created on: 11-Jan-2024
  * @author Girish Tabaraddi
@@ -7,16 +7,25 @@
  * Built on: \showdate "%A %d-%m-%Y %H:%M:%S"
  */
 
-#include "formatterfile.h"
+#include "helperFunctions.h"
 
 using namespace std;
 
 std::string pocoDateToStringFormatter(const Poco::Data::Date &date)
 {
-	string dateString = Poco::DateTimeFormatter::format
-			(Poco::LocalDateTime(date.year(), date.month(), date.day()), "%d.%m.%Y");
+	int year = date.year();
+	int month = date.month();
+	int day = date.day();
 
-	return dateString;
+	ostringstream oss;
+
+	oss << setw(2) << setfill('0') << day << "." << setw(2) << setfill('0')
+			<< month << "." << year;
+
+	return oss.str();
+//
+//	return (Poco::DateTimeFormatter::format
+//			(Poco::LocalDateTime(date.year(), date.month(), date.day()), "%d.%m.%Y"));
 }
 
 Poco::Data::Date stringToPocoDateFormatter(const std::string& stringDate)
@@ -51,11 +60,16 @@ Poco::Data::Date stringToPocoDateFormatter(const std::string& stringDate)
 
 std::string pocoTimeToStringFormatter(const Poco::Data::Time &time)
 {
-	string timeString;
+	int hours = time.hour();
+	int minutes = time.minute();
 
-	timeString = Poco::DateTimeFormatter::format(Poco::LocalDateTime(1,1,1,time.hour(), time.minute()), "%H:%M");
+	ostringstream oss;
 
-	return timeString;
+	oss << setw(2) << setfill('0') << hours << ":" << setw(2) << setfill('0') << minutes;
+
+	return oss.str();
+
+//	return (Poco::DateTimeFormatter::format(Poco::LocalDateTime(1,1,1,time.hour(), time.minute()), "%H:%M"));
 }
 
 Poco::Data::Time stringToPocoTimeFormatter(const std::string &stringTime)
@@ -126,10 +140,10 @@ Poco::DateTime::DaysOfWeek getDayOfWeekFromString(const std::string& dayString)
 	}
 
 	//! Handle invalid input or return a default value
-			cerr << "Invalid day input: " << dayString
-					<< ". Defaulting to Monday." << endl;
+	cerr << "Invalid day input: " << dayString
+			<< ". Defaulting to Monday." << endl;
 
-			return Poco::DateTime::MONDAY;
+	return Poco::DateTime::MONDAY;
 }
 
 std::string splitAt(std::string &input, char delimiter)
@@ -151,6 +165,57 @@ std::string splitAt(std::string &input, char delimiter)
 	}
 
 	return returnStr;
+}
+
+void getUserInput(const std::string &prompt, const std::string &inputPattern,
+		std::string &userInput)
+{
+	bool checkInput = false;
+
+	while(!checkInput)
+	{
+		cout << prompt;
+		getline(cin, userInput);
+
+		if(!regex_match(userInput, regex(inputPattern)))
+		{
+			cerr << "Invalid input format. Please try again." << endl;
+			cout.flush();
+			checkInput = false;
+		}
+		else
+		{
+			checkInput = true;
+		}
+	}
+}
+
+void assertTrue(bool condition, std::string failedMessage)
+{
+	if(condition == false)
+	{
+		cout << failedMessage << endl;
+	}
+}
+
+bool isPrintable(const std::string &eachStr)
+{
+	//	for(char ch : eachStr)
+	//	{
+	//		if(!isprint(static_cast<unsigned char>(ch)))
+	//		{
+	//			return false;
+	//		}
+	//	}
+	//	return true;
+	if(all_of(eachStr.begin(), eachStr.end(), ::isprint))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 //bool integerInputCheck(std::string &input)
@@ -210,26 +275,3 @@ std::string splitAt(std::string &input, char delimiter)
 //
 //	return true;
 //}
-
-void getUserInput(const std::string &prompt, const std::string &inputPattern,
-		std::string &userInput)
-{
-	bool checkInput = false;
-
-	while(!checkInput)
-	{
-		cout << prompt;
-		getline(cin, userInput);
-
-		if(!regex_match(userInput, regex(inputPattern)))
-		{
-			cerr << "Invalid input format. Please try again." << endl;
-			cout.flush();
-			checkInput = false;
-		}
-		else
-		{
-			checkInput = true;
-		}
-	}
-}

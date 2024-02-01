@@ -14,22 +14,8 @@
 #include "BlockCourse.h"
 #include "WeeklyCourse.h"
 
-//#include <Poco/Net/SocketAddress.h>
-//#include <Poco/Net/StreamSocket.h>
-//#include <Poco/Net/SocketStream.h>
-//#include <Poco/JSON/JSON.h>
-//#include <Poco/JSON/Parser.h>
-//#include <Poco/Dynamic/Var.h>
-//#include <Poco/Timespan.h>
-//#include <Poco/JSON/Object.h>
-//#include <Poco/DynamicStruct.h>
-//#include <Poco/UTFString.h>
-
 #include <boost/asio.hpp>
 #include <boost/iostreams/stream.hpp>
-#include <boost/json.hpp>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
 
 /*!
  * @class StudentDb
@@ -51,6 +37,77 @@ private:
 	 */
 	std::map<int, std::unique_ptr<const Course>> m_courses;
 
+private:
+	/*!
+	 * @brief Processes courses data from the input stream.
+	 *
+	 * This function processes courses data read from the input stream.
+	 * It parses the input and updates the internal data structures accordingly.
+	 *
+	 * @param in The input stream containing courses data.
+	 */
+	void readCoursesData(std::string &str);
+
+	/*!
+	 * @brief Processes students data from the input stream.
+	 *
+	 * This function processes students data read from the input stream.
+	 * It parses the input and updates the internal data structures accordingly.
+	 *
+	 * @param in The input stream containing students data.
+	 */
+	void readStudentsData(std::string &str);
+
+	/*!
+	 * @brief Processes enrollment data from the input stream.
+	 *
+	 * This function processes enrollment data read from the input stream.
+	 * It parses the input and updates the internal data structures accordingly.
+	 *
+	 * @param in The input stream containing enrollment data.
+	 */
+	void readEnrollmentData(std::string &str);
+
+	/*!
+	 * @brief Print all Courses in the entire database.
+	 *
+	 * This method prints the details of all courses in the database
+	 * to the specified output stream.
+	 *
+	 * @param out The output stream where course data will be printed.
+	 */
+	void writeCoursesData(std::ostream &out) const;
+
+	/*!
+	 * @brief Print all Students in the entire database.
+	 *
+	 * This method prints the details of all students in the database
+	 * to the specified output stream.
+	 *
+	 * @param out The output stream where student data will be printed.
+	 */
+	void writeStudentsData(std::ostream &out) const;
+
+	/*!
+	 * @brief Print all Enrollments of the Student.
+	 *
+	 * This method prints the details of all enrollments for each student
+	 * in the database to the specified output stream.
+	 *
+	 * @param out The output stream where enrollment data will be printed.
+	 */
+	void writeEnrollmentsData(std::ostream &out) const;
+
+	/**
+	 * @brief Parses JSON data and adds a new student to the collection.
+	 *
+	 * This function uses Boost C++ JSON for parsing data. It creates a Student object
+	 * from the provided boost::json::object and adds it to the internal student collection.
+	 *
+	 * @param jsonDataObject The boost::json::object containing JSON data for a student.
+	 */
+	void fromJson(const boost::json::object &jsonDataObject);
+
 public:
 	/**
 	 * @brief Enum class representing return codes for
@@ -71,6 +128,15 @@ public:
 	 * @brief Default constructor for StudentDb class.
 	 */
 	StudentDb();
+
+	/**
+	 * @brief Virtual destructor for the StudentDb class.
+	 *
+	 * This virtual destructor is responsible for cleaning up any resources held by the
+	 * StudentDb object. It is automatically called when a derived class instance goes out
+	 * of scope or when explicitly deleted using the `delete` keyword.
+	 */
+	virtual ~StudentDb();
 
 	/*!
 	 * @brief Getter method to fetch the students.
@@ -216,83 +282,6 @@ public:
 	 */
 	void readStudentDataFromServer(unsigned int noOfUserData);
 
-private:
-	/*!
-	 * @brief Processes courses data from the input stream.
-	 *
-	 * This function processes courses data read from the input stream.
-	 * It parses the input and updates the internal data structures accordingly.
-	 *
-	 * @param in The input stream containing courses data.
-	 */
-	void readCoursesData(std::string &str);
-
-	/*!
-	 * @brief Processes students data from the input stream.
-	 *
-	 * This function processes students data read from the input stream.
-	 * It parses the input and updates the internal data structures accordingly.
-	 *
-	 * @param in The input stream containing students data.
-	 */
-	void readStudentsData(std::string &str);
-
-	/*!
-	 * @brief Processes enrollment data from the input stream.
-	 *
-	 * This function processes enrollment data read from the input stream.
-	 * It parses the input and updates the internal data structures accordingly.
-	 *
-	 * @param in The input stream containing enrollment data.
-	 */
-	void readEnrollmentData(std::string &str);
-
-	/*!
-	 * @brief Print all Courses in the entire database.
-	 *
-	 * This method prints the details of all courses in the database
-	 * to the specified output stream.
-	 *
-	 * @param out The output stream where course data will be printed.
-	 */
-	void writeCoursesData(std::ostream &out) const;
-
-	/*!
-	 * @brief Print all Students in the entire database.
-	 *
-	 * This method prints the details of all students in the database
-	 * to the specified output stream.
-	 *
-	 * @param out The output stream where student data will be printed.
-	 */
-	void writeStudentsData(std::ostream &out) const;
-
-	/*!
-	 * @brief Print all Enrollments of the Student.
-	 *
-	 * This method prints the details of all enrollments for each student
-	 * in the database to the specified output stream.
-	 *
-	 * @param out The output stream where enrollment data will be printed.
-	 */
-	void writeEnrollmentsData(std::ostream &out) const;
-
-	/*!
-	 * @brief Parses JSON data.
-	 *
-	 * This function uses POCO C++ JSON for parsing data.
-	 *
-	 * @param JSONData The JSON data to be parsed.
-	 */
-	void parsingJSONData(std::string& JSONData);
-
-	/*!
-	 * @brief Checks if the provided string is a valid server data string.
-	 *
-	 * @param eachStr The string to be checked.
-	 * @return True if the string is valid, false otherwise.
-	 */
-	bool isValidServerDataString(const std::string& eachStr);
 };
 
 #endif /* STUDENTDB_H_ */

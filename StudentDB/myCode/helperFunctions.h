@@ -1,5 +1,5 @@
 /*!
- * @file formatterfile.h
+ * @file helperFunctions.h
  *
  * \n Created on: 11-Jan-2024
  * @author Girish Tabaraddi
@@ -7,14 +7,15 @@
  * Built on: \showdate "%A %d-%m-%Y %H:%M:%S"
  */
 
-#ifndef FORMATTERFILE_H_
-#define FORMATTERFILE_H_
+#ifndef HELPERFUNCTIONS_H_
+#define HELPERFUNCTIONS_H_
 
 #include <iostream>
 #include <string>
 #include <regex>
 #include <sstream>
 #include <unordered_map>
+#include <iomanip>
 
 #include <Poco/DateTimeFormatter.h>
 #include <Poco/Data/Date.h>
@@ -24,7 +25,19 @@
 #include <Poco/Data/Time.h>
 #include <Poco/DateTime.h>
 
+#include <Poco/Net/SocketAddress.h>
+#include <Poco/Net/StreamSocket.h>
+#include <Poco/Net/SocketStream.h>
+#include <Poco/JSON/JSON.h>
+#include <Poco/JSON/Parser.h>
+#include <Poco/Dynamic/Var.h>
+#include <Poco/Timespan.h>
+#include <Poco/JSON/Object.h>
+#include <Poco/DynamicStruct.h>
+#include <Poco/UTFString.h>
+
 #include <boost/algorithm/string.hpp>
+#include <boost/json.hpp>
 
 /*!
  * @brief Converts Poco::Data::Date to a formatted string.
@@ -79,6 +92,39 @@ Poco::DateTime::DaysOfWeek getDayOfWeekFromString(const std::string& dayString);
  */
 std::string splitAt(std::string& remainder, char delimiter);
 
+/**
+ * @brief Get user input based on a specified prompt and input pattern.
+ *
+ * This function prompts the user with the provided message, retrieves user input,
+ * and validates it against the specified input pattern. The result is stored in the
+ * provided string reference.
+ *
+ * @param prompt The message prompt displayed to the user.
+ * @param inputPattern The regular expression pattern for validating user input.
+ * @param userInput Reference to store the user input.
+ */
+void getUserInput(const std::string& prompt, const std::string& inputPattern,
+                  std::string& userInput);
+
+/**
+ * @brief Assert the truth of a condition and display a message on failure.
+ *
+ * This function checks the specified condition and displays the provided message
+ * if the condition is false.
+ *
+ * @param condition The condition to check for truth.
+ * @param failedMessage The message to display if the condition is false.
+ */
+void assertTrue(bool condition, std::string failedMessage);
+
+/*!
+ * @brief Checks if the provided string is a valid server data string.
+ *
+ * @param eachStr The string to be checked.
+ * @return True if the string is valid, false otherwise.
+ */
+bool isPrintable(const std::string& eachStr);
+
 ///*!
 // * @brief Checks if the given input is a valid integer.
 // *
@@ -119,10 +165,4 @@ std::string splitAt(std::string& remainder, char delimiter);
 // */
 //bool isPrintableInput(std::string& input);
 
-/*!
- *
- */
-void getUserInput(const std::string& prompt, const std::string& inputPattern,
-		std::string& userInput);
-
-#endif /* FORMATTERFILE_H_ */
+#endif /* HELPERFUNCTIONS_H_ */

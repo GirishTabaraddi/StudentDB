@@ -13,8 +13,8 @@ using namespace std;
 
 Address::Address(std::string street, unsigned short postalCode,
 		std::string cityName, std::string additionalInfo) :
-						m_street(street), m_postalCode(postalCode),
-						m_cityName(cityName), m_additionalInfo(additionalInfo)
+		m_street(street), m_postalCode(postalCode),
+		m_cityName(cityName), m_additionalInfo(additionalInfo)
 {
 }
 
@@ -42,16 +42,6 @@ const std::string& Address::getadditionalInfo() const
 	return this->m_additionalInfo;
 }
 
-std::string Address::printAddress() const
-{
-	string out = this->m_street
-			+ ";" + to_string(this->m_postalCode)
-			+ ";" + this->m_cityName
-			+ ";" + this->m_additionalInfo;
-
-	return out;
-}
-
 void Address::write(std::ostream &out) const
 {
 	out << this->m_street
@@ -71,4 +61,22 @@ std::shared_ptr<Address> Address::read(std::istream &in)
 	string additionalInfo = splitAt(inStr, ';');
 
 	return make_shared<Address>(street, postalCode, city, additionalInfo);
+}
+
+std::shared_ptr<Address> Address::fromJson(const boost::json::object &jsonDataObject)
+{
+	shared_ptr<Address> address = nullptr;
+
+	string street = jsonDataObject.at("street").as_string().c_str();
+	string postCode = jsonDataObject.at("postCode").as_string().c_str();
+	string city = jsonDataObject.at("city").as_string().c_str();
+	string additionalInfo = jsonDataObject.at("state").as_string().c_str();
+
+	if(isPrintable(street) && isPrintable(postCode) &&
+			isPrintable(city) && isPrintable(additionalInfo))
+	{
+		address = make_shared<Address>(street, stoi(postCode), city, additionalInfo);
+	}
+
+	return address;
 }

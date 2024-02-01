@@ -12,8 +12,9 @@
 
 #include <string>
 #include <iostream>
+#include <memory>
 
-#include "formatterfile.h"
+#include "helperFunctions.h"
 
 /*!
  * @class Address
@@ -91,13 +92,6 @@ public:
 	const std::string& getadditionalInfo() const;
 
 	/*!
-	 * @brief Method to print the address.
-	 *
-	 * @return std::string representing the formatted address.
-	 */
-	std::string printAddress() const;
-
-	/*!
 	 * \brief Writes the Address information to the specified output stream.
 	 *
 	 * This function writes the street, postal code, city name,
@@ -121,6 +115,18 @@ public:
 	 * @return A shared pointer to the dynamically allocated Address object.
 	 */
 	static std::shared_ptr<Address> read(std::istream& in);
+
+	/*!
+	 * @brief Create an Address object from JSON data.
+	 *
+	 * This method takes a boost::json::object representing JSON data
+	 * and constructs an Address object from it.
+	 *
+	 * @param jsonDataObject The boost::json::object containing JSON data.
+	 * @return A std::shared_ptr<Address> containing the constructed Address object,
+	 *         or nullptr if the input data is invalid.
+	 */
+	static std::shared_ptr<Address> fromJson(const boost::json::object &jsonDataObject);
 
 };
 

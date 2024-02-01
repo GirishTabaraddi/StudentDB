@@ -15,9 +15,9 @@ unsigned int Student::m_nextMatrikelNumber = 100000;
 
 Student::Student(std::string firstName, std::string lastName,
 		Poco::Data::Date dateOfBirth, std::shared_ptr<Address> address) :
-						m_matrikelNumber(Student::m_nextMatrikelNumber++),
-						m_firstName(firstName), m_lastName(lastName),
-						m_dateOfBirth(dateOfBirth), m_address(address)
+		m_matrikelNumber(Student::m_nextMatrikelNumber++),
+		m_firstName(firstName), m_lastName(lastName),
+		m_dateOfBirth(dateOfBirth), m_address(address)
 {
 }
 
@@ -80,37 +80,9 @@ void Student::setAddress(const std::shared_ptr<Address> address)
 	this->m_address = address;
 }
 
-std::string Student::printStudent() const
-{
-	string out = (to_string(this->m_matrikelNumber)
-			+ ";" + this->m_firstName
-			+ ";" + this->m_lastName
-			+ ";" + pocoDateToStringFormatter(this->m_dateOfBirth) + ";");
-
-	out += getAddress()->printAddress();
-
-	return out;
-}
-
 void Student::addEnrollment(const std::string& semester, const Course *newCourseId)
 {
 	unsigned int courseKey = newCourseId->getcourseKey();
-
-//	auto isEnrolled = [courseKey](const Enrollment& enrollment){
-//		return (enrollment.getcourse()->getcourseKey() == courseKey);
-//	};
-//
-//	auto addEnrollmentItr = find_if(this->m_enrollments.begin(),
-//			this->m_enrollments.end(), isEnrolled);
-//
-//	if(addEnrollmentItr != this->m_enrollments.end())
-//	{
-//		return;
-//	}
-//	else
-//	{
-//		this->m_enrollments.push_back(Enrollment(semester, newCourseId));
-//	}
 
 	bool enrollmentFound = false;
 
@@ -128,29 +100,13 @@ void Student::addEnrollment(const std::string& semester, const Course *newCourse
 	}
 }
 
-
-
 void Student::deleteEnrollment(const unsigned int &courseKey)
 {
-//	auto isEnrolled = [courseKey](const Enrollment& enrollment){
-//		return enrollment.getcourse()->getcourseKey() == courseKey;
-//	};
-//
-//	auto delEnrollmentItr = remove_if(this->m_enrollments.begin(),
-//			this->m_enrollments.end(), isEnrolled);
-//
-//	if(delEnrollmentItr != this->m_enrollments.end())
-//	{
-//		//TODO: remove this cout
-//		cout << "Entered Enrollment Deleted!!" << endl;
-//		this->m_enrollments.erase(delEnrollmentItr, this->m_enrollments.end());
-//	}
-
-	for(vector<Enrollment>::iterator itr = this->m_enrollments.begin(); itr != this->m_enrollments.end();)
+	for(vector<Enrollment>::iterator itr = this->m_enrollments.begin();
+			itr != this->m_enrollments.end();)
 	{
 		if(itr->getcourse()->getcourseKey() == courseKey)
 		{
-			cout << "Entered Enrollment Deleted!!" << endl;
 			itr = this->m_enrollments.erase(itr);
 		}
 		else
@@ -162,18 +118,6 @@ void Student::deleteEnrollment(const unsigned int &courseKey)
 
 void Student::updateGrade(const float &grade, const unsigned int &courseKey)
 {
-//	auto isEnrolled = [courseKey](const Enrollment& enrollment){
-//		return enrollment.getcourse()->getcourseKey() == courseKey;
-//	};
-//
-//	auto enrollmentItr = find_if(this->m_enrollments.begin(),
-//			this->m_enrollments.end(), isEnrolled);
-//
-//	if(enrollmentItr != this->m_enrollments.end())
-//	{
-//		enrollmentItr->setgrade(grade);
-//	}
-
 	for(vector<Enrollment>::iterator itr = this->m_enrollments.begin();
 			itr != this->m_enrollments.end(); itr++)
 	{
@@ -188,14 +132,12 @@ void Student::updateGrade(const float &grade, const unsigned int &courseKey)
 void Student::write(std::ostream &out) const
 {
 	out << to_string(this->m_matrikelNumber)
-						<< ";" << this->m_firstName
-						<< ";" << this->m_lastName << ";"
-						<< pocoDateToStringFormatter(this->m_dateOfBirth) + ";";
+								<< ";" << this->m_firstName
+								<< ";" << this->m_lastName << ";"
+								<< pocoDateToStringFormatter(this->m_dateOfBirth) + ";";
 
 	this->getAddress()->write(out);
 }
-
-
 
 Student Student::read(std::istream &in)
 {
@@ -247,5 +189,35 @@ Student Student::read(std::istream &in)
 	Student addStudent(firstName, lastName, dateOfBirth, address);
 
 	return addStudent;
+}
 
+Student* Student::fromJson(const boost::json::object &jsonDataObject)
+{
+	string firstName = jsonDataObject.at("name").at("firstName").as_string().c_str();
+	string lastName = jsonDataObject.at("name").at("lastName").as_string().c_str();
+
+	int year = jsonDataObject.at("dateOfBirth").at("year").as_int64() + 1900;
+	int month = jsonDataObject.at("dateOfBirth").at("month").as_int64() + 1;
+	int day = jsonDataObject.at("dateOfBirth").at("date").as_int64();
+
+	if(isPrintable(firstName) && isPrintable(lastName) && isPrintable(to_string(year)) &&
+			isPrintable(to_string(month)) && isPrintable(to_string(day)))
+	{
+		Poco::Data::Date dateOfBirth(year, month, day);
+
+		boost::json::object jsonAddress = jsonDataObject.at("location").get_object();
+
+		shared_ptr<Address> address = Address::fromJson(jsonAddress);
+
+		if(address != nullptr)
+		{
+			return (new Student(firstName, lastName, dateOfBirth, address));
+		}
+		else
+		{
+			return nullptr;
+		}
+	}
+
+	return nullptr;
 }

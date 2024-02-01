@@ -10,9 +10,7 @@
 #ifndef STUDENT_H_
 #define STUDENT_H_
 
-#include <sstream>
 #include <vector>
-#include <memory>
 
 #include "Enrollment.h"
 #include "Address.h"
@@ -163,13 +161,6 @@ public:
 	void setAddress(const std::shared_ptr<Address> address);
 
 	/*!
-	 * @brief Method to print the student details.
-	 *
-	 * @return std::string representing the formatted student information.
-	 */
-	std::string printStudent() const;
-
-	/*!
 	 * @brief Add enrollment for the student.
 	 *
 	 * Queries the user for a matrikel number, a course id, and a semester,
@@ -220,6 +211,19 @@ public:
 	 * @return The constructed Student object.
 	 */
 	static Student read(std::istream& in);
+
+	/**
+	 * @brief Create a Student object from JSON data.
+	 *
+	 * This static method takes a boost::json::object representing JSON data
+	 * and constructs a Student object from it.
+	 *
+	 * @param jsonDataObject The boost::json::object containing JSON data.
+	 * @return A pointer to the dynamically allocated Student object,
+	 *         or nullptr if the input data is invalid.
+	 *         The caller is responsible for deleting the allocated memory.
+	 */
+	static Student* fromJson(const boost::json::object &jsonDataObject);
 
 };
 

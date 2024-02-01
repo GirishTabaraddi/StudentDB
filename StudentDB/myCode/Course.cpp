@@ -28,7 +28,6 @@ Course::Course(unsigned int courseKey, std::string title, std::string major,
 	setMajor(major);
 }
 
-
 void Course::setMajor(std::string major)
 {
 	for(const auto& itr : this->getmajorById())
@@ -67,18 +66,6 @@ const float Course::getcreditPoints() const
 
 Course::~Course()
 {
-}
-
-std::string Course::printCourse() const
-{
-	ostringstream oss;
-
-	oss << fixed << setprecision(1) << this->m_creditPoints;
-
-	string creditpoints = oss.str();
-
-	return (to_string(this->m_courseKey) + ";" + this->m_title + ";"
-			+ this->m_majorById.at(this->m_major) + ";" + creditpoints);
 }
 
 void Course::write(std::ostream &out) const

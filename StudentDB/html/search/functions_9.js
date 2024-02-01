@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['updateaddress_0',['updateAddress',['../class_student_db.html#a3409d283b1ebdf2b11d60a1f6cb8d123',1,'StudentDb']]],
-  ['updatedateofbirth_1',['updateDateOfBirth',['../class_student_db.html#ac22ac0dd54ededacb9325282ad16b2bf',1,'StudentDb']]],
-  ['updatefirstname_2',['updateFirstName',['../class_student_db.html#a378289c52a0c7086538112f021487b85',1,'StudentDb']]],
-  ['updategrade_3',['updategrade',['../class_student.html#a9a414224c385cf350ca38f993ca4d0af',1,'Student::updateGrade()'],['../class_student_db.html#a9a9190a3b18bd8d586359f0010386de3',1,'StudentDb::updateGrade(const unsigned int &amp;courseKey, const float &amp;newGrade, const unsigned int matrikelNumber)']]],
-  ['updatelastname_4',['updateLastName',['../class_student_db.html#ab1510f42a67ed67dc99a4b2bec621ee3',1,'StudentDb']]]
+  ['read_0',['read',['../class_address.html#ab9043de5339daa70f7b01fe208523869',1,'Address::read()'],['../class_block_course.html#ac9ff331c103465cce9c483c4513195e4',1,'BlockCourse::read()'],['../class_course.html#a97698e7aadb1664b3ed6d0c09271a520',1,'Course::read()'],['../class_enrollment.html#a4621adb9a0e115636670d00e1eb0152a',1,'Enrollment::read()'],['../class_student.html#aaa58f7b039d778b055d34593645326df',1,'Student::read()'],['../class_student_db.html#a6f1b2a7ce4be5f0d1c01d896d79b6dcb',1,'StudentDb::read()'],['../class_weekly_course.html#ad7ea665d819611863c2e37aa3fadbbb8',1,'WeeklyCourse::read()']]],
+  ['readstudentdatafromserver_1',['readStudentDataFromServer',['../class_student_db.html#ab1e25b59f8a9e39d20533adc0c6cd952',1,'StudentDb']]],
+  ['run_2',['run',['../class_simple_u_i.html#affd53fb3bcc0ec52f81a7e2b35c406ff',1,'SimpleUI']]]
 ];

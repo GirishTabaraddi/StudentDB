@@ -26,29 +26,6 @@ private:
 	 */
 	StudentDb& m_db;
 
-public:
-	/*!
-	 * @brief Parameterized constructor for SimpleUI.
-	 *
-	 * Initializes the SimpleUI class with a reference
-	 * to a StudentDb object.
-	 *
-	 * @param db A reference to the StudentDb class.
-	 */
-	SimpleUI(StudentDb& db);
-
-	/*!
-	 * @brief Default destructor for the SimpleUI class.
-	 */
-	virtual ~SimpleUI();
-
-	/*!
-	 * @brief Lists all the properties available in the database,
-	 * requests input from the user,
-	 *        and executes the respective operation.
-	 */
-	void run() const;
-
 private:
 	/*!
 	 * @brief Get user inputs for creating a new course.
@@ -101,33 +78,6 @@ private:
 	void performStudentUpdate(unsigned int matrikelNumber,
 			const Student& updateStudent) const;
 
-//	/*!
-//	 * @brief Get user inputs for updating the first name of a student.
-//	 *
-//	 * @param matrikelNumber The matrikel number of the student.
-//	 * @param updateStudent Reference to a Student object.
-//	 */
-//	void getUserInputforFirstName(unsigned int matrikelNumber,
-//			const Student& updateStudent) const;
-//
-//	/*!
-//	 * @brief Get user inputs for updating the last name of a student.
-//	 *
-//	 * @param matrikelNumber The matrikel number of the student.
-//	 * @param updateStudent Reference to a Student object.
-//	 */
-//	void getUserInputforLastName(unsigned int matrikelNumber,
-//			const Student& updateStudent) const;
-//
-//	/*!
-//	 * @brief Get user inputs for updating the date of birth of a student.
-//	 *
-//	 * @param matrikelNumber The matrikel number of the student.
-//	 * @param updateStudent Reference to a Student object.
-//	 */
-//	void getUserInputforDateOfBirth(unsigned int matrikelNumber,
-//			const Student& updateStudent) const;
-
 	/*!
 	 * @brief Get user inputs for updating student's address information.
 	 *
@@ -154,6 +104,29 @@ private:
 	 */
 	void performEnrollmentUpdate(const std::string& courseKey,
 			const Student& updateStudent) const;
+
+public:
+	/*!
+	 * @brief Parameterized constructor for SimpleUI.
+	 *
+	 * Initializes the SimpleUI class with a reference
+	 * to a StudentDb object.
+	 *
+	 * @param db A reference to the StudentDb class.
+	 */
+	SimpleUI(StudentDb& db);
+
+	/*!
+	 * @brief Default destructor for the SimpleUI class.
+	 */
+	virtual ~SimpleUI();
+
+	/*!
+	 * @brief Lists all the properties available in the database,
+	 * requests input from the user,
+	 *        and executes the respective operation.
+	 */
+	void run() const;
 };
 
 

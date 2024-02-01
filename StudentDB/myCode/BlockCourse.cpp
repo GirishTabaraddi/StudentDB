@@ -15,8 +15,8 @@ BlockCourse::BlockCourse(unsigned int courseKey, std::string title,
 		std::string major, float creditPoints, Poco::Data::Date startDate,
 		Poco::Data::Date endDate, Poco::Data::Time startTime,
 		Poco::Data::Time endTime) :
-						Course(courseKey, title, major, creditPoints), m_startDate(startDate),
-						m_endDate(endDate), m_startTime(startTime), m_endTime(endTime)
+		Course(courseKey, title, major, creditPoints), m_startDate(startDate),
+		m_endDate(endDate), m_startTime(startTime), m_endTime(endTime)
 {
 }
 
@@ -44,18 +44,6 @@ Poco::Data::Time BlockCourse::getEndTime() const
 	return this->m_endTime;
 }
 
-std::string BlockCourse::printCourse() const
-{
-	string outStr =
-			"B;" + Course::printCourse() +
-			";" + pocoDateToStringFormatter(this->m_startDate) +
-			";" + pocoDateToStringFormatter(this->m_endDate) +
-			";" + pocoTimeToStringFormatter(this->m_startTime) +
-			";" + pocoTimeToStringFormatter(this->m_endTime);
-
-	return outStr;
-}
-
 void BlockCourse::write(std::ostream &out) const
 {
 	out << "B;";
@@ -63,10 +51,10 @@ void BlockCourse::write(std::ostream &out) const
 	Course::write(out);
 
 	out << ";" << pocoDateToStringFormatter(this->m_startDate)
-	    		<< ";" << pocoDateToStringFormatter(this->m_endDate)
-				<< ";" << pocoTimeToStringFormatter(this->m_startTime)
-				<< ";" << pocoTimeToStringFormatter(this->m_endTime)
-				<< endl;
+		<< ";" << pocoDateToStringFormatter(this->m_endDate)
+		<< ";" << pocoTimeToStringFormatter(this->m_startTime)
+		<< ";" << pocoTimeToStringFormatter(this->m_endTime)
+		<< endl;
 }
 
 std::unique_ptr<BlockCourse> BlockCourse::read(std::istream &in)

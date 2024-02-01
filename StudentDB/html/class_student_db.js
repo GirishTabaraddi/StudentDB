@@ -9,6 +9,7 @@ var class_student_db =
       [ "RC_Enrollment_Exists", "class_student_db.html#a30b659c517fe917b05ae084d72f33662aeb74e38253b28b176bc7cb2c84f35a5a", null ]
     ] ],
     [ "StudentDb", "class_student_db.html#ad1f774b2bdff8a79af838c988c4f2ec5", null ],
+    [ "~StudentDb", "class_student_db.html#a4e0cf54d63ba2b890db886572d625708", null ],
     [ "addEnrollment", "class_student_db.html#a0e46d6cf448cc849e301b504d94d958f", null ],
     [ "addNewCourse", "class_student_db.html#ada96694443c4e354c85cdaaa9f3c092b", null ],
     [ "addNewStudent", "class_student_db.html#a3c9857b52f911919c7fba97dc2f90c5e", null ],

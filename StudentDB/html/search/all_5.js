@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['formatterfile_2ecpp_0',['formatterfile.cpp',['../formatterfile_8cpp.html',1,'']]],
-  ['formatterfile_2eh_1',['formatterfile.h',['../formatterfile_8h.html',1,'']]]
+  ['fromjson_0',['fromjson',['../class_address.html#a35c8717a745395151e8b46a3ed241b04',1,'Address::fromJson()'],['../class_student.html#a2a983dc058a79c4fa3824f65074413eb',1,'Student::fromJson()']]]
 ];
