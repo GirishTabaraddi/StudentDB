@@ -92,4 +92,4 @@ Be nice, terminate your session with the server by sending the quit command rath
 
 ### Final Updated UML
 
-![StudentDB_UML_Final_Version](https://github.com/GirishTabaraddi/StudentDB/blob/master/StudentDB_UML_Final_Version.png)
+![StudentDB_UML_Final_Version](https://github.com/GirishTabaraddi/StudentDB/blob/feature/branch-to-add-extra-changes-if-needed/StudentDB_UML_Final_Version.png)
