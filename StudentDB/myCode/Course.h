@@ -161,6 +161,7 @@ public:
 	 */
 	static std::unique_ptr<Course> read(std::istream& in);
 
+	virtual boost::json::object toJson() const;
 };
 
 #endif /* COURSE_H_ */

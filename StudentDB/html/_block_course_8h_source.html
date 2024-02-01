@@ -132,10 +132,12 @@ $(document).ready(function(){initNavTree('_block_course_8h_source.html',''); ini
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_block_course.html#a111d118c5d4fa960e002e95632196243">write</a>(std::ostream&amp; out) <span class="keyword">const override</span>;</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">static</span> std::unique_ptr&lt;BlockCourse&gt; <a class="code hl_function" href="class_block_course.html#ac9ff331c103465cce9c483c4513195e4">read</a>(std::istream&amp; in);</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>};</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    boost::json::object toJson() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>};</div>
 </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#endif </span><span class="comment">/* BLOCKCOURSE_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#endif </span><span class="comment">/* BLOCKCOURSE_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="a_course_8h_html"><div class="ttname"><a href="_course_8h.html">Course.h</a></div></div>
 <div class="ttc" id="aclass_block_course_html"><div class="ttname"><a href="class_block_course.html">BlockCourse</a></div><div class="ttdoc">Represents a block course with specific scheduling details.</div><div class="ttdef"><b>Definition</b> BlockCourse.h:20</div></div>
 <div class="ttc" id="aclass_block_course_html_a111d118c5d4fa960e002e95632196243"><div class="ttname"><a href="class_block_course.html#a111d118c5d4fa960e002e95632196243">BlockCourse::write</a></div><div class="ttdeci">void write(std::ostream &amp;out) const override</div><div class="ttdoc">Write the object's data to the provided output stream.</div><div class="ttdef"><b>Definition</b> BlockCourse.cpp:47</div></div>

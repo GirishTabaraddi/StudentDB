@@ -115,6 +115,8 @@ public:
 	 * \return A unique pointer to the constructed BlockCourse object.
 	 */
 	static std::unique_ptr<BlockCourse> read(std::istream& in);
+
+	boost::json::object toJson() const override;
 };
 
 #endif /* BLOCKCOURSE_H_ */

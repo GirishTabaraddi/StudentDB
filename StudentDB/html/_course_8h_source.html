@@ -146,10 +146,11 @@ $(document).ready(function(){initNavTree('_course_8h_source.html',''); initResiz
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keyword">static</span> std::unique_ptr&lt;Course&gt; <a class="code hl_function" href="class_course.html#a97698e7aadb1664b3ed6d0c09271a520">read</a>(std::istream&amp; in);</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>};</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keyword">virtual</span> boost::json::object toJson() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>};</div>
 </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">#endif </span><span class="comment">/* COURSE_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">#endif </span><span class="comment">/* COURSE_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aclass_block_course_html"><div class="ttname"><a href="class_block_course.html">BlockCourse</a></div><div class="ttdoc">Represents a block course with specific scheduling details.</div><div class="ttdef"><b>Definition</b> BlockCourse.h:20</div></div>
 <div class="ttc" id="aclass_course_html"><div class="ttname"><a href="class_course.html">Course</a></div><div class="ttdoc">Forward declaration.</div><div class="ttdef"><b>Definition</b> Course.h:31</div></div>
 <div class="ttc" id="aclass_course_html_a11cb3b3abed4bbfd86a694023d05720e"><div class="ttname"><a href="class_course.html#a11cb3b3abed4bbfd86a694023d05720e">Course::gettitle</a></div><div class="ttdeci">const std::string gettitle() const</div><div class="ttdoc">Getter method to obtain the title of the course.</div><div class="ttdef"><b>Definition</b> Course.cpp:52</div></div>

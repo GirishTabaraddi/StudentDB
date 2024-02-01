@@ -86,3 +86,23 @@ std::unique_ptr<WeeklyCourse> WeeklyCourse::read(std::istream &in)
 	(stoi(courseKey), title, major, stof(creditPoints), getDayOfWeekFromString(dayOfWeek),
 			stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
 }
+
+boost::json::object WeeklyCourse::toJson() const
+{
+	boost::json::object returnObj;
+
+	boost::json::object courseObj = Course::toJson();
+
+	returnObj.emplace("courseType", "W");
+
+	for(const boost::json::object::value_type & pair : courseObj)
+	{
+		returnObj.emplace(pair.key(), pair.value());
+	}
+
+	returnObj.emplace("dayOfWeek", static_cast<int>(this->m_daysOfWeek));
+	returnObj.emplace("startTime", pocoTimeToStringFormatter(this->m_startTime));
+	returnObj.emplace("endTime", pocoTimeToStringFormatter(this->m_endTime));
+
+	return returnObj;
+}

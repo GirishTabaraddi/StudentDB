@@ -395,6 +395,10 @@ void StudentDb::readStudentDataFromServer(unsigned int noOfUserData)
 	{
 		cerr << "Connection to server unsuccessful!!" << stream.error().message() << endl;
 	}
+	else
+	{
+		cout << "Connection working" << endl;
+	}
 
 	for(unsigned int idx = 0; idx < noOfUserData; idx++)
 	{
@@ -412,7 +416,7 @@ void StudentDb::readStudentDataFromServer(unsigned int noOfUserData)
 		//TODO: remove these lines
 		cout << line1 << endl;
 
-		//		cout << line2 << endl;
+//		cout << line2 << endl;
 		boost::json::object jsonObject = boost::json::parse(line2).get_object();
 
 		this->fromJson(jsonObject);
@@ -432,8 +436,36 @@ void StudentDb::fromJson(const boost::json::object &jsonDataObject)
 	if(student != nullptr)
 	{
 		this->m_students.insert(make_pair(student->getMatrikelNumber(), *student));
+
+		delete student;
+	}
+}
+
+boost::json::object StudentDb::toJson() const
+{
+	boost::json::object returnObj;
+
+	boost::json::array studentsArray;
+
+	for(const pair<const int,Student> & student : this->m_students)
+	{
+		studentsArray.push_back(student.second.toJson());
 	}
 
+	returnObj["students"] = move(studentsArray);
+
+	boost::json::array coursesArray;
+
+	for(const pair<const int, unique_ptr<const Course>> & course : this->m_courses)
+	{
+		coursesArray.push_back(course.second->toJson());
+	}
+
+	returnObj["courses"] = move(coursesArray);
+
+	return returnObj;
+
+}
 //	istringstream iss(jSONData);
 //
 //	boost::property_tree::ptree parsedData;
@@ -479,7 +511,7 @@ void StudentDb::fromJson(const boost::json::object &jsonDataObject)
 //
 //		this->m_students.insert(make_pair(student.getMatrikelNumber(), student));
 //	}
-}
+//}
 
 //void StudentDb::readStudentDataFromServer(unsigned int noOfUserData)
 //{

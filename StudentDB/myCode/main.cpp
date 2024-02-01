@@ -74,6 +74,7 @@ int main ()
         +write(std::ostream& out) : void {query}
         +read(std::istream& in) : void
         +readStudentDataFromServer(unsigned int noOfUserData) : void
+		+toJson() : boost::json::object {query}
 
         -readCoursesData(std::string& str) : void
         -readStudentsData(std::string& str) : void
@@ -83,6 +84,7 @@ int main ()
         -writeEnrollmentsData(std::ostream& out) : void {query}
         -parsingJSONData(std::string& JSONData) : void
         -isValidServerDataString(const std::string& eachStr) : bool
+		-fromJson(const boost::json::object& jsonDataObject) : void
 	}
 
 	class Student
@@ -113,6 +115,8 @@ int main ()
 		+updateGrade(const float& grade, const unsigned int& courseKey) : void
 		+write(std::ostream& out) : void {query}
 		+{static} read(std::istream& in) : Student
+		+{static} fromJson(const boost::json::object& jsonDataObject) : Student*
+        +toJson() : boost::json::object {query}
 	}
 
 	class Address
@@ -130,6 +134,8 @@ int main ()
 		+getadditionalInfo() : std::string& {query}
 		+write(std::ostream& out) : void {query}
 		+{static} read(std::istream& in) : std::shared_ptr<Address>
+		+{static} fromJson(const boost::json::object& jsonDataObject) : std::shared_ptr<Address>
+		+toJson() : boost::json::object {query}
 	}
 
 	class Enrollment
@@ -146,6 +152,7 @@ int main ()
 		+setgrade(float grade) : void
 		+write(std::ostream& out) : void {query}
 		+{static} read(std::istream& in, const Course* courseobj) : Enrollment
+		+toJson() : boost::json::object {query}
 	}
 
 	abstract class Course
@@ -168,6 +175,7 @@ int main ()
 		+printCourse() : std::string {query}
 		+write(std::ostream& out) : void {query}
 		+{static} read(std::istream& in) : std::unique_ptr<Course>
+		+toJson() : boost::json::object {query}
 	}
 
 	class BlockCourse
@@ -185,6 +193,7 @@ int main ()
 		+getEndTime() : Poco::Data::Time {query}
 		+write(std::ostream& out) : void {query}
 		+{static} read(std::istream& in) : std::unique_ptr<BlockCourse>
+		+toJson() : boost::json::object {query}
 	}
 
 	class WeeklyCourse
@@ -200,6 +209,7 @@ int main ()
 		+getEndTime() : Poco::Data::Time {query}
 		+write(std::ostream& out) : void {query}
 		+{static} read(std::istream& in) : std::unique_ptr<WeeklyCourse>
+		+toJson() : boost::json::object {query}
 	}
 
 enum StudentDb::RC_StudentDb_t {

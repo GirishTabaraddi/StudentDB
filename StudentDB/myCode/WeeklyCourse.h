@@ -103,6 +103,8 @@ public:
 	 * @return A unique pointer to the constructed WeeklyCourse object.
 	 */
 	static std::unique_ptr<WeeklyCourse> read(std::istream& in);
+
+	boost::json::object toJson() const override;
 };
 
 #endif /* WEEKLYCOURSE_H_ */

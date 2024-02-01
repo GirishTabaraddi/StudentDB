@@ -129,10 +129,12 @@ $(document).ready(function(){initNavTree('_weekly_course_8h_source.html',''); in
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_weekly_course.html#a80b0fa6cceed9162fb244345d3c85839">write</a>(std::ostream&amp; out) <span class="keyword">const override</span>;</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">static</span> std::unique_ptr&lt;WeeklyCourse&gt; <a class="code hl_function" href="class_weekly_course.html#ad7ea665d819611863c2e37aa3fadbbb8">read</a>(std::istream&amp; in);</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>};</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    boost::json::object toJson() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>};</div>
 </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">#endif </span><span class="comment">/* WEEKLYCOURSE_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">#endif </span><span class="comment">/* WEEKLYCOURSE_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="a_course_8h_html"><div class="ttname"><a href="_course_8h.html">Course.h</a></div></div>
 <div class="ttc" id="aclass_course_html"><div class="ttname"><a href="class_course.html">Course</a></div><div class="ttdoc">Forward declaration.</div><div class="ttdef"><b>Definition</b> Course.h:31</div></div>
 <div class="ttc" id="aclass_weekly_course_html"><div class="ttname"><a href="class_weekly_course.html">WeeklyCourse</a></div><div class="ttdoc">Represents a weekly course with specific scheduling details.</div><div class="ttdef"><b>Definition</b> WeeklyCourse.h:20</div></div>

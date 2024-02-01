@@ -139,10 +139,12 @@ $(document).ready(function(){initNavTree('_address_8h_source.html',''); initResi
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">static</span> std::shared_ptr&lt;Address&gt; <a class="code hl_function" href="class_address.html#a35c8717a745395151e8b46a3ed241b04">fromJson</a>(<span class="keyword">const</span> boost::json::object &amp;jsonDataObject);</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>};</div>
-</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    boost::json::object toJson() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">#endif </span><span class="comment">/* ADDRESS_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>};</div>
+</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">#endif </span><span class="comment">/* ADDRESS_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aclass_address_html"><div class="ttname"><a href="class_address.html">Address</a></div><div class="ttdoc">Represents an address with specific details.</div><div class="ttdef"><b>Definition</b> Address.h:24</div></div>
 <div class="ttc" id="aclass_address_html_a2e5f370c3caf5bc8686de435dfe53562"><div class="ttname"><a href="class_address.html#a2e5f370c3caf5bc8686de435dfe53562">Address::getadditionalInfo</a></div><div class="ttdeci">const std::string &amp; getadditionalInfo() const</div><div class="ttdoc">Getter method for additional information about the address.</div><div class="ttdef"><b>Definition</b> Address.cpp:40</div></div>
 <div class="ttc" id="aclass_address_html_a35c8717a745395151e8b46a3ed241b04"><div class="ttname"><a href="class_address.html#a35c8717a745395151e8b46a3ed241b04">Address::fromJson</a></div><div class="ttdeci">static std::shared_ptr&lt; Address &gt; fromJson(const boost::json::object &amp;jsonDataObject)</div><div class="ttdoc">Create an Address object from JSON data.</div><div class="ttdef"><b>Definition</b> Address.cpp:66</div></div>

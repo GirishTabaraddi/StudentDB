@@ -73,3 +73,14 @@ Enrollment Enrollment::read(std::istream &in, const Course *courseobj)
 		return Enrollment(semester, nullptr);
 	}
 }
+
+boost::json::object Enrollment::toJson() const
+{
+	boost::json::object returnObj;
+
+	returnObj.emplace("semester", this->m_semester);
+	returnObj.emplace("courseKey", getcourse()->getcourseKey());
+	returnObj.emplace("grade", this->m_grade);
+
+	return returnObj;
+}

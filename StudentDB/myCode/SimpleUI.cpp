@@ -46,7 +46,7 @@ void SimpleUI::run() const
 
 		int numericChoice = stoi(choice);
 
-		if(numericChoice >= 0 && numericChoice <= 10)
+		if(numericChoice >= 0 && numericChoice <= 11)
 		{
 			switch(numericChoice)
 			{
@@ -166,6 +166,28 @@ void SimpleUI::run() const
 						"extracted from the server: ", "\\d+", noOfUserDate);
 
 				this->m_db.readStudentDataFromServer(stoul(noOfUserDate));
+			}
+			break;
+			case 11:
+			{
+				ofstream writeFile("write_toJsonData.txt", ios::trunc);
+
+				if(writeFile.is_open())
+				{
+					boost::json::object stringToJson = this->m_db.toJson();
+
+					ostringstream streamJson;
+
+					streamJson << setw(2) << boost::json::serialize(stringToJson);
+
+					writeFile << streamJson.str();
+
+					writeFile.close();
+				}
+				else
+				{
+					cout << "Unable to open file" << endl;
+				}
 			}
 			break;
 			default:

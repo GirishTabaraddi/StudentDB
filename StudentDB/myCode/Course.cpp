@@ -112,3 +112,15 @@ std::unique_ptr<Course> Course::read(std::istream &in)
 
 	return nullptr;
 }
+
+boost::json::object Course::toJson() const
+{
+	boost::json::object returnObj;
+
+	returnObj.emplace("courseKey", this->m_courseKey);
+	returnObj.emplace("title", this->m_title);
+	returnObj.emplace("major", this->m_majorById.at(this->m_major));
+	returnObj.emplace("creditPoints", this->m_creditPoints);
+
+	return returnObj;
+}

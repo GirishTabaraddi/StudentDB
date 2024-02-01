@@ -282,6 +282,7 @@ public:
 	 */
 	void readStudentDataFromServer(unsigned int noOfUserData);
 
+	virtual boost::json::object toJson() const;
 };
 
 #endif /* STUDENTDB_H_ */

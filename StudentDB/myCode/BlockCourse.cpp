@@ -95,3 +95,24 @@ std::unique_ptr<BlockCourse> BlockCourse::read(std::istream &in)
 			stringToPocoDateFormatter(startDate), stringToPocoDateFormatter(endDate),
 			stringToPocoTimeFormatter(startTime), stringToPocoTimeFormatter(endTime));
 }
+
+boost::json::object BlockCourse::toJson() const
+{
+	boost::json::object returnObj;
+
+	boost::json::object courseObj = Course::toJson();
+
+	returnObj.emplace("courseType", "B");
+
+	for(const boost::json::object::value_type & pair : courseObj)
+	{
+		returnObj.emplace(pair.key(), pair.value());
+	}
+
+	returnObj.emplace("startDate", pocoDateToStringFormatter(this->m_startDate));
+	returnObj.emplace("endDate", pocoDateToStringFormatter(this->m_endDate));
+	returnObj.emplace("startTime", pocoTimeToStringFormatter(this->m_startTime));
+	returnObj.emplace("endTime", pocoTimeToStringFormatter(this->m_endTime));
+
+	return returnObj;
+}

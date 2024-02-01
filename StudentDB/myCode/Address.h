@@ -128,6 +128,8 @@ public:
 	 */
 	static std::shared_ptr<Address> fromJson(const boost::json::object &jsonDataObject);
 
+	boost::json::object toJson() const;
+
 };
 
 #endif /* ADDRESS_H_ */

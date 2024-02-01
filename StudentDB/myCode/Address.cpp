@@ -68,15 +68,31 @@ std::shared_ptr<Address> Address::fromJson(const boost::json::object &jsonDataOb
 	shared_ptr<Address> address = nullptr;
 
 	string street = jsonDataObject.at("street").as_string().c_str();
-	string postCode = jsonDataObject.at("postCode").as_string().c_str();
+	string postCodeStr = jsonDataObject.at("postCode").as_string().c_str();
 	string city = jsonDataObject.at("city").as_string().c_str();
 	string additionalInfo = jsonDataObject.at("state").as_string().c_str();
 
-	if(isPrintable(street) && isPrintable(postCode) &&
+	if(isPrintable(street) && isPrintable(postCodeStr) &&
 			isPrintable(city) && isPrintable(additionalInfo))
 	{
-		address = make_shared<Address>(street, stoi(postCode), city, additionalInfo);
+		int postCode = (all_of(postCodeStr.begin(), postCodeStr.end(), ::isdigit)) ? stoi(postCodeStr) : 9999;
+
+		address = make_shared<Address>(street, postCode, city, additionalInfo);
+
+		return address;
 	}
 
-	return address;
+	return nullptr;
+}
+
+boost::json::object Address::toJson() const
+{
+	boost::json::object returnObj;
+
+	returnObj.emplace("street", this->m_street);
+	returnObj.emplace("postalCode", this->m_postalCode);
+	returnObj.emplace("cityName", this->m_cityName);
+	returnObj.emplace("additionalInfo",  this->m_additionalInfo);
+
+	return returnObj;
 }

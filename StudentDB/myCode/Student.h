@@ -225,6 +225,7 @@ public:
 	 */
 	static Student* fromJson(const boost::json::object &jsonDataObject);
 
+	boost::json::object toJson() const;
 };
 
 #endif /* STUDENT_H_ */

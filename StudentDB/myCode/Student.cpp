@@ -132,9 +132,9 @@ void Student::updateGrade(const float &grade, const unsigned int &courseKey)
 void Student::write(std::ostream &out) const
 {
 	out << to_string(this->m_matrikelNumber)
-								<< ";" << this->m_firstName
-								<< ";" << this->m_lastName << ";"
-								<< pocoDateToStringFormatter(this->m_dateOfBirth) + ";";
+		<< ";" << this->m_firstName
+		<< ";" << this->m_lastName << ";"
+		<< pocoDateToStringFormatter(this->m_dateOfBirth) + ";";
 
 	this->getAddress()->write(out);
 }
@@ -196,14 +196,14 @@ Student* Student::fromJson(const boost::json::object &jsonDataObject)
 	string firstName = jsonDataObject.at("name").at("firstName").as_string().c_str();
 	string lastName = jsonDataObject.at("name").at("lastName").as_string().c_str();
 
-	int year = jsonDataObject.at("dateOfBirth").at("year").as_int64() + 1900;
-	int month = jsonDataObject.at("dateOfBirth").at("month").as_int64() + 1;
+	int year = jsonDataObject.at("dateOfBirth").at("year").as_int64();
+	int month = jsonDataObject.at("dateOfBirth").at("month").as_int64();
 	int day = jsonDataObject.at("dateOfBirth").at("date").as_int64();
 
 	if(isPrintable(firstName) && isPrintable(lastName) && isPrintable(to_string(year)) &&
 			isPrintable(to_string(month)) && isPrintable(to_string(day)))
 	{
-		Poco::Data::Date dateOfBirth(year, month, day);
+		Poco::Data::Date dateOfBirth(year+1900, month+1, day);
 
 		boost::json::object jsonAddress = jsonDataObject.at("location").get_object();
 
@@ -220,4 +220,33 @@ Student* Student::fromJson(const boost::json::object &jsonDataObject)
 	}
 
 	return nullptr;
+}
+
+boost::json::object Student::toJson() const
+{
+	boost::json::object returnObj, nameObj, dobObj;
+
+	nameObj.emplace("firstName", this->m_firstName);
+	nameObj.emplace("lastName", this->m_lastName);
+	returnObj.emplace("name", nameObj);
+
+	dobObj.emplace("year", this->m_dateOfBirth.year());
+	dobObj.emplace("month", this->m_dateOfBirth.month());
+	dobObj.emplace("day", this->m_dateOfBirth.day());
+	returnObj.emplace("dateOfBirth", dobObj);
+
+	returnObj.emplace("matrikelNumber", this->m_matrikelNumber);
+
+	returnObj.emplace("location", getAddress()->toJson());
+
+	boost::json::array enrollmentArray;
+
+	for(const Enrollment& enrollment : this->m_enrollments)
+	{
+		enrollmentArray.push_back(enrollment.toJson());
+	}
+
+	returnObj["enrollments"] = move(enrollmentArray);
+
+	return returnObj;
 }

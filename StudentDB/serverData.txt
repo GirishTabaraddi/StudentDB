@@ -1,0 +1,7 @@
+0
+4
+100000;fatima;reyes;13.11.2021;4144 calle de la democracia;33166;las palmas de gran canaria;canarias
+100001;dolores;ortega;26.04.1932;1882 calle de argumosa;24578;guadalajara;cantabria
+100002;marilou;addy;02.10.1929;8710 bay ave;40519;chatham;ontario
+100003;holly;ross;15.09.1943;9790 o'connell avenue;10096;dungarvan;cork
+0

@@ -105,6 +105,8 @@ public:
 	 * @return The constructed Enrollment object.
 	 */
 	static Enrollment read(std::istream& in, const Course* courseobj);
+
+	boost::json::object toJson() const;
 };
 
 #endif /* ENROLLMENT_H_ */
