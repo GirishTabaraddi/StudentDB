@@ -129,12 +129,11 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~WeeklyCourse</b> 
 <tr class="memitem:a6e495ae87bcdc927b1332f65393e155f" id="r_a6e495ae87bcdc927b1332f65393e155f"><td class="memItemLeft" align="right" valign="top">Poco::Data::Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_weekly_course.html#a6e495ae87bcdc927b1332f65393e155f">getEndTime</a> () const</td></tr>
 <tr class="memdesc:a6e495ae87bcdc927b1332f65393e155f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method for the end time of the course.  <br /></td></tr>
 <tr class="separator:a6e495ae87bcdc927b1332f65393e155f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac37117b8f34dde9be85ba33e3f0761ba" id="r_ac37117b8f34dde9be85ba33e3f0761ba"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_weekly_course.html#ac37117b8f34dde9be85ba33e3f0761ba">printCourse</a> () const override</td></tr>
-<tr class="memdesc:ac37117b8f34dde9be85ba33e3f0761ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print method that outputs the data of the weekly course as a string.  <br /></td></tr>
-<tr class="separator:ac37117b8f34dde9be85ba33e3f0761ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80b0fa6cceed9162fb244345d3c85839" id="r_a80b0fa6cceed9162fb244345d3c85839"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_weekly_course.html#a80b0fa6cceed9162fb244345d3c85839">write</a> (std::ostream &amp;out) const override</td></tr>
 <tr class="memdesc:a80b0fa6cceed9162fb244345d3c85839"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the object's data to the provided output stream.  <br /></td></tr>
 <tr class="separator:a80b0fa6cceed9162fb244345d3c85839"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00d87d9512d61aa0151782e9f353bf33" id="r_a00d87d9512d61aa0151782e9f353bf33"><td class="memItemLeft" align="right" valign="top">boost::json::object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_weekly_course.html#a00d87d9512d61aa0151782e9f353bf33">toJson</a> () const override</td></tr>
+<tr class="separator:a00d87d9512d61aa0151782e9f353bf33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_course"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_course')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_course.html">Course</a></td></tr>
 <tr class="memitem:a275539ab3ab7c035b0b80f111ff7b039 inherit pub_methods_class_course" id="r_a275539ab3ab7c035b0b80f111ff7b039"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_course.html#a275539ab3ab7c035b0b80f111ff7b039">Course</a> (unsigned int courseKey, std::string title, std::string major, float creditPoints)</td></tr>
 <tr class="memdesc:a275539ab3ab7c035b0b80f111ff7b039 inherit pub_methods_class_course"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameterized constructor for initializing a <a class="el" href="class_course.html" title="Forward declaration.">Course</a> object.  <br /></td></tr>
@@ -306,36 +305,6 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac37117b8f34dde9be85ba33e3f0761ba" name="ac37117b8f34dde9be85ba33e3f0761ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac37117b8f34dde9be85ba33e3f0761ba">&#9670;&#160;</a></span>printCourse()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string WeeklyCourse::printCourse </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Print method that outputs the data of the weekly course as a string. </p>
-<dl class="section return"><dt>Returns</dt><dd>String representation of the course data. </dd></dl>
-
-<p>Reimplemented from <a class="el" href="class_course.html#a1e4b12abf486e9c5bd741a750d86713d">Course</a>.</p>
-
-</div>
-</div>
 <a id="ad7ea665d819611863c2e37aa3fadbbb8" name="ad7ea665d819611863c2e37aa3fadbbb8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad7ea665d819611863c2e37aa3fadbbb8">&#9670;&#160;</a></span>read()</h2>
 
@@ -369,6 +338,33 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A unique pointer to the constructed <a class="el" href="class_weekly_course.html" title="Represents a weekly course with specific scheduling details.">WeeklyCourse</a> object. </dd></dl>
+
+</div>
+</div>
+<a id="a00d87d9512d61aa0151782e9f353bf33" name="a00d87d9512d61aa0151782e9f353bf33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00d87d9512d61aa0151782e9f353bf33">&#9670;&#160;</a></span>toJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::json::object WeeklyCourse::toJson </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="class_course.html">Course</a>.</p>
 
 </div>
 </div>

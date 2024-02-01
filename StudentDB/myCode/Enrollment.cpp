@@ -35,21 +35,9 @@ const Course* Enrollment::getcourse() const
 	return this->m_course;
 }
 
-void Enrollment::setgrade(float grade)
+void Enrollment::setgrade(const float &grade)
 {
 	this->m_grade = grade;
-}
-
-std::string Enrollment::printEnrollment() const
-{
-	ostringstream oss;
-
-	oss << fixed << setprecision(1) << this->m_grade;
-
-	string out = to_string(this->m_course->getcourseKey())
-			+ ";" + this->m_semester + ";" + oss.str();
-
-	return out;
 }
 
 void Enrollment::write(std::ostream &out) const
@@ -59,34 +47,14 @@ void Enrollment::write(std::ostream &out) const
 	oss << fixed << setprecision(1) << this->m_grade;
 
 	out << to_string(this->m_course->getcourseKey())
-			<< ";" << this->m_semester << ";" << oss.str();
+		<< ";" << this->m_semester << ";" << oss.str();
 }
-
-//Enrollment Enrollment::read(std::istream &in)
-//{
-//	string inStr;
-//
-//	getline(in, inStr);
-//
-////	cout << "inside read: " << inStr << endl;
-//
-//	unsigned int matrikelNumber = stoul(splitAt(inStr, ';'));
-//	unsigned int courseKey = stoul(splitAt(inStr, ';'));
-//	string semester = splitAt(inStr, ';');
-//	float grade = stof(splitAt(inStr, ';'));
-//
-////	cout << matrikelNumber << " " << courseKey << " " << semester << " " << grade << endl;
-//
-//	return Enrollment(semester, nullptr);
-//}
 
 Enrollment Enrollment::read(std::istream &in, const Course *courseobj)
 {
 	string inStr;
 
 	getline(in, inStr);
-
-//	cout << "inside read: " << inStr << endl;
 
 	unsigned int courseKey = stoul(splitAt(inStr, ';'));
 	string semester = splitAt(inStr, ';');
@@ -104,4 +72,15 @@ Enrollment Enrollment::read(std::istream &in, const Course *courseobj)
 	{
 		return Enrollment(semester, nullptr);
 	}
+}
+
+boost::json::object Enrollment::toJson() const
+{
+	boost::json::object returnObj;
+
+	returnObj.emplace("semester", this->m_semester);
+	returnObj.emplace("courseKey", getcourse()->getcourseKey());
+	returnObj.emplace("grade", this->m_grade);
+
+	return returnObj;
 }

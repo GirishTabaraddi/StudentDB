@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Student DatabaseProject: myCode/formatterfile.h File Reference</title>
+<title>Student DatabaseProject: myCode/helperFunctions.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('formatterfile_8h.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('helper_functions_8h.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('formatterfile_8h.html',''); initResiza
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">formatterfile.h File Reference</div></div>
+  <div class="headertitle"><div class="title">helperFunctions.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br />
@@ -99,6 +99,7 @@ $(document).ready(function(){initNavTree('formatterfile_8h.html',''); initResiza
 <code>#include &lt;regex&gt;</code><br />
 <code>#include &lt;sstream&gt;</code><br />
 <code>#include &lt;unordered_map&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
 <code>#include &lt;Poco/DateTimeFormatter.h&gt;</code><br />
 <code>#include &lt;Poco/Data/Date.h&gt;</code><br />
 <code>#include &lt;Poco/LocalDateTime.h&gt;</code><br />
@@ -106,39 +107,94 @@ $(document).ready(function(){initNavTree('formatterfile_8h.html',''); initResiza
 <code>#include &lt;Poco/Timestamp.h&gt;</code><br />
 <code>#include &lt;Poco/Data/Time.h&gt;</code><br />
 <code>#include &lt;Poco/DateTime.h&gt;</code><br />
+<code>#include &lt;Poco/Net/SocketAddress.h&gt;</code><br />
+<code>#include &lt;Poco/Net/StreamSocket.h&gt;</code><br />
+<code>#include &lt;Poco/Net/SocketStream.h&gt;</code><br />
+<code>#include &lt;Poco/JSON/JSON.h&gt;</code><br />
+<code>#include &lt;Poco/JSON/Parser.h&gt;</code><br />
+<code>#include &lt;Poco/Dynamic/Var.h&gt;</code><br />
+<code>#include &lt;Poco/Timespan.h&gt;</code><br />
+<code>#include &lt;Poco/JSON/Object.h&gt;</code><br />
+<code>#include &lt;Poco/DynamicStruct.h&gt;</code><br />
+<code>#include &lt;Poco/UTFString.h&gt;</code><br />
 <code>#include &lt;boost/algorithm/string.hpp&gt;</code><br />
+<code>#include &lt;boost/json.hpp&gt;</code><br />
 </div>
-<p><a href="formatterfile_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="helper_functions_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2e89225bd5f554f7e0f97869d5577c71" id="r_a2e89225bd5f554f7e0f97869d5577c71"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#a2e89225bd5f554f7e0f97869d5577c71">pocoDateToStringFormatter</a> (const Poco::Data::Date &amp;date)</td></tr>
+<tr class="memitem:a2e89225bd5f554f7e0f97869d5577c71" id="r_a2e89225bd5f554f7e0f97869d5577c71"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helper_functions_8h.html#a2e89225bd5f554f7e0f97869d5577c71">pocoDateToStringFormatter</a> (const Poco::Data::Date &amp;date)</td></tr>
 <tr class="memdesc:a2e89225bd5f554f7e0f97869d5577c71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts Poco::Data::Date to a formatted string.  <br /></td></tr>
 <tr class="separator:a2e89225bd5f554f7e0f97869d5577c71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc42acaf9fcb78aeca0de2aa7afff258" id="r_afc42acaf9fcb78aeca0de2aa7afff258"><td class="memItemLeft" align="right" valign="top">Poco::Data::Date&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#afc42acaf9fcb78aeca0de2aa7afff258">stringToPocoDateFormatter</a> (const std::string &amp;stringDate)</td></tr>
+<tr class="memitem:afc42acaf9fcb78aeca0de2aa7afff258" id="r_afc42acaf9fcb78aeca0de2aa7afff258"><td class="memItemLeft" align="right" valign="top">Poco::Data::Date&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helper_functions_8h.html#afc42acaf9fcb78aeca0de2aa7afff258">stringToPocoDateFormatter</a> (const std::string &amp;stringDate)</td></tr>
 <tr class="memdesc:afc42acaf9fcb78aeca0de2aa7afff258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a string to Poco::Data::Date.  <br /></td></tr>
 <tr class="separator:afc42acaf9fcb78aeca0de2aa7afff258"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46769bc4d1406c10ed15b18103f915ea" id="r_a46769bc4d1406c10ed15b18103f915ea"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#a46769bc4d1406c10ed15b18103f915ea">pocoTimeToStringFormatter</a> (const Poco::Data::Time &amp;time)</td></tr>
+<tr class="memitem:a46769bc4d1406c10ed15b18103f915ea" id="r_a46769bc4d1406c10ed15b18103f915ea"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helper_functions_8h.html#a46769bc4d1406c10ed15b18103f915ea">pocoTimeToStringFormatter</a> (const Poco::Data::Time &amp;time)</td></tr>
 <tr class="memdesc:a46769bc4d1406c10ed15b18103f915ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts Poco::Data::Time to a formatted string.  <br /></td></tr>
 <tr class="separator:a46769bc4d1406c10ed15b18103f915ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe4ddb20dbcf1a3cbfafbef0099b0c94" id="r_abe4ddb20dbcf1a3cbfafbef0099b0c94"><td class="memItemLeft" align="right" valign="top">Poco::Data::Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#abe4ddb20dbcf1a3cbfafbef0099b0c94">stringToPocoTimeFormatter</a> (const std::string &amp;stringTime)</td></tr>
+<tr class="memitem:abe4ddb20dbcf1a3cbfafbef0099b0c94" id="r_abe4ddb20dbcf1a3cbfafbef0099b0c94"><td class="memItemLeft" align="right" valign="top">Poco::Data::Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helper_functions_8h.html#abe4ddb20dbcf1a3cbfafbef0099b0c94">stringToPocoTimeFormatter</a> (const std::string &amp;stringTime)</td></tr>
 <tr class="memdesc:abe4ddb20dbcf1a3cbfafbef0099b0c94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a string to Poco::Data::Time.  <br /></td></tr>
 <tr class="separator:abe4ddb20dbcf1a3cbfafbef0099b0c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3240f3b5f4e025b204c0e3da1288752c" id="r_a3240f3b5f4e025b204c0e3da1288752c"><td class="memItemLeft" align="right" valign="top">Poco::DateTime::DaysOfWeek&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#a3240f3b5f4e025b204c0e3da1288752c">getDayOfWeekFromString</a> (const std::string &amp;dayString)</td></tr>
+<tr class="memitem:a3240f3b5f4e025b204c0e3da1288752c" id="r_a3240f3b5f4e025b204c0e3da1288752c"><td class="memItemLeft" align="right" valign="top">Poco::DateTime::DaysOfWeek&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helper_functions_8h.html#a3240f3b5f4e025b204c0e3da1288752c">getDayOfWeekFromString</a> (const std::string &amp;dayString)</td></tr>
 <tr class="memdesc:a3240f3b5f4e025b204c0e3da1288752c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a string representation of a day to Poco::DateTime::DaysOfWeek.  <br /></td></tr>
 <tr class="separator:a3240f3b5f4e025b204c0e3da1288752c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9ed8bca3d4f21f8250c4b8fb16d39d8" id="r_af9ed8bca3d4f21f8250c4b8fb16d39d8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#af9ed8bca3d4f21f8250c4b8fb16d39d8">splitAt</a> (std::string &amp;remainder, char delimiter)</td></tr>
+<tr class="memitem:af9ed8bca3d4f21f8250c4b8fb16d39d8" id="r_af9ed8bca3d4f21f8250c4b8fb16d39d8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helper_functions_8h.html#af9ed8bca3d4f21f8250c4b8fb16d39d8">splitAt</a> (std::string &amp;remainder, char delimiter)</td></tr>
 <tr class="memdesc:af9ed8bca3d4f21f8250c4b8fb16d39d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Split the input string at the specified delimiter.  <br /></td></tr>
 <tr class="separator:af9ed8bca3d4f21f8250c4b8fb16d39d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93d67edac41f6ee0c53928102b073fa2" id="r_a93d67edac41f6ee0c53928102b073fa2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="formatterfile_8h.html#a93d67edac41f6ee0c53928102b073fa2">getUserInput</a> (const std::string &amp;prompt, const std::string &amp;inputPattern, std::string &amp;userInput)</td></tr>
-<tr class="memdesc:a93d67edac41f6ee0c53928102b073fa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given input is a valid string.  <br /></td></tr>
+<tr class="memitem:a93d67edac41f6ee0c53928102b073fa2" id="r_a93d67edac41f6ee0c53928102b073fa2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helper_functions_8h.html#a93d67edac41f6ee0c53928102b073fa2">getUserInput</a> (const std::string &amp;prompt, const std::string &amp;inputPattern, std::string &amp;userInput)</td></tr>
+<tr class="memdesc:a93d67edac41f6ee0c53928102b073fa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get user input based on a specified prompt and input pattern.  <br /></td></tr>
 <tr class="separator:a93d67edac41f6ee0c53928102b073fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae67491ba9e5f515797c8e8501e4b0d94" id="r_ae67491ba9e5f515797c8e8501e4b0d94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helper_functions_8h.html#ae67491ba9e5f515797c8e8501e4b0d94">assertTrue</a> (bool condition, std::string failedMessage)</td></tr>
+<tr class="memdesc:ae67491ba9e5f515797c8e8501e4b0d94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assert the truth of a condition and display a message on failure.  <br /></td></tr>
+<tr class="separator:ae67491ba9e5f515797c8e8501e4b0d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc8007aab9901ea4b89f8864173dbb96" id="r_adc8007aab9901ea4b89f8864173dbb96"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="helper_functions_8h.html#adc8007aab9901ea4b89f8864173dbb96">isPrintable</a> (const std::string &amp;eachStr)</td></tr>
+<tr class="memdesc:adc8007aab9901ea4b89f8864173dbb96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the provided string is a valid server data string.  <br /></td></tr>
+<tr class="separator:adc8007aab9901ea4b89f8864173dbb96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><br  />
  Created on: 11-Jan-2024 </p><dl class="section author"><dt>Author</dt><dd>Girish Tabaraddi</dd></dl>
-<p>Built on: Monday 29-01-2024 23:01:21 </p>
+<p>Built on: Thursday 01-02-2024 16:23:01 </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="ae67491ba9e5f515797c8e8501e4b0d94" name="ae67491ba9e5f515797c8e8501e4b0d94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae67491ba9e5f515797c8e8501e4b0d94">&#9670;&#160;</a></span>assertTrue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void assertTrue </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>condition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>failedMessage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Assert the truth of a condition and display a message on failure. </p>
+<p>This function checks the specified condition and displays the provided message if the condition is false.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">condition</td><td>The condition to check for truth. </td></tr>
+    <tr><td class="paramname">failedMessage</td><td>The message to display if the condition is false. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a3240f3b5f4e025b204c0e3da1288752c" name="a3240f3b5f4e025b204c0e3da1288752c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3240f3b5f4e025b204c0e3da1288752c">&#9670;&#160;</a></span>getDayOfWeekFromString()</h2>
 
@@ -199,49 +255,43 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Checks if the given input is a valid string. </p>
-<pre class="fragment"> @brief Checks if the given input is a valid integer.
+<p>Get user input based on a specified prompt and input pattern. </p>
+<p>This function prompts the user with the provided message, retrieves user input, and validates it against the specified input pattern. The result is stored in the provided string reference.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prompt</td><td>The message prompt displayed to the user. </td></tr>
+    <tr><td class="paramname">inputPattern</td><td>The regular expression pattern for validating user input. </td></tr>
+    <tr><td class="paramname">userInput</td><td>Reference to store the user input. </td></tr>
+  </table>
+  </dd>
+</dl>
 
- @param input The input string to be checked.
- @return True if the input is a valid integer; otherwise, false.
-&amp;zwj;/
-</pre><p> bool integerInputCheck(std::string&amp; input);</p>
-<p>/*! </p>
+</div>
+</div>
+<a id="adc8007aab9901ea4b89f8864173dbb96" name="adc8007aab9901ea4b89f8864173dbb96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc8007aab9901ea4b89f8864173dbb96">&#9670;&#160;</a></span>isPrintable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isPrintable </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>eachStr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the provided string is a valid server data string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">input</td><td>The input string to be checked. </td></tr>
+    <tr><td class="paramname">eachStr</td><td>The string to be checked. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the input is a valid string; otherwise, false. &zwj;/ bool stringInputCheck(std::string&amp; input);</dd></dl>
-<p>/*!</p>
-<p>Checks if the given input is a valid floating-point number.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">input</td><td>The input string to be checked. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the input is a valid floating-point number; otherwise, false. &zwj;/ bool floatInputCheck(std::string&amp; input);</dd></dl>
-<p>/*!</p>
-<p>Checks if the given string is a valid filename.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">filename</td><td>The string to be checked as a filename. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the input is a valid filename; otherwise, false. &zwj;/ bool isValidFilename(const std::string&amp; filename);</dd></dl>
-<p>/*!</p>
-<p>Checks if the given input consists of printable characters.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">input</td><td>The input string to be checked. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the input consists of printable characters; otherwise, false. &zwj;/ bool isPrintableInput(std::string&amp; input);</dd></dl>
-<p>/*! </p>
+<dl class="section return"><dt>Returns</dt><dd>True if the string is valid, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -401,7 +451,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0573494d1a2ead3f3a21ccf9e9ea589b.html">myCode</a></li><li class="navelem"><a class="el" href="formatterfile_8h.html">formatterfile.h</a></li>
+    <li class="navelem"><a class="el" href="dir_0573494d1a2ead3f3a21ccf9e9ea589b.html">myCode</a></li><li class="navelem"><a class="el" href="helper_functions_8h.html">helperFunctions.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['floatinputcheck_0',['floatinputcheck',['../formatterfile_8cpp.html#a78abb0e87022c230f619cf96f868e253',1,'floatInputCheck(std::string &amp;input):&#160;formatterfile.cpp'],['../formatterfile_8h.html#a78abb0e87022c230f619cf96f868e253',1,'floatInputCheck(std::string &amp;input):&#160;formatterfile.cpp']]],
-  ['formatterfile_2ecpp_1',['formatterfile.cpp',['../formatterfile_8cpp.html',1,'']]],
-  ['formatterfile_2eh_2',['formatterfile.h',['../formatterfile_8h.html',1,'']]]
+  ['fromjson_0',['fromjson',['../class_address.html#a35c8717a745395151e8b46a3ed241b04',1,'Address::fromJson()'],['../class_student.html#a2a983dc058a79c4fa3824f65074413eb',1,'Student::fromJson()']]]
 ];

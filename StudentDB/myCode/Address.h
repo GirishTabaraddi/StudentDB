@@ -12,8 +12,9 @@
 
 #include <string>
 #include <iostream>
+#include <memory>
 
-#include "formatterfile.h"
+#include "helperFunctions.h"
 
 /*!
  * @class Address
@@ -38,63 +39,57 @@ private:
 	std::string m_cityName;
 
 	/*!
-	 * @var m_additionalInfo - string variable that stores additional info on address.
+	 * @var m_additionalInfo - string variable that stores
+	 * additional info on address.
 	 */
 	std::string m_additionalInfo;
 
 public:
-    /*!
-     * @brief Parameterized constructor for Address.
-     *
-     * Initializes all private members of the Address class.
-     *
-     * @param street 			The street address.
-     * @param postalCode 		The postal code.
-     * @param cityName 			The city name.
-     * @param additionalInfo 	Additional information about the address.
-     */
+	/*!
+	 * @brief Parameterized constructor for Address.
+	 *
+	 * Initializes all private members of the Address class.
+	 *
+	 * @param street 			The street address.
+	 * @param postalCode 		The postal code.
+	 * @param cityName 			The city name.
+	 * @param additionalInfo 	Additional information about the address.
+	 */
 	Address(std::string street, unsigned short postalCode,
 			std::string cityName, std::string additionalInfo);
 
-    /*!
-     * @brief Default destructor for the Address class.
-     */
+	/*!
+	 * @brief Default destructor for the Address class.
+	 */
 	virtual ~Address();
 
-    /*!
-     * @brief Getter method for the street address.
-     *
-     * @return const std::string& representing the street address.
-     */
+	/*!
+	 * @brief Getter method for the street address.
+	 *
+	 * @return const std::string& representing the street address.
+	 */
 	const std::string& getstreet() const;
 
-    /*!
-     * @brief Getter method for the postal code.
-     *
-     * @return unsigned short representing the postal code.
-     */
+	/*!
+	 * @brief Getter method for the postal code.
+	 *
+	 * @return unsigned short representing the postal code.
+	 */
 	const unsigned short getpostalCode() const;
 
-    /*!
-     * @brief Getter method for the city name.
-     *
-     * @return const std::string& representing the city name.
-     */
+	/*!
+	 * @brief Getter method for the city name.
+	 *
+	 * @return const std::string& representing the city name.
+	 */
 	const std::string& getcityName() const;
 
-    /*!
-     * @brief Getter method for additional information about the address.
-     *
-     * @return const std::string& representing additional information.
-     */
+	/*!
+	 * @brief Getter method for additional information about the address.
+	 *
+	 * @return const std::string& representing additional information.
+	 */
 	const std::string& getadditionalInfo() const;
-
-    /*!
-     * @brief Method to print the address.
-     *
-     * @return std::string representing the formatted address.
-     */
-	std::string printAddress() const;
 
 	/*!
 	 * \brief Writes the Address information to the specified output stream.
@@ -120,6 +115,20 @@ public:
 	 * @return A shared pointer to the dynamically allocated Address object.
 	 */
 	static std::shared_ptr<Address> read(std::istream& in);
+
+	/*!
+	 * @brief Create an Address object from JSON data.
+	 *
+	 * This method takes a boost::json::object representing JSON data
+	 * and constructs an Address object from it.
+	 *
+	 * @param jsonDataObject The boost::json::object containing JSON data.
+	 * @return A std::shared_ptr<Address> containing the constructed Address object,
+	 *         or nullptr if the input data is invalid.
+	 */
+	static std::shared_ptr<Address> fromJson(const boost::json::object &jsonDataObject);
+
+	boost::json::object toJson() const;
 
 };
 

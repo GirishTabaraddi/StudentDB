@@ -35,19 +35,19 @@ private:
 	Poco::Data::Time m_endTime;
 
 public:
-    /*!
-     * @brief Parameterized constructor for WeeklyCourse.
-     *
-     * Initializes all members of the abstract class and derived class.
-     *
-     * @param courseKey 	Unique identifier for the course.
-     * @param title 		Title of the course.
-     * @param major 		Major associated with the course.
-     * @param creditPoints 	Number of credit points for the course.
-     * @param daysOfWeek 	Days of the week the course is scheduled (Sunday - 0, Saturday - 6).
-     * @param startTime 	Start time of the course.
-     * @param endTime 		End time of the course.
-     */
+	/*!
+	 * @brief Parameterized constructor for WeeklyCourse.
+	 *
+	 * Initializes all members of the abstract class and derived class.
+	 *
+	 * @param courseKey 	Unique identifier for the course.
+	 * @param title 		Title of the course.
+	 * @param major 		Major associated with the course.
+	 * @param creditPoints 	Number of credit points for the course.
+	 * @param daysOfWeek 	Days of the week the course is scheduled (Sunday - 0, Saturday - 6).
+	 * @param startTime 	Start time of the course.
+	 * @param endTime 		End time of the course.
+	 */
 	WeeklyCourse(unsigned int courseKey, std::string title, std::string major,
 			float creditPoints, Poco::DateTime::DaysOfWeek daysOfWeek,
 			Poco::Data::Time startTime, Poco::Data::Time endTime);
@@ -58,33 +58,26 @@ public:
 	 */
 	virtual ~WeeklyCourse();
 
-    /*!
-     * @brief Getter method for the day of the week for the weekly course.
-     *
-     * @return Poco::DateTime::DaysOfWeek (Sunday - 0, Saturday - 6).
-     */
+	/*!
+	 * @brief Getter method for the day of the week for the weekly course.
+	 *
+	 * @return Poco::DateTime::DaysOfWeek (Sunday - 0, Saturday - 6).
+	 */
 	Poco::DateTime::DaysOfWeek getDaysOfWeek() const;
 
-    /*!
-     * @brief Getter method for the start time of the course.
-     *
-     * @return Poco::Data::Time representing the start time.
-     */
+	/*!
+	 * @brief Getter method for the start time of the course.
+	 *
+	 * @return Poco::Data::Time representing the start time.
+	 */
 	Poco::Data::Time getStartTime() const;
 
-    /*!
-     * @brief Getter method for the end time of the course.
-     *
-     * @return Poco::Data::Time representing the end time.
-     */
+	/*!
+	 * @brief Getter method for the end time of the course.
+	 *
+	 * @return Poco::Data::Time representing the end time.
+	 */
 	Poco::Data::Time getEndTime() const;
-
-    /*!
-     * @brief Print method that outputs the data of the weekly course as a string.
-     *
-     * @return String representation of the course data.
-     */
-	std::string printCourse() const override;
 
 	/**
 	 * @brief Write the object's data to the provided output stream.
@@ -110,6 +103,8 @@ public:
 	 * @return A unique pointer to the constructed WeeklyCourse object.
 	 */
 	static std::unique_ptr<WeeklyCourse> read(std::istream& in);
+
+	boost::json::object toJson() const override;
 };
 
 #endif /* WEEKLYCOURSE_H_ */

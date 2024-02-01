@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['listcourses_0',['listCourses',['../class_simple_u_i.html#ac993ae77686e586d3dcd99ef680e69a8',1,'SimpleUI']]]
+  ['isprintable_0',['isprintable',['../helper_functions_8cpp.html#adc8007aab9901ea4b89f8864173dbb96',1,'isPrintable(const std::string &amp;eachStr):&#160;helperFunctions.cpp'],['../helper_functions_8h.html#adc8007aab9901ea4b89f8864173dbb96',1,'isPrintable(const std::string &amp;eachStr):&#160;helperFunctions.cpp']]]
 ];
